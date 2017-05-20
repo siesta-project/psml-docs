@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+    
+    <meta name="author" content="Alberto Garcia" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>m_psml_parsing_helpers &ndash; libPSML</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">libPSML </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li><a href='../page/index.html'>Overview</a></li>
+	    
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>m_psml_parsing_helpers 
+    <small>Module</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title="22.7% of total for modules and submodules.">614 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/m_psml_parsing_helpers.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/m_psml_parsing_helpers.f90.html'>m_psml_parsing_helpers.F90</a></li>
+  
+     <li class="active">m_psml_parsing_helpers</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-pseudo">pseudo</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-debug_parsing">debug_parsing</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_psml">in_psml</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_slps">in_slps</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_radfunc">in_radfunc</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_semilocal">in_semilocal</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_header">in_header</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_corecharge">in_coreCharge</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_data">in_data</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_grid_data">in_grid_data</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_grid">in_grid</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_valencecharge">in_valenceCharge</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_provenance">in_provenance</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_input_file">in_input_file</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_valence_config">in_valence_config</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_xc">in_xc</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_libxc_info">in_libxc_info</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_pseudowavefun">in_pseudowavefun</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_pswf">in_pswf</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_chlocal">in_chlocal</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_nonlocal">in_nonlocal</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_proj">in_proj</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_local_potential">in_local_potential</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-got_explicit_grid_data">got_explicit_grid_data</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-ndata">ndata</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-ndata_grid">ndata_grid</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-n_funct">n_funct</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-current_wf_set">current_wf_set</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-current_sl_set">current_sl_set</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-current_proj_set">current_proj_set</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-top_flavor">top_flavor</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-dp%7E5">dp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-zval_generation">zval_generation</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-tmp_grid">tmp_grid</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-gdata">gdata</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-gannot">gannot</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-pp">pp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qp">qp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-ifp">ifp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-hp">hp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-cp">cp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-xp%7E2">xp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-wfp">wfp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-slp">slp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qslp">qslp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-slvp">slvp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qslvp">qslvp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-lop">lop</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-nlp">nlp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qnlp">qnlp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-nlpp">nlpp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qnlpp">qnlpp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-valp">valp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-corep">corep</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-rp%7E2">rp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-parent_element">parent_element</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-0">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-0" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-begin_element">begin_element</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-end_element">end_element</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-pcdata_chunk">pcdata_chunk</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-cdata_section_chunk">cdata_section_chunk</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-save_annotation">save_annotation</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
+  <div id="allmods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/assoc_list.html">assoc_list</a>
+      
+      <a class="list-group-item" href="../module/class_grid.html">class_Grid</a>
+      
+      <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
+      
+      <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
+      
+      <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
+      
+      <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
+      
+      <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html">m_psml_ps_edit</a>
+      
+      <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
+      
+      <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
+      
+      <a class="list-group-item" href="../module/sets_m.html">sets_m</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      
+    
+  
+    <ul class="list-inline">
+      <li><h4>Uses:</h4></li>
+      
+      <li><a href='../module/m_psml_core.html'>m_psml_core</a></li>
+      
+      <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
+      
+      <li><a href='../module/class_grid.html'>class_Grid</a></li>
+      
+      <li><a href='../module/assoc_list.html'>assoc_list</a></li>
+      
+    </ul>
+    
+    
+
+    
+    
+    
+    
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-pseudo">pseudo</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-debug_parsing">debug_parsing</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_psml">in_psml</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_slps">in_slps</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_radfunc">in_radfunc</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_semilocal">in_semilocal</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_header">in_header</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_corecharge">in_coreCharge</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_data">in_data</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_grid_data">in_grid_data</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_grid">in_grid</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_valencecharge">in_valenceCharge</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_provenance">in_provenance</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_input_file">in_input_file</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_valence_config">in_valence_config</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_xc">in_xc</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_libxc_info">in_libxc_info</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_pseudowavefun">in_pseudowavefun</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_pswf">in_pswf</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_chlocal">in_chlocal</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_nonlocal">in_nonlocal</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_proj">in_proj</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-in_local_potential">in_local_potential</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-got_explicit_grid_data">got_explicit_grid_data</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-ndata">ndata</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-ndata_grid">ndata_grid</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-n_funct">n_funct</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-current_wf_set">current_wf_set</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-current_sl_set">current_sl_set</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-current_proj_set">current_proj_set</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-top_flavor">top_flavor</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-dp%7E5">dp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-zval_generation">zval_generation</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-tmp_grid">tmp_grid</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-gdata">gdata</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-gannot">gannot</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-pp">pp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qp">qp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-ifp">ifp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-hp">hp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-cp">cp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-xp%7E2">xp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-wfp">wfp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-slp">slp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qslp">qslp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-slvp">slvp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qslvp">qslvp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-lop">lop</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-nlp">nlp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qnlp">qnlp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-nlpp">nlpp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-qnlpp">qnlpp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-valp">valp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-corep">corep</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-rp%7E2">rp</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#variable-parent_element">parent_element</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-1">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-1" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-begin_element">begin_element</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-end_element">end_element</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-pcdata_chunk">pcdata_chunk</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-cdata_section_chunk">cdata_section_chunk</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html#proc-save_annotation">save_annotation</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-pseudo"></span>type(<a href='../type/ps_t.html'>ps_t</a>),</td>
+  
+  <td>public,</td>
+  <td>pointer, save</td><td>::</td>
+  <td><strong>pseudo</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-debug_parsing"></span>logical,</td>
+  
+  <td>public,</td>
+  <td>save</td><td>::</td>
+  <td><strong>debug_parsing</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_psml"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_psml</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_slps"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_slps</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_radfunc"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_radfunc</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_semilocal"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_semilocal</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_header"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_header</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_corecharge"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_coreCharge</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_data"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_data</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_grid_data"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_grid_data</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_grid"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_grid</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_valencecharge"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_valenceCharge</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_provenance"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_provenance</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_input_file"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_input_file</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_valence_config"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_valence_config</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_xc"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_xc</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_libxc_info"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_libxc_info</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_pseudowavefun"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_pseudowavefun</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_pswf"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_pswf</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_chlocal"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_chlocal</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_nonlocal"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_nonlocal</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_proj"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_proj</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-in_local_potential"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>in_local_potential</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-got_explicit_grid_data"></span>logical,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>got_explicit_grid_data</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ndata"></span>integer,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>ndata</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ndata_grid"></span>integer,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>ndata_grid</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-n_funct"></span>integer,</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>n_funct</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-current_wf_set"></span>character(len=20),</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>current_wf_set</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-current_sl_set"></span>character(len=20),</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>current_sl_set</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-current_proj_set"></span>character(len=20),</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>current_proj_set</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-top_flavor"></span>character(len=40),</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>top_flavor</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-dp%7E5"></span>integer,</td>
+  
+  <td>private,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>dp</strong></td><td> =</td><td>selected_real_kind(14)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-zval_generation"></span>real(kind=dp),</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>zval_generation</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-tmp_grid"></span>type(Grid),</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>tmp_grid</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-gdata"></span>real(kind=dp),</td>
+  
+  <td>private,</td>
+  <td>save, pointer</td><td>::</td>
+  <td><strong>gdata</strong>(:)</td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-gannot"></span>type(ps_annotation_t),</td>
+  
+  <td>private,</td>
+  <td>save, pointer</td><td>::</td>
+  <td><strong>gannot</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-pp"></span>type(<a href='../type/provenance_t.html'>provenance_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>pp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-qp"></span>type(<a href='../type/provenance_t.html'>provenance_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>qp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ifp"></span>type(<a href='../type/input_file_t.html'>input_file_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>ifp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-hp"></span>type(<a href='../type/header_t.html'>header_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>hp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-cp"></span>type(<a href='../type/config_val_t.html'>config_val_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>cp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-xp%7E2"></span>type(<a href='../type/xc_t.html'>xc_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>xp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-wfp"></span>type(<a href='../type/pswfs_t.html'>pswfs_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>wfp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-slp"></span>type(<a href='../type/semilocal_t.html'>semilocal_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>slp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-qslp"></span>type(<a href='../type/semilocal_t.html'>semilocal_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>qslp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-slvp"></span>type(<a href='../type/slps_t.html'>slps_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>slvp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-qslvp"></span>type(<a href='../type/slps_t.html'>slps_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>qslvp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lop"></span>type(<a href='../type/local_t.html'>local_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>lop</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nlp"></span>type(<a href='../type/nonlocal_t.html'>nonlocal_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>nlp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-qnlp"></span>type(<a href='../type/nonlocal_t.html'>nonlocal_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>qnlp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nlpp"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>nlpp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-qnlpp"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>qnlpp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-valp"></span>type(<a href='../type/valence_charge_t.html'>valence_charge_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>valp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-corep"></span>type(<a href='../type/core_charge_t.html'>core_charge_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>corep</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-rp%7E2"></span>type(<a href='../type/radfunc_t.html'>radfunc_t</a>),</td>
+  
+  <td>private,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>rp</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-parent_element"></span>character(len=100),</td>
+  
+  <td>private,</td>
+  <td>save</td><td>::</td>
+  <td><strong>parent_element</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    <section>
+    <h2>Subroutines</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-begin_element"></span><h3>
+public subroutine <a href='../proc/begin_element.html'>begin_element</a>(name, attributes)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>name</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(dictionary_t),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>attributes</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-end_element"></span><h3>
+public subroutine <a href='../proc/end_element.html'>end_element</a>(name)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>name</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-pcdata_chunk"></span><h3>
+public subroutine <a href='../proc/pcdata_chunk.html'>pcdata_chunk</a>(chunk)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>chunk</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-cdata_section_chunk"></span><h3>
+public subroutine <a href='../proc/cdata_section_chunk.html'>cdata_section_chunk</a>(chunk)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>chunk</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-save_annotation"></span><h3>
+private subroutine <a href='../proc/save_annotation.html'>save_annotation</a>(atts, annotation)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(dictionary_t),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>atts</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(ps_annotation_t),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>annotation</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    </section>    
+    <br>
+    
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
+  <div id="allmods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/assoc_list.html">assoc_list</a>
+      
+      <a class="list-group-item" href="../module/class_grid.html">class_Grid</a>
+      
+      <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
+      
+      <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
+      
+      <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
+      
+      <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
+      
+      <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html">m_psml_ps_edit</a>
+      
+      <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
+      
+      <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
+      
+      <a class="list-group-item" href="../module/sets_m.html">sets_m</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> libPSML was developed by Alberto Garcia</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
