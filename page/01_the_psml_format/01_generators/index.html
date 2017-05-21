@@ -135,9 +135,43 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <p>ONCVPSP
-ATOM
-PSOP</p>
+      <p>As a proof of concept of the PSML vision, we have modified two
+different atomic pseudopotential generation codes to generate PSML
+files, and interfaced libPSML to two electronic-structure programs.</p>
+<h2 id="oncvpsp">ONCVPSP</h2>
+<p>The first generator is the open-source
+<a href="http://www.mat-simresearch.com/">ONCVPSP</a> code implemented by
+<a href="http://dx.doi.org/10.1103%2FPhysRevB.88.085117">D. Hamann</a> to
+generate optimized multiple-projector norm-conserving
+pseudopotentials. The projectors are directly stored in the PSML
+format together with a choice for the local potential. In addition, a
+set of semi-local potentials, a by-product of the ONCVPSP algorithm,
+is also included in the PSML file. The patches needed to produce PSML
+output in ONCVPSP are available in
+<a href="https://launchpad.net/pspgenpatch">Launchpad</a>. To ease the production
+of XML, a special library (wxml, part of the <a href="https://launchpad.net/xmlf90">xmlf90
+project</a> maintained by one of the
+authors (A.G.)) is used.</p>
+<h2 id="atom">ATOM</h2>
+<p>The second generator enabled for PSML output is the ATOM code,
+originally developed by S. Froyen, later modified by N. Troullier and
+J. L. Martins, and currently maintained by one of us (A. G.)  within
+the <a href="http://www.icmab.es/siesta">SIESTA</a> project.  ATOM, freely
+distributed to the academic community, generates norm-conserving
+pseudopotentials in the semilocal form.</p>
+<p>In addition, we have developed a post-processing tool (PSOP, currently
+available in a
+<a href="https://code.launchpad.net/~siesta-pseudos-bases/siesta/trunk-psml">branch</a>
+of SIESTA development) which takes as input the semilocal components
+and computes the local part of the pseudopotential and the KB
+projector functions in the same way as it is done within the SIESTA
+code. These new elements, together with a new provenance record, are
+incorporated in a new PSML file, which describes a well-defined,
+client-code independent and unique operator.</p>
+<p>We have thus already two different generators of PSML files, their
+specific idiosyncrasies being describable by a common standard. Our
+plans are to enable PSML output in other pseudopotential-generation
+codes.</p>
     </div>
     
     <div class="col-md-3 col-md-pull-9">
@@ -156,6 +190,11 @@ PSOP</p>
               
             <li role="presentation" class="disabled">
             <a href='../../../page/01_the_psml_format/01_generators/index.html'>Pseudopotential generators supporting PSML</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../../page/01_the_psml_format/02_clients/index.html'>First-principles codes able to read PSML files</a>
             
             </li>
             
