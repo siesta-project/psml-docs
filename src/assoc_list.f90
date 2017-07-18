@@ -6,13 +6,14 @@ module assoc_list
 !-----------------------------------------------------------
 type, public :: assoc_list_t
   private
-  integer                              :: nslots = 0
-  integer                              :: nitems = 0
-  character(len=50), allocatable       :: key(:)
-  character(len=120), allocatable      :: value(:)
+  integer                               :: nslots = 0
+  integer                               :: nitems = 0
+  character(len=200), allocatable       :: key(:)
+  character(len=1000), allocatable      :: value(:)
 end type assoc_list_t
 
-type(assoc_list_t), public, save :: EMPTY_ASSOC_LIST 
+type(assoc_list_t), parameter, public   :: EMPTY_ASSOC_LIST = &
+                 assoc_list_t()
 
 public :: assoc_list_init
 public :: assoc_list_reset
@@ -20,6 +21,7 @@ public :: assoc_list_insert
 public :: assoc_list_nitems
 public :: assoc_list_get_key
 public :: assoc_list_get_value
+public :: assoc_list_print
 
 interface assoc_list_get_value
   module procedure assoc_list_get_value_by_index
@@ -65,6 +67,12 @@ character(len=*), intent(in)      :: key, value
 integer, intent(out)              :: stat
 
 integer :: i
+character(len=1000), allocatable  :: b(:)
+
+if (.not. allocated(a%key)) then
+   call assoc_list_init(a,4,stat)
+   if (stat /= 0) return
+endif
 
 ! Replace if key exists already
 do i = 1, a%nitems
@@ -78,8 +86,22 @@ enddo
 ! Add at the end
 a%nitems = a%nitems + 1
 if (a%nitems > a%nslots)  then
-   stat = -1
-   return
+   ! Enlarge a%data by 4 slots
+   !
+   allocate(b(a%nslots))
+   !
+   b = a%key
+   deallocate(a%key)
+   allocate(a%key(a%nslots + 4))
+   a%key(1:a%nslots) = b
+   !
+   b = a%value
+   deallocate(a%value)
+   allocate(a%value(a%nslots + 4))
+   a%value(1:a%nslots) = b
+   deallocate(b)
+   !
+   a%nslots = size(a%key)
 endif
 i = a%nitems
 a%key(i) = key
@@ -143,4 +165,40 @@ endif
 
 end subroutine assoc_list_get_value_by_index
 
+subroutine assoc_list_print(a)
+type(assoc_list_t), intent(in) :: a
+
+integer :: i
+
+if (a%nitems > 0) then
+   print "(a)", "---------------------"
+   do i = 1, a%nitems
+      print "(3x,a,a,a)", trim(a%key(i)), " : ", trim(a%value(i))
+   enddo
+   print "(a)", "---------------------"
+endif
+end subroutine assoc_list_print
+
 end module assoc_list
+
+#ifdef __TEST__
+program test_assoc
+  use assoc_list
+  
+  type(assoc_list_t) :: a, b
+  character(len=100) :: k, v, val
+  integer :: stat
+
+  do i = 1, 20
+     write(k,"(a,i0)") "key_", i
+     write(v,"(a,i0)") "val_", i
+     call assoc_list_insert(a,k,v,stat)
+  end do
+  
+  call assoc_list_get_value(a,10,val,stat)
+  b = a
+  print *, trim(val)
+  call assoc_list_get_value(b,20,val,stat)
+  print *, trim(val)
+end program test_assoc
+#endif

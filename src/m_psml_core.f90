@@ -18,36 +18,28 @@ implicit none
 private
 
 !
-!  Simple sanity checks while the format evolves
-!  This version is able to read v1.0 PSML files
-!
-!  Note that the version is really given by the generators.
-!
 ! Update this. Up to 99...
-integer, parameter    :: PATCH_LEVEL = 3
+integer, parameter    :: PATCH_LEVEL = 4
 !
 ! Only update 1000 when changing major/minor version
-integer, parameter, public  :: PSML_LIBRARY_VERSION = 1000 + PATCH_LEVEL
+integer, parameter, public  :: PSML_LIBRARY_VERSION = 1100 + PATCH_LEVEL
 !
-! These are PSML file format versions. Minor cosmetic (i.e.,
-! extra optional attributes) can be handled, but obviously
-! not structural or semantic changes. Use versions of the
-! form 1.00XXX
+!  Simple sanity checks while the format evolves
+!  This version is able to read v1.0 and v1.1 PSML files
+!
+!  Note that the version is really given by the generators.
 !
 ! The "hi" value is intended to auto-revoke the library, but
 ! it is neither completely foolproof nor flexible enough.
 !
 real, parameter, public  :: PSML_TARGET_VERSION_LO = 1.00
-real, parameter, public  :: PSML_TARGET_VERSION_HI = 1.01
+real, parameter, public  :: PSML_TARGET_VERSION_HI = 1.10
 
 !----------------------------------------------------------------
 ! Hardwired parameters (to be made dynamical in a later version)
 
-! Maximum number of valence shells (including semicore):
+! Maximum number of valence shells (including semicore) or core shells:
 integer, parameter, private    :: MAXN_SHELLS = 20
-
-! Maximum number of pseudo-wavefunctions:
-integer, parameter, private    :: MAXN_WFNS = 20
 !----------------------------------------------------------------
 
 integer, parameter, private    :: dp = selected_real_kind(14)
@@ -55,29 +47,35 @@ integer, parameter, private    :: dp = selected_real_kind(14)
 !-----------------------------------------------------------
 
 type, public :: input_file_t
-        character(len=40)       :: name = "-----"
+        character(len=100)      :: name = "-----"
         type(varying_string)    :: buffer
 end type input_file_t
 
 !------
 type, public :: provenance_t
    type(provenance_t), pointer  :: prev  => null()
-        character(len=40)       :: creator = "-----"
-        character(len=30)       :: date    = "-----"
+        integer                 :: record_number
+        character(len=100)      :: creator = "-----"
+        character(len=60)       :: date    = "-----"
+        integer                 :: n_input_files = 0  ! Max 1 for now !!
         type(input_file_t)      :: input_file
         type(ps_annotation_t)   :: annotation
    type(provenance_t), pointer  :: next => null()
 end type provenance_t
 !------
 type, public :: header_t
-        character(len=30)       :: atomic_label    !! generalized symbol
+   ! This is the 'pseudo-atom-spec' section
+   
+        character(len=100)      :: atomic_label    !! generalized symbol
         real(kind=dp)           :: z  !! atomic number (might be non-integer)
         real(kind=dp)           :: zpseudo !! Z - ncore-electrons
-        character(len=50)       :: flavor  !! pseudization method
+        character(len=100)      :: flavor  !! pseudization method
         character(len=6)        :: relativity !! "no|scalar|dirac"
-        logical                 :: polarized !! is spin_polarized?
+        logical                 :: polarized !! is spin-DFT?
         !
         character(len=3)        :: core_corrections !! are there NLCC's?
+      !
+      type(ps_annotation_t)   :: annotation
 end type header_t
 !------
 type, public :: config_val_t
@@ -94,8 +92,8 @@ end type config_val_t
 !------
 type, public :: xc_t
         integer                         :: n_functs_libxc = 0
-        character(len=50), allocatable  :: libxc_name(:)
-        character(len=50), allocatable  :: libxc_type(:)
+        character(len=200), allocatable :: libxc_name(:)
+        character(len=100), allocatable :: libxc_type(:)
         integer, allocatable            :: libxc_id(:)
         real(dp), allocatable           :: libxc_weight(:)
         type(ps_annotation_t)           :: annotation
@@ -104,16 +102,22 @@ end type xc_t
 type, public :: radfunc_t
       type(Grid)                              :: grid
       real(kind=dp), dimension(:), pointer    :: data => null()
+      logical                                 :: has_coulomb_tail
+      real(dp)                                :: tail_factor = 0.0_dp
+      integer                                 :: nnz ! # of 'non-zero' values
+      real(dp)                                :: rcut_eff ! effective end of range
+ 
 end type radfunc_t      
 !
 !===============================================
 type, public :: slps_t
       integer           :: n
       character(len=1)  :: l
-      real(dp)          :: j
+      real(dp)          :: j = -1.0_dp
       integer           :: set
-      character(len=40) :: flavor
+      character(len=100):: flavor
       real(dp)          :: rc
+      real(dp)          :: eref  ! Reference energy
       type(radfunc_t)   :: V
       type(semilocal_t), pointer :: parent_group => null()
    type(slps_t), pointer :: next => null()
@@ -147,7 +151,7 @@ type, public :: local_t
       type(Grid)                               :: grid
 
       type(radfunc_t)                          :: Vlocal
-      character(len=40)                        :: vlocal_type
+      character(len=100)                       :: vlocal_type
 
       type(radfunc_t)                          :: Chlocal
 end type local_t
@@ -156,10 +160,11 @@ end type local_t
 type, public :: nlpj_t
       integer           :: seq
       character(len=1)  :: l
-      real(dp)          :: j
+      real(dp)          :: j = -1.0_dp
       integer           :: set
-      character(len=40) :: type
+      character(len=100):: type
       real(dp)          :: ekb
+      real(dp)          :: eref  ! Reference energy
       type(radfunc_t)   :: proj
 
       type(nonlocal_t), pointer :: parent_group => null()
@@ -184,25 +189,43 @@ type, public :: nonlocal_t
 
 end type nonlocal_t
 !===============================================
+! Wavefunctions
+!
+type, public :: wf_t
+      integer           :: n
+      character(len=1)  :: l
+      integer           :: set
+      real(dp)          :: j = -1.0_dp
+      real(dp)          :: energy_level
+      type(radfunc_t)   :: Phi
+      type(wfns_t), pointer :: parent_group => null()
+   type(wf_t), pointer :: next => null()
 
-type, public :: pswfs_t
-      integer                          :: npswfs = 0
-      integer, dimension(MAXN_WFNS)           :: n
-      character(len=1), dimension(MAXN_WFNS)  :: l
-      real(dp), dimension(MAXN_WFNS)          :: j
-      integer, dimension(MAXN_WFNS)           :: set
-      type(radfunc_t), dimension(MAXN_WFNS)   :: Phi
+end type wf_t
+
+type, public :: wf_table_t
+   type(wf_t), pointer :: p => null()
+end type wf_table_t
+
+type, public :: wfns_t
+   type(wf_t), pointer :: wf => null()
+   integer             :: set
+   character(len=100)  :: type = ""
    !
    ! Optional private grid
    !
-      type(Grid)                               :: grid
+   type(Grid)             :: grid
+   type(ps_annotation_t)  :: annotation
+   !
+   type(wfns_t), pointer     :: next => null()
 
-      type(ps_annotation_t)           :: annotation
-
-end type pswfs_t
+end type wfns_t
 
 type, public :: valence_charge_t
       real(dp)        :: total_charge
+      character(len=3):: is_unscreening_charge = ""
+      character(len=3):: rescaled_to_z_pseudo  = ""
+
       type(radfunc_t) :: rho_val
       type(ps_annotation_t)   :: annotation
 end type valence_charge_t
@@ -219,19 +242,21 @@ end type core_charge_t
 type, public :: ps_t
 !! Main derived type to hold the PSML information
       character(len=10)                  :: version     = ""
-      character(len=10)                  :: energy_unit = ""
-      character(len=10)                  :: length_unit = ""
+      character(len=40)                  :: energy_unit = ""
+      character(len=40)                  :: length_unit = ""
       character(len=36)                  :: uuid = ""
-      type(ps_annotation_t)              :: annotation
+      character(len=200)                 :: namespace = ""
+      type(ps_annotation_t)              :: annotation   ! V1.0 only
       type(provenance_t), pointer        :: provenance => null()
-      type(header_t)                     :: header
+      type(header_t)                     :: header     ! pseudo-atom-spec
       type(config_val_t)                 :: config_val
+      type(config_val_t)                 :: config_core  ! extension
       type(xc_t)                         :: xc_info
       type(Grid)                         :: global_grid
       type(local_t)                      :: local
       type(semilocal_t), pointer         :: semilocal => null()
       type(nonlocal_t), pointer          :: nonlocal => null()
-      type(pswfs_t)                      :: pswfs
+      type(wfns_t), pointer              :: wavefunctions => null()
       !
       type(valence_charge_t)             :: valence_charge
       type(core_charge_t)                :: core_charge
@@ -240,6 +265,7 @@ type, public :: ps_t
       !
       type(sl_table_t), allocatable      :: sl_table(:)
       type(nl_table_t), allocatable      :: nl_table(:)
+      type(wf_table_t), allocatable      :: wf_table(:)
 
    end type ps_t
 
@@ -265,6 +291,7 @@ type, public :: ps_t
 
  public  :: destroy_local
  public  :: destroy_nonlocal
+ public  :: destroy_wavefunctions
  
  CONTAINS
 
@@ -275,9 +302,12 @@ type(ps_t), intent(inout)     :: ps
 integer :: i
 
 call ps_clean_annotation(ps%annotation)
-call destroy_provenance(ps%provenance)
-call ps_clean_annotation(ps%config_val%annotation)
 
+call destroy_provenance(ps%provenance)
+
+call ps_clean_annotation(ps%header%annotation)
+call ps_clean_annotation(ps%config_val%annotation)
+call ps_clean_annotation(ps%config_core%annotation)
 call destroy_xc(ps%xc_info)
 !
 ! Note that freshly declared objects must have
@@ -288,13 +318,7 @@ call destroy_nonlocal(ps%nonlocal)
 !
 call destroy_local(ps%local)
 !
-do i = 1, ps%pswfs%npswfs
-   call destroy_radfunc(ps%pswfs%Phi(i))
-enddo
-
-call delete(ps%pswfs%grid)
-
-call ps_clean_annotation(ps%pswfs%annotation)
+call destroy_wavefunctions(ps%wavefunctions)
 !
 call destroy_radfunc(ps%valence_charge%rho_val)
 call ps_clean_annotation(ps%valence_charge%annotation)
@@ -393,6 +417,36 @@ enddo
 end subroutine destroy_nlpj
 !
 !==================================================
+subroutine destroy_wavefunctions(p)
+type(wfns_t), pointer :: p
+
+type(wfns_t), pointer :: q
+
+do while (associated(p))
+   call ps_clean_annotation(p%annotation)
+   call destroy_pswf(p%wf)
+   call delete(p%grid)
+   q => p%next
+   deallocate(p)
+   p => q
+enddo
+
+end subroutine destroy_wavefunctions
+subroutine destroy_pswf(p)
+type(wf_t), pointer :: p
+
+type(wf_t), pointer :: q
+
+do while (associated(p))
+   call destroy_radfunc(p%Phi)
+   q => p%next
+   deallocate(p)
+   p => q
+enddo
+
+end subroutine destroy_pswf
+
+!==================================================
 subroutine destroy_radfunc(rp)
 type(radfunc_t) :: rp
 
@@ -452,7 +506,7 @@ end function setcode_of_string
 
 function str_of_set(code) result(str)
        integer, intent(in)          :: code
-       character(len=20)            :: str
+       character(len=40)            :: str
 
        character(len=100) :: msg
 

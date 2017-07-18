@@ -98,12 +98,55 @@ subroutine generate_table_nl(ps)
 
 end subroutine generate_table_nl
 
+!------------------------------------
+
+subroutine generate_table_wf(ps)
+
+  type(ps_t), intent(inout), target :: ps
+
+  type(wfns_t), pointer :: wfp
+  type(wf_t), pointer   :: wfpp
+
+  integer :: nwfns
+
+  if (allocated(ps%wf_table)) then
+     deallocate(ps%wf_table)
+  endif
+
+  nwfns = 0
+  wfp => ps%wavefunctions
+  do while (associated(wfp))
+     wfpp => wfp%wf
+     do while (associated(wfpp))
+        nwfns = nwfns + 1
+        wfpp => wfpp%next
+     enddo
+     wfp => wfp%next
+  enddo
+
+  allocate(ps%wf_table(nwfns))
+  
+  nwfns = 0
+  wfp => ps%wavefunctions
+  do while (associated(wfp))
+     wfpp => wfp%wf
+     do while (associated(wfpp))
+        nwfns = nwfns + 1
+        ps%wf_table(nwfns)%p => wfpp
+        wfpp => wfpp%next
+     enddo
+     wfp => wfp%next
+  enddo
+
+end subroutine generate_table_wf
+
 subroutine ps_GenerateTables(ps)
 
   type(ps_t), intent(inout), target :: ps
 
   call generate_table_sl(ps)
   call generate_table_nl(ps)
+  call generate_table_wf(ps)
 
 end subroutine ps_GenerateTables
 

@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="11.8% of total for modules and submodules.">321 statements</a>
+	  title=" 9.8% of total for modules and submodules.">366 statements</a>
      </li> 
      
      
@@ -173,8 +173,6 @@
       <a class="list-group-item" href="../module/m_psml_core.html#variable-psml_target_version_hi">PSML_TARGET_VERSION_HI</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-maxn_shells">MAXN_SHELLS</a>
-      
-      <a class="list-group-item" href="../module/m_psml_core.html#variable-maxn_wfns">MAXN_WFNS</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-dp%7E3">dp</a>
       
@@ -246,7 +244,11 @@
       
       <a class="list-group-item" href="../module/m_psml_core.html#type-nonlocal_t">nonlocal_t</a>
       
-      <a class="list-group-item" href="../module/m_psml_core.html#type-pswfs_t">pswfs_t</a>
+      <a class="list-group-item" href="../module/m_psml_core.html#type-wf_t">wf_t</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html#type-wf_table_t">wf_table_t</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html#type-wfns_t">wfns_t</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#type-valence_charge_t">valence_charge_t</a>
       
@@ -292,6 +294,10 @@
       
       <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_nlpj">destroy_nlpj</a>
       
+      <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_wavefunctions">destroy_wavefunctions</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_pswf">destroy_pswf</a>
+      
       <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_radfunc">destroy_radfunc</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_xc">destroy_xc</a>
@@ -322,6 +328,8 @@
       
       <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
       
+      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
+      
       <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
       
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
@@ -331,6 +339,8 @@
       <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       
@@ -395,8 +405,6 @@
       <a class="list-group-item" href="../module/m_psml_core.html#variable-psml_target_version_hi">PSML_TARGET_VERSION_HI</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-maxn_shells">MAXN_SHELLS</a>
-      
-      <a class="list-group-item" href="../module/m_psml_core.html#variable-maxn_wfns">MAXN_WFNS</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-dp%7E3">dp</a>
       
@@ -468,7 +476,11 @@
       
       <a class="list-group-item" href="../module/m_psml_core.html#type-nonlocal_t">nonlocal_t</a>
       
-      <a class="list-group-item" href="../module/m_psml_core.html#type-pswfs_t">pswfs_t</a>
+      <a class="list-group-item" href="../module/m_psml_core.html#type-wf_t">wf_t</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html#type-wf_table_t">wf_table_t</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html#type-wfns_t">wfns_t</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#type-valence_charge_t">valence_charge_t</a>
       
@@ -514,6 +526,10 @@
       
       <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_nlpj">destroy_nlpj</a>
       
+      <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_wavefunctions">destroy_wavefunctions</a>
+      
+      <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_pswf">destroy_pswf</a>
+      
       <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_radfunc">destroy_radfunc</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#proc-destroy_xc">destroy_xc</a>
@@ -558,7 +574,7 @@
   
   <td>private,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>PATCH_LEVEL</strong></td><td> =</td><td>3</td><td></td>
+  <td><strong>PATCH_LEVEL</strong></td><td> =</td><td>4</td><td></td>
   
 </tr>
 
@@ -572,7 +588,7 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>PSML_LIBRARY_VERSION</strong></td><td> =</td><td>1000+PATCH_LEVEL</td><td></td>
+  <td><strong>PSML_LIBRARY_VERSION</strong></td><td> =</td><td>1100+PATCH_LEVEL</td><td></td>
   
 </tr>
 
@@ -600,7 +616,7 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>PSML_TARGET_VERSION_HI</strong></td><td> =</td><td>1.01</td><td></td>
+  <td><strong>PSML_TARGET_VERSION_HI</strong></td><td> =</td><td>1.10</td><td></td>
   
 </tr>
 
@@ -615,20 +631,6 @@
   <td>private,</td>
   <td>parameter</td><td>::</td>
   <td><strong>MAXN_SHELLS</strong></td><td> =</td><td>20</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-maxn_wfns"></span>integer,</td>
-  
-  <td>private,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>MAXN_WFNS</strong></td><td> =</td><td>20</td><td></td>
   
 </tr>
 
@@ -856,7 +858,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-name%7E2"></span>character(len=40),</td>
+  <td><span class="anchor" id="variable-name%7E2"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -928,7 +930,21 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-creator"></span>character(len=40),</td>
+  <td><span class="anchor" id="variable-record_number"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>record_number</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-creator"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -942,11 +958,25 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-date"></span>character(len=30),</td>
+  <td><span class="anchor" id="variable-date"></span>character(len=60),</td>
   
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>date</strong></td><td> =</td><td>"-----"</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-n_input_files"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>n_input_files</strong></td><td> =</td><td>0</td><td></td>
   
 </tr>
 
@@ -1028,7 +1058,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-atomic_label"></span>character(len=30),</td>
+  <td><span class="anchor" id="variable-atomic_label"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1070,7 +1100,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-flavor"></span>character(len=50),</td>
+  <td><span class="anchor" id="variable-flavor"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1117,6 +1147,20 @@
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>core_corrections</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-annotation%7E3"></span>type(ps_annotation_t),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>annotation</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -1254,7 +1298,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E3"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E4"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1312,7 +1356,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-libxc_name"></span>character(len=50),</td>
+  <td><span class="anchor" id="variable-libxc_name"></span>character(len=200),</td>
   
   <td>public,</td>
   <td>allocatable</td><td>::</td>
@@ -1326,7 +1370,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-libxc_type"></span>character(len=50),</td>
+  <td><span class="anchor" id="variable-libxc_type"></span>character(len=100),</td>
   
   <td>public,</td>
   <td>allocatable</td><td>::</td>
@@ -1368,7 +1412,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E4"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E5"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1431,6 +1475,62 @@
   <td>public,</td>
   <td>dimension(:), pointer</td><td>::</td>
   <td><strong>data</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-has_coulomb_tail"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>has_coulomb_tail</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-tail_factor"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>tail_factor</strong></td><td> =</td><td>0.0_dp</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nnz"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>nnz</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-rcut_eff"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>rcut_eff</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -1502,7 +1602,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>j</strong></td><td></td><td></td><td></td>
+  <td><strong>j</strong></td><td> =</td><td>-1.0_dp</td><td></td>
   
 </tr>
 
@@ -1526,7 +1626,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-flavor%7E2"></span>character(len=40),</td>
+  <td><span class="anchor" id="variable-flavor%7E2"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1545,6 +1645,20 @@
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>rc</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-eref"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>eref</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -1712,7 +1826,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E5"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E6"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1770,7 +1884,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E6"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E7"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1812,7 +1926,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-vlocal_type"></span>character(len=40),</td>
+  <td><span class="anchor" id="variable-vlocal_type"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1902,7 +2016,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>j</strong></td><td></td><td></td><td></td>
+  <td><strong>j</strong></td><td> =</td><td>-1.0_dp</td><td></td>
   
 </tr>
 
@@ -1926,7 +2040,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-type"></span>character(len=40),</td>
+  <td><span class="anchor" id="variable-type"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1945,6 +2059,20 @@
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>ekb</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-eref%7E2"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>eref</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -2112,7 +2240,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E7"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E8"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2147,7 +2275,7 @@
      
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="type-pswfs_t"></span><h3>type, public :: <a href='../type/pswfs_t.html'>pswfs_t</a>
+  <div class="panel-heading codesum"><span class="anchor" id="type-wf_t"></span><h3>type, public :: <a href='../type/wf_t.html'>wf_t</a>
     
   </h3></div>
   <div class="panel-body">
@@ -2170,24 +2298,10 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-npswfs"></span>integer,</td>
+  <td><span class="anchor" id="variable-n%7E3"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>npswfs</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-n%7E3"></span>integer,</td>
-  
-  <td>public,</td>
-  <td>dimension(MAXN_WFNS)</td><td>::</td>
   <td><strong>n</strong></td><td></td><td></td><td></td>
   
 </tr>
@@ -2200,23 +2314,9 @@
   
   <td><span class="anchor" id="variable-l%7E4"></span>character(len=1),</td>
   
-  <td>public,</td>
-  <td>dimension(MAXN_WFNS)</td><td>::</td>
+  <td>public</td>
+  <td></td><td>::</td>
   <td><strong>l</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-j%7E3"></span>real(kind=dp),</td>
-  
-  <td>public,</td>
-  <td>dimension(MAXN_WFNS)</td><td>::</td>
-  <td><strong>j</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -2228,9 +2328,37 @@
   
   <td><span class="anchor" id="variable-set%7E5"></span>integer,</td>
   
-  <td>public,</td>
-  <td>dimension(MAXN_WFNS)</td><td>::</td>
+  <td>public</td>
+  <td></td><td>::</td>
   <td><strong>set</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-j%7E3"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>j</strong></td><td> =</td><td>-1.0_dp</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-energy_level"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>energy_level</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -2242,9 +2370,153 @@
   
   <td><span class="anchor" id="variable-phi"></span>type(<a href='../type/radfunc_t.html'>radfunc_t</a>),</td>
   
-  <td>public,</td>
-  <td>dimension(MAXN_WFNS)</td><td>::</td>
+  <td>public</td>
+  <td></td><td>::</td>
   <td><strong>Phi</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-parent_group%7E3"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
+  
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>parent_group</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-next%7E6"></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
+  
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>next</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+     
+     
+          
+     
+  </div>
+</div>
+
+     
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="type-wf_table_t"></span><h3>type, public :: <a href='../type/wf_table_t.html'>wf_table_t</a>
+    
+  </h3></div>
+  <div class="panel-body">
+    
+     
+     <h4>Components</h4>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-p%7E3"></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
+  
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>p</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+     
+     
+          
+     
+  </div>
+</div>
+
+     
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="type-wfns_t"></span><h3>type, public :: <a href='../type/wfns_t.html'>wfns_t</a>
+    
+  </h3></div>
+  <div class="panel-body">
+    
+     
+     <h4>Components</h4>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-wf"></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
+  
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>wf</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-set%7E6"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>set</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-type%7E2"></span>character(len=100),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>type</strong></td><td> =</td><td>""</td><td></td>
   
 </tr>
 
@@ -2268,11 +2540,25 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E8"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E9"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>annotation</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-next%7E7"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
+  
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>next</strong></td><td>=> </td><td>null()</td><td></td>
   
 </tr>
 
@@ -2326,6 +2612,34 @@
   
 <tr>
   
+  <td><span class="anchor" id="variable-is_unscreening_charge"></span>character(len=3),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>is_unscreening_charge</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-rescaled_to_z_pseudo"></span>character(len=3),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>rescaled_to_z_pseudo</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-rho_val"></span>type(<a href='../type/radfunc_t.html'>radfunc_t</a>),</td>
   
   <td>public</td>
@@ -2340,7 +2654,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E9"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E10"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2426,7 +2740,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E10"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E11"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2484,7 +2798,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy_unit"></span>character(len=10),</td>
+  <td><span class="anchor" id="variable-energy_unit"></span>character(len=40),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2498,7 +2812,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-length_unit"></span>character(len=10),</td>
+  <td><span class="anchor" id="variable-length_unit"></span>character(len=40),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2526,7 +2840,21 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E11"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-namespace"></span>character(len=200),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>namespace</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-annotation%7E12"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2573,6 +2901,20 @@
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>config_val</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-config_core"></span>type(<a href='../type/config_val_t.html'>config_val_t</a>),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>config_core</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -2652,11 +2994,11 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-pswfs"></span>type(<a href='../type/pswfs_t.html'>pswfs_t</a>),</td>
+  <td><span class="anchor" id="variable-wavefunctions"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
   
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>pswfs</strong></td><td></td><td></td><td></td>
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>wavefunctions</strong></td><td>=> </td><td>null()</td><td></td>
   
 </tr>
 
@@ -2713,6 +3055,20 @@
   <td>public,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>nl_table</strong>(:)</td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-wf_table"></span>type(<a href='../type/wf_table_t.html'>wf_table_t</a>),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>wf_table</strong>(:)</td><td></td><td></td><td></td>
   
 </tr>
 
@@ -2846,7 +3202,7 @@ public function <a href='../proc/str_of_set.html'>str_of_set</a>(code) result(st
   
   
   
-     <h4>Return Value <small>character(len=20)
+     <h4>Return Value <small>character(len=40)
   </small></h4>
   
     
@@ -3222,6 +3578,108 @@ private subroutine <a href='../proc/destroy_nlpj.html'>destroy_nlpj</a>(p)
     
     
   <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-destroy_wavefunctions"></span><h3>
+public subroutine <a href='../proc/destroy_wavefunctions.html'>destroy_wavefunctions</a>(p)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
+  <td></td>
+  <td></td>
+  
+  <td>pointer</td><td>::</td>
+  <td><strong>p</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-destroy_pswf"></span><h3>
+private subroutine <a href='../proc/destroy_pswf.html'>destroy_pswf</a>(p)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
+  <td></td>
+  <td></td>
+  
+  <td>pointer</td><td>::</td>
+  <td><strong>p</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-destroy_radfunc"></span><h3>
 private subroutine <a href='../proc/destroy_radfunc.html'>destroy_radfunc</a>(rp)
     
@@ -3345,6 +3803,8 @@ private subroutine <a href='../proc/destroy_xc.html'>destroy_xc</a>(xp)
       
       <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
       
+      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
+      
       <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
       
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
@@ -3354,6 +3814,8 @@ private subroutine <a href='../proc/destroy_xc.html'>destroy_xc</a>(xp)
       <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       

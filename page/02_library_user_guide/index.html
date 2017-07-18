@@ -118,6 +118,15 @@
          
 <!--
         
+        <li><i class="fa fa-sitemap"></i> Subsections:</li>
+        
+        <li><a href='../../page/02_library_user_guide/01_installation.html'>Installation</a></li>
+        
+        <li><a href='../../page/02_library_user_guide/02_api/index.html'>libPSML API</a></li>
+        
+        <li><a href='../../page/02_library_user_guide/03_deprecated_api/index.html'>Deprecated API</a></li>
+        
+        
 -->
       </ul>
         <ol class="breadcrumb in-well">
@@ -133,153 +142,56 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <p>The basic modus operandi is to parse a PSML file, storing the information
+      <p>We provide a companion library to the PSML format, libPSML, that
+provides transparent parsing and data extraction from PSML files, as
+well as basic editing and data conversion capabilities.</p>
+<p>The library is built around a data structure of type <a href="../../type/ps_t.html">ps_t</a>
+that maps the information in a PSML file. Instances of this
+structure are populated by PSML parsers, processed by
+intermediate utility programs, and used as handles for information
+retrieval by client codes through accessor routines. The library
+provides, in essence:</p>
+<ul>
+<li>A routine to parse a PSML file and produce a <code>ps</code>
+  object of type <a href="../../type/ps_t.html">ps_t</a>.</li>
+<li>A routine to dump the information in a <code>ps</code> object to a
+  PSML file.</li>
+<li>Accessor routines to extract information from <code>ps</code>
+  objects.</li>
+<li>Some setter routines to insert specific blocks of information
+  into <code>ps</code> objects. These might be used by intermediate
+  processors or by high-level parsers.</li>
+</ul>
+<p>The library is written in modern Fortran and provides a
+high-level Fortran interface. A C/C++ interface is in preparation.</p>
+<p>The basic modus operandi is to parse a PSML file, storing the information
 in an abstract handle <a href="../../type/ps_t.html">ps_t</a>, and then to query the handle to
 extract the relevant data.</p>
 <div class="codehilite"><pre><span></span><span class="k">use </span><span class="n">m_psml</span>
 
 <span class="k">type</span><span class="p">(</span><span class="n">psml_t</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
 <span class="k">call </span><span class="n">psml_reader</span><span class="p">(</span><span class="s2">&quot;input.psml&quot;</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
-<span class="k">print</span> <span class="o">*</span><span class="p">,</span> <span class="n">ps_GetPSMLVersion</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="c">! Set up a grid of our own choosing</span>
+<span class="n">npts</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span> <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.01</span>  
+<span class="k">allocate</span><span class="p">(</span><span class="n">r</span><span class="p">(</span><span class="n">npts</span><span class="p">))</span>
+<span class="k">do </span><span class="n">ir</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">npts</span>
+   <span class="n">r</span><span class="p">(</span><span class="n">ir</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">ir</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span>
+<span class="n">enddo</span>
+
+<span class="c">! Query existing potentials and get values</span>
+<span class="k">call </span><span class="n">ps_Potential_Filter</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">set</span><span class="o">=</span><span class="n">SET_SREL</span><span class="p">,</span><span class="n">indexes</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span><span class="n">number</span><span class="o">=</span><span class="n">npots</span><span class="p">)</span>
+<span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">npots</span>
+   <span class="k">call </span><span class="n">ps_Potential_Get</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">idx</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">l</span><span class="o">=</span><span class="n">l</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">rc</span><span class="o">=</span><span class="n">rc</span><span class="p">)</span>
+   <span class="p">...</span>
+   <span class="k">do </span><span class="n">ir</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">npts</span>
+      <span class="n">val</span> <span class="o">=</span> <span class="n">ps_Potential_Value</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">idx</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">r</span><span class="p">(</span><span class="n">ir</span><span class="p">))</span>
+      <span class="p">...</span>
+   <span class="n">enddo</span>
+<span class="n">enddo</span>
 <span class="p">...</span>
 <span class="k">call </span><span class="n">ps_destroy</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
 </pre></div>
-
-
-<div class="toc">
-<ul>
-<li><a href="#library-version-identification">Library version identification</a></li>
-<li><a href="#parsing-and-handle-processing">Parsing and handle processing</a></li>
-<li><a href="#basic-metadata">Basic metadata</a></li>
-<li><a href="#predicate-routines-for-contents">Predicate routines for contents</a></li>
-<li><a href="#header-data-extraction">Header data extraction</a></li>
-<li><a href="#exchange-correlation-information">Exchange-correlation information</a></li>
-<li><a href="#electronic-configuration">Electronic configuration</a></li>
-<li><a href="#semilocal-potentials">Semilocal potentials</a></li>
-<li><a href="#vlocal">Vlocal</a></li>
-<li><a href="#local-charge">Local Charge</a></li>
-<li><a href="#projectors">Projectors</a></li>
-<li><a href="#pseudo-wave-functions">Pseudo-wave-functions</a></li>
-<li><a href="#valence-charge">Valence charge</a></li>
-<li><a href="#pseudo-core-charge">Pseudo-core charge</a></li>
-</ul>
-</div>
-<h1 id="library-version-identification">Library version identification</h1>
-<ul>
-<li><a href="../../proc/ps_getlibpsmlversion.html">ps_GetLibPSMLVersion</a></li>
-</ul>
-<h1 id="parsing-and-handle-processing">Parsing and handle processing</h1>
-<ul>
-<li><a href="../../proc/psml_reader.html">psml_reader</a></li>
-<li><a href="../../proc/ps_destroy.html">ps_destroy</a></li>
-</ul>
-<h1 id="basic-metadata">Basic metadata</h1>
-<ul>
-<li><a href="../../proc/ps_getuuid.html">ps_GetUUID</a></li>
-<li><a href="../../proc/ps_getpsmlversion.html">ps_GetPSMLVersion</a></li>
-<li><a href="../../proc/ps_creator.html">ps_Creator</a></li>
-<li><a href="../../proc/ps_date.html">ps_Date</a></li>
-</ul>
-<h1 id="predicate-routines-for-contents">Predicate routines for contents</h1>
-<ul>
-<li><a href="../../proc/ps_hassemilocalpotentials.html">ps_HasSemilocalPotentials</a></li>
-<li><a href="../../proc/ps_haspsoperator.html">ps_HasPSOperator</a></li>
-<li><a href="../../proc/ps_haslocalpotential.html">ps_HasLocalPotential</a></li>
-<li><a href="../../proc/ps_haslocalcharge.html">ps_HasLocalCharge</a></li>
-<li><a href="../../proc/ps_hasprojectors.html">ps_HasProjectors</a></li>
-<li><a href="../../proc/ps_hascorecorrections.html">ps_HasCoreCorrections</a></li>
-</ul>
-<h1 id="header-data-extraction">Header data extraction</h1>
-<ul>
-<li><a href="../../proc/ps_atomicsymbol.html">ps_AtomicSymbol</a></li>
-<li><a href="../../proc/ps_atomiclabel.html">ps_AtomicLabel</a></li>
-<li><a href="../../proc/ps_atomicnumber.html">ps_AtomicNumber</a></li>
-<li><a href="../../proc/ps_zpseudo.html">ps_ZPseudo</a></li>
-<li><a href="../../proc/ps_generationzval.html">ps_GenerationZval</a></li>
-<li><a href="../../proc/ps_pseudoflavor.html">ps_PseudoFlavor</a></li>
-<li><a href="../../proc/ps_relativity.html">ps_Relativity</a></li>
-<li><a href="../../proc/ps_isspinpolarized.html">ps_IsSpinPolarized</a></li>
-<li><a href="../../proc/ps_hascorecorrections.html">ps_HasCoreCorrections</a></li>
-</ul>
-<h1 id="exchange-correlation-information">Exchange-correlation information</h1>
-<ul>
-<li><a href="../../proc/ps_nlibxcfunctionals.html">ps_NLibxcFunctionals</a></li>
-<li><a href="../../proc/ps_libxcname.html">ps_LibxcName</a></li>
-<li><a href="../../proc/ps_libxcid.html">ps_LibxcId</a></li>
-<li><a href="../../proc/ps_libxcweight.html">ps_LibxcWeight</a></li>
-<li><a href="../../proc/ps_validlibxc.html">ps_ValidLibxc</a></li>
-<li><a href="../../proc/ps_xcannotation.html">ps_XCAnnotation</a></li>
-</ul>
-<h1 id="electronic-configuration">Electronic configuration</h1>
-<ul>
-<li><a href="../../proc/ps_nvalenceshells.html">ps_NValenceShells</a></li>
-<li><a href="../../proc/ps_valenceshelll.html">ps_ValenceShellL</a></li>
-<li><a href="../../proc/ps_valenceshelln.html">ps_ValenceShellN</a></li>
-<li><a href="../../proc/ps_valenceshelloccupation.html">ps_ValenceShellOccupation</a></li>
-</ul>
-<h1 id="semilocal-potentials">Semilocal potentials</h1>
-<ul>
-<li><a href="../../proc/ps_hassemilocalpotentials.html">ps_HasSemilocalPotentials</a></li>
-<li><a href="../../proc/ps_get_potential_indexes.html">ps_Get_Potential_Indexes</a></li>
-<li><a href="../../proc/ps_number_of_potentials.html">ps_Number_Of_Potentials</a></li>
-<li><a href="../../proc/ps_potential_l.html">ps_Potential_L</a></li>
-<li><a href="../../proc/ps_potential_j.html">ps_Potential_J</a></li>
-<li><a href="../../proc/ps_potential_n.html">ps_Potential_N</a></li>
-<li><a href="../../proc/ps_potential_rc.html">ps_Potential_Rc</a></li>
-<li><a href="../../proc/ps_potential_set.html">ps_Potential_Set</a></li>
-<li><a href="../../proc/ps_potential_value.html">ps_Potential_Value</a></li>
-<li><a href="../../proc/ps_potential_getrawdata.html">ps_Potential_GetRawData</a></li>
-</ul>
-<h1 id="vlocal">Vlocal</h1>
-<ul>
-<li><a href="../../proc/ps_haslocalpotential.html">ps_HasLocalPotential</a></li>
-<li><a href="../../proc/ps_localpotential_value.html">ps_LocalPotential_Value</a></li>
-<li><a href="../../proc/ps_localpotential_type.html">ps_LocalPotential_Type</a></li>
-<li><a href="../../proc/ps_localpotential_getrawdata.html">ps_LocalPotential_GetRawData</a></li>
-</ul>
-<h1 id="local-charge">Local Charge</h1>
-<ul>
-<li><a href="../../proc/ps_haslocalcharge.html">ps_HasLocalCharge</a></li>
-<li><a href="../../proc/ps_localcharge_value.html">ps_LocalCharge_Value</a></li>
-</ul>
-<h1 id="projectors">Projectors</h1>
-<ul>
-<li><a href="../../proc/ps_hasprojectors.html">ps_HasProjectors</a></li>
-<li><a href="../../proc/ps_number_of_projectors.html">ps_Number_Of_Projectors</a></li>
-<li><a href="../../proc/ps_get_projector_indexes.html">ps_Get_Projector_Indexes</a></li>
-<li><a href="../../proc/ps_get_projector_indexes_byl.html">ps_Get_Projector_Indexes_byL</a></li>
-<li><a href="../../proc/ps_projector_l.html">ps_Projector_L</a></li>
-<li><a href="../../proc/ps_projector_j.html">ps_Projector_J</a></li>
-<li><a href="../../proc/ps_projector_seq.html">ps_Projector_Seq</a></li>
-<li><a href="../../proc/ps_projector_ekb.html">ps_Projector_Ekb</a></li>
-<li><a href="../../proc/ps_projector_type.html">ps_Projector_Type</a></li>
-<li><a href="../../proc/ps_projector_set.html">ps_Projector_Set</a></li>
-<li><a href="../../proc/ps_projector_value.html">ps_Projector_Value</a></li>
-<li><a href="../../proc/ps_projector_getrawdata.html">ps_Projector_GetRawData</a></li>
-</ul>
-<h1 id="pseudo-wave-functions">Pseudo-wave-functions</h1>
-<ul>
-<li><a href="../../proc/ps_number_of_pseudowfs.html">ps_Number_Of_PseudoWfs</a></li>
-<li><a href="../../proc/ps_get_pseudowf_indexes.html">ps_Get_PseudoWf_Indexes</a></li>
-<li><a href="../../proc/ps_pseudowf_l.html">ps_PseudoWf_L</a></li>
-<li><a href="../../proc/ps_pseudowf_j.html">ps_PseudoWf_J</a></li>
-<li><a href="../../proc/ps_pseudowf_n.html">ps_PseudoWf_N</a></li>
-<li><a href="../../proc/ps_pseudowf_set.html">ps_PseudoWf_Set</a></li>
-<li><a href="../../proc/ps_pseudowf_value.html">ps_PseudoWf_Value</a></li>
-<li><a href="../../proc/ps_pseudowf_getrawdata.html">ps_PseudoWf_GetRawData</a></li>
-</ul>
-<h1 id="valence-charge">Valence charge</h1>
-<ul>
-<li><a href="../../proc/ps_valencecharge_value.html">ps_ValenceCharge_Value</a></li>
-<li><a href="../../proc/ps_valencecharge_getrawdata.html">ps_ValenceCharge_GetRawData</a></li>
-</ul>
-<h1 id="pseudo-core-charge">Pseudo-core charge</h1>
-<ul>
-<li><a href="../../proc/ps_corecharge_value.html">ps_CoreCharge_Value</a></li>
-<li><a href="../../proc/ps_corecharge_getrawdata.html">ps_CoreCharge_GetRawData</a></li>
-<li><a href="../../proc/ps_corecharge_matchingradius.html">ps_CoreCharge_MatchingRadius</a></li>
-<li><a href="../../proc/ps_corecharge_numberofkeptderivatives.html">ps_CoreCharge_NumberOfKeptDerivatives</a></li>
-</ul>
     </div>
     
     <div class="col-md-3 col-md-pull-9">
@@ -306,12 +218,50 @@ extract the relevant data.</p>
             
             </li>
             
+            <li role="presentation">
+            <a href='../../page/01_the_psml_format/databases.html'>Databases of PSML files</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../page/01_the_psml_format/schema.html'>Schema for PSML</a>
+            
+            </li>
+            
             </ul>
             
             </li>
             
             <li role="presentation" class="disabled">
             <a href='../../page/02_library_user_guide/index.html'>libPSML User Guide</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/01_installation.html'>Installation</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/02_api/index.html'>libPSML API</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/02_api/sets.html'>Sets of potentials, projectors, and pseudo-wave-functions</a>
+            
+            </li>
+            
+            </ul>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/03_deprecated_api/index.html'>Deprecated API</a>
+            
+            </li>
+            
+            </ul>
             
             </li>
             

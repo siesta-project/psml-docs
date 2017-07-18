@@ -11,15 +11,53 @@ use assoc_list, ps_annotation_t => assoc_list_t
 
 implicit none
 
+public :: ps_RootAttributes_Set
 public :: ps_SetUUID
 public :: ps_SetPSMLVersion
 public :: ps_AddProvenanceRecord
 public :: ps_Delete_LocalPotential
 public :: ps_Delete_NonLocalProjectors
+
+! Aliases
+interface ps_Provenance_Add
+   module procedure ps_AddProvenanceRecord
+end interface ps_Provenance_Add
+public :: ps_Provenance_Add
+
+interface ps_NonLocalProjectors_Delete
+   module procedure ps_Delete_NonLocalProjectors
+end interface ps_NonLocalProjectors_Delete
+public :: ps_NonLocalProjectors_Delete
+
+interface ps_LocalPotential_Delete
+   module procedure ps_Delete_LocalPotential
+end interface ps_LocalPotential_Delete
+public :: ps_LocalPotential_Delete
+
 !public :: ps_AddSLBlock
 private
 
 CONTAINS !===============================================
+  subroutine ps_RootAttributes_Set(ps,version,uuid,namespace) 
+    type(ps_t), intent(inout) :: ps
+    character(len=*), intent(in), optional :: version
+    character(len=*), intent(in), optional :: uuid
+    character(len=*), intent(in), optional :: namespace
+
+    if (present(version)) then
+       ps%version = version
+    endif
+
+    if (present(uuid)) then
+       ps%uuid = uuid
+    endif
+    
+    if (present(namespace)) then
+       ps%namespace = namespace
+    endif
+    
+  end  subroutine ps_RootAttributes_Set
+  
   subroutine ps_SetPSMLVersion(ps,version) 
     type(ps_t), intent(inout) :: ps
     character(len=*), intent(in) :: version
@@ -41,8 +79,18 @@ CONTAINS !===============================================
 
 type(provenance_t), pointer :: p
 type(provenance_t), pointer :: q
+integer :: depth
 
 allocate(p)
+!
+! Find the depth of the provenance stack
+!
+depth = 0
+q => ps%provenance
+do while (associated(q))
+   depth = depth + 1
+   q => q%next
+enddo
 
 q => ps%provenance
 if (associated(q)) then
@@ -51,6 +99,7 @@ if (associated(q)) then
 endif
 ps%provenance => p
 
+p%record_number = depth + 1
 p%creator = trim(creator)
 p%date = trim(date)
 p%annotation= annotation

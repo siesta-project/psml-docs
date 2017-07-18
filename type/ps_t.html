@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p>12.4% of total for derived types.</p>Including implementation: 20 statements, 12.4% of total for derived types.">20 statements</a>
+	  title="<p>12.4% of total for derived types.</p>Including implementation: 23 statements, 12.4% of total for derived types.">23 statements</a>
      </li> 
      
      
@@ -174,13 +174,17 @@
       
       <a class="list-group-item" href="../type/ps_t.html#variable-uuid">uuid</a>
       
-      <a class="list-group-item" href="../type/ps_t.html#variable-annotation%7E11">annotation</a>
+      <a class="list-group-item" href="../type/ps_t.html#variable-namespace">namespace</a>
+      
+      <a class="list-group-item" href="../type/ps_t.html#variable-annotation%7E12">annotation</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-provenance">provenance</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-header">header</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-config_val">config_val</a>
+      
+      <a class="list-group-item" href="../type/ps_t.html#variable-config_core">config_core</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-xc_info">xc_info</a>
       
@@ -192,7 +196,7 @@
       
       <a class="list-group-item" href="../type/ps_t.html#variable-nonlocal">nonlocal</a>
       
-      <a class="list-group-item" href="../type/ps_t.html#variable-pswfs">pswfs</a>
+      <a class="list-group-item" href="../type/ps_t.html#variable-wavefunctions">wavefunctions</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-valence_charge">valence_charge</a>
       
@@ -201,6 +205,8 @@
       <a class="list-group-item" href="../type/ps_t.html#variable-sl_table">sl_table</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-nl_table">nl_table</a>
+      
+      <a class="list-group-item" href="../type/ps_t.html#variable-wf_table">wf_table</a>
       
     </div>
   </div>
@@ -268,8 +274,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -281,6 +285,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       
@@ -317,13 +327,17 @@
       
       <a class="list-group-item" href="../type/ps_t.html#variable-uuid">uuid</a>
       
-      <a class="list-group-item" href="../type/ps_t.html#variable-annotation%7E11">annotation</a>
+      <a class="list-group-item" href="../type/ps_t.html#variable-namespace">namespace</a>
+      
+      <a class="list-group-item" href="../type/ps_t.html#variable-annotation%7E12">annotation</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-provenance">provenance</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-header">header</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-config_val">config_val</a>
+      
+      <a class="list-group-item" href="../type/ps_t.html#variable-config_core">config_core</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-xc_info">xc_info</a>
       
@@ -335,7 +349,7 @@
       
       <a class="list-group-item" href="../type/ps_t.html#variable-nonlocal">nonlocal</a>
       
-      <a class="list-group-item" href="../type/ps_t.html#variable-pswfs">pswfs</a>
+      <a class="list-group-item" href="../type/ps_t.html#variable-wavefunctions">wavefunctions</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-valence_charge">valence_charge</a>
       
@@ -344,6 +358,8 @@
       <a class="list-group-item" href="../type/ps_t.html#variable-sl_table">sl_table</a>
       
       <a class="list-group-item" href="../type/ps_t.html#variable-nl_table">nl_table</a>
+      
+      <a class="list-group-item" href="../type/ps_t.html#variable-wf_table">wf_table</a>
       
     </div>
   </div>
@@ -411,7 +427,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy_unit"></span>character(len=10),</td>
+  <td><span class="anchor" id="variable-energy_unit"></span>character(len=40),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -425,7 +441,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-length_unit"></span>character(len=10),</td>
+  <td><span class="anchor" id="variable-length_unit"></span>character(len=40),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -453,7 +469,21 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E11"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-namespace"></span>character(len=200),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>namespace</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-annotation%7E12"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -500,6 +530,20 @@
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>config_val</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-config_core"></span>type(<a href='../type/config_val_t.html'>config_val_t</a>),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>config_core</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -579,11 +623,11 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-pswfs"></span>type(<a href='../type/pswfs_t.html'>pswfs_t</a>),</td>
+  <td><span class="anchor" id="variable-wavefunctions"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
   
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>pswfs</strong></td><td></td><td></td><td></td>
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>wavefunctions</strong></td><td>=> </td><td>null()</td><td></td>
   
 </tr>
 
@@ -643,6 +687,20 @@
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-wf_table"></span>type(<a href='../type/wf_table_t.html'>wf_table_t</a>),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>wf_table</strong>(:)</td><td></td><td></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -662,19 +720,21 @@
     <div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">ps_t</span>
 <span class="c">!! Main derived type to hold the PSML information</span>
       <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">version</span>     <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">energy_unit</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">length_unit</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">energy_unit</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">length_unit</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
       <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">uuid</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-      <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">annotation</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">namespace</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">annotation</span>   <span class="c">! V1.0 only</span>
       <span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span>        <span class="kd">::</span> <span class="n">provenance</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
-      <span class="k">type</span><span class="p">(</span><span class="n">header_t</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">header</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">header_t</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">header</span>     <span class="c">! pseudo-atom-spec</span>
       <span class="k">type</span><span class="p">(</span><span class="n">config_val_t</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">config_val</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">config_val_t</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">config_core</span>  <span class="c">! extension</span>
       <span class="k">type</span><span class="p">(</span><span class="n">xc_t</span><span class="p">)</span>                         <span class="kd">::</span> <span class="n">xc_info</span>
       <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">)</span>                         <span class="kd">::</span> <span class="n">global_grid</span>
       <span class="k">type</span><span class="p">(</span><span class="n">local_t</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">local</span>
       <span class="k">type</span><span class="p">(</span><span class="n">semilocal_t</span><span class="p">),</span> <span class="k">pointer</span>         <span class="kd">::</span> <span class="n">semilocal</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
       <span class="k">type</span><span class="p">(</span><span class="n">nonlocal_t</span><span class="p">),</span> <span class="k">pointer</span>          <span class="kd">::</span> <span class="n">nonlocal</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
-      <span class="k">type</span><span class="p">(</span><span class="n">pswfs_t</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">pswfs</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">wfns_t</span><span class="p">),</span> <span class="k">pointer</span>              <span class="kd">::</span> <span class="n">wavefunctions</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
       <span class="c">!</span>
       <span class="k">type</span><span class="p">(</span><span class="n">valence_charge_t</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">valence_charge</span>
       <span class="k">type</span><span class="p">(</span><span class="n">core_charge_t</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">core_charge</span>
@@ -683,6 +743,7 @@
       <span class="c">!</span>
       <span class="k">type</span><span class="p">(</span><span class="n">sl_table_t</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="n">sl_table</span><span class="p">(:)</span>
       <span class="k">type</span><span class="p">(</span><span class="n">nl_table_t</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="n">nl_table</span><span class="p">(:)</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">wf_table_t</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="n">wf_table</span><span class="p">(:)</span>
 
    <span class="k">end type </span><span class="n">ps_t</span>
 </pre></div>
@@ -730,8 +791,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -743,6 +802,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       

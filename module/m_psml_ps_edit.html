@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.8% of total for modules and submodules.">49 statements</a>
+	  title=" 2.3% of total for modules and submodules.">85 statements</a>
      </li> 
      
      
@@ -166,6 +166,21 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
+  <div id="inters-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#interface-ps_provenance_add">ps_Provenance_Add</a>
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#interface-ps_nonlocalprojectors_delete">ps_NonLocalProjectors_Delete</a>
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#interface-ps_localpotential_delete">ps_LocalPotential_Delete</a>
+      
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -174,6 +189,8 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-0">Subroutines</a></h3></div>
   <div class="list-group">
     <div id="subs-0" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#proc-ps_rootattributes_set">ps_RootAttributes_Set</a>
       
       <a class="list-group-item" href="../module/m_psml_ps_edit.html#proc-ps_setpsmlversion">ps_SetPSMLVersion</a>
       
@@ -211,6 +228,8 @@
       
       <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
       
+      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
+      
       <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
       
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
@@ -220,6 +239,8 @@
       <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       
@@ -274,6 +295,21 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
+  <div id="inters-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#interface-ps_provenance_add">ps_Provenance_Add</a>
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#interface-ps_nonlocalprojectors_delete">ps_NonLocalProjectors_Delete</a>
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#interface-ps_localpotential_delete">ps_LocalPotential_Delete</a>
+      
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -282,6 +318,8 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-1">Subroutines</a></h3></div>
   <div class="list-group">
     <div id="subs-1" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/m_psml_ps_edit.html#proc-ps_rootattributes_set">ps_RootAttributes_Set</a>
       
       <a class="list-group-item" href="../module/m_psml_ps_edit.html#proc-ps_setpsmlversion">ps_SetPSMLVersion</a>
       
@@ -315,6 +353,246 @@
     
     
     
+    <section>
+	 <h2>Interfaces</h2>
+	 
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-ps_provenance_add"></span><h3>public interface <a href='../interface/ps_provenance_add.html'>ps_Provenance_Add</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+public subroutine <a href='../proc/ps_addprovenancerecord.html'>ps_AddProvenanceRecord</a>(ps, creator, date, annotation)
+    
+    
+	 
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ps_t.html'>ps_t</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ps</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>creator</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>date</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(ps_annotation_t),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>target</td><td>::</td>
+  <td><strong>annotation</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-ps_nonlocalprojectors_delete"></span><h3>public interface <a href='../interface/ps_nonlocalprojectors_delete.html'>ps_NonLocalProjectors_Delete</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+public subroutine <a href='../proc/ps_delete_nonlocalprojectors.html'>ps_Delete_NonlocalProjectors</a>(ps)
+    
+    
+	 
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ps_t.html'>ps_t</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ps</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-ps_localpotential_delete"></span><h3>public interface <a href='../interface/ps_localpotential_delete.html'>ps_LocalPotential_Delete</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+public subroutine <a href='../proc/ps_delete_localpotential.html'>ps_Delete_LocalPotential</a>(ps)
+    
+    
+	 
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ps_t.html'>ps_t</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ps</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+    </section>
+	<br>
+    
 
     
     
@@ -325,6 +603,102 @@
     
     <section>
     <h2>Subroutines</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-ps_rootattributes_set"></span><h3>
+public subroutine <a href='../proc/ps_rootattributes_set.html'>ps_RootAttributes_Set</a>(ps, version, uuid, namespace)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ps_t.html'>ps_t</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ps</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>version</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>uuid</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>namespace</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
     
     
   <div class="panel panel-default">
@@ -679,6 +1053,8 @@ public subroutine <a href='../proc/ps_delete_localpotential.html'>ps_Delete_Loca
       
       <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
       
+      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
+      
       <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
       
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
@@ -688,6 +1064,8 @@ public subroutine <a href='../proc/ps_delete_localpotential.html'>ps_Delete_Loca
       <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       

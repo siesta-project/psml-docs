@@ -124,6 +124,10 @@
         
         <li><a href='../../page/01_the_psml_format/02_clients/index.html'>First-principles codes able to read PSML files</a></li>
         
+        <li><a href='../../page/01_the_psml_format/databases.html'>Databases of PSML files</a></li>
+        
+        <li><a href='../../page/01_the_psml_format/schema.html'>Schema for PSML</a></li>
+        
         
 -->
       </ul>
@@ -140,8 +144,7 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <h1 id="introduction">Introduction</h1>
-<p>PSML is a file format for norm-conserving
+      <p>PSML is a file format for norm-conserving
 pseudopotential data which is designed to encapsulate as much as
 possible the concepts in the domain’s ontology. For example,
 the format, together with its supporting processing library, offers a
@@ -153,216 +156,10 @@ pseudopotential. The format is based on XML, and it is by
 nature extensible, offering a basic set of elements and a number of
 extra features that can be exploited for sophisticated uses or future
 improvements.</p>
-<h1 id="schema-for-psml">Schema for PSML</h1>
-<div class="codehilite"><pre><span></span><span class="c1">#</span>
-<span class="c1"># Schema for PSML format</span>
-<span class="c1"># RELAX-NG compact form. See: http://www.relaxng.org/compact-tutorial-20030326.htm</span>
-<span class="c1">#</span>
-<span class="c1"># This form can be processed by the jing/trang set of tools, available from</span>
-<span class="c1">#   https://github.com/relaxng/jing-trang</span>
-<span class="c1">#</span>
-<span class="c1"># The &#39;jing&#39; validator can work directly with this .rnc file (RELAX-NG compact form),</span>
-<span class="c1"># and this is the preferred option.</span>
-<span class="c1">#</span>
-<span class="c1"># The &#39;trang&#39; converter can be used to generate other schema forms, such as:</span>
-<span class="c1">#</span>
-<span class="c1">#     .rng (RELAX-NG xml form), .xsd (XML Schema)</span>
-<span class="c1">#</span>
-<span class="c1"># But note that some features of RELAX-NG cannot be completely represented by XML Schema</span>
-<span class="c1"># schema files:</span>
-<span class="c1">#</span>
-<span class="c1">#  - The optional attribute group &#39;(occupation-up, occupation-down)&#39; below.</span>
-<span class="c1">#    In this case both attributes are considered to be independently optional in xsd.</span>
-<span class="c1">#  - The &#39;arbitrary attribute&#39; form is not completely supported.</span>
-<span class="c1">#</span>
-
-
-<span class="n">start</span> <span class="o">=</span> <span class="n">PSML</span>
-
-<span class="n">PSML</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">psml</span> <span class="p">{</span> 
-                       <span class="c1"># First section. In any order (&amp; operator):</span>
-
-                       <span class="p">(</span>  <span class="n">psml</span><span class="o">.</span><span class="n">atts</span>      <span class="c1"># Global attributes</span>
-                        <span class="o">&amp;</span> <span class="n">annotation</span><span class="err">?</span>    <span class="c1"># Optional annotation</span>
-                        <span class="o">&amp;</span> <span class="n">Provenance</span><span class="o">+</span>    <span class="c1"># One or more provenance elements</span>
-                        <span class="o">&amp;</span> <span class="n">Header</span>         <span class="c1"># Just one header element</span>
-                        <span class="o">&amp;</span> <span class="n">TopGrid</span><span class="err">?</span> <span class="p">)</span>     <span class="c1"># Optional top-level grid</span>
-
-            <span class="p">,</span>               <span class="c1"># &#39;,&#39; is the ordered concatenation operator</span>
-
-                       <span class="c1"># Second section. In any order:</span>
-
-                       <span class="p">(</span>  <span class="n">SemiLocal</span><span class="o">*</span>       <span class="c1"># Zero or more semilocal groups</span>
-                        <span class="o">&amp;</span> <span class="n">Local</span><span class="err">?</span>           <span class="c1"># Optional local potential</span>
-                        <span class="o">&amp;</span> <span class="n">WaveFunctions</span><span class="o">*</span>   <span class="c1"># Zero or more wf groups</span>
-                        <span class="o">&amp;</span> <span class="n">NonLocal</span><span class="o">*</span>        <span class="c1"># Zero or more fully nonlocal groups</span>
-                        <span class="o">&amp;</span> <span class="n">ValenceCharge</span>    <span class="c1"># Valence charge density</span>
-                        <span class="o">&amp;</span> <span class="n">CoreCharge</span><span class="err">?</span> <span class="p">)</span>    <span class="c1"># Optional pseudo-core charge</span>
-                     <span class="p">}</span>  
-
-<span class="c1">#</span>
-<span class="c1"># Definitions of the above grammar symbols follow</span>
-
-<span class="c1">#</span>
-<span class="c1"># Global Attributes</span>
-<span class="c1">#</span>
-<span class="n">psml</span><span class="o">.</span><span class="n">atts</span> <span class="o">=</span>  <span class="n">attribute</span> <span class="n">energy_unit</span> <span class="p">{</span> <span class="s2">&quot;hartree&quot;</span> <span class="p">}</span>
-                <span class="o">&amp;</span> <span class="n">attribute</span> <span class="n">length_unit</span> <span class="p">{</span> <span class="s2">&quot;bohr&quot;</span> <span class="p">}</span>
-                <span class="o">&amp;</span> <span class="n">attribute</span> <span class="n">uuid</span> <span class="p">{</span> <span class="n">text</span> <span class="p">}</span>
-                <span class="o">&amp;</span> <span class="n">attribute</span> <span class="n">version</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">decimal</span> <span class="p">}</span>
-
-<span class="c1">#</span>
-<span class="c1"># Provenance: Optional annotation; zero or more input files</span>
-<span class="c1">#</span>
-<span class="n">Provenance</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">provenance</span> <span class="p">{</span>
-                <span class="n">attribute</span> <span class="n">creator</span> <span class="p">{</span> <span class="n">text</span> <span class="p">}</span>
-              <span class="o">&amp;</span> <span class="n">attribute</span> <span class="n">date</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">}</span>
-
-              <span class="o">&amp;</span> <span class="n">annotation</span><span class="err">?</span>
-              <span class="o">&amp;</span> <span class="n">element</span> <span class="nb">input</span><span class="o">-</span><span class="nb">file</span> <span class="p">{</span>
-                  <span class="n">attribute</span> <span class="n">name</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">},</span>
-                  <span class="n">text</span>
-                <span class="p">}</span><span class="o">*</span>
-              <span class="p">}</span>
-
-<span class="n">Header</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">header</span> <span class="p">{</span> <span class="n">header</span><span class="o">.</span><span class="n">atts</span><span class="p">,</span> <span class="p">(</span><span class="n">XC</span> <span class="o">&amp;</span> <span class="n">ValenceConf</span><span class="p">)</span> <span class="p">}</span>
-
-<span class="n">header</span><span class="o">.</span><span class="n">atts</span> <span class="o">=</span> 
-       <span class="n">attribute</span> <span class="n">atomic</span><span class="o">-</span><span class="n">label</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">},</span>
-       <span class="n">attribute</span> <span class="n">atomic</span><span class="o">-</span><span class="n">number</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-       <span class="n">attribute</span> <span class="n">core</span><span class="o">-</span><span class="n">corrections</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">},</span>
-       <span class="n">attribute</span> <span class="n">flavor</span> <span class="p">{</span> <span class="n">text</span> <span class="p">},</span>
-       <span class="n">attribute</span> <span class="n">polarized</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">},</span>
-       <span class="n">attribute</span> <span class="n">relativity</span> <span class="p">{</span> <span class="s2">&quot;no&quot;</span> <span class="o">|</span> <span class="s2">&quot;scalar&quot;</span> <span class="o">|</span> <span class="s2">&quot;dirac&quot;</span> <span class="p">},</span>
-       <span class="n">attribute</span> <span class="n">z</span><span class="o">-</span><span class="n">pseudo</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">}</span>
-
-<span class="n">XC</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">exchange</span><span class="o">-</span><span class="n">correlation</span> <span class="p">{</span>
-          <span class="n">annotation</span><span class="err">?</span>
-        <span class="o">&amp;</span> <span class="n">element</span> <span class="n">libxc</span><span class="o">-</span><span class="n">info</span> <span class="p">{</span>
-            <span class="n">attribute</span> <span class="n">number</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">functionals</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-            <span class="n">element</span> <span class="n">functional</span> <span class="p">{</span>
-              <span class="n">attribute</span> <span class="nb">id</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-              <span class="n">attribute</span> <span class="n">name</span> <span class="p">{</span> <span class="n">text</span> <span class="p">},</span>
-
-              <span class="c1"># allow canonical names and libxc-style symbols</span>
-
-              <span class="n">attribute</span> <span class="nb">type</span> <span class="p">{</span> <span class="s2">&quot;exchange&quot;</span> <span class="o">|</span> <span class="s2">&quot;correlation&quot;</span> <span class="o">|</span> <span class="s2">&quot;exchange-correlation&quot;</span> <span class="o">|</span>
-                           <span class="s2">&quot;XC_EXCHANGE&quot;</span> <span class="o">|</span> <span class="s2">&quot;XC_CORRELATION&quot;</span> <span class="o">|</span>
-                   <span class="s2">&quot;XC_EXCHANGE_CORRELATION&quot;</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
-
-              <span class="n">attribute</span> <span class="n">weight</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">}</span><span class="err">?</span>
-            <span class="p">}</span><span class="o">+</span>
-          <span class="p">}</span>
-       <span class="p">}</span>
-
-<span class="n">ValenceConf</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">valence</span><span class="o">-</span><span class="n">configuration</span> <span class="p">{</span>
-                 <span class="n">attribute</span> <span class="n">total</span><span class="o">-</span><span class="n">valence</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
-         <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-                 <span class="n">element</span> <span class="n">shell</span> <span class="p">{</span>
-                   <span class="n">attribute_l</span><span class="p">,</span>
-                   <span class="n">attribute</span> <span class="n">n</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-                   <span class="n">attribute</span> <span class="n">occupation</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
-               <span class="p">(</span><span class="n">attribute</span> <span class="n">occupation</span><span class="o">-</span><span class="n">up</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
-                    <span class="n">attribute</span> <span class="n">occupation</span><span class="o">-</span><span class="n">down</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">})</span><span class="err">?</span>
-                 <span class="p">}</span><span class="o">+</span>    
-               <span class="p">}</span>
-
-<span class="n">TopGrid</span> <span class="o">=</span>  <span class="n">grid</span>
-
-<span class="n">SemiLocal</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">semilocal</span><span class="o">-</span><span class="n">potentials</span> <span class="p">{</span>
-      <span class="n">attribute_set</span><span class="p">,</span>
-      <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-      <span class="n">element</span> <span class="n">slps</span> <span class="p">{</span>
-        <span class="n">attribute</span> <span class="n">flavor</span> <span class="p">{</span> <span class="n">text</span> <span class="p">},</span>
-        <span class="n">attribute_l</span><span class="p">,</span>
-        <span class="n">attribute_j</span> <span class="err">?</span><span class="p">,</span>
-        <span class="n">attribute</span> <span class="n">n</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-        <span class="n">attribute</span> <span class="n">rc</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
-        <span class="n">radfunc</span>
-      <span class="p">}</span><span class="o">+</span>
-    <span class="p">}</span>
-
-<span class="n">ValenceCharge</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">valence</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span>
-      <span class="n">attribute</span> <span class="n">total</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-      <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-      <span class="n">radfunc</span>
-    <span class="p">}</span>  
-
-<span class="n">CoreCharge</span> <span class="o">=</span>    <span class="n">element</span> <span class="n">pseudocore</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span>
-      <span class="n">attribute</span> <span class="n">matching</span><span class="o">-</span><span class="n">radius</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
-      <span class="n">attribute</span> <span class="n">number</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">continuous</span><span class="o">-</span><span class="n">derivatives</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-      <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-      <span class="n">radfunc</span>
-    <span class="p">}</span>
-
-<span class="n">WaveFunctions</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">pseudo</span><span class="o">-</span><span class="n">wave</span><span class="o">-</span><span class="n">functions</span> <span class="p">{</span>
-      <span class="n">attribute_set</span><span class="p">,</span>
-      <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-      <span class="n">element</span> <span class="n">pswf</span> <span class="p">{</span>
-        <span class="n">attribute_l</span><span class="p">,</span>
-        <span class="n">attribute_j</span> <span class="err">?</span><span class="p">,</span>
-        <span class="n">attribute</span> <span class="n">n</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-        <span class="n">radfunc</span>
-      <span class="p">}</span><span class="o">+</span>
-    <span class="p">}</span>
-
-<span class="n">Local</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">local</span><span class="o">-</span><span class="n">potential</span> <span class="p">{</span>
-           <span class="n">attribute</span> <span class="nb">type</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">},</span>
-           <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-           <span class="n">grid</span><span class="err">?</span><span class="p">,</span>
-           <span class="n">radfunc</span><span class="p">,</span>
-           <span class="n">element</span> <span class="n">local</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span> <span class="n">radfunc</span> <span class="p">}</span><span class="err">?</span>   <span class="c1"># Optional local-charge element</span>
-         <span class="p">}</span>
-
-<span class="n">NonLocal</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">nonlocal</span><span class="o">-</span><span class="n">projectors</span> <span class="p">{</span>
-              <span class="n">attribute_set</span><span class="p">,</span>
-              <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-              <span class="n">grid</span><span class="err">?</span><span class="p">,</span>
-              <span class="n">element</span> <span class="n">proj</span> <span class="p">{</span>
-                <span class="n">attribute</span> <span class="n">ekb</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
-                <span class="n">attribute_l</span><span class="p">,</span>
-                <span class="n">attribute_j</span> <span class="err">?</span><span class="p">,</span>
-                <span class="n">attribute</span> <span class="n">seq</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-                <span class="n">attribute</span> <span class="nb">type</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">},</span>
-                <span class="n">radfunc</span>
-              <span class="p">}</span><span class="o">+</span>
-            <span class="p">}</span>
-
-<span class="n">grid</span> <span class="o">=</span>
-  <span class="n">element</span> <span class="n">grid</span> <span class="p">{</span>
-    <span class="n">attribute</span> <span class="n">npts</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">integer</span> <span class="p">},</span>
-    <span class="n">annotation</span><span class="err">?</span><span class="p">,</span>
-    <span class="n">element</span> <span class="n">grid</span><span class="o">-</span><span class="n">data</span> <span class="p">{</span> <span class="c1"># One or more floating point numbers</span>
-      <span class="nb">list</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span><span class="o">+</span> <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-<span class="n">radfunc</span> <span class="o">=</span>
-  <span class="n">element</span> <span class="n">radfunc</span> <span class="p">{</span>
-    <span class="n">grid</span><span class="err">?</span><span class="p">,</span>              <span class="c1"># Optional grid element</span>
-    <span class="n">element</span> <span class="n">data</span> <span class="p">{</span>      <span class="c1"># Data is one or more floating point numbers</span>
-          <span class="nb">list</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span><span class="o">+</span> <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-<span class="c1">#</span>
-<span class="c1"># This is the way to leave the annotations</span>
-<span class="c1"># as collections of one or more arbitrary attributes</span>
-<span class="c1">#</span>
-<span class="n">any_attribute</span> <span class="o">=</span> <span class="n">attribute</span> <span class="o">*</span> <span class="p">{</span> <span class="n">text</span> <span class="p">}</span>
-<span class="n">annotation</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">annotation</span> <span class="p">{</span> <span class="n">any_attribute</span><span class="o">+</span>  <span class="p">}</span>
-
-<span class="c1">#</span>
-<span class="c1"># Convenience enumeration definitions</span>
-<span class="c1">#</span>
-<span class="n">attribute_l</span> <span class="o">=</span> <span class="n">attribute</span> <span class="n">l</span> <span class="p">{</span> <span class="s2">&quot;s&quot;</span> <span class="o">|</span> <span class="s2">&quot;p&quot;</span> <span class="o">|</span> <span class="s2">&quot;d&quot;</span> <span class="o">|</span> <span class="s2">&quot;f&quot;</span> <span class="o">|</span> <span class="s2">&quot;g&quot;</span> <span class="p">}</span>
-<span class="n">attribute_j</span> <span class="o">=</span> <span class="n">attribute</span> <span class="n">j</span> <span class="p">{</span> <span class="s2">&quot;0.0&quot;</span> <span class="o">|</span> <span class="s2">&quot;0.5&quot;</span> <span class="o">|</span> <span class="s2">&quot;1.5&quot;</span> <span class="o">|</span> <span class="s2">&quot;2.5&quot;</span> <span class="o">|</span> <span class="s2">&quot;3.5&quot;</span> <span class="o">|</span> <span class="s2">&quot;4.5&quot;</span> <span class="p">}</span>
-
-<span class="n">attribute_set</span> <span class="o">=</span> <span class="n">attribute</span> <span class="nb">set</span> <span class="p">{</span> <span class="s2">&quot;non_relativistic&quot;</span> <span class="o">|</span>
-                                <span class="s2">&quot;scalar_relativistic&quot;</span> <span class="o">|</span> <span class="s2">&quot;spin_orbit&quot;</span> <span class="o">|</span> <span class="s2">&quot;lj&quot;</span> <span class="o">|</span>
-                <span class="s2">&quot;up&quot;</span> <span class="o">|</span> <span class="s2">&quot;down&quot;</span> <span class="o">|</span> <span class="s2">&quot;spin_average&quot;</span> <span class="o">|</span> <span class="s2">&quot;spin_difference&quot;</span> <span class="o">|</span>
-                <span class="s2">&quot;user_extension1&quot;</span> <span class="o">|</span> <span class="s2">&quot;user_extension2&quot;</span> <span class="p">}</span>
-</pre></div>
+<ul>
+<li><a href="./schema.html">Schema for PSML</a></li>
+<li><a href="./databases.html">Databases of PSML files</a></li>
+</ul>
     </div>
     
     <div class="col-md-3 col-md-pull-9">
@@ -389,12 +186,50 @@ improvements.</p>
             
             </li>
             
+            <li role="presentation">
+            <a href='../../page/01_the_psml_format/databases.html'>Databases of PSML files</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../page/01_the_psml_format/schema.html'>Schema for PSML</a>
+            
+            </li>
+            
             </ul>
             
             </li>
             
             <li role="presentation">
             <a href='../../page/02_library_user_guide/index.html'>libPSML User Guide</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/01_installation.html'>Installation</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/02_api/index.html'>libPSML API</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/02_api/sets.html'>Sets of potentials, projectors, and pseudo-wave-functions</a>
+            
+            </li>
+            
+            </ul>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../page/02_library_user_guide/03_deprecated_api/index.html'>Deprecated API</a>
+            
+            </li>
+            
+            </ul>
             
             </li>
             

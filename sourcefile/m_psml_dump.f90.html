@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="13.1% of total for source files.">356 statements</a>
+	  title="10.5% of total for source files.">394 statements</a>
      </li> 
      
      
@@ -201,7 +201,7 @@
   <div id="allfiles-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.f90</a>
+      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
       
       <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
       
@@ -210,6 +210,8 @@
       <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
       
       <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
@@ -220,6 +222,8 @@
       <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -336,424 +340,467 @@
 <a name="ln-43"></a>      <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;energy_unit&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">energy_unit</span><span class="p">))</span>
 <a name="ln-44"></a>      <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;length_unit&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">length_unit</span><span class="p">))</span>
 <a name="ln-45"></a>      <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">uuid</span><span class="p">)</span>
-<a name="ln-46"></a>
-<a name="ln-47"></a>      <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-48"></a>
-<a name="ln-49"></a>      <span class="k">call </span><span class="n">dump_provenance</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">provenance</span><span class="p">)</span>
+<a name="ln-46"></a>      <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;xmlns&quot;</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">namespace</span><span class="p">)</span>
+<a name="ln-47"></a>
+<a name="ln-48"></a><span class="c">! No top-level annotations in V1.1      </span>
+<a name="ln-49"></a><span class="c">!      call dump_annotation(xf,ps%annotation)</span>
 <a name="ln-50"></a>
-<a name="ln-51"></a>      <span class="k">call </span><span class="n">dump_header</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-51"></a>      <span class="k">call </span><span class="n">dump_provenance</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">provenance</span><span class="p">)</span>
 <a name="ln-52"></a>
-<a name="ln-53"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-54"></a><span class="k">         call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
-<a name="ln-55"></a>      <span class="n">endif</span>
-<a name="ln-56"></a>
-<a name="ln-57"></a>      <span class="k">call </span><span class="n">dump_semilocal_potentials</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-58"></a>      <span class="k">call </span><span class="n">dump_valence_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">valence_charge</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
-<a name="ln-59"></a>      <span class="k">call </span><span class="n">dump_local_potential</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-60"></a>      <span class="k">call </span><span class="n">dump_nonlocal_projectors</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-61"></a>      <span class="k">call </span><span class="n">dump_pseudo_wavefunctions</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-62"></a>
-<a name="ln-63"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">header</span><span class="p">%</span><span class="n">core_corrections</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-64"></a><span class="k">         call </span><span class="n">dump_core_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">core_charge</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
-<a name="ln-65"></a>      <span class="n">endif</span>
-<a name="ln-66"></a>      
-<a name="ln-67"></a>      <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;psml&quot;</span><span class="p">)</span>
-<a name="ln-68"></a>      <span class="k">call </span><span class="n">xml_Close</span><span class="p">(</span><span class="n">xf</span><span class="p">)</span>
-<a name="ln-69"></a>
-<a name="ln-70"></a><span class="k">end subroutine </span><span class="n">ps_DumpToPSMLFile</span>
-<a name="ln-71"></a>
-<a name="ln-72"></a><span class="k">subroutine </span><span class="n">dump_provenance</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-73"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-74"></a>  <span class="k">use </span><span class="n">iso_varying_string</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">put</span><span class="p">,</span> <span class="nb">len</span><span class="p">,</span> <span class="nb">char</span>
-<a name="ln-75"></a><span class="nb">  </span>
-<a name="ln-76"></a><span class="nb">  </span><span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-77"></a>  <span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">p</span>
-<a name="ln-78"></a>
-<a name="ln-79"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
-<a name="ln-80"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;provenance&quot;</span><span class="p">)</span>
-<a name="ln-81"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;creator&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">creator</span><span class="p">))</span>
-<a name="ln-82"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">date</span><span class="p">))</span>
-<a name="ln-83"></a>     <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-84"></a><span class="k">        call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;input-file&quot;</span><span class="p">)</span>
-<a name="ln-85"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">name</span><span class="p">))</span>
-<a name="ln-86"></a>        <span class="k">call </span><span class="n">xml_AddCDataSection</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="nb">char</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">buffer</span><span class="p">),</span> <span class="p">&amp;</span>
-<a name="ln-87"></a>                                 <span class="n">line_feed</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
-<a name="ln-88"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;input-file&quot;</span><span class="p">)</span>
-<a name="ln-89"></a>     <span class="n">endif</span>
-<a name="ln-90"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-91"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;provenance&quot;</span><span class="p">)</span>
-<a name="ln-92"></a>     <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">p</span><span class="p">%</span><span class="n">next</span>
-<a name="ln-93"></a>  <span class="k">end do</span>
-<a name="ln-94"></a>
-<a name="ln-95"></a><span class="k">end subroutine </span><span class="n">dump_provenance</span>
-<a name="ln-96"></a>
-<a name="ln-97"></a>
-<a name="ln-98"></a><span class="k">subroutine </span><span class="n">dump_xc_info</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-99"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-100"></a>  
-<a name="ln-101"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-102"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xc_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p</span>
-<a name="ln-103"></a>
-<a name="ln-104"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-105"></a>  
-<a name="ln-106"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;exchange-correlation&quot;</span><span class="p">)</span>
-<a name="ln-107"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-108"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;libxc-info&quot;</span><span class="p">)</span>
-<a name="ln-109"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;number-of-functionals&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">n_functs_libxc</span><span class="p">))</span>
-<a name="ln-110"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">n_functs_libxc</span>
-<a name="ln-111"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;functional&quot;</span><span class="p">)</span>
-<a name="ln-112"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_name</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-113"></a>     <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_type</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="o">/=</span> <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-114"></a><span class="k">        call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_type</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-115"></a>     <span class="n">endif</span>
-<a name="ln-116"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;id&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_id</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-117"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_weight</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">/=</span> <span class="mf">1.0_dp</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-118"></a><span class="k">        call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_weight</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-119"></a>     <span class="n">endif</span>
-<a name="ln-120"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;functional&quot;</span><span class="p">)</span>
-<a name="ln-121"></a>  <span class="n">enddo</span>
-<a name="ln-122"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;libxc-info&quot;</span><span class="p">)</span>
-<a name="ln-123"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;exchange-correlation&quot;</span><span class="p">)</span>
-<a name="ln-124"></a>     
-<a name="ln-125"></a><span class="k">end subroutine </span><span class="n">dump_xc_info</span>
-<a name="ln-126"></a>
-<a name="ln-127"></a><span class="k">subroutine </span><span class="n">dump_config_val</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-128"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-129"></a>  
-<a name="ln-130"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-131"></a>  <span class="k">type</span><span class="p">(</span><span class="n">config_val_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p</span>
-<a name="ln-132"></a>
-<a name="ln-133"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-134"></a>
-<a name="ln-135"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-configuration&quot;</span><span class="p">)</span>
-<a name="ln-136"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;total-valence-charge&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">total_charge</span><span class="p">))</span>
-<a name="ln-137"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">nshells</span>
-<a name="ln-138"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;shell&quot;</span><span class="p">)</span>
-<a name="ln-139"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;n&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">n</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-140"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">l</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-<a name="ln-141"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;occupation&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">occ</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-142"></a>     <span class="k">if</span> <span class="p">((</span><span class="n">p</span><span class="p">%</span><span class="n">occ_up</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">p</span><span class="p">%</span><span class="n">occ_down</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="o">/=</span> <span class="mf">0.0_dp</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-143"></a><span class="k">        call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;occupation-down&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">occ_down</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-144"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;occupation-up&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">occ_up</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-145"></a>     <span class="n">endif</span>
-<a name="ln-146"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;shell&quot;</span><span class="p">)</span>
-<a name="ln-147"></a>  <span class="n">enddo</span>
-<a name="ln-148"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-149"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-configuration&quot;</span><span class="p">)</span>
-<a name="ln-150"></a>     
-<a name="ln-151"></a><span class="k">end subroutine </span><span class="n">dump_config_val</span>
-<a name="ln-152"></a>
-<a name="ln-153"></a>
-<a name="ln-154"></a><span class="k">subroutine </span><span class="n">dump_header</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-155"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-156"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-157"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-158"></a>
-<a name="ln-159"></a>  <span class="k">type</span><span class="p">(</span><span class="n">header_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">h</span>
-<a name="ln-160"></a>
-<a name="ln-161"></a>  <span class="n">h</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">header</span>
-<a name="ln-162"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;header&quot;</span><span class="p">)</span>
-<a name="ln-163"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;atomic-label&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">atomic_label</span><span class="p">))</span>
-<a name="ln-164"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;z-pseudo&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">zpseudo</span><span class="p">))</span>
-<a name="ln-165"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;atomic-number&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">z</span><span class="p">))</span>
-<a name="ln-166"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;flavor&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">flavor</span><span class="p">))</span>
-<a name="ln-167"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;relativity&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">relativity</span><span class="p">))</span>
-<a name="ln-168"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">polarized</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-169"></a><span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;polarized&quot;</span><span class="p">,</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
-<a name="ln-170"></a>  <span class="k">else</span>
-<a name="ln-171"></a><span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;polarized&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">)</span>
-<a name="ln-172"></a>  <span class="n">endif</span>
-<a name="ln-173"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;core-corrections&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">core_corrections</span><span class="p">))</span>
+<a name="ln-53"></a>      <span class="k">call </span><span class="n">dump_pseudo_atom_spec</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-54"></a>
+<a name="ln-55"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-56"></a><span class="k">         call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
+<a name="ln-57"></a>      <span class="n">endif</span>
+<a name="ln-58"></a>
+<a name="ln-59"></a>      <span class="k">call </span><span class="n">dump_valence_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">valence_charge</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
+<a name="ln-60"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">header</span><span class="p">%</span><span class="n">core_corrections</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-61"></a><span class="k">         call </span><span class="n">dump_core_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">core_charge</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
+<a name="ln-62"></a>      <span class="n">endif</span>
+<a name="ln-63"></a>
+<a name="ln-64"></a>      <span class="k">call </span><span class="n">dump_semilocal_potentials</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-65"></a>      <span class="k">call </span><span class="n">dump_local_potential</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-66"></a>      <span class="k">call </span><span class="n">dump_nonlocal_projectors</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-67"></a>      <span class="k">call </span><span class="n">dump_pseudo_wavefunctions</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-68"></a>
+<a name="ln-69"></a>      
+<a name="ln-70"></a>      <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;psml&quot;</span><span class="p">)</span>
+<a name="ln-71"></a>      <span class="k">call </span><span class="n">xml_Close</span><span class="p">(</span><span class="n">xf</span><span class="p">)</span>
+<a name="ln-72"></a>
+<a name="ln-73"></a><span class="k">end subroutine </span><span class="n">ps_DumpToPSMLFile</span>
+<a name="ln-74"></a>
+<a name="ln-75"></a><span class="k">subroutine </span><span class="n">dump_provenance</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-76"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-77"></a>  <span class="k">use </span><span class="n">iso_varying_string</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">put</span><span class="p">,</span> <span class="nb">len</span><span class="p">,</span> <span class="nb">char</span>
+<a name="ln-78"></a><span class="nb">  </span>
+<a name="ln-79"></a><span class="nb">  </span><span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-80"></a>  <span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">p</span>
+<a name="ln-81"></a>
+<a name="ln-82"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">depth</span>
+<a name="ln-83"></a>  <span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">q</span>
+<a name="ln-84"></a>
+<a name="ln-85"></a>  <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-86"></a>  <span class="n">q</span> <span class="o">=&gt;</span> <span class="n">p</span>
+<a name="ln-87"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<a name="ln-88"></a>     <span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-89"></a>     <span class="n">q</span> <span class="o">=&gt;</span> <span class="n">q</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-90"></a>  <span class="n">enddo</span>
+<a name="ln-91"></a>  
+<a name="ln-92"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+<a name="ln-93"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;provenance&quot;</span><span class="p">)</span>
+<a name="ln-94"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;record-number&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">record_number</span><span class="p">))</span>
+<a name="ln-95"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;creator&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">creator</span><span class="p">))</span>
+<a name="ln-96"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">date</span><span class="p">))</span>
+<a name="ln-97"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-98"></a>     <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-99"></a><span class="k">        call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;input-file&quot;</span><span class="p">)</span>
+<a name="ln-100"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">name</span><span class="p">))</span>
+<a name="ln-101"></a>        <span class="k">call </span><span class="n">xml_AddCDataSection</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="nb">char</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">buffer</span><span class="p">),</span> <span class="p">&amp;</span>
+<a name="ln-102"></a>                                 <span class="n">line_feed</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<a name="ln-103"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;input-file&quot;</span><span class="p">)</span>
+<a name="ln-104"></a>     <span class="n">endif</span>
+<a name="ln-105"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;provenance&quot;</span><span class="p">)</span>
+<a name="ln-106"></a>     <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">p</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-107"></a>  <span class="k">end do</span>
+<a name="ln-108"></a>
+<a name="ln-109"></a><span class="k">end subroutine </span><span class="n">dump_provenance</span>
+<a name="ln-110"></a>
+<a name="ln-111"></a>
+<a name="ln-112"></a><span class="k">subroutine </span><span class="n">dump_xc_info</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-113"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-114"></a>  
+<a name="ln-115"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-116"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xc_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p</span>
+<a name="ln-117"></a>
+<a name="ln-118"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-119"></a>  
+<a name="ln-120"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;exchange-correlation&quot;</span><span class="p">)</span>
+<a name="ln-121"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-122"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;libxc-info&quot;</span><span class="p">)</span>
+<a name="ln-123"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;number-of-functionals&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">n_functs_libxc</span><span class="p">))</span>
+<a name="ln-124"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">n_functs_libxc</span>
+<a name="ln-125"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;functional&quot;</span><span class="p">)</span>
+<a name="ln-126"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_name</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-127"></a>     <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_type</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="o">/=</span> <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-128"></a><span class="k">        call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_type</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-129"></a>     <span class="n">endif</span>
+<a name="ln-130"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;id&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_id</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-131"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_weight</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">/=</span> <span class="mf">1.0_dp</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-132"></a><span class="k">        call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">libxc_weight</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-133"></a>     <span class="n">endif</span>
+<a name="ln-134"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;functional&quot;</span><span class="p">)</span>
+<a name="ln-135"></a>  <span class="n">enddo</span>
+<a name="ln-136"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;libxc-info&quot;</span><span class="p">)</span>
+<a name="ln-137"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;exchange-correlation&quot;</span><span class="p">)</span>
+<a name="ln-138"></a>     
+<a name="ln-139"></a><span class="k">end subroutine </span><span class="n">dump_xc_info</span>
+<a name="ln-140"></a>
+<a name="ln-141"></a><span class="k">subroutine </span><span class="n">dump_config_val</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-142"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-143"></a>  
+<a name="ln-144"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-145"></a>  <span class="k">type</span><span class="p">(</span><span class="n">config_val_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p</span>
+<a name="ln-146"></a>
+<a name="ln-147"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-148"></a>
+<a name="ln-149"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-configuration&quot;</span><span class="p">)</span>
+<a name="ln-150"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;total-valence-charge&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">total_charge</span><span class="p">))</span>
+<a name="ln-151"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-152"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">%</span><span class="n">nshells</span>
+<a name="ln-153"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;shell&quot;</span><span class="p">)</span>
+<a name="ln-154"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;n&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">n</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-155"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">l</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<a name="ln-156"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;occupation&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">occ</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-157"></a>     <span class="k">if</span> <span class="p">((</span><span class="n">p</span><span class="p">%</span><span class="n">occ_up</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">p</span><span class="p">%</span><span class="n">occ_down</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="o">/=</span> <span class="mf">0.0_dp</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-158"></a><span class="k">        call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;occupation-down&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">occ_down</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-159"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;occupation-up&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">occ_up</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+<a name="ln-160"></a>     <span class="n">endif</span>
+<a name="ln-161"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;shell&quot;</span><span class="p">)</span>
+<a name="ln-162"></a>  <span class="n">enddo</span>
+<a name="ln-163"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-configuration&quot;</span><span class="p">)</span>
+<a name="ln-164"></a>     
+<a name="ln-165"></a><span class="k">end subroutine </span><span class="n">dump_config_val</span>
+<a name="ln-166"></a>
+<a name="ln-167"></a>
+<a name="ln-168"></a><span class="k">subroutine </span><span class="n">dump_pseudo_atom_spec</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-169"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-170"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-171"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-172"></a>
+<a name="ln-173"></a>  <span class="k">type</span><span class="p">(</span><span class="n">header_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">h</span>
 <a name="ln-174"></a>
-<a name="ln-175"></a>  <span class="k">call </span><span class="n">dump_xc_info</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">xc_info</span><span class="p">)</span>
-<a name="ln-176"></a>  <span class="k">call </span><span class="n">dump_config_val</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">config_val</span><span class="p">)</span>
-<a name="ln-177"></a>
-<a name="ln-178"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;header&quot;</span><span class="p">)</span>
-<a name="ln-179"></a>
-<a name="ln-180"></a><span class="k">end subroutine </span><span class="n">dump_header</span>
-<a name="ln-181"></a>
-<a name="ln-182"></a><span class="k">subroutine </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">rf</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-183"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-184"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-185"></a>  <span class="k">type</span><span class="p">(</span><span class="n">radfunc_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rf</span>
-<a name="ln-186"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">parent_grid</span> <span class="c">! Only one level for now</span>
-<a name="ln-187"></a>
-<a name="ln-188"></a>  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">initialized</span><span class="p">(</span><span class="n">rf</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">return</span>
-<a name="ln-189"></a>
-<a name="ln-190"></a><span class="k">  call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;radfunc&quot;</span><span class="p">)</span>
-<a name="ln-191"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">same</span><span class="p">(</span><span class="n">rf</span><span class="p">%</span><span class="n">grid</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-192"></a>     <span class="c">! do nothing</span>
-<a name="ln-193"></a>  <span class="k">else</span>
-<a name="ln-194"></a><span class="k">     call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">rf</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
-<a name="ln-195"></a>  <span class="n">endif</span>
-<a name="ln-196"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
-<a name="ln-197"></a>  <span class="k">call </span><span class="n">xml_AddArray</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">rf</span><span class="p">%</span><span class="k">data</span><span class="p">(:))</span>
-<a name="ln-198"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
-<a name="ln-199"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;radfunc&quot;</span><span class="p">)</span>
-<a name="ln-200"></a><span class="k">end subroutine </span><span class="n">dump_radfunc</span>
-<a name="ln-201"></a>
-<a name="ln-202"></a><span class="k">subroutine </span><span class="n">dump_valence_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-203"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-204"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-205"></a>  <span class="k">type</span><span class="p">(</span><span class="n">valence_charge_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span>
-<a name="ln-206"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">parent_grid</span>
-<a name="ln-207"></a>
-<a name="ln-208"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-charge&quot;</span><span class="p">)</span>
-<a name="ln-209"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;total-charge&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">val</span><span class="p">%</span><span class="n">total_charge</span><span class="p">))</span>
-<a name="ln-210"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">val</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-211"></a>  <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">val</span><span class="p">%</span><span class="n">rho_val</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-212"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-charge&quot;</span><span class="p">)</span>
-<a name="ln-213"></a><span class="k">end subroutine </span><span class="n">dump_valence_charge</span>
-<a name="ln-214"></a>
-<a name="ln-215"></a><span class="k">subroutine </span><span class="n">dump_core_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">core</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-216"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-217"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-218"></a>  <span class="k">type</span><span class="p">(</span><span class="n">core_charge_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">core</span>
-<a name="ln-219"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">parent_grid</span>
-<a name="ln-220"></a>
-<a name="ln-221"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudocore-charge&quot;</span><span class="p">)</span>
-<a name="ln-222"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;matching-radius&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">core</span><span class="p">%</span><span class="n">rcore</span><span class="p">))</span>
-<a name="ln-223"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;number-of-continuous-derivatives&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">core</span><span class="p">%</span><span class="n">n_cont_derivs</span><span class="p">))</span>
-<a name="ln-224"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">core</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-225"></a>  <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">core</span><span class="p">%</span><span class="n">rho_core</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-226"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudocore-charge&quot;</span><span class="p">)</span>
-<a name="ln-227"></a><span class="k">end subroutine </span><span class="n">dump_core_charge</span>
-<a name="ln-228"></a><span class="c">!</span>
-<a name="ln-229"></a><span class="k">subroutine </span><span class="n">dump_semilocal_potentials</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-230"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-231"></a>
-<a name="ln-232"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-233"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-234"></a>
-<a name="ln-235"></a>  <span class="k">type</span><span class="p">(</span><span class="n">semilocal_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">slp</span>
-<a name="ln-236"></a>  <span class="k">type</span><span class="p">(</span><span class="n">slps_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">slvp</span>
-<a name="ln-237"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">parent_grid</span>
-<a name="ln-238"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">set</span>
-<a name="ln-239"></a>
-<a name="ln-240"></a>  <span class="n">slp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">semilocal</span>
-<a name="ln-241"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">slp</span><span class="p">))</span>
-<a name="ln-242"></a>     <span class="n">set</span> <span class="o">=</span> <span class="n">slp</span><span class="p">%</span><span class="n">set</span>
-<a name="ln-243"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;semilocal-potentials&quot;</span><span class="p">)</span>
-<a name="ln-244"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">/=</span> <span class="n">SET_NULL</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-245"></a>        <span class="c">! Group set was specified</span>
-<a name="ln-246"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">set</span><span class="p">))</span>
-<a name="ln-247"></a>     <span class="n">endif</span>
-<a name="ln-248"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">slp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-249"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">slp</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-250"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">slp</span><span class="p">%</span><span class="n">grid</span>
-<a name="ln-251"></a>        <span class="k">call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">slp</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
-<a name="ln-252"></a>     <span class="k">else</span>
-<a name="ln-253"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span>
-<a name="ln-254"></a>     <span class="n">endif</span>
-<a name="ln-255"></a>     <span class="n">slvp</span> <span class="o">=&gt;</span> <span class="n">slp</span><span class="p">%</span><span class="n">pot</span>
-<a name="ln-256"></a>     <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">slvp</span><span class="p">))</span>
-<a name="ln-257"></a>        <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;slps&quot;</span><span class="p">)</span>
-<a name="ln-258"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;n&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">n</span><span class="p">))</span>
-<a name="ln-259"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">slvp</span><span class="p">%</span><span class="n">l</span><span class="p">)</span>
-<a name="ln-260"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;rc&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">rc</span><span class="p">))</span>
-<a name="ln-261"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;flavor&quot;</span><span class="p">,</span><span class="n">slvp</span><span class="p">%</span><span class="n">flavor</span><span class="p">)</span>
-<a name="ln-262"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_LJ</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-263"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">j</span><span class="p">))</span>
-<a name="ln-264"></a>        <span class="n">endif</span>
-<a name="ln-265"></a>        <span class="c">! Group set was not specified</span>
-<a name="ln-266"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_NULL</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-267"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">set</span><span class="p">))</span>
-<a name="ln-268"></a>        <span class="n">endif</span>
-<a name="ln-269"></a>        <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">slvp</span><span class="p">%</span><span class="n">V</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-270"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;slps&quot;</span><span class="p">)</span>
-<a name="ln-271"></a>        <span class="n">slvp</span> <span class="o">=&gt;</span> <span class="n">slvp</span><span class="p">%</span><span class="n">next</span>
-<a name="ln-272"></a>     <span class="n">enddo</span>
-<a name="ln-273"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;semilocal-potentials&quot;</span><span class="p">)</span>
-<a name="ln-274"></a>     <span class="n">slp</span> <span class="o">=&gt;</span> <span class="n">slp</span><span class="p">%</span><span class="n">next</span>
-<a name="ln-275"></a>  <span class="n">enddo</span>
-<a name="ln-276"></a>  <span class="k">call </span><span class="n">delete</span><span class="p">(</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-277"></a><span class="k">end subroutine </span><span class="n">dump_semilocal_potentials</span>
-<a name="ln-278"></a>
-<a name="ln-279"></a><span class="k">subroutine </span><span class="n">dump_local_potential</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-280"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-281"></a>
-<a name="ln-282"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-283"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-284"></a>
-<a name="ln-285"></a>  <span class="k">type</span><span class="p">(</span><span class="n">local_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">lop</span>
-<a name="ln-286"></a>
-<a name="ln-287"></a>  <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_vlocal</span>
-<a name="ln-288"></a>
-<a name="ln-289"></a>  <span class="n">lop</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">local</span>
-<a name="ln-290"></a>  
-<a name="ln-291"></a>  <span class="n">has_vlocal</span> <span class="o">=</span> <span class="nb">associated</span><span class="p">(</span><span class="n">lop</span><span class="p">%</span><span class="n">Vlocal</span><span class="p">%</span><span class="k">data</span><span class="p">)</span>
-<a name="ln-292"></a>
-<a name="ln-293"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">has_vlocal</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-294"></a><span class="k">     call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;local-potential&quot;</span><span class="p">)</span>
-<a name="ln-295"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">vlocal_type</span><span class="p">)</span>
-<a name="ln-296"></a>     <span class="c">! No processing of grids here</span>
-<a name="ln-297"></a>     <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">Vlocal</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
-<a name="ln-298"></a>     <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">chlocal</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">)</span>
-<a name="ln-299"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;local-potential&quot;</span><span class="p">)</span>
-<a name="ln-300"></a>  <span class="n">endif</span>
-<a name="ln-301"></a><span class="k">end subroutine </span><span class="n">dump_local_potential</span>
-<a name="ln-302"></a>
-<a name="ln-303"></a><span class="c">!----------------------------------------------------------</span>
-<a name="ln-304"></a><span class="k">subroutine </span><span class="n">dump_nonlocal_projectors</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-305"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-306"></a>  
-<a name="ln-307"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-308"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-309"></a>
-<a name="ln-310"></a>  <span class="k">type</span><span class="p">(</span><span class="n">nonlocal_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">nlp</span>
-<a name="ln-311"></a>  <span class="k">type</span><span class="p">(</span><span class="n">nlpj_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">nlpp</span>
-<a name="ln-312"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">parent_grid</span>
-<a name="ln-313"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">set</span>
+<a name="ln-175"></a>  <span class="n">h</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">header</span>
+<a name="ln-176"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudo-atom-spec&quot;</span><span class="p">)</span>
+<a name="ln-177"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;atomic-label&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">atomic_label</span><span class="p">))</span>
+<a name="ln-178"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;atomic-number&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">z</span><span class="p">))</span>
+<a name="ln-179"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;z-pseudo&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">zpseudo</span><span class="p">))</span>
+<a name="ln-180"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;flavor&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">flavor</span><span class="p">))</span>
+<a name="ln-181"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;relativity&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">relativity</span><span class="p">))</span>
+<a name="ln-182"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">polarized</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-183"></a><span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;spin-dft&quot;</span><span class="p">,</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
+<a name="ln-184"></a>  <span class="k">else</span>
+<a name="ln-185"></a><span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;spin-dft&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">)</span>
+<a name="ln-186"></a>  <span class="n">endif</span>
+<a name="ln-187"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;core-corrections&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">core_corrections</span><span class="p">))</span>
+<a name="ln-188"></a>
+<a name="ln-189"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">h</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-190"></a>
+<a name="ln-191"></a>  <span class="k">call </span><span class="n">dump_xc_info</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">xc_info</span><span class="p">)</span>
+<a name="ln-192"></a>  <span class="k">call </span><span class="n">dump_config_val</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">config_val</span><span class="p">)</span>
+<a name="ln-193"></a>
+<a name="ln-194"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudo-atom-spec&quot;</span><span class="p">)</span>
+<a name="ln-195"></a>
+<a name="ln-196"></a><span class="k">end subroutine </span><span class="n">dump_pseudo_atom_spec</span>
+<a name="ln-197"></a>
+<a name="ln-198"></a><span class="k">subroutine </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">rf</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-199"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-200"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-201"></a>  <span class="k">type</span><span class="p">(</span><span class="n">radfunc_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rf</span>
+<a name="ln-202"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">parent_grid</span> <span class="c">! Only one level for now</span>
+<a name="ln-203"></a>
+<a name="ln-204"></a>  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">initialized</span><span class="p">(</span><span class="n">rf</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">return</span>
+<a name="ln-205"></a>
+<a name="ln-206"></a><span class="k">  call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;radfunc&quot;</span><span class="p">)</span>
+<a name="ln-207"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">same</span><span class="p">(</span><span class="n">rf</span><span class="p">%</span><span class="n">grid</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-208"></a>     <span class="c">! do nothing</span>
+<a name="ln-209"></a>  <span class="k">else</span>
+<a name="ln-210"></a><span class="k">     call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">rf</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
+<a name="ln-211"></a>  <span class="n">endif</span>
+<a name="ln-212"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<a name="ln-213"></a>  <span class="c">! Cover the case in which the data uses only an</span>
+<a name="ln-214"></a>  <span class="c">! initial section of the grid</span>
+<a name="ln-215"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">rf</span><span class="p">%</span><span class="k">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">sizeGrid</span><span class="p">(</span><span class="n">rf</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-216"></a><span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;npts&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">rf</span><span class="p">%</span><span class="k">data</span><span class="p">)))</span>
+<a name="ln-217"></a>  <span class="n">endif</span>
+<a name="ln-218"></a>  <span class="k">call </span><span class="n">xml_AddArray</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">rf</span><span class="p">%</span><span class="k">data</span><span class="p">(:))</span>
+<a name="ln-219"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<a name="ln-220"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;radfunc&quot;</span><span class="p">)</span>
+<a name="ln-221"></a><span class="k">end subroutine </span><span class="n">dump_radfunc</span>
+<a name="ln-222"></a>
+<a name="ln-223"></a><span class="k">subroutine </span><span class="n">dump_valence_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-224"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-225"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-226"></a>  <span class="k">type</span><span class="p">(</span><span class="n">valence_charge_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span>
+<a name="ln-227"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">parent_grid</span>
+<a name="ln-228"></a>
+<a name="ln-229"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-charge&quot;</span><span class="p">)</span>
+<a name="ln-230"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;total-charge&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">val</span><span class="p">%</span><span class="n">total_charge</span><span class="p">))</span>
+<a name="ln-231"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">val</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-232"></a>  <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">val</span><span class="p">%</span><span class="n">rho_val</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-233"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;valence-charge&quot;</span><span class="p">)</span>
+<a name="ln-234"></a><span class="k">end subroutine </span><span class="n">dump_valence_charge</span>
+<a name="ln-235"></a>
+<a name="ln-236"></a><span class="k">subroutine </span><span class="n">dump_core_charge</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">core</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-237"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-238"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-239"></a>  <span class="k">type</span><span class="p">(</span><span class="n">core_charge_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">core</span>
+<a name="ln-240"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">parent_grid</span>
+<a name="ln-241"></a>
+<a name="ln-242"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudocore-charge&quot;</span><span class="p">)</span>
+<a name="ln-243"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">core</span><span class="p">%</span><span class="n">rcore</span> <span class="o">&gt;=</span> <span class="mf">0.0_dp</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-244"></a><span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;matching-radius&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">core</span><span class="p">%</span><span class="n">rcore</span><span class="p">))</span>
+<a name="ln-245"></a>  <span class="n">endif</span>
+<a name="ln-246"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">core</span><span class="p">%</span><span class="n">n_cont_derivs</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-247"></a><span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;number-of-continuous-derivatives&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">core</span><span class="p">%</span><span class="n">n_cont_derivs</span><span class="p">))</span>
+<a name="ln-248"></a>  <span class="n">endif</span>
+<a name="ln-249"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">core</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-250"></a>  <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">core</span><span class="p">%</span><span class="n">rho_core</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-251"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudocore-charge&quot;</span><span class="p">)</span>
+<a name="ln-252"></a><span class="k">end subroutine </span><span class="n">dump_core_charge</span>
+<a name="ln-253"></a><span class="c">!</span>
+<a name="ln-254"></a><span class="k">subroutine </span><span class="n">dump_semilocal_potentials</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-255"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-256"></a>
+<a name="ln-257"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-258"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-259"></a>
+<a name="ln-260"></a>  <span class="k">type</span><span class="p">(</span><span class="n">semilocal_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">slp</span>
+<a name="ln-261"></a>  <span class="k">type</span><span class="p">(</span><span class="n">slps_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">slvp</span>
+<a name="ln-262"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">parent_grid</span>
+<a name="ln-263"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">set</span>
+<a name="ln-264"></a>
+<a name="ln-265"></a>  <span class="n">slp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">semilocal</span>
+<a name="ln-266"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">slp</span><span class="p">))</span>
+<a name="ln-267"></a>     <span class="n">set</span> <span class="o">=</span> <span class="n">slp</span><span class="p">%</span><span class="n">set</span>
+<a name="ln-268"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;semilocal-potentials&quot;</span><span class="p">)</span>
+<a name="ln-269"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">/=</span> <span class="n">SET_NULL</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-270"></a>        <span class="c">! Group set was specified</span>
+<a name="ln-271"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">set</span><span class="p">))</span>
+<a name="ln-272"></a>     <span class="k">else</span>
+<a name="ln-273"></a><span class="k">        call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Set not specified in SemiLocalPotentials block&quot;</span><span class="p">)</span>
+<a name="ln-274"></a>     <span class="n">endif</span>
+<a name="ln-275"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">slp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-276"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">slp</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-277"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">slp</span><span class="p">%</span><span class="n">grid</span>
+<a name="ln-278"></a>        <span class="k">call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">slp</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
+<a name="ln-279"></a>     <span class="k">else</span>
+<a name="ln-280"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span>
+<a name="ln-281"></a>     <span class="n">endif</span>
+<a name="ln-282"></a>     <span class="n">slvp</span> <span class="o">=&gt;</span> <span class="n">slp</span><span class="p">%</span><span class="n">pot</span>
+<a name="ln-283"></a>     <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">slvp</span><span class="p">))</span>
+<a name="ln-284"></a>        <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;slps&quot;</span><span class="p">)</span>
+<a name="ln-285"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;n&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">n</span><span class="p">))</span>
+<a name="ln-286"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">slvp</span><span class="p">%</span><span class="n">l</span><span class="p">)</span>
+<a name="ln-287"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;rc&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">rc</span><span class="p">))</span>
+<a name="ln-288"></a>        <span class="c">! If eref has a physical value, output it</span>
+<a name="ln-289"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">eref</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="o">*</span><span class="nb">huge</span><span class="p">(</span><span class="mf">1.0_dp</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-290"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;eref&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">eref</span><span class="p">))</span>
+<a name="ln-291"></a>        <span class="n">endif</span>
+<a name="ln-292"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;flavor&quot;</span><span class="p">,</span><span class="n">slvp</span><span class="p">%</span><span class="n">flavor</span><span class="p">)</span>
+<a name="ln-293"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_LJ</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-294"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">slvp</span><span class="p">%</span><span class="n">j</span><span class="p">,</span><span class="k">format</span><span class="o">=</span><span class="s2">&quot;(f3.1)&quot;</span><span class="p">))</span>
+<a name="ln-295"></a>        <span class="n">endif</span>
+<a name="ln-296"></a>        <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">slvp</span><span class="p">%</span><span class="n">V</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-297"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;slps&quot;</span><span class="p">)</span>
+<a name="ln-298"></a>        <span class="n">slvp</span> <span class="o">=&gt;</span> <span class="n">slvp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-299"></a>     <span class="n">enddo</span>
+<a name="ln-300"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;semilocal-potentials&quot;</span><span class="p">)</span>
+<a name="ln-301"></a>     <span class="n">slp</span> <span class="o">=&gt;</span> <span class="n">slp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-302"></a>  <span class="n">enddo</span>
+<a name="ln-303"></a>  <span class="k">call </span><span class="n">delete</span><span class="p">(</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-304"></a><span class="k">end subroutine </span><span class="n">dump_semilocal_potentials</span>
+<a name="ln-305"></a>
+<a name="ln-306"></a><span class="k">subroutine </span><span class="n">dump_local_potential</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-307"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-308"></a>
+<a name="ln-309"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-310"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-311"></a>
+<a name="ln-312"></a>  <span class="k">type</span><span class="p">(</span><span class="n">local_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">lop</span>
+<a name="ln-313"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">parent_grid</span>
 <a name="ln-314"></a>
-<a name="ln-315"></a>  <span class="n">nlp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">nonlocal</span>
-<a name="ln-316"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">nlp</span><span class="p">))</span>
-<a name="ln-317"></a>     <span class="n">set</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">%</span><span class="n">set</span>
-<a name="ln-318"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;nonlocal-projectors&quot;</span><span class="p">)</span>
-<a name="ln-319"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">/=</span> <span class="n">SET_NULL</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-320"></a>        <span class="c">! Group set was specified</span>
-<a name="ln-321"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">set</span><span class="p">))</span>
-<a name="ln-322"></a>     <span class="n">endif</span>
-<a name="ln-323"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">nlp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-324"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">nlp</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-325"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">%</span><span class="n">grid</span>
-<a name="ln-326"></a>        <span class="k">call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">nlp</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
-<a name="ln-327"></a>     <span class="k">else</span>
-<a name="ln-328"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span>
-<a name="ln-329"></a>     <span class="n">endif</span>
-<a name="ln-330"></a>     <span class="n">nlpp</span> <span class="o">=&gt;</span> <span class="n">nlp</span><span class="p">%</span><span class="n">proj</span>
-<a name="ln-331"></a>     <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">nlpp</span><span class="p">))</span>
-<a name="ln-332"></a>        <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;proj&quot;</span><span class="p">)</span>
-<a name="ln-333"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">nlpp</span><span class="p">%</span><span class="n">l</span><span class="p">)</span>
-<a name="ln-334"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_LJ</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-335"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">j</span><span class="p">))</span>
-<a name="ln-336"></a>        <span class="n">endif</span>
-<a name="ln-337"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;seq&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">seq</span><span class="p">))</span>
-<a name="ln-338"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;ekb&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">ekb</span><span class="p">))</span>
-<a name="ln-339"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="n">nlpp</span><span class="p">%</span><span class="k">type</span><span class="p">)</span>
-<a name="ln-340"></a>        <span class="c">! Group set was not specified</span>
-<a name="ln-341"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_NULL</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-342"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">set</span><span class="p">))</span>
-<a name="ln-343"></a>        <span class="n">endif</span>
-<a name="ln-344"></a>        <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">nlpp</span><span class="p">%</span><span class="n">proj</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-345"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;proj&quot;</span><span class="p">)</span>
-<a name="ln-346"></a>        <span class="n">nlpp</span> <span class="o">=&gt;</span> <span class="n">nlpp</span><span class="p">%</span><span class="n">next</span>
-<a name="ln-347"></a>     <span class="n">enddo</span>
-<a name="ln-348"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;nonlocal-projectors&quot;</span><span class="p">)</span>
-<a name="ln-349"></a>     <span class="n">nlp</span> <span class="o">=&gt;</span> <span class="n">nlp</span><span class="p">%</span><span class="n">next</span>
-<a name="ln-350"></a>  <span class="n">enddo</span>
-<a name="ln-351"></a>  <span class="k">call </span><span class="n">delete</span><span class="p">(</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-352"></a><span class="k">end subroutine </span><span class="n">dump_nonlocal_projectors</span>
-<a name="ln-353"></a><span class="c">!----------------------------------------------------------</span>
-<a name="ln-354"></a><span class="k">subroutine </span><span class="n">dump_pseudo_wavefunctions</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-355"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-356"></a>  <span class="k">use </span><span class="n">sets_m</span>
-<a name="ln-357"></a>
-<a name="ln-358"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-359"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-360"></a>
-<a name="ln-361"></a>  <span class="k">type</span><span class="p">(</span><span class="n">pswfs_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">wfp</span>
-<a name="ln-362"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">parent_grid</span>
-<a name="ln-363"></a>  <span class="k">type</span><span class="p">(</span><span class="n">set_info_t</span><span class="p">)</span> <span class="kd">::</span> <span class="n">set_info</span>
-<a name="ln-364"></a>
-<a name="ln-365"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">set</span><span class="p">,</span> <span class="n">n_grid</span>
-<a name="ln-366"></a>  <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">idx</span><span class="p">(:)</span>
-<a name="ln-367"></a>
-<a name="ln-368"></a>  <span class="n">wfp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">pswfs</span>
-<a name="ln-369"></a>  <span class="k">call </span><span class="n">sort_sets</span><span class="p">(</span><span class="n">wfp</span><span class="p">%</span><span class="n">npswfs</span><span class="p">,</span><span class="n">wfp</span><span class="p">%</span><span class="n">set</span><span class="p">,</span><span class="n">set_info</span><span class="p">)</span>
-<a name="ln-370"></a>  <span class="k">do </span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nsets</span><span class="p">(</span><span class="n">set_info</span><span class="p">)</span>
-<a name="ln-371"></a>     <span class="k">call </span><span class="n">set_indexes</span><span class="p">(</span><span class="n">set_info</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">idx</span><span class="p">)</span>
-<a name="ln-372"></a>     <span class="n">set</span> <span class="o">=</span> <span class="n">set_id</span><span class="p">(</span><span class="n">set_info</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
-<a name="ln-373"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudo-wave-functions&quot;</span><span class="p">)</span>
-<a name="ln-374"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">set</span><span class="p">))</span>
-<a name="ln-375"></a>     <span class="c">!</span>
-<a name="ln-376"></a>     <span class="c">! Check grids and decide whether to include a &lt;grid&gt; element</span>
-<a name="ln-377"></a>     <span class="c">! First, check whether any wfn is not using the global grid.</span>
-<a name="ln-378"></a>     <span class="c">! If all the wfns are in that case, assume that a mid-level grid was</span>
-<a name="ln-379"></a>     <span class="c">! specified, dump a grid in a new &lt;grid&gt; element, and pass it </span>
-<a name="ln-380"></a>     <span class="c">! to the radfunc dumper. In the worst case scenario, we will</span>
-<a name="ln-381"></a>     <span class="c">! have chosen a truly &quot;radfunc-private&quot; grid and there would be</span>
-<a name="ln-382"></a>     <span class="c">! some replication of data. To avoid this, one would need to</span>
-<a name="ln-383"></a>     <span class="c">! classify the grids. Maybe in a new version.</span>
-<a name="ln-384"></a>     <span class="c">!</span>
-<a name="ln-385"></a>     <span class="n">parent_grid</span> <span class="o">=</span> <span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span>
-<a name="ln-386"></a>     <span class="n">n_grid</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-387"></a>     <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-<a name="ln-388"></a>        <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">same</span><span class="p">(</span><span class="n">wfp</span><span class="p">%</span><span class="n">Phi</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="n">i</span><span class="p">))%</span><span class="n">grid</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-389"></a><span class="k">           </span><span class="n">n_grid</span> <span class="o">=</span> <span class="n">n_grid</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-390"></a>        <span class="n">endif</span>
-<a name="ln-391"></a>     <span class="n">enddo</span>
-<a name="ln-392"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">n_grid</span> <span class="o">==</span> <span class="n">size</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-393"></a><span class="k">        call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">wfp</span><span class="p">%</span><span class="n">Phi</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="mi">1</span><span class="p">))%</span><span class="n">grid</span><span class="p">)</span>
-<a name="ln-394"></a>        <span class="n">parent_grid</span> <span class="o">=</span> <span class="n">wfp</span><span class="p">%</span><span class="n">Phi</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="mi">1</span><span class="p">))%</span><span class="n">grid</span>
-<a name="ln-395"></a>     <span class="n">endif</span>
-<a name="ln-396"></a>     <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-<a name="ln-397"></a>        <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pswf&quot;</span><span class="p">)</span>
-<a name="ln-398"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;n&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">wfp</span><span class="p">%</span><span class="n">n</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="n">i</span><span class="p">))))</span>
-<a name="ln-399"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">wfp</span><span class="p">%</span><span class="n">l</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
-<a name="ln-400"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_LJ</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-401"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">wfp</span><span class="p">%</span><span class="n">j</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="n">i</span><span class="p">))))</span>
-<a name="ln-402"></a>        <span class="n">endif</span>
-<a name="ln-403"></a>        <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">wfp</span><span class="p">%</span><span class="n">Phi</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-404"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pswf&quot;</span><span class="p">)</span>
-<a name="ln-405"></a>     <span class="n">enddo</span>
-<a name="ln-406"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudo-wave-functions&quot;</span><span class="p">)</span>
-<a name="ln-407"></a>  <span class="n">enddo</span>
-<a name="ln-408"></a>  <span class="k">call </span><span class="n">delete</span><span class="p">(</span><span class="n">parent_grid</span><span class="p">)</span>
-<a name="ln-409"></a><span class="k">end subroutine </span><span class="n">dump_pseudo_wavefunctions</span>
-<a name="ln-410"></a>
-<a name="ln-411"></a><span class="k">subroutine </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">agrid</span><span class="p">)</span>
-<a name="ln-412"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-413"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-414"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">agrid</span>
-<a name="ln-415"></a>
-<a name="ln-416"></a>  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">initialized</span><span class="p">(</span><span class="n">agrid</span><span class="p">))</span> <span class="k">return</span>
-<a name="ln-417"></a><span class="k">  </span>
-<a name="ln-418"></a><span class="k">  call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
-<a name="ln-419"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;npts&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">sizeGrid</span><span class="p">(</span><span class="n">agrid</span><span class="p">)))</span>
-<a name="ln-420"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">annotationGrid</span><span class="p">(</span><span class="n">agrid</span><span class="p">))</span>
-<a name="ln-421"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid-data&quot;</span><span class="p">)</span>
-<a name="ln-422"></a>  <span class="k">call </span><span class="n">xml_AddArray</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">valGrid</span><span class="p">(</span><span class="n">agrid</span><span class="p">))</span>
-<a name="ln-423"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid-data&quot;</span><span class="p">)</span>
-<a name="ln-424"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
-<a name="ln-425"></a><span class="k">end subroutine </span><span class="n">dump_grid</span>
-<a name="ln-426"></a>
-<a name="ln-427"></a><span class="k">subroutine </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-428"></a>
-<a name="ln-429"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-430"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
-<a name="ln-431"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">nitems_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_nitems</span>
-<a name="ln-432"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_key</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_key</span>
-<a name="ln-433"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_value</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_value</span>
-<a name="ln-434"></a>
-<a name="ln-435"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-436"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">annotation</span>
-<a name="ln-437"></a>
-<a name="ln-438"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">n_items</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">stat</span>
-<a name="ln-439"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span> <span class="kd">::</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span>
-<a name="ln-440"></a>
-<a name="ln-441"></a><span class="n">n_items</span> <span class="o">=</span> <span class="n">nitems_annotation</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-442"></a><span class="k">if</span> <span class="p">(</span><span class="n">n_items</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-443"></a>
-<a name="ln-444"></a><span class="k">   call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;annotation&quot;</span><span class="p">)</span>
-<a name="ln-445"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_items</span>
-<a name="ln-446"></a>      <span class="k">call </span><span class="n">get_annotation_key</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-447"></a>      <span class="k">call </span><span class="n">get_annotation_value</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-448"></a>      <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">key</span><span class="p">),</span><span class="nb">trim</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
-<a name="ln-449"></a>   <span class="n">enddo</span>
-<a name="ln-450"></a>   <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;annotation&quot;</span><span class="p">)</span>
-<a name="ln-451"></a><span class="n">endif</span>
-<a name="ln-452"></a><span class="k">end subroutine </span><span class="n">dump_annotation</span>
+<a name="ln-315"></a>  <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_vlocal</span><span class="p">,</span> <span class="n">has_local_charge</span>
+<a name="ln-316"></a>
+<a name="ln-317"></a>  <span class="n">lop</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">local</span>
+<a name="ln-318"></a>  
+<a name="ln-319"></a>  <span class="n">has_vlocal</span> <span class="o">=</span> <span class="nb">associated</span><span class="p">(</span><span class="n">lop</span><span class="p">%</span><span class="n">Vlocal</span><span class="p">%</span><span class="k">data</span><span class="p">)</span>
+<a name="ln-320"></a>  <span class="n">has_local_charge</span> <span class="o">=</span> <span class="nb">associated</span><span class="p">(</span><span class="n">lop</span><span class="p">%</span><span class="n">Chlocal</span><span class="p">%</span><span class="k">data</span><span class="p">)</span>
+<a name="ln-321"></a>
+<a name="ln-322"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">has_vlocal</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-323"></a><span class="k">     call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;local-potential&quot;</span><span class="p">)</span>
+<a name="ln-324"></a>     <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">vlocal_type</span><span class="p">)</span>
+<a name="ln-325"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-326"></a>     <span class="c">! No processing of grids here</span>
+<a name="ln-327"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">lop</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-328"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">lop</span><span class="p">%</span><span class="n">grid</span>
+<a name="ln-329"></a>        <span class="k">call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
+<a name="ln-330"></a>     <span class="k">else</span>
+<a name="ln-331"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span>
+<a name="ln-332"></a>     <span class="n">endif</span>
+<a name="ln-333"></a>     <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">Vlocal</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-334"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">has_local_charge</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-335"></a><span class="k">        call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;local-charge&quot;</span><span class="p">)</span>
+<a name="ln-336"></a>        <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">lop</span><span class="p">%</span><span class="n">chlocal</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-337"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;local-charge&quot;</span><span class="p">)</span>
+<a name="ln-338"></a>     <span class="n">endif</span>
+<a name="ln-339"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;local-potential&quot;</span><span class="p">)</span>
+<a name="ln-340"></a>     <span class="k">call </span><span class="n">delete</span><span class="p">(</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-341"></a>  <span class="n">endif</span>
+<a name="ln-342"></a><span class="k">end subroutine </span><span class="n">dump_local_potential</span>
+<a name="ln-343"></a>
+<a name="ln-344"></a><span class="c">!----------------------------------------------------------</span>
+<a name="ln-345"></a><span class="k">subroutine </span><span class="n">dump_nonlocal_projectors</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-346"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-347"></a>  
+<a name="ln-348"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-349"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-350"></a>
+<a name="ln-351"></a>  <span class="k">type</span><span class="p">(</span><span class="n">nonlocal_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">nlp</span>
+<a name="ln-352"></a>  <span class="k">type</span><span class="p">(</span><span class="n">nlpj_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">nlpp</span>
+<a name="ln-353"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">parent_grid</span>
+<a name="ln-354"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">set</span>
+<a name="ln-355"></a>
+<a name="ln-356"></a>  <span class="n">nlp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">nonlocal</span>
+<a name="ln-357"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">nlp</span><span class="p">))</span>
+<a name="ln-358"></a>     <span class="n">set</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">%</span><span class="n">set</span>
+<a name="ln-359"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;nonlocal-projectors&quot;</span><span class="p">)</span>
+<a name="ln-360"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">/=</span> <span class="n">SET_NULL</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-361"></a>        <span class="c">! Group set was specified</span>
+<a name="ln-362"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">set</span><span class="p">))</span>
+<a name="ln-363"></a>     <span class="k">else</span>
+<a name="ln-364"></a><span class="k">        call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Set not specified in NonLocalProjectors block&quot;</span><span class="p">)</span>
+<a name="ln-365"></a>     <span class="n">endif</span>
+<a name="ln-366"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">nlp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-367"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">nlp</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-368"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">%</span><span class="n">grid</span>
+<a name="ln-369"></a>        <span class="k">call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">nlp</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
+<a name="ln-370"></a>     <span class="k">else</span>
+<a name="ln-371"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span>
+<a name="ln-372"></a>     <span class="n">endif</span>
+<a name="ln-373"></a>     <span class="n">nlpp</span> <span class="o">=&gt;</span> <span class="n">nlp</span><span class="p">%</span><span class="n">proj</span>
+<a name="ln-374"></a>     <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">nlpp</span><span class="p">))</span>
+<a name="ln-375"></a>        <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;proj&quot;</span><span class="p">)</span>
+<a name="ln-376"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">nlpp</span><span class="p">%</span><span class="n">l</span><span class="p">)</span>
+<a name="ln-377"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_LJ</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-378"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">j</span><span class="p">,</span><span class="k">format</span><span class="o">=</span><span class="s2">&quot;(f3.1)&quot;</span><span class="p">))</span>
+<a name="ln-379"></a>        <span class="n">endif</span>
+<a name="ln-380"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;seq&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">seq</span><span class="p">))</span>
+<a name="ln-381"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;ekb&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">ekb</span><span class="p">))</span>
+<a name="ln-382"></a>        <span class="c">! If eref has a physical value, output it</span>
+<a name="ln-383"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">eref</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="o">*</span><span class="nb">huge</span><span class="p">(</span><span class="mf">1.0_dp</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-384"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;eref&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">nlpp</span><span class="p">%</span><span class="n">eref</span><span class="p">))</span>
+<a name="ln-385"></a>        <span class="n">endif</span>
+<a name="ln-386"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="n">nlpp</span><span class="p">%</span><span class="k">type</span><span class="p">)</span>
+<a name="ln-387"></a>        <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">nlpp</span><span class="p">%</span><span class="n">proj</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-388"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;proj&quot;</span><span class="p">)</span>
+<a name="ln-389"></a>        <span class="n">nlpp</span> <span class="o">=&gt;</span> <span class="n">nlpp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-390"></a>     <span class="n">enddo</span>
+<a name="ln-391"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;nonlocal-projectors&quot;</span><span class="p">)</span>
+<a name="ln-392"></a>     <span class="n">nlp</span> <span class="o">=&gt;</span> <span class="n">nlp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-393"></a>  <span class="n">enddo</span>
+<a name="ln-394"></a>  <span class="k">call </span><span class="n">delete</span><span class="p">(</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-395"></a><span class="k">end subroutine </span><span class="n">dump_nonlocal_projectors</span>
+<a name="ln-396"></a><span class="c">!----------------------------------------------------------</span>
+<a name="ln-397"></a><span class="k">subroutine </span><span class="n">dump_pseudo_wavefunctions</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-398"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-399"></a>  <span class="k">use </span><span class="n">sets_m</span>
+<a name="ln-400"></a>
+<a name="ln-401"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-402"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-403"></a>
+<a name="ln-404"></a>  <span class="k">type</span><span class="p">(</span><span class="n">wfns_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">wfp</span>
+<a name="ln-405"></a>  <span class="k">type</span><span class="p">(</span><span class="n">wf_t</span><span class="p">),</span> <span class="k">pointer</span>   <span class="kd">::</span> <span class="n">wfpp</span>
+<a name="ln-406"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">parent_grid</span>
+<a name="ln-407"></a>
+<a name="ln-408"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">set</span>
+<a name="ln-409"></a>  
+<a name="ln-410"></a>  <span class="n">wfp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">wavefunctions</span>
+<a name="ln-411"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">wfp</span><span class="p">))</span>
+<a name="ln-412"></a>     <span class="n">set</span> <span class="o">=</span> <span class="n">wfp</span><span class="p">%</span><span class="n">set</span>
+<a name="ln-413"></a>     <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudo-wave-functions&quot;</span><span class="p">)</span>
+<a name="ln-414"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">/=</span> <span class="n">SET_NULL</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-415"></a>        <span class="c">! Group set was specified</span>
+<a name="ln-416"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;set&quot;</span><span class="p">,</span><span class="n">str_of_set</span><span class="p">(</span><span class="n">set</span><span class="p">))</span>
+<a name="ln-417"></a>     <span class="k">else</span>
+<a name="ln-418"></a><span class="k">        call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Set not specified in Wavefunctions block&quot;</span><span class="p">)</span>
+<a name="ln-419"></a>     <span class="n">endif</span>
+<a name="ln-420"></a><span class="c">!     if (wfp%type /= &quot;&quot;) then</span>
+<a name="ln-421"></a><span class="c">!        call my_add_attribute(xf,&quot;type&quot;,wfp%type)</span>
+<a name="ln-422"></a><span class="c">!     endif</span>
+<a name="ln-423"></a>     <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">wfp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-424"></a>     <span class="k">if</span> <span class="p">(</span><span class="n">initialized</span><span class="p">(</span><span class="n">wfp</span><span class="p">%</span><span class="n">grid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-425"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">wfp</span><span class="p">%</span><span class="n">grid</span>
+<a name="ln-426"></a>        <span class="k">call </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">wfp</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
+<a name="ln-427"></a>     <span class="k">else</span>
+<a name="ln-428"></a><span class="k">        </span><span class="n">parent_grid</span> <span class="o">=</span> <span class="n">ps</span><span class="p">%</span><span class="n">global_grid</span>
+<a name="ln-429"></a>     <span class="n">endif</span>
+<a name="ln-430"></a>     <span class="n">wfpp</span> <span class="o">=&gt;</span> <span class="n">wfp</span><span class="p">%</span><span class="n">wf</span>
+<a name="ln-431"></a>     <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">wfpp</span><span class="p">))</span>
+<a name="ln-432"></a>        <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pswf&quot;</span><span class="p">)</span>
+<a name="ln-433"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;n&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">wfpp</span><span class="p">%</span><span class="n">n</span><span class="p">))</span>
+<a name="ln-434"></a>        <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="n">wfpp</span><span class="p">%</span><span class="n">l</span><span class="p">)</span>
+<a name="ln-435"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="n">SET_LJ</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-436"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">wfpp</span><span class="p">%</span><span class="n">j</span><span class="p">,</span><span class="k">format</span><span class="o">=</span><span class="s2">&quot;(f3.1)&quot;</span><span class="p">))</span>
+<a name="ln-437"></a>        <span class="n">endif</span>
+<a name="ln-438"></a>        <span class="c">! If energy_level has a physical value, output it</span>
+<a name="ln-439"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">wfpp</span><span class="p">%</span><span class="n">energy_level</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="o">*</span><span class="nb">huge</span><span class="p">(</span><span class="mf">1.0_dp</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-440"></a><span class="k">           call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;energy_level&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">wfpp</span><span class="p">%</span><span class="n">energy_level</span><span class="p">))</span>
+<a name="ln-441"></a>        <span class="n">endif</span>
+<a name="ln-442"></a>
+<a name="ln-443"></a>        <span class="k">call </span><span class="n">dump_radfunc</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">wfpp</span><span class="p">%</span><span class="n">Phi</span><span class="p">,</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-444"></a>        <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pswf&quot;</span><span class="p">)</span>
+<a name="ln-445"></a>        <span class="n">wfpp</span> <span class="o">=&gt;</span> <span class="n">wfpp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-446"></a>     <span class="n">enddo</span>
+<a name="ln-447"></a>     <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;pseudo-wave-functions&quot;</span><span class="p">)</span>
+<a name="ln-448"></a>     <span class="n">wfp</span> <span class="o">=&gt;</span> <span class="n">wfp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-449"></a>  <span class="n">enddo</span>
+<a name="ln-450"></a>  <span class="k">call </span><span class="n">delete</span><span class="p">(</span><span class="n">parent_grid</span><span class="p">)</span>
+<a name="ln-451"></a>
+<a name="ln-452"></a><span class="k">end subroutine </span><span class="n">dump_pseudo_wavefunctions</span>
 <a name="ln-453"></a>
-<a name="ln-454"></a><span class="k">subroutine </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="k">value</span><span class="p">)</span>
+<a name="ln-454"></a><span class="k">subroutine </span><span class="n">dump_grid</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">agrid</span><span class="p">)</span>
 <a name="ln-455"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-<a name="ln-456"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">xf</span>
-<a name="ln-457"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">name</span>
-<a name="ln-458"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="k">value</span>
-<a name="ln-459"></a>
-<a name="ln-460"></a><span class="k">  call </span><span class="n">xml_AddAttribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="k">value</span><span class="p">))</span>
-<a name="ln-461"></a><span class="k">end subroutine </span><span class="n">my_add_attribute</span>
-<a name="ln-462"></a>
-<a name="ln-463"></a><span class="k">end module </span><span class="n">m_psml_dump</span>
+<a name="ln-456"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-457"></a>  <span class="k">type</span><span class="p">(</span><span class="n">Grid_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">agrid</span>
+<a name="ln-458"></a>
+<a name="ln-459"></a>  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">initialized</span><span class="p">(</span><span class="n">agrid</span><span class="p">))</span> <span class="k">return</span>
+<a name="ln-460"></a><span class="k">  </span>
+<a name="ln-461"></a><span class="k">  call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
+<a name="ln-462"></a>  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;npts&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">sizeGrid</span><span class="p">(</span><span class="n">agrid</span><span class="p">)))</span>
+<a name="ln-463"></a>  <span class="k">call </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">annotationGrid</span><span class="p">(</span><span class="n">agrid</span><span class="p">))</span>
+<a name="ln-464"></a>  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid-data&quot;</span><span class="p">)</span>
+<a name="ln-465"></a>  <span class="k">call </span><span class="n">xml_AddArray</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">valGrid</span><span class="p">(</span><span class="n">agrid</span><span class="p">))</span>
+<a name="ln-466"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid-data&quot;</span><span class="p">)</span>
+<a name="ln-467"></a>  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
+<a name="ln-468"></a><span class="k">end subroutine </span><span class="n">dump_grid</span>
+<a name="ln-469"></a>
+<a name="ln-470"></a><span class="k">subroutine </span><span class="n">dump_annotation</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-471"></a>
+<a name="ln-472"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-473"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
+<a name="ln-474"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">nitems_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_nitems</span>
+<a name="ln-475"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_key</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_key</span>
+<a name="ln-476"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_value</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_value</span>
+<a name="ln-477"></a>
+<a name="ln-478"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-479"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">annotation</span>
+<a name="ln-480"></a>
+<a name="ln-481"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">n_items</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">stat</span>
+<a name="ln-482"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span> <span class="kd">::</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span>
+<a name="ln-483"></a>
+<a name="ln-484"></a><span class="n">n_items</span> <span class="o">=</span> <span class="n">nitems_annotation</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-485"></a><span class="k">if</span> <span class="p">(</span><span class="n">n_items</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-486"></a>
+<a name="ln-487"></a><span class="k">   call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;annotation&quot;</span><span class="p">)</span>
+<a name="ln-488"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_items</span>
+<a name="ln-489"></a>      <span class="k">call </span><span class="n">get_annotation_key</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-490"></a>      <span class="k">call </span><span class="n">get_annotation_value</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-491"></a>      <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">key</span><span class="p">),</span><span class="nb">trim</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+<a name="ln-492"></a>   <span class="n">enddo</span>
+<a name="ln-493"></a>   <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;annotation&quot;</span><span class="p">)</span>
+<a name="ln-494"></a><span class="n">endif</span>
+<a name="ln-495"></a><span class="k">end subroutine </span><span class="n">dump_annotation</span>
+<a name="ln-496"></a>
+<a name="ln-497"></a><span class="k">subroutine </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="k">value</span><span class="p">)</span>
+<a name="ln-498"></a>  <span class="k">use </span><span class="n">xmlf90_wxml</span>
+<a name="ln-499"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">xf</span>
+<a name="ln-500"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">name</span>
+<a name="ln-501"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="k">value</span>
+<a name="ln-502"></a>
+<a name="ln-503"></a><span class="k">  call </span><span class="n">xml_AddAttribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="k">value</span><span class="p">))</span>
+<a name="ln-504"></a><span class="k">end subroutine </span><span class="n">my_add_attribute</span>
+<a name="ln-505"></a>
+<a name="ln-506"></a><span class="k">end module </span><span class="n">m_psml_dump</span>
 </pre></div>
 
     </section>
@@ -769,7 +816,7 @@
   <div id="allfiles-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.f90</a>
+      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
       
       <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
       
@@ -778,6 +825,8 @@
       <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
       
       <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
@@ -788,6 +837,8 @@
       <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       

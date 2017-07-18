@@ -128,16 +128,16 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 4.2% of total for modules and submodules.">113 statements</a>
+	  title=" 3.7% of total for modules and submodules.">139 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/assoc_list.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/assoc_list.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/assoc_list.f90.html'>assoc_list.f90</a></li>
+     <li><a href='../sourcefile/assoc_list.f90.html'>assoc_list.F90</a></li>
   
      <li class="active">assoc_list</li>
   </ol>
@@ -231,6 +231,8 @@
       
       <a class="list-group-item" href="../module/assoc_list.html#proc-assoc_list_get_value_by_index">assoc_list_get_value_by_index</a>
       
+      <a class="list-group-item" href="../module/assoc_list.html#proc-assoc_list_print">assoc_list_print</a>
+      
     </div>
   </div>
 </div>
@@ -257,6 +259,8 @@
       
       <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
       
+      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
+      
       <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
       
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
@@ -266,6 +270,8 @@
       <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       
@@ -372,6 +378,8 @@
       
       <a class="list-group-item" href="../module/assoc_list.html#proc-assoc_list_get_value_by_index">assoc_list_get_value_by_index</a>
       
+      <a class="list-group-item" href="../module/assoc_list.html#proc-assoc_list_print">assoc_list_print</a>
+      
     </div>
   </div>
 </div>
@@ -411,8 +419,8 @@
   <td><span class="anchor" id="variable-empty_assoc_list"></span>type(<a href='../type/assoc_list_t.html'>assoc_list_t</a>),</td>
   
   <td>public,</td>
-  <td>save</td><td>::</td>
-  <td><strong>EMPTY_ASSOC_LIST</strong></td><td></td><td></td><td></td>
+  <td>parameter</td><td>::</td>
+  <td><strong>EMPTY_ASSOC_LIST</strong></td><td> =</td><td>assoc_list_t()</td><td></td>
   
 </tr>
 
@@ -693,7 +701,7 @@ public subroutine <a href='../proc/assoc_list_get_value_of_key.html'>assoc_list_
   
 <tr>
   
-  <td><span class="anchor" id="variable-key"></span>character(len=50),</td>
+  <td><span class="anchor" id="variable-key"></span>character(len=200),</td>
   
   <td>private,</td>
   <td>allocatable</td><td>::</td>
@@ -707,7 +715,7 @@ public subroutine <a href='../proc/assoc_list_get_value_of_key.html'>assoc_list_
   
 <tr>
   
-  <td><span class="anchor" id="variable-value"></span>character(len=120),</td>
+  <td><span class="anchor" id="variable-value"></span>character(len=1000),</td>
   
   <td>private,</td>
   <td>allocatable</td><td>::</td>
@@ -1318,6 +1326,57 @@ public subroutine <a href='../proc/assoc_list_get_value_by_index.html'>assoc_lis
   </div>
 
     
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-assoc_list_print"></span><h3>
+public subroutine <a href='../proc/assoc_list_print.html'>assoc_list_print</a>(a)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/assoc_list_t.html'>assoc_list_t</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>a</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
     </section>    
     <br>
     
@@ -1341,6 +1400,8 @@ public subroutine <a href='../proc/assoc_list_get_value_by_index.html'>assoc_lis
       
       <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
       
+      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
+      
       <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
       
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
@@ -1350,6 +1411,8 @@ public subroutine <a href='../proc/assoc_list_get_value_by_index.html'>assoc_lis
       <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
+      
+      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       

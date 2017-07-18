@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.7% of total for source files.">74 statements</a>
+	  title=" 2.8% of total for source files.">106 statements</a>
      </li> 
      
      
@@ -201,7 +201,7 @@
   <div id="allfiles-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.f90</a>
+      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
       
       <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
       
@@ -210,6 +210,8 @@
       <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
       
       <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
@@ -220,6 +222,8 @@
       <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -391,16 +395,59 @@
 <a name="ln-98"></a>
 <a name="ln-99"></a><span class="k">end subroutine </span><span class="n">generate_table_nl</span>
 <a name="ln-100"></a>
-<a name="ln-101"></a><span class="k">subroutine </span><span class="n">ps_GenerateTables</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-101"></a><span class="c">!------------------------------------</span>
 <a name="ln-102"></a>
-<a name="ln-103"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-103"></a><span class="k">subroutine </span><span class="n">generate_table_wf</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
 <a name="ln-104"></a>
-<a name="ln-105"></a>  <span class="k">call </span><span class="n">generate_table_sl</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-106"></a>  <span class="k">call </span><span class="n">generate_table_nl</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-107"></a>
-<a name="ln-108"></a><span class="k">end subroutine </span><span class="n">ps_GenerateTables</span>
+<a name="ln-105"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-106"></a>
+<a name="ln-107"></a>  <span class="k">type</span><span class="p">(</span><span class="n">wfns_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">wfp</span>
+<a name="ln-108"></a>  <span class="k">type</span><span class="p">(</span><span class="n">wf_t</span><span class="p">),</span> <span class="k">pointer</span>   <span class="kd">::</span> <span class="n">wfpp</span>
 <a name="ln-109"></a>
-<a name="ln-110"></a><span class="k">end module </span><span class="n">m_psml_tables</span>
+<a name="ln-110"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">nwfns</span>
+<a name="ln-111"></a>
+<a name="ln-112"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">wf_table</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-113"></a><span class="k">     deallocate</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">wf_table</span><span class="p">)</span>
+<a name="ln-114"></a>  <span class="n">endif</span>
+<a name="ln-115"></a>
+<a name="ln-116"></a>  <span class="n">nwfns</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-117"></a>  <span class="n">wfp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">wavefunctions</span>
+<a name="ln-118"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">wfp</span><span class="p">))</span>
+<a name="ln-119"></a>     <span class="n">wfpp</span> <span class="o">=&gt;</span> <span class="n">wfp</span><span class="p">%</span><span class="n">wf</span>
+<a name="ln-120"></a>     <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">wfpp</span><span class="p">))</span>
+<a name="ln-121"></a>        <span class="n">nwfns</span> <span class="o">=</span> <span class="n">nwfns</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-122"></a>        <span class="n">wfpp</span> <span class="o">=&gt;</span> <span class="n">wfpp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-123"></a>     <span class="n">enddo</span>
+<a name="ln-124"></a>     <span class="n">wfp</span> <span class="o">=&gt;</span> <span class="n">wfp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-125"></a>  <span class="n">enddo</span>
+<a name="ln-126"></a>
+<a name="ln-127"></a>  <span class="k">allocate</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">wf_table</span><span class="p">(</span><span class="n">nwfns</span><span class="p">))</span>
+<a name="ln-128"></a>  
+<a name="ln-129"></a>  <span class="n">nwfns</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-130"></a>  <span class="n">wfp</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">wavefunctions</span>
+<a name="ln-131"></a>  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">wfp</span><span class="p">))</span>
+<a name="ln-132"></a>     <span class="n">wfpp</span> <span class="o">=&gt;</span> <span class="n">wfp</span><span class="p">%</span><span class="n">wf</span>
+<a name="ln-133"></a>     <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">wfpp</span><span class="p">))</span>
+<a name="ln-134"></a>        <span class="n">nwfns</span> <span class="o">=</span> <span class="n">nwfns</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-135"></a>        <span class="n">ps</span><span class="p">%</span><span class="n">wf_table</span><span class="p">(</span><span class="n">nwfns</span><span class="p">)%</span><span class="n">p</span> <span class="o">=&gt;</span> <span class="n">wfpp</span>
+<a name="ln-136"></a>        <span class="n">wfpp</span> <span class="o">=&gt;</span> <span class="n">wfpp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-137"></a>     <span class="n">enddo</span>
+<a name="ln-138"></a>     <span class="n">wfp</span> <span class="o">=&gt;</span> <span class="n">wfp</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-139"></a>  <span class="n">enddo</span>
+<a name="ln-140"></a>
+<a name="ln-141"></a><span class="k">end subroutine </span><span class="n">generate_table_wf</span>
+<a name="ln-142"></a>
+<a name="ln-143"></a><span class="k">subroutine </span><span class="n">ps_GenerateTables</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-144"></a>
+<a name="ln-145"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-146"></a>
+<a name="ln-147"></a>  <span class="k">call </span><span class="n">generate_table_sl</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-148"></a>  <span class="k">call </span><span class="n">generate_table_nl</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-149"></a>  <span class="k">call </span><span class="n">generate_table_wf</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-150"></a>
+<a name="ln-151"></a><span class="k">end subroutine </span><span class="n">ps_GenerateTables</span>
+<a name="ln-152"></a>
+<a name="ln-153"></a><span class="k">end module </span><span class="n">m_psml_tables</span>
 </pre></div>
 
     </section>
@@ -416,7 +463,7 @@
   <div id="allfiles-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.f90</a>
+      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
       
       <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
       
@@ -425,6 +472,8 @@
       <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
       
       <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
@@ -435,6 +484,8 @@
       <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       

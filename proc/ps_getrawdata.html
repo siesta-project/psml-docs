@@ -10,7 +10,7 @@
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
 
-    <title>dump_header &ndash; libPSML</title>
+    <title>ps_GetRawData &ndash; libPSML</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -110,7 +110,7 @@
     
   
   <div class="row">
-    <h1>dump_header
+    <h1>ps_GetRawData
       <small>Subroutine</small>
     
     </h1>
@@ -128,20 +128,20 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.0% of total for procedures.">22 statements</a>
+	  title=" 0.3% of total for procedures.">11 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/m_psml_dump.F90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/m_psml_api.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/m_psml_dump.f90.html'>m_psml_dump.F90</a></li>
+     <li><a href='../sourcefile/m_psml_api.f90.html'>m_psml_api.F90</a></li>
   
-     <li><a href='../module/m_psml_dump.html'>m_psml_dump</a></li>
+     <li><a href='../module/m_psml_api.html'>m_psml_api</a></li>
   
-     <li class="active">dump_header</li>
+     <li class="active">ps_GetRawData</li>
   </ol>
 </div>
 </div>
@@ -182,7 +182,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/dump_header.html#src">dump_header</a>
+    <a class="list-group-item" href="../proc/ps_getrawdata.html#src">ps_GetRawData</a>
   </div>
 </div>
 
@@ -197,7 +197,11 @@
       
       <a class="list-group-item" href="../proc/annotationgrid.html">annotationGrid</a>
       
+      <a class="list-group-item" href="../proc/approx.html">approx</a>
+      
       <a class="list-group-item" href="../proc/assert.html">assert</a>
+      
+      <a class="list-group-item" href="../proc/assert%7E2.html">assert</a>
       
       <a class="list-group-item" href="../proc/assign_.html">assign_</a>
       
@@ -217,15 +221,17 @@
       
       <a class="list-group-item" href="../proc/assoc_list_nitems.html">assoc_list_nitems</a>
       
-      <a class="list-group-item" href="../proc/assoc_list_reset.html">assoc_list_reset</a>
+      <a class="list-group-item" href="../proc/assoc_list_print.html">assoc_list_print</a>
       
-      <a class="list-group-item" href="../proc/atomic_number.html">atomic_number</a>
+      <a class="list-group-item" href="../proc/assoc_list_reset.html">assoc_list_reset</a>
       
       <a class="list-group-item" href="../proc/begin_element.html">begin_element</a>
       
       <a class="list-group-item" href="../proc/cdata_section_chunk.html">cdata_section_chunk</a>
       
       <a class="list-group-item" href="../proc/check_index.html">check_index</a>
+      
+      <a class="list-group-item" href="../proc/check_index%7E2.html">check_index</a>
       
       <a class="list-group-item" href="../proc/clear.html">clear</a>
       
@@ -243,11 +249,15 @@
       
       <a class="list-group-item" href="../proc/destroy_provenance.html">destroy_provenance</a>
       
+      <a class="list-group-item" href="../proc/destroy_pswf.html">destroy_pswf</a>
+      
       <a class="list-group-item" href="../proc/destroy_radfunc.html">destroy_radfunc</a>
       
       <a class="list-group-item" href="../proc/destroy_semilocal.html">destroy_semilocal</a>
       
       <a class="list-group-item" href="../proc/destroy_slps.html">destroy_slps</a>
+      
+      <a class="list-group-item" href="../proc/destroy_wavefunctions.html">destroy_wavefunctions</a>
       
       <a class="list-group-item" href="../proc/destroy_xc.html">destroy_xc</a>
       
@@ -263,13 +273,13 @@
       
       <a class="list-group-item" href="../proc/dump_grid.html">dump_grid</a>
       
-      <a class="list-group-item" href="../proc/dump_header.html">dump_header</a>
-      
       <a class="list-group-item" href="../proc/dump_local_potential.html">dump_local_potential</a>
       
       <a class="list-group-item" href="../proc/dump_nonlocal_projectors.html">dump_nonlocal_projectors</a>
       
       <a class="list-group-item" href="../proc/dump_provenance.html">dump_provenance</a>
+      
+      <a class="list-group-item" href="../proc/dump_pseudo_atom_spec.html">dump_pseudo_atom_spec</a>
       
       <a class="list-group-item" href="../proc/dump_pseudo_wavefunctions.html">dump_pseudo_wavefunctions</a>
       
@@ -285,13 +295,13 @@
       
       <a class="list-group-item" href="../proc/eval_radfunc.html">eval_radfunc</a>
       
+      <a class="list-group-item" href="../proc/eval_radfunc%7E2.html">eval_radfunc</a>
+      
       <a class="list-group-item" href="../proc/generate_table_nl.html">generate_table_nl</a>
       
       <a class="list-group-item" href="../proc/generate_table_sl.html">generate_table_sl</a>
       
-      <a class="list-group-item" href="../proc/get_raw_radfunc.html">get_raw_radfunc</a>
-      
-      <a class="list-group-item" href="../proc/getsetindexes.html">GetSetIndexes</a>
+      <a class="list-group-item" href="../proc/generate_table_wf.html">generate_table_wf</a>
       
       <a class="list-group-item" href="../interface/id.html">id</a>
       
@@ -309,7 +319,11 @@
       
       <a class="list-group-item" href="../proc/l_of_sym.html">l_of_sym</a>
       
+      <a class="list-group-item" href="../proc/l_of_sym%7E2.html">l_of_sym</a>
+      
       <a class="list-group-item" href="../proc/max_range.html">max_range</a>
+      
+      <a class="list-group-item" href="../proc/max_range%7E2.html">max_range</a>
       
       <a class="list-group-item" href="../proc/my_add_attribute.html">my_add_attribute</a>
       
@@ -335,6 +349,8 @@
       
       <a class="list-group-item" href="../proc/ps_atomicsymbol.html">ps_AtomicSymbol</a>
       
+      <a class="list-group-item" href="../proc/ps_corecharge_get.html">ps_CoreCharge_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_corecharge_getrawdata.html">ps_CoreCharge_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_corecharge_matchingradius.html">ps_CoreCharge_MatchingRadius</a>
@@ -355,6 +371,8 @@
       
       <a class="list-group-item" href="../proc/ps_dumptopsmlfile.html">ps_DumpToPSMLFile</a>
       
+      <a class="list-group-item" href="../proc/ps_exchangecorrelation_get.html">ps_ExchangeCorrelation_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_generatetables.html">ps_GenerateTables</a>
       
       <a class="list-group-item" href="../proc/ps_generationzval.html">ps_GenerationZval</a>
@@ -373,7 +391,13 @@
       
       <a class="list-group-item" href="../proc/ps_getpsmlversion.html">ps_GetPSMLVersion</a>
       
+      <a class="list-group-item" href="../proc/ps_getrawdata.html">ps_GetRawData</a>
+      
       <a class="list-group-item" href="../proc/ps_getuuid.html">ps_GetUUID</a>
+      
+      <a class="list-group-item" href="../proc/ps_getvalue.html">ps_GetValue</a>
+      
+      <a class="list-group-item" href="../proc/ps_gridannotation.html">ps_GridAnnotation</a>
       
       <a class="list-group-item" href="../proc/ps_hascorecorrections.html">ps_HasCoreCorrections</a>
       
@@ -389,6 +413,8 @@
       
       <a class="list-group-item" href="../proc/ps_isspinpolarized.html">ps_IsSpinPolarized</a>
       
+      <a class="list-group-item" href="../proc/ps_libxcfunctional_get.html">ps_LibxcFunctional_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_libxcid.html">ps_LibxcId</a>
       
       <a class="list-group-item" href="../proc/ps_libxcidarray.html">ps_LibxcIdArray</a>
@@ -399,6 +425,10 @@
       
       <a class="list-group-item" href="../proc/ps_localcharge_value.html">ps_LocalCharge_Value</a>
       
+      <a class="list-group-item" href="../interface/ps_localpotential_delete.html">ps_LocalPotential_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_get.html">ps_LocalPotential_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_localpotential_getrawdata.html">ps_LocalPotential_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_localpotential_type.html">ps_LocalPotential_Type</a>
@@ -407,6 +437,10 @@
       
       <a class="list-group-item" href="../proc/ps_nlibxcfunctionals.html">ps_NLibxcFunctionals</a>
       
+      <a class="list-group-item" href="../interface/ps_nonlocalprojectors_delete.html">ps_NonLocalProjectors_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_nonlocalprojectors_filter.html">ps_NonlocalProjectors_Filter</a>
+      
       <a class="list-group-item" href="../proc/ps_number_of_potentials.html">ps_Number_Of_Potentials</a>
       
       <a class="list-group-item" href="../proc/ps_number_of_projectors.html">ps_Number_Of_Projectors</a>
@@ -414,6 +448,10 @@
       <a class="list-group-item" href="../proc/ps_number_of_pseudowfs.html">ps_Number_Of_PseudoWfs</a>
       
       <a class="list-group-item" href="../proc/ps_nvalenceshells.html">ps_NValenceShells</a>
+      
+      <a class="list-group-item" href="../interface/ps_potential_filter.html">ps_Potential_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_get.html">ps_Potential_Get</a>
       
       <a class="list-group-item" href="../proc/ps_potential_getrawdata.html">ps_Potential_GetRawData</a>
       
@@ -431,6 +469,10 @@
       
       <a class="list-group-item" href="../proc/ps_projector_ekb.html">ps_Projector_Ekb</a>
       
+      <a class="list-group-item" href="../interface/ps_projector_filter.html">ps_Projector_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_get.html">ps_Projector_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_projector_getrawdata.html">ps_Projector_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_projector_j.html">ps_Projector_J</a>
@@ -445,7 +487,21 @@
       
       <a class="list-group-item" href="../proc/ps_projector_value.html">ps_Projector_Value</a>
       
+      <a class="list-group-item" href="../interface/ps_provenance_add.html">ps_Provenance_Add</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_depth.html">ps_Provenance_Depth</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_get.html">ps_Provenance_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudoatomspec_get.html">ps_PseudoAtomSpec_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_pseudoflavor.html">ps_PseudoFlavor</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowavefunctions_filter.html">ps_PseudoWaveFunctions_Filter</a>
+      
+      <a class="list-group-item" href="../interface/ps_pseudowf_filter.html">ps_PseudoWf_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_get.html">ps_PseudoWf_Get</a>
       
       <a class="list-group-item" href="../proc/ps_pseudowf_getrawdata.html">ps_PseudoWf_GetRawData</a>
       
@@ -461,7 +517,13 @@
       
       <a class="list-group-item" href="../proc/ps_relativity.html">ps_Relativity</a>
       
-      <a class="list-group-item" href="../proc/ps_setdebug.html">ps_SetDebug</a>
+      <a class="list-group-item" href="../proc/ps_rootattributes_get.html">ps_RootAttributes_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_rootattributes_set.html">ps_RootAttributes_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_semilocalpotentials_filter.html">ps_SemilocalPotentials_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_setevaluatoroptions.html">ps_SetEvaluatorOptions</a>
       
       <a class="list-group-item" href="../proc/ps_setinterpolator.html">ps_SetInterpolator</a>
       
@@ -471,9 +533,15 @@
       
       <a class="list-group-item" href="../proc/ps_setuuid.html">ps_SetUUID</a>
       
+      <a class="list-group-item" href="../proc/ps_valencecharge_get.html">ps_ValenceCharge_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_valencecharge_getrawdata.html">ps_ValenceCharge_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_valencecharge_value.html">ps_ValenceCharge_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceconfiguration_get.html">ps_ValenceConfiguration_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshell_get.html">ps_ValenceShell_Get</a>
       
       <a class="list-group-item" href="../proc/ps_valenceshelll.html">ps_ValenceShellL</a>
       
@@ -534,21 +602,13 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private subroutine dump_header(xf, ps)
+public subroutine ps_GetRawData(f, raw_r, raw_data)
     
     
 	 
 </h2>
     
   
-    <ul class="list-inline">
-      <li><h4>Uses:</h4></li>
-      
-      <li>xmlf90_wxml</li>
-      
-    </ul>
-    
-    
 
 
     
@@ -571,12 +631,12 @@ private subroutine dump_header(xf, ps)
   
 <tr>
   
-  <td><span class="anchor" id="variable-xf%7E4"></span>type(xmlf_t),</td>
-  <td>intent(inout)</td>
+  <td><span class="anchor" id="variable-f%7E4"></span>type(ps_radfunc_t),</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>xf</strong></td><td></td>
+  <td><strong>f</strong></td><td></td>
   
 </tr>
 
@@ -586,12 +646,27 @@ private subroutine dump_header(xf, ps)
   
 <tr>
   
-  <td><span class="anchor" id="variable-ps%7E71"></span>type(<a href='../type/ps_t.html'>ps_t</a>),</td>
-  <td>intent(in),</td>
+  <td><span class="anchor" id="variable-raw_r"></span>real(kind=dp),</td>
+  <td>intent(out),</td>
   <td></td>
   
-  <td>target</td><td>::</td>
-  <td><strong>ps</strong></td><td></td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>raw_r</strong>(:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-raw_data"></span>real(kind=dp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>raw_data</strong>(:)</td><td></td>
   
 </tr>
 
@@ -629,7 +704,7 @@ private subroutine dump_header(xf, ps)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/dump_header.html#src">dump_header</a>
+    <a class="list-group-item" href="../proc/ps_getrawdata.html#src">ps_GetRawData</a>
   </div>
 </div>
 
@@ -657,33 +732,24 @@ private subroutine dump_header(xf, ps)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">dump_header</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
-  <span class="k">use </span><span class="n">xmlf90_wxml</span>
-  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
-  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">ps</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ps_GetRawData</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">raw_r</span><span class="p">,</span><span class="n">raw_data</span><span class="p">)</span>
+<span class="k">type</span><span class="p">(</span><span class="n">ps_radfunc_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">f</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">raw_r</span><span class="p">(:),</span> <span class="n">raw_data</span><span class="p">(:)</span>
 
-  <span class="k">type</span><span class="p">(</span><span class="n">header_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">h</span>
+<span class="kt">integer </span><span class="n">npts_data</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">a</span><span class="p">(:)</span> 
 
-  <span class="n">h</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">header</span>
-  <span class="k">call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;header&quot;</span><span class="p">)</span>
-  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;atomic-label&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">atomic_label</span><span class="p">))</span>
-  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;z-pseudo&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">zpseudo</span><span class="p">))</span>
-  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;atomic-number&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">z</span><span class="p">))</span>
-  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;flavor&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">flavor</span><span class="p">))</span>
-  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;relativity&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">relativity</span><span class="p">))</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">polarized</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;polarized&quot;</span><span class="p">,</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
-  <span class="k">else</span>
-<span class="k">     call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;polarized&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">)</span>
-  <span class="n">endif</span>
-  <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;core-corrections&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">h</span><span class="p">%</span><span class="n">core_corrections</span><span class="p">))</span>
+<span class="c">! Cover the case in which the data set uses only</span>
+<span class="c">! a first section of the grid</span>
 
-  <span class="k">call </span><span class="n">dump_xc_info</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">xc_info</span><span class="p">)</span>
-  <span class="k">call </span><span class="n">dump_config_val</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">ps</span><span class="p">%</span><span class="n">config_val</span><span class="p">)</span>
+<span class="n">npts_data</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">f</span><span class="p">%</span><span class="k">data</span><span class="p">)</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">raw_r</span><span class="p">(</span><span class="n">npts_data</span><span class="p">),</span> <span class="n">raw_data</span><span class="p">(</span><span class="n">npts_data</span><span class="p">))</span>
 
-  <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;header&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=&gt;</span> <span class="n">valGrid</span><span class="p">(</span><span class="n">f</span><span class="p">%</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">raw_r</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">npts_data</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">npts_data</span><span class="p">)</span>
+<span class="n">raw_data</span><span class="p">(:)</span> <span class="o">=</span> <span class="n">f</span><span class="p">%</span><span class="k">data</span><span class="p">(:)</span>
 
-<span class="k">end subroutine </span><span class="n">dump_header</span>
+<span class="k">end subroutine </span><span class="n">ps_GetRawData</span>
 </pre></div>
 
     </section>
@@ -704,7 +770,11 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/annotationgrid.html">annotationGrid</a>
       
+      <a class="list-group-item" href="../proc/approx.html">approx</a>
+      
       <a class="list-group-item" href="../proc/assert.html">assert</a>
+      
+      <a class="list-group-item" href="../proc/assert%7E2.html">assert</a>
       
       <a class="list-group-item" href="../proc/assign_.html">assign_</a>
       
@@ -724,15 +794,17 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/assoc_list_nitems.html">assoc_list_nitems</a>
       
-      <a class="list-group-item" href="../proc/assoc_list_reset.html">assoc_list_reset</a>
+      <a class="list-group-item" href="../proc/assoc_list_print.html">assoc_list_print</a>
       
-      <a class="list-group-item" href="../proc/atomic_number.html">atomic_number</a>
+      <a class="list-group-item" href="../proc/assoc_list_reset.html">assoc_list_reset</a>
       
       <a class="list-group-item" href="../proc/begin_element.html">begin_element</a>
       
       <a class="list-group-item" href="../proc/cdata_section_chunk.html">cdata_section_chunk</a>
       
       <a class="list-group-item" href="../proc/check_index.html">check_index</a>
+      
+      <a class="list-group-item" href="../proc/check_index%7E2.html">check_index</a>
       
       <a class="list-group-item" href="../proc/clear.html">clear</a>
       
@@ -750,11 +822,15 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/destroy_provenance.html">destroy_provenance</a>
       
+      <a class="list-group-item" href="../proc/destroy_pswf.html">destroy_pswf</a>
+      
       <a class="list-group-item" href="../proc/destroy_radfunc.html">destroy_radfunc</a>
       
       <a class="list-group-item" href="../proc/destroy_semilocal.html">destroy_semilocal</a>
       
       <a class="list-group-item" href="../proc/destroy_slps.html">destroy_slps</a>
+      
+      <a class="list-group-item" href="../proc/destroy_wavefunctions.html">destroy_wavefunctions</a>
       
       <a class="list-group-item" href="../proc/destroy_xc.html">destroy_xc</a>
       
@@ -770,13 +846,13 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/dump_grid.html">dump_grid</a>
       
-      <a class="list-group-item" href="../proc/dump_header.html">dump_header</a>
-      
       <a class="list-group-item" href="../proc/dump_local_potential.html">dump_local_potential</a>
       
       <a class="list-group-item" href="../proc/dump_nonlocal_projectors.html">dump_nonlocal_projectors</a>
       
       <a class="list-group-item" href="../proc/dump_provenance.html">dump_provenance</a>
+      
+      <a class="list-group-item" href="../proc/dump_pseudo_atom_spec.html">dump_pseudo_atom_spec</a>
       
       <a class="list-group-item" href="../proc/dump_pseudo_wavefunctions.html">dump_pseudo_wavefunctions</a>
       
@@ -792,13 +868,13 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/eval_radfunc.html">eval_radfunc</a>
       
+      <a class="list-group-item" href="../proc/eval_radfunc%7E2.html">eval_radfunc</a>
+      
       <a class="list-group-item" href="../proc/generate_table_nl.html">generate_table_nl</a>
       
       <a class="list-group-item" href="../proc/generate_table_sl.html">generate_table_sl</a>
       
-      <a class="list-group-item" href="../proc/get_raw_radfunc.html">get_raw_radfunc</a>
-      
-      <a class="list-group-item" href="../proc/getsetindexes.html">GetSetIndexes</a>
+      <a class="list-group-item" href="../proc/generate_table_wf.html">generate_table_wf</a>
       
       <a class="list-group-item" href="../interface/id.html">id</a>
       
@@ -816,7 +892,11 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/l_of_sym.html">l_of_sym</a>
       
+      <a class="list-group-item" href="../proc/l_of_sym%7E2.html">l_of_sym</a>
+      
       <a class="list-group-item" href="../proc/max_range.html">max_range</a>
+      
+      <a class="list-group-item" href="../proc/max_range%7E2.html">max_range</a>
       
       <a class="list-group-item" href="../proc/my_add_attribute.html">my_add_attribute</a>
       
@@ -842,6 +922,8 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_atomicsymbol.html">ps_AtomicSymbol</a>
       
+      <a class="list-group-item" href="../proc/ps_corecharge_get.html">ps_CoreCharge_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_corecharge_getrawdata.html">ps_CoreCharge_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_corecharge_matchingradius.html">ps_CoreCharge_MatchingRadius</a>
@@ -862,6 +944,8 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_dumptopsmlfile.html">ps_DumpToPSMLFile</a>
       
+      <a class="list-group-item" href="../proc/ps_exchangecorrelation_get.html">ps_ExchangeCorrelation_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_generatetables.html">ps_GenerateTables</a>
       
       <a class="list-group-item" href="../proc/ps_generationzval.html">ps_GenerationZval</a>
@@ -880,7 +964,13 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_getpsmlversion.html">ps_GetPSMLVersion</a>
       
+      <a class="list-group-item" href="../proc/ps_getrawdata.html">ps_GetRawData</a>
+      
       <a class="list-group-item" href="../proc/ps_getuuid.html">ps_GetUUID</a>
+      
+      <a class="list-group-item" href="../proc/ps_getvalue.html">ps_GetValue</a>
+      
+      <a class="list-group-item" href="../proc/ps_gridannotation.html">ps_GridAnnotation</a>
       
       <a class="list-group-item" href="../proc/ps_hascorecorrections.html">ps_HasCoreCorrections</a>
       
@@ -896,6 +986,8 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_isspinpolarized.html">ps_IsSpinPolarized</a>
       
+      <a class="list-group-item" href="../proc/ps_libxcfunctional_get.html">ps_LibxcFunctional_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_libxcid.html">ps_LibxcId</a>
       
       <a class="list-group-item" href="../proc/ps_libxcidarray.html">ps_LibxcIdArray</a>
@@ -906,6 +998,10 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_localcharge_value.html">ps_LocalCharge_Value</a>
       
+      <a class="list-group-item" href="../interface/ps_localpotential_delete.html">ps_LocalPotential_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_get.html">ps_LocalPotential_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_localpotential_getrawdata.html">ps_LocalPotential_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_localpotential_type.html">ps_LocalPotential_Type</a>
@@ -914,6 +1010,10 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_nlibxcfunctionals.html">ps_NLibxcFunctionals</a>
       
+      <a class="list-group-item" href="../interface/ps_nonlocalprojectors_delete.html">ps_NonLocalProjectors_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_nonlocalprojectors_filter.html">ps_NonlocalProjectors_Filter</a>
+      
       <a class="list-group-item" href="../proc/ps_number_of_potentials.html">ps_Number_Of_Potentials</a>
       
       <a class="list-group-item" href="../proc/ps_number_of_projectors.html">ps_Number_Of_Projectors</a>
@@ -921,6 +1021,10 @@ private subroutine dump_header(xf, ps)
       <a class="list-group-item" href="../proc/ps_number_of_pseudowfs.html">ps_Number_Of_PseudoWfs</a>
       
       <a class="list-group-item" href="../proc/ps_nvalenceshells.html">ps_NValenceShells</a>
+      
+      <a class="list-group-item" href="../interface/ps_potential_filter.html">ps_Potential_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_get.html">ps_Potential_Get</a>
       
       <a class="list-group-item" href="../proc/ps_potential_getrawdata.html">ps_Potential_GetRawData</a>
       
@@ -938,6 +1042,10 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_projector_ekb.html">ps_Projector_Ekb</a>
       
+      <a class="list-group-item" href="../interface/ps_projector_filter.html">ps_Projector_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_get.html">ps_Projector_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_projector_getrawdata.html">ps_Projector_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_projector_j.html">ps_Projector_J</a>
@@ -952,7 +1060,21 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_projector_value.html">ps_Projector_Value</a>
       
+      <a class="list-group-item" href="../interface/ps_provenance_add.html">ps_Provenance_Add</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_depth.html">ps_Provenance_Depth</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_get.html">ps_Provenance_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudoatomspec_get.html">ps_PseudoAtomSpec_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_pseudoflavor.html">ps_PseudoFlavor</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowavefunctions_filter.html">ps_PseudoWaveFunctions_Filter</a>
+      
+      <a class="list-group-item" href="../interface/ps_pseudowf_filter.html">ps_PseudoWf_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_get.html">ps_PseudoWf_Get</a>
       
       <a class="list-group-item" href="../proc/ps_pseudowf_getrawdata.html">ps_PseudoWf_GetRawData</a>
       
@@ -968,7 +1090,13 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_relativity.html">ps_Relativity</a>
       
-      <a class="list-group-item" href="../proc/ps_setdebug.html">ps_SetDebug</a>
+      <a class="list-group-item" href="../proc/ps_rootattributes_get.html">ps_RootAttributes_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_rootattributes_set.html">ps_RootAttributes_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_semilocalpotentials_filter.html">ps_SemilocalPotentials_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_setevaluatoroptions.html">ps_SetEvaluatorOptions</a>
       
       <a class="list-group-item" href="../proc/ps_setinterpolator.html">ps_SetInterpolator</a>
       
@@ -978,9 +1106,15 @@ private subroutine dump_header(xf, ps)
       
       <a class="list-group-item" href="../proc/ps_setuuid.html">ps_SetUUID</a>
       
+      <a class="list-group-item" href="../proc/ps_valencecharge_get.html">ps_ValenceCharge_Get</a>
+      
       <a class="list-group-item" href="../proc/ps_valencecharge_getrawdata.html">ps_ValenceCharge_GetRawData</a>
       
       <a class="list-group-item" href="../proc/ps_valencecharge_value.html">ps_ValenceCharge_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceconfiguration_get.html">ps_ValenceConfiguration_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshell_get.html">ps_ValenceShell_Get</a>
       
       <a class="list-group-item" href="../proc/ps_valenceshelll.html">ps_ValenceShellL</a>
       

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+    
+    <meta name="author" content="Alberto Garcia" >
+    <link rel="icon" href="../../../favicon.png">
+
+    <title>libPSML API &ndash; libPSML</title>
+
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../css/pygments.css" rel="stylesheet">
+    <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../../../js/jquery-2.1.3.min.js"></script>
+    <script src="../../../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../../../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../../../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../../../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../../../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../../index.html">libPSML </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li><a href='../../../page/index.html'>Overview</a></li>
+	    
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../../../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../../../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../../../lists/procedures.html">Procedures</a></li>
+				
+								
+            <li><a href="../../../lists/types.html">Derived Types</a></li>
+				
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../../../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../../../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../../../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../../../lists/types.html">Derived Types</a></li>
+
+
+          </ul>
+        
+        <form action="../../../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  <div class="row">
+    <h1>libPSML API</h1>
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="well well-sm" style="min-height: 40px;">
+      <ul class="list-inline" style="margin-bottom:0px; display:inline">
+         
+         
+<!--
+        
+        <li><i class="fa fa-sitemap"></i> Subsections:</li>
+        
+        <li><a href='../../../page/02_library_user_guide/02_api/sets.html'>Sets of potentials, projectors, and pseudo-wave-functions</a></li>
+        
+        
+-->
+      </ul>
+        <ol class="breadcrumb in-well">
+      
+         <li><a href='../../../page/index.html'>Overview</a></li>
+      
+         <li><a href='../../../page/02_library_user_guide/index.html'>libPSML User Guide</a></li>
+      
+         <li class="active">libPSML API</li>
+      </ol>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-9 col-md-push-3" id='text'>
+      <p>The API for libPSML follows very closely the structure of the schema.</p>
+<div class="toc">
+<ul>
+<li><a href="#exported-types">Exported types</a></li>
+<li><a href="#parsing">Parsing</a></li>
+<li><a href="#library-identification">Library identification</a></li>
+<li><a href="#data-accessors">Data accessors</a><ul>
+<li><a href="#root-attributes-and-namespace">Root attributes and namespace</a></li>
+<li><a href="#provenance-data">Provenance data</a></li>
+<li><a href="#pseudo-atom-specification-attributes-and-annotation">Pseudo-atom specification attributes and annotation</a><ul>
+<li><a href="#valence-configuration">Valence configuration</a></li>
+<li><a href="#exchange-and-correlation">Exchange and correlation</a></li>
+</ul>
+</li>
+<li><a href="#valence-and-core-charges">Valence and Core Charges</a></li>
+<li><a href="#local-potential-and-local-charge-density">Local Potential and Local Charge Density</a></li>
+<li><a href="#semilocal-potentials">Semilocal potentials</a></li>
+<li><a href="#nonlocal-projectors">Nonlocal Projectors</a></li>
+<li><a href="#pseudo-wavefunctions">Pseudo Wavefunctions</a></li>
+<li><a href="#radial-function-and-grid-information">Radial function and grid information</a></li>
+</ul>
+</li>
+<li><a href="#the-evaluation-engine">The evaluation engine</a></li>
+<li><a href="#predicate-routines-for-contents">Predicate routines for contents</a></li>
+<li><a href="#editing-of-ps-structures">Editing of ps structures</a></li>
+<li><a href="#dump-of-ps-structures">Dump of ps structures</a></li>
+<li><a href="#annotation-api">Annotation API</a></li>
+</ul>
+</div>
+<h1 id="exported-types">Exported types</h1>
+<p>The library exports the types</p>
+<ul>
+<li>
+<p><a href="../../../type/ps_t.html">ps_t</a></p>
+</li>
+<li>
+<p>[[ps_annotation_t(type)]]</p>
+</li>
+<li>
+<p>[[ps_radfunc_t(type)]]</p>
+</li>
+</ul>
+<h1 id="parsing">Parsing</h1>
+<ul>
+<li>
+<p>The routine <a href="../../../proc/psml_reader.html">psml_reader</a> (<code>filename, ps, debug</code>) parses the PSML file
+<code>filename</code> and populates the data structures in the handle
+<code>ps</code>. An optional <code>debug</code> argument determines whether the
+library issues debugging messages while parsing.</p>
+</li>
+<li>
+<p><a href="../../../proc/ps_destroy.html">ps_destroy</a> (<code>ps</code>) is a low-level routine provided for
+completeness in cases where a pristine <code>ps</code> is needed for further
+use.</p>
+</li>
+</ul>
+<h1 id="library-identification">Library identification</h1>
+<ul>
+<li>The function <a href="../../../proc/ps_getlibpsmlversion.html">ps_GetLibPSMLVersion</a> returns the version as
+    an integer (for example: 1106) instead of the typical dot form
+    (1.1.6).</li>
+</ul>
+<h1 id="data-accessors">Data accessors</h1>
+<p>The API follows closely the element structure of the PSML format. Each
+section in the high-level document structure of the
+<a href="../../01_the_psml_format/schema.html">schema</a> is mapped to a group of
+routines in the API. Within each, there are routines to query any
+internal structure (attributes, existence, number, or selection of
+child elements) and routines to obtain specific data items
+(attributes, content of child elements).</p>
+<h2 id="root-attributes-and-namespace">Root attributes and namespace</h2>
+<p>The namespace and the attributes of the root element</p>
+<div class="codehilite"><pre><span></span><span class="n">default</span> <span class="n">namespace</span> <span class="o">=</span> <span class="s2">&quot;http://esl.cecam.org/PSML/ns/1.1&quot;</span>
+
+<span class="n">Root</span><span class="o">.</span><span class="n">Attributes</span> <span class="o">=</span>  <span class="n">attribute</span> <span class="n">energy_unit</span> <span class="p">{</span> <span class="s2">&quot;hartree&quot;</span> <span class="p">}</span>
+                 <span class="p">,</span> <span class="n">attribute</span> <span class="n">length_unit</span> <span class="p">{</span> <span class="s2">&quot;bohr&quot;</span> <span class="p">}</span>
+                 <span class="p">,</span> <span class="n">attribute</span> <span class="n">uuid</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">NMTOKEN</span> <span class="p">}</span>
+                 <span class="p">,</span> <span class="n">attribute</span> <span class="n">version</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">decimal</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>are read by the routine <a href="../../../proc/ps_rootattributes_get.html">ps_RootAttributes_Get</a>
+(<code>ps,uuid,version,namespace</code>).  As in all the routines that follow, the
+handle <code>ps</code> is mandatory. All other arguments are optional, with
+<code>intent(out)</code>, and of type <code>character(len=*)</code>. The
+argument version returns the PSML version of the file being
+processed. A given version of the library is able to process files
+with lower version numbers, up to a limit.</p>
+<h2 id="provenance-data">Provenance data</h2>
+<div class="codehilite"><pre><span></span><span class="n">Provenance</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">provenance</span> <span class="p">{</span>
+                <span class="n">attribute</span> <span class="n">record</span><span class="o">-</span><span class="n">number</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">positiveInteger</span> <span class="p">}</span><span class="err">?</span>
+              <span class="p">,</span> <span class="n">attribute</span> <span class="n">creator</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">}</span>
+              <span class="p">,</span> <span class="n">attribute</span> <span class="n">date</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">}</span>
+
+              <span class="p">,</span> <span class="n">Annotation</span><span class="err">?</span>
+          <span class="p">,</span> <span class="n">InputFile</span><span class="o">*</span>    <span class="c1"># zero or more input files</span>
+              <span class="p">}</span>
+
+<span class="n">InputFile</span> <span class="o">=</span>  <span class="n">element</span> <span class="nb">input</span><span class="o">-</span><span class="nb">file</span> <span class="p">{</span>
+               <span class="n">attribute</span> <span class="n">name</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">NMTOKEN</span> <span class="p">},</span> <span class="c1"># No spaces or commas allowed</span>
+               <span class="n">text</span>
+             <span class="p">}</span>
+</pre></div>
+
+
+<p>As there can be several <code>&lt;provenance&gt;</code> elements, the API provides a
+function to enquire about their number (depth of provenance
+information), and a routine to get the information from a given level:</p>
+<ul>
+<li>
+<p><a href="../../../proc/ps_provenance_depth.html">ps_Provenance_Depth</a> (<code>ps</code>)  result(<code>depth</code>)</p>
+</li>
+<li>
+<p><a href="../../../proc/ps_provenance_get.html">ps_Provenance_Get</a> (<code>ps,level,creator,date,annotation,number_of_input_files</code>)</p>
+</li>
+</ul>
+<p>The integer argument <code>level</code> selects the provenance depth
+  level (1 is the deepest, or older, so to get the latest record the
+  routine should be called with level=depth as returned
+  from the previous routine). All other arguments are optional
+  with intent(out). <code>creator</code> and <code>date</code> are
+  strings. Here and in what follows, annotation arguments are
+  of the opaque type [[ps_annotation_t(type)]].  If there is no
+  annotation, an empty structure is returned.</p>
+<h2 id="pseudo-atom-specification-attributes-and-annotation">Pseudo-atom specification attributes and annotation</h2>
+<div class="codehilite"><pre><span></span><span class="n">PseudoAtomSpec</span><span class="o">.</span><span class="n">Attributes</span> <span class="o">=</span> 
+       <span class="n">attribute</span> <span class="n">atomic</span><span class="o">-</span><span class="n">label</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">NMTOKEN</span> <span class="p">},</span>
+       <span class="n">attribute</span> <span class="n">atomic</span><span class="o">-</span><span class="n">number</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+       <span class="n">attribute</span> <span class="n">z</span><span class="o">-</span><span class="n">pseudo</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+       <span class="n">attribute</span> <span class="n">core</span><span class="o">-</span><span class="n">corrections</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">},</span>
+       <span class="n">attribute</span> <span class="n">relativity</span> <span class="p">{</span> <span class="s2">&quot;no&quot;</span> <span class="o">|</span> <span class="s2">&quot;scalar&quot;</span> <span class="o">|</span> <span class="s2">&quot;dirac&quot;</span> <span class="p">},</span>
+       <span class="n">attribute</span> <span class="n">spin</span><span class="o">-</span><span class="n">dft</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+       <span class="n">attribute</span> <span class="n">flavor</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">}</span><span class="err">?</span>
+</pre></div>
+
+
+<ul>
+<li><a href="../../../proc/ps_pseudoatomspec_get.html">ps_PseudoAtomSpec_Get</a> (<code>ps, atomic_symbol,
+  atomic_label, atomic_number, z_pseudo,
+  pseudo_flavor, relativity, spin_dft, core_corrections, annotation</code>)</li>
+</ul>
+<p>The arguments <code>spin_dft</code> and <code>core_corrections</code> are boolean,
+  and the routine returns an empty string in <code>flavor</code> if the
+  attribute is not present (recall that <code>flavor</code> is a cascading
+  attribute that can be set at multiple levels).</p>
+<h3 id="valence-configuration">Valence configuration</h3>
+<div class="codehilite"><pre><span></span><span class="n">ValenceConfiguration</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">valence</span><span class="o">-</span><span class="n">configuration</span> <span class="p">{</span>
+                          <span class="n">attribute</span> <span class="n">total</span><span class="o">-</span><span class="n">valence</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+                      <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                          <span class="n">ValenceShell</span><span class="o">+</span>
+                        <span class="p">}</span>
+
+<span class="n">ValenceShell</span> <span class="o">=</span>   <span class="n">Shell</span>
+
+<span class="n">Shell</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">shell</span> <span class="p">{</span>
+           <span class="n">attribute_l</span><span class="p">,</span>
+           <span class="n">attribute_n</span><span class="p">,</span>
+           <span class="n">attribute</span> <span class="n">occupation</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+           <span class="n">attribute</span> <span class="n">occupation</span><span class="o">-</span><span class="n">up</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+           <span class="n">attribute</span> <span class="n">occupation</span><span class="o">-</span><span class="n">down</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">}</span><span class="err">?</span>
+         <span class="p">}</span>
+
+<span class="n">attribute_l</span> <span class="o">=</span> <span class="n">attribute</span> <span class="n">l</span> <span class="p">{</span> <span class="s2">&quot;s&quot;</span> <span class="o">|</span> <span class="s2">&quot;p&quot;</span> <span class="o">|</span> <span class="s2">&quot;d&quot;</span> <span class="o">|</span> <span class="s2">&quot;f&quot;</span> <span class="o">|</span> <span class="s2">&quot;g&quot;</span> <span class="p">}</span>
+<span class="n">attribute_n</span> <span class="o">=</span> <span class="n">attribute</span> <span class="n">n</span> <span class="p">{</span> <span class="s2">&quot;1&quot;</span> <span class="o">|</span> <span class="s2">&quot;2&quot;</span> <span class="o">|</span> <span class="s2">&quot;3&quot;</span> <span class="o">|</span> <span class="s2">&quot;4&quot;</span> <span class="o">|</span> <span class="s2">&quot;5&quot;</span> <span class="o">|</span> <span class="s2">&quot;6&quot;</span> <span class="o">|</span> <span class="s2">&quot;7&quot;</span> <span class="o">|</span> <span class="s2">&quot;8&quot;</span> <span class="o">|</span> <span class="s2">&quot;9&quot;</span> <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li><a href="../../../proc/ps_valenceconfiguration_get.html">ps_ValenceConfiguration_Get</a> (<code>ps,nshells,charge,annotation</code>)</li>
+</ul>
+<p>This routine returns (as always, in optional arguments), the
+  values of the top-level attributes, any annotation, and the number of
+  <code>Shell</code> elements, which serves as upper limit for the index
+  <code>i</code> in the following routine, which extracts shell information:</p>
+<ul>
+<li><a href="../../../proc/ps_valenceshell_get.html">ps_ValenceShell_Get</a> (<code>ps,i,n,l,occupation,occ_up,occ_down</code>)</li>
+</ul>
+<p>The <code>n</code> and <code>l</code> quantum number arguments are integers
+  (despite the use of spectroscopic symbols for the angular momentum
+  in the format), and the occupations real.</p>
+<h3 id="exchange-and-correlation">Exchange and correlation</h3>
+<div class="codehilite"><pre><span></span><span class="n">ExchangeCorrelation</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">exchange</span><span class="o">-</span><span class="n">correlation</span> <span class="p">{</span>
+                         <span class="n">Annotation</span><span class="err">?</span>
+                         <span class="p">,</span> <span class="n">element</span> <span class="n">libxc</span><span class="o">-</span><span class="n">info</span> <span class="p">{</span>
+                              <span class="n">attribute</span> <span class="n">number</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">functionals</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">positiveInteger</span> <span class="p">},</span>
+                              <span class="n">LibxcFunctional</span><span class="o">+</span>
+                           <span class="p">}</span>
+                        <span class="p">}</span>
+
+<span class="n">LibxcFunctional</span> <span class="o">=</span>   <span class="n">element</span> <span class="n">functional</span> <span class="p">{</span>
+                      <span class="n">attribute</span> <span class="nb">id</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">positiveInteger</span> <span class="p">},</span>
+                      <span class="n">attribute</span> <span class="n">name</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">},</span>
+                      <span class="n">attribute</span> <span class="n">weight</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+
+                      <span class="c1"># allow canonical names and libxc-style symbols</span>
+
+                      <span class="n">attribute</span> <span class="nb">type</span> <span class="p">{</span> <span class="s2">&quot;exchange&quot;</span> <span class="o">|</span> <span class="s2">&quot;correlation&quot;</span> <span class="o">|</span> <span class="s2">&quot;exchange-correlation&quot;</span> <span class="o">|</span>
+                                   <span class="s2">&quot;XC_EXCHANGE&quot;</span> <span class="o">|</span> <span class="s2">&quot;XC_CORRELATION&quot;</span> <span class="o">|</span>
+                              <span class="s2">&quot;XC_EXCHANGE_CORRELATION&quot;</span> <span class="p">}</span><span class="err">?</span>
+                    <span class="p">}</span>
+</pre></div>
+
+
+<p>The routines follow the same structure as those in the previous section.</p>
+<ul>
+<li>
+<p><a href="../../../proc/ps_exchangecorrelation_get.html">ps_ExchangeCorrelation_Get</a> (<code>ps,annotation,n_libxc_functionals</code>)</p>
+</li>
+<li>
+<p><a href="../../../proc/ps_libxcfunctional_get.html">ps_LibxcFunctional_Get</a> (<code>ps,i,name,code,type,weight</code>)</p>
+</li>
+</ul>
+<h2 id="valence-and-core-charges">Valence and Core Charges</h2>
+<div class="codehilite"><pre><span></span><span class="n">ValenceCharge</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">valence</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span>
+                   <span class="n">attribute</span> <span class="n">total</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+                   <span class="n">attribute</span> <span class="ow">is</span><span class="o">-</span><span class="n">unscreening</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                   <span class="n">attribute</span> <span class="n">rescaled</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">z</span><span class="o">-</span><span class="n">pseudo</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                   <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                   <span class="n">Radfunc</span>
+                 <span class="p">}</span>  
+
+<span class="c1"># =========</span>
+<span class="n">CoreCharge</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">pseudocore</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span>
+                <span class="n">attribute</span> <span class="n">matching</span><span class="o">-</span><span class="n">radius</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+                <span class="n">attribute</span> <span class="n">number</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">continuous</span><span class="o">-</span><span class="n">derivatives</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">nonNegativeInteger</span> <span class="p">},</span>
+                <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                <span class="n">Radfunc</span>
+              <span class="p">}</span>
+</pre></div>
+
+
+<p>These are radial functions with some metadata in the form of
+attributes, an optional annotation, and a <code>Radfunc</code> child. The accessors
+have the extra optional argument <code>func</code> that returns a handle to
+a `[[ps_radfunc_t]] object, which can later be used to get extra
+information.</p>
+<ul>
+<li><a href="../../../proc/ps_valencecharge_get.html">ps_ValenceCharge_Get</a> (<code>ps,total_charge,
+                      is_unscreening_charge, rescaled_to_z_pseudo,
+                      annotation,func</code>)</li>
+</ul>
+<p>The routine returns an emtpy string in <code>is_unscreening_charge</code> and
+  <code>rescaled_to_z_pseudo</code> if the attributes are not present in the
+  PSML file. </p>
+<ul>
+<li><a href="../../../proc/ps_corecharge_get.html">ps_CoreCharge_Get</a> (<code>ps,rc,nderivs,annotation,func</code>)</li>
+</ul>
+<p><code>rc</code> corresponds to the matching radius and <code>nderivs</code> to the
+  continuity information. Negative values are returned if the
+  corresponding attributes are not present in the file.</p>
+<p>The <code>func</code> object can be used to evaluate the radial functions at
+a particular point <code>r</code>:</p>
+<ul>
+<li>function <a href="../../../proc/ps_getvalue.html">ps_GetValue</a> (<code>func,r</code>) result(<code>val</code>)</li>
+</ul>
+<p>but the API offers some convenience functions</p>
+<ul>
+<li>function <a href="../../../proc/ps_valencecharge_value.html">ps_ValenceCharge_Value</a> (<code>ps,r</code>) result(<code>val</code>)</li>
+<li>function <a href="../../../proc/ps_corecharge_value.html">ps_CoreCharge_Value</a> (<code>ps,r</code>) result(<code>val</code>)</li>
+</ul>
+<h2 id="local-potential-and-local-charge-density">Local Potential and Local Charge Density</h2>
+<div class="codehilite"><pre><span></span><span class="n">LocalPotential</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">local</span><span class="o">-</span><span class="n">potential</span> <span class="p">{</span>
+                    <span class="n">attribute</span> <span class="nb">type</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">},</span>
+                    <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                    <span class="n">Grid</span><span class="err">?</span><span class="p">,</span>
+                    <span class="n">Radfunc</span><span class="p">,</span>
+            <span class="n">LocalCharge</span><span class="err">?</span>  <span class="c1"># Optional local-charge element</span>
+                  <span class="p">}</span>
+
+<span class="n">LocalCharge</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">local</span><span class="o">-</span><span class="n">charge</span> <span class="p">{</span>
+             <span class="n">Radfunc</span>
+           <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li><a href="../../../proc/ps_localpotential_get.html">ps_LocalPotential_Get</a> (<code>ps,type,annotation,func,has_local_charge,func_local_charge</code>)</li>
+</ul>
+<p>In this version of the API, the optional <code>&lt;local-charge&gt;</code> element is
+not given a first-class status. To evaluate it (if the boolean
+argument <code>has_local_charge</code> is <code>.true.</code>), the
+<code>func_local_charge</code> argument has to be used in the
+<code>ps_GetValue</code> routine above. The local potential can be
+evaluated via the <code>func</code> object or with the convenience function </p>
+<ul>
+<li>function <a href="../../../proc/ps_localpotential_value.html">ps_LocalPotential_Value</a> (<code>ps,r</code>) result(<code>val</code>)</li>
+</ul>
+<h2 id="semilocal-potentials">Semilocal potentials</h2>
+<div class="codehilite"><pre><span></span><span class="n">SemiLocalPotentials</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">semilocal</span><span class="o">-</span><span class="n">potentials</span> <span class="p">{</span>
+                         <span class="n">attribute_set</span><span class="p">,</span>
+                         <span class="n">attribute</span> <span class="n">flavor</span>  <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                         <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+             <span class="n">Grid</span><span class="err">?</span><span class="p">,</span>
+                         <span class="n">Potential</span><span class="o">+</span>
+                        <span class="p">}</span>
+
+<span class="n">Potential</span> <span class="o">=</span>   <span class="n">element</span> <span class="n">slps</span> <span class="p">{</span>
+                <span class="n">attribute</span> <span class="n">flavor</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                <span class="n">attribute_l</span><span class="p">,</span>
+                <span class="n">attribute_j</span> <span class="err">?</span><span class="p">,</span>
+                <span class="n">attribute_n</span><span class="p">,</span>
+                <span class="n">attribute</span> <span class="n">rc</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+                <span class="n">attribute</span> <span class="n">eref</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                <span class="n">Radfunc</span>
+              <span class="p">}</span>   
+</pre></div>
+
+
+<p>As explained <a href="./sets.html">here</a> there can be several
+<code>&lt;semilocal-potentials&gt;</code> elements corresponding to different
+sets. Internally, the data is built up in linked lists during the
+parsing stage and later all the data for the <code>&lt;slps&gt;</code> child elements
+are re-arranged into flat tables, which can be queried like a simple
+database. The table indexes for the potentials with
+specific quantum numbers, or set membership, can be obtained with
+the routine</p>
+<ul>
+<li>
+<p><a href="../../../proc/ps_semilocalpotentials_filter.html">ps_SemilocalPotentials_Filter</a> (<code>ps,indexes_in,l,j,n,set,indexes,number</code>)</p>
+<ul>
+<li><code>indexes_in</code>: (Optional, in) Initial set of indexes on which to
+ perform the filtering operation. If not present, the full table is used.</li>
+<li><code>l,j,n,set</code>: (Optional, in) Values for filtering criteria.</li>
+<li><code>indexes</code>: (Optional, out) Set of indexes which satisfy the criteria.</li>
+<li><code>number</code>: (Optional, out) Number of items which satisfy the criteria.</li>
+</ul>
+</li>
+</ul>
+<p>The <code>set</code> argument has to be given using special integer symbols exported
+by the API, as explained <a href="./sets.html">here</a>.</p>
+<p>The appropriate indexes can then be fed into the following routines to
+get specific information:</p>
+<ul>
+<li><a href="../../../proc/ps_potential_get.html">ps_Potential_Get</a> (<code>ps,i,l,j,n,rc,eref,set,flavor,annotation,func</code>)</li>
+</ul>
+<p>All arguments except <code>ps</code> and <code>i</code> are optional. The value
+  returned in <code>set</code> is an integer which can be converted to a
+  mnemonic string through the <a href="../../../proc/str_of_set.html">str_of_set</a> convenience function.
+  The <code>annotation</code> returned corresponds to the optional <code>&lt;annotation&gt;</code>
+  element of the parent block of the <code>&lt;slps&gt;</code> element.</p>
+<p>The routine returns a very large positive value in <code>eref</code> if the
+  corresponding attribute is not present in the file.</p>
+<ul>
+<li>function <a href="../../../proc/ps_potential_value.html">ps_Potential_Value</a> (<code>ps,i,r</code>) result(<code>val</code>)</li>
+</ul>
+<h2 id="nonlocal-projectors">Nonlocal Projectors</h2>
+<div class="codehilite"><pre><span></span><span class="n">NonLocalProjectors</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">nonlocal</span><span class="o">-</span><span class="n">projectors</span> <span class="p">{</span>
+                        <span class="n">attribute_set</span><span class="p">,</span>
+                        <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                        <span class="n">Grid</span><span class="err">?</span><span class="p">,</span>
+                    <span class="n">Projector</span><span class="o">+</span>
+                      <span class="p">}</span>
+
+<span class="n">Projector</span> <span class="o">=</span>   <span class="n">element</span> <span class="n">proj</span> <span class="p">{</span>
+                <span class="n">attribute</span> <span class="n">ekb</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
+                <span class="n">attribute</span> <span class="n">eref</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                <span class="n">attribute_l</span><span class="p">,</span>
+                <span class="n">attribute_j</span> <span class="err">?</span><span class="p">,</span>
+                <span class="n">attribute</span> <span class="n">seq</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">positiveInteger</span> <span class="p">},</span>
+                <span class="n">attribute</span> <span class="nb">type</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">},</span>
+                <span class="n">Radfunc</span>
+              <span class="p">}</span><span class="o">+</span>
+</pre></div>
+
+
+<p>The ideas are exactly the same as for the semilocal potentials. The
+relevant routines are:</p>
+<ul>
+<li>
+<p><a href="../../../proc/ps_nonlocalprojectors_filter.html">ps_NonlocalProjectors_Filter</a> (<code>ps,indexes_in,l,j,seq,set,indexes,number</code>)</p>
+</li>
+<li>
+<p><a href="../../../proc/ps_projector_get.html">ps_Projector_Get</a> (<code>ps,i,l,j,seq,set,ekb,eref,type,annotation,func</code>)</p>
+</li>
+</ul>
+<p>The routine returns a very large positive value in <code>eref</code> if the
+  corresponding attribute is not present in the file.</p>
+<ul>
+<li>function <a href="../../../proc/ps_projector_value.html">ps_Projector_Value</a> (<code>ps,i,r</code>) result(<code>val</code>)</li>
+</ul>
+<h2 id="pseudo-wavefunctions">Pseudo Wavefunctions</h2>
+<div class="codehilite"><pre><span></span><span class="n">PseudoWaveFunctions</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">pseudo</span><span class="o">-</span><span class="n">wave</span><span class="o">-</span><span class="n">functions</span> <span class="p">{</span>
+                         <span class="n">attribute_set</span><span class="p">,</span>
+                         <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                         <span class="n">Grid</span><span class="err">?</span><span class="p">,</span>
+                         <span class="n">PseudoWf</span><span class="o">+</span>
+                       <span class="p">}</span>
+
+<span class="n">PseudoWf</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">pswf</span> <span class="p">{</span>
+              <span class="n">attribute_l</span><span class="p">,</span>
+              <span class="n">attribute_j</span> <span class="err">?</span><span class="p">,</span>
+              <span class="n">attribute_n</span><span class="p">,</span>
+              <span class="n">attribute</span> <span class="n">energy_level</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span><span class="p">}</span> <span class="err">?</span><span class="p">,</span>
+              <span class="n">Radfunc</span>
+            <span class="p">}</span>
+</pre></div>
+
+
+<p>Again, the same strategy:</p>
+<ul>
+<li><a href="../../../proc/ps_pseudowavefunctions_filter.html">ps_PseudoWaveFunctions_Filter</a> (<code>ps,indexes_in,l,j,set,indexes,number</code>)</li>
+<li><a href="../../../proc/ps_pseudowf_get.html">ps_PseudoWf_Get</a> (<code>ps,i,l,j,n,set,energy_level,annotation,func</code>)</li>
+</ul>
+<p>The routine returns a very large positive value in <code>energy_level</code> if the
+  corresponding attribute is not present in the file.</p>
+<ul>
+<li>function <a href="../../../proc/ps_pseudowf_value.html">ps_PseudoWf_Value</a> (<code>ps,i,r</code>) result(<code>val</code>)</li>
+</ul>
+<h2 id="radial-function-and-grid-information">Radial function and grid information</h2>
+<div class="codehilite"><pre><span></span><span class="n">Radfunc</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">radfunc</span> <span class="p">{</span>
+             <span class="n">Grid</span><span class="err">?</span><span class="p">,</span>              <span class="c1"># Optional grid element</span>
+             <span class="n">element</span> <span class="n">data</span> <span class="p">{</span>      
+               <span class="nb">list</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span><span class="o">+</span> <span class="p">}</span>       <span class="c1"># One or more floating point numbers</span>
+             <span class="p">}</span>
+           <span class="p">}</span>
+
+<span class="n">Grid</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">grid</span> <span class="p">{</span>
+          <span class="n">attribute</span> <span class="n">npts</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">positiveInteger</span> <span class="p">},</span>
+          <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+          <span class="n">element</span> <span class="n">grid</span><span class="o">-</span><span class="n">data</span> <span class="p">{</span>
+                 <span class="nb">list</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span><span class="o">+</span> <span class="p">}</span>   <span class="c1"># One or more floating point numbers</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+</pre></div>
+
+
+<p>In keeping with the PSML philosophy of being grid-agnostic, the basic
+API does not provide any direct means of accessing the data used in
+the tabulation of the radial functions. The values of the functions at
+a particular point <code>r</code> can be generally obtained through the
+<code>ps_XXXX_Value</code> interfaces, or through the <a href="../../../proc/ps_getvalue.html">ps_GetValue</a>
+interface using <code>func</code> objects of type [[ps_radfunc_t]].</p>
+<p>It is nevertheless possible to get annotation data for the grid of a
+particular radial function, or for the top-level grid, through the
+function</p>
+<ul>
+<li>function <a href="../../../proc/ps_gridannotation.html">ps_GridAnnotation</a> (<code>ps,func</code>}) result(<code>annotation</code>)</li>
+</ul>
+<p>If a radial function handle <code>func</code> is given, the annotation for
+  that radial function's grid is returned. Otherwise, the return value
+  is the annotation for the top-level grid.  </p>
+<h1 id="the-evaluation-engine">The evaluation engine</h1>
+<p>In the current version of the library the evaluation of tabulated
+functions is performed by default with polynomial interpolation, using
+a slightly modified version of an algorithm borrowed (with permission)
+from the <a href="http://www.mat-simresearch.com">oncvpsp</a> program by
+D.R. Hamann.  By default seventh-order interpolation, as in <code>oncvpsp</code>,
+is used.  If the library is compiled with the appropriate
+pre-processor symbols, the interpolator and/or its order can be chosen
+at runtime, but we note that this should be considered a debugging
+feature. Reproducibility of results would be hampered if client codes
+change the interpolation parameters at will. Generator codes should
+instead strive to produce data tabulations that will guarantee a given
+level of precision when interpolated with the default scheme, using
+appropriate output grids on which to sample their internal data
+sets. For example, our own work on enabling PSML output in <code>oncvpsp</code>
+(see below) includes diagnostic tools to check the interpolation
+accuracy.</p>
+<p>Most codes use internally a non-uniform grid (e.g. logarithmic). We
+have found that a good choice of output grid is a subset of the
+producer's working grid points that leaves out most of the very close
+points near the origin but maintains the rest. This can be achieved by
+imposing a minimum inter-point separation $\delta$. This parameter
+$\delta$ can be smaller than the typical linear-grid step used
+currently by most codes, and still lead to smaller grids (in terms of
+number of points) that preserve the accuracy of the output.</p>
+<p>High-order interpolation can lead to <em>ringing</em> effects
+(oscillations of the interpolating polynomial between points), notably
+near edge regions when the shape of the function changes
+abruptly. This is the case, for example, if the function drops to zero
+within the interpolation range as a result of cutting off a tail. The
+actual interpolated values will typically be very small, but might cause
+undesirable effects in the client code. To avoid this problem, the
+libPSML evaluator works internally with an effective end-of-range
+that is determined by analyzing the data values after parsing.</p>
+<p>If needed for debugging purposes, the evaluator engine can be
+configured by the routine:</p>
+<ul>
+<li><a href="../../../proc/ps_setevaluatoroptions.html">ps_SetEvaluatorOptions</a> (<code>quality_level,debug,
+  use_effective_range,
+  custom_interpolator</code>)</li>
+</ul>
+<p>All arguments are optional, and apply globally to the operation of
+  the library. The <code>custom_interpolator</code> argument is not allowed
+  if the underlying Fortran compiler does not support procedure
+  pointers. <code>quality_level</code> (an integer) is by default and will
+  typically be the interpolation order, but its meaning can change
+  with the interpolator in use. The evaluator uses an effective range
+  by default, as discussed above, but this feature can be turned off
+  by setting <code>use_effective_range</code> to <code>.false.</code>. The
+  <code>debug</code> argument will turn on any extra printing configured in
+  the evaluator. By default, no extra printing is produced.</p>
+<p>Finally, in case it is necessary to look at the raw tabular data for debugging 
+purposes, the library also provides a low-level routine:</p>
+<ul>
+<li><a href="../../../proc/ps_getrawdata.html">ps_GetRawData</a> (<code>func,rg,data</code>)</li>
+</ul>
+<p>If a radial function handle <code>func</code> is given, the grid points
+  and the actual tabulated data are returned in <code>rg</code> and
+  <code>data</code>, which must be passed as allocatable arrays.</p>
+<h1 id="predicate-routines-for-contents">Predicate routines for contents</h1>
+<p>The following convenience functions return a logical value. For semi-local
+potentials, non-local projectors, and pseudo-wave-functions, the test
+is done on the union of all possible sets.</p>
+<ul>
+<li><a href="../../../proc/ps_hassemilocalpotentials.html">ps_HasSemilocalPotentials</a></li>
+<li><a href="../../../proc/ps_haspsoperator.html">ps_HasPSOperator</a></li>
+<li><a href="../../../proc/ps_haslocalpotential.html">ps_HasLocalPotential</a></li>
+<li><a href="../../../proc/ps_hasprojectors.html">ps_HasProjectors</a></li>
+<li><a href="../../../proc/ps_hascorecorrections.html">ps_HasCoreCorrections</a></li>
+</ul>
+<h1 id="editing-of-ps-structures">Editing of ps structures</h1>
+<p>The PSML library has currently limited support for editing the content
+of <a href="../../../type/ps_t.html">ps_t</a> objects from user programs. For example, such an
+editing might be done by a KB-projector generator to insert a new
+provenance record (and KB and local-potential data) in the
+<code>ps</code> object, prior to dumping to a new PSML file.</p>
+<ul>
+<li><a href="../../../proc/ps_rootattributes_set.html">ps_RootAttributes_Set</a> (<code>ps,version,uuid,namespace</code>)</li>
+<li><a href="../../../interface/ps_provenance_add.html">ps_Provenance_Add</a> (<code>ps,creator,date,annotation</code>)</li>
+</ul>
+<p>Annotations can be created using routines exported by the PSML API
+  (see below)</p>
+<ul>
+<li><a href="../../../interface/ps_nonlocalprojectors_delete.html">ps_NonLocalProjectors_Delete</a> (<code>ps</code>)</li>
+<li><a href="../../../interface/ps_localpotential_delete.html">ps_LocalPotential_Delete</a> (<code>ps</code>)</li>
+</ul>
+<h1 id="dump-of-ps-structures">Dump of ps structures</h1>
+<p>The contents of a (possibly edited) <a href="../../../type/ps_t.html">ps_t</a> object can be dumped
+to a PSML file using the routine</p>
+<ul>
+<li><a href="../../../proc/ps_dumptopsmlfile.html">ps_DumpToPSMLFile</a> (<code>ps,fname,indent</code>)</li>
+</ul>
+<p>Here <code>fname</code> is the output file name, and <code>indent</code> is a
+  logical variable that determines whether automatic indenting of
+  elements is turned on (by default it is not).</p>
+<h1 id="annotation-api">Annotation API</h1>
+<p>To support the annotation functionality, the library contains a module
+implementing a basic instance of an association list (a data structure
+holding key-value pairs), and exports the [[ps_annotation_t(type)]]
+type and the following routines:</p>
+<ul>
+<li>[[ps_annotation_reset(proc)]] (<code>annotation</code>)</li>
+</ul>
+<p>Cleans the contents of the [[ps_annotation_t(type)]] object
+  <code>annotation</code> so that it can be reused.</p>
+<ul>
+<li>[[ps_annotation_insert(proc)]] (<code>annotation,key,value,stat</code>)</li>
+</ul>
+<p>Inserts the <code>key, value</code> pair in the [[ps_annotation_t]] object
+  <code>annotation</code>. Internally, <code>annotation</code> can grow as much as
+  needed. A non-zero <code>stat</code> signals an error.</p>
+    </div>
+    
+    <div class="col-md-3 col-md-pull-9">
+      <hr class="visible-xs visible-sm">
+        <div class="well toc">
+          <ul class="nav nav-stacked nav-pills">
+            <li role="presentation" class="title"><a href='../../../page/index.html'>Overview</a></li>
+          </ul>
+          <hr>
+          <ul class="nav nav-stacked nav-pills">
+            
+            <li role="presentation">
+            <a href='../../../page/01_the_psml_format/index.html'>PSML description</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../../../page/01_the_psml_format/01_generators/index.html'>Pseudopotential generators supporting PSML</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../../page/01_the_psml_format/02_clients/index.html'>First-principles codes able to read PSML files</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../../page/01_the_psml_format/databases.html'>Databases of PSML files</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../../page/01_the_psml_format/schema.html'>Schema for PSML</a>
+            
+            </li>
+            
+            </ul>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../../page/02_library_user_guide/index.html'>libPSML User Guide</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../../../page/02_library_user_guide/01_installation.html'>Installation</a>
+            
+            </li>
+            
+            <li role="presentation" class="disabled">
+            <a href='../../../page/02_library_user_guide/02_api/index.html'>libPSML API</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../../../page/02_library_user_guide/02_api/sets.html'>Sets of potentials, projectors, and pseudo-wave-functions</a>
+            
+            </li>
+            
+            </ul>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../../page/02_library_user_guide/03_deprecated_api/index.html'>Deprecated API</a>
+            
+            </li>
+            
+            </ul>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../../../page/03_library_developer_notes/index.html'>Developer Notes</a>
+            
+            </li>
+            
+          </ul>
+        </div>
+    </div>
+    
+  </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> libPSML was developed by Alberto Garcia</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../../../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

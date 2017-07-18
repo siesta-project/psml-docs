@@ -84,7 +84,10 @@ type(input_file_t), private, pointer      :: ifp => null()
 type(header_t), private, pointer          :: hp => null()
 type(config_val_t), private, pointer      :: cp => null()
 type(xc_t), private, pointer              :: xp => null()
-type(pswfs_t), private, pointer           :: wfp => null()
+type(wfns_t), private, pointer            :: wfp => null()
+type(wfns_t), private, pointer            :: qwfp => null()
+type(wf_t), private, pointer              :: wfpp => null()
+type(wf_t), private, pointer              :: qwfpp => null()
 type(semilocal_t), private, pointer       :: slp => null()
 type(semilocal_t), private, pointer       :: qslp => null()
 type(slps_t), private, pointer            :: slvp => null()
@@ -99,6 +102,8 @@ type(core_charge_t), private, pointer     :: corep => null()
 type(radfunc_t), private, pointer         :: rp => null()
 
 character(len=100), private, save :: parent_element=""
+
+integer :: npts_data
 
 CONTAINS  !===========================================================
 
@@ -155,9 +160,8 @@ select case(name)
          call get_value(attributes,"uuid",pseudo%uuid,status)
          if (status /= 0 ) pseudo%uuid = "no-uuid-specified"
 
-         ! Initialize counters
-
-         pseudo%pswfs%npswfs = 0
+         call get_value(attributes,"xmlns",pseudo%namespace,status)
+         if (status /= 0 ) pseudo%namespace = "no-namespace-specified"
 
       case ("provenance")
          in_provenance = .true.
@@ -173,20 +177,35 @@ select case(name)
                pseudo%provenance => pp
             endif
 
+            pp%n_input_files = 0
+            
             call get_value(attributes,"creator",pp%creator,status)
             if (status /= 0 ) pp%creator="unknown"
  
             call get_value(attributes,"date",pp%date,status)
             if (status /= 0 ) pp%date="unknown"
 
+            ! Support the optional attribute 'record-number'.
+            ! SAX will keep the order. In this parser we require
+            ! that the records be in the right order in the file.
+            ! (Check performed at the end of parsing)
+            ! Other parsers (e.g. DOM) might need to worry about
+            ! internal ordering
+            pp%record_number = 0
+            call get_value(attributes,"record-number",value,status)
+            if (status == 0 ) then
+               read(unit=value,fmt=*) pp%record_number
+            endif
+            
       case ("input-file")
          if (.not. in_provenance) call die("<input-file> outside <provenance>")
          in_input_file = .true.
+         pp%n_input_files = pp%n_input_files + 1
          ifp => pp%input_file
          call get_value(attributes,"name",ifp%name,status)
          if (status /= 0 ) ifp%name="unknown"
          
-      case ("header")
+      case ("header", "pseudo-atom-spec")
          in_header = .true.
          hp => pseudo%header
          
@@ -202,13 +221,16 @@ select case(name)
          read(unit=value,fmt=*) hp%z
 
          call get_value(attributes,"flavor",hp%flavor,status)
-         if (status /= 0 ) hp%flavor="not-unique"
+         if (status /= 0 ) hp%flavor=""  ! empty string signals absence
 
          call get_value(attributes,"relativity",hp%relativity,status)
          if (status /= 0 ) call die("Cannot determine relativity scheme")
 
-         call get_value(attributes,"polarized",value,status)
-         if (status /= 0 ) value = "no"
+         call get_value(attributes,"spin-dft",value,status)
+         if (status /= 0 ) then  ! Check v1.0 form
+            call get_value(attributes,"polarized",value,status)
+            if (status /= 0 ) value = "no"
+         endif
          hp%polarized = (value == "yes")
          if (hp%polarized .and. trim(hp%relativity)=="dirac") then
             call die("Cannot be polarized and fully relativistic at the same time")
@@ -217,7 +239,8 @@ select case(name)
          call get_value(attributes,"core-corrections", &
                                     hp%core_corrections,status)
          if (status /= 0 ) hp%core_corrections = "no"
-
+         ! Check yes/no value??
+         
       case ("exchange-correlation")
          in_xc = .true.
          xp => pseudo%xc_info
@@ -349,10 +372,29 @@ select case(name)
             read(unit=value,fmt=*) slvp%j
          endif
 
+         slvp%eref = huge(1.0_dp)  ! Signal absence of eref attribute
+         call get_value(attributes,"eref",value,status)
+         if (status == 0 ) then
+            read(unit=value,fmt=*) slvp%eref
+         endif
+
          call get_value(attributes,"flavor",slvp%flavor,status)
          if (status /= 0 ) then
             slvp%flavor = top_flavor
          endif
+
+         ! Encode the behavior beyond the range
+         ! The only current possibility is to have
+         ! a Coulomb tail, or zero.
+
+         select case (slvp%set)
+         case (SET_SO, SET_SPINDIFF)
+            rp%has_coulomb_tail = .false.
+         case default
+            rp%has_coulomb_tail = .true.
+            rp%tail_factor = -pseudo%header%zpseudo
+         end select
+
 
       case ("proj")
          in_proj = .true.
@@ -372,6 +414,7 @@ select case(name)
          endif
 
          rp => nlpp%proj
+         rp%has_coulomb_tail = .false.
          nlpp%parent_group => nlp   ! current nonlocal-projectors element
 
          call get_value(attributes,"set",value,status)
@@ -391,6 +434,12 @@ select case(name)
          if (status /= 0 ) call die("Cannot determine Ekb for proj")
          read(unit=value,fmt=*) nlpp%ekb
 
+         nlpp%eref = huge(1.0_dp)  ! Signal absence of eref attribute
+         call get_value(attributes,"eref",value,status)
+         if (status == 0 ) then
+            read(unit=value,fmt=*) nlpp%eref
+         endif
+
          call get_value(attributes,"j",value,status)
          if (status /= 0 ) then
             if (nlpp%set == SET_LJ) &
@@ -407,31 +456,51 @@ select case(name)
          if (.not. in_pseudowavefun) call die("Orphan <pswf> element")
          in_pswf = .true.
 
-         wfp => pseudo%pswfs
-         wfp%npswfs = wfp%npswfs + 1
-         i = wfp%npswfs
-         rp => wfp%Phi(i)
+         allocate(wfpp)
+         
+         ! Append to end of list  !! call append(wfp%proj,wfpp)
+         if (associated(wfp%wf)) then
+            qwfpp => wfp%wf
+            do while (associated(qwfpp%next))
+               qwfpp => qwfpp%next
+            enddo
+            qwfpp%next => wfpp
+         else
+            !First link
+            wfp%wf => wfpp
+         endif
+
+         rp => wfpp%Phi
+         rp%has_coulomb_tail = .false.
+         wfpp%parent_group => wfp   ! current nowfocal-projectors element
 
          call get_value(attributes,"set",value,status)
          if (status /= 0 ) then
             value = current_wf_set
          endif
-         wfp%set(i) = setcode_of_string(value)
+         wfpp%set = setcode_of_string(value)
 
-         call get_value(attributes,"l",wfp%l(i),status)
-         if (status /= 0 ) call die("Cannot determine l for PSwf")
-                                                                              
+         call get_value(attributes,"l",wfpp%l,status)
+         if (status /= 0 ) call die("Cannot determine l for wf")
+
          call get_value(attributes,"n",value,status)
-         if (status /= 0 ) call die("Cannot determine n for PSwf")
-         read(unit=value,fmt=*) wfp%n(i)
+         if (status /= 0 ) call die("Cannot determine n for wf")
+         read(unit=value,fmt=*) wfpp%n
 
          call get_value(attributes,"j",value,status)
          if (status /= 0 ) then
-            if (wfp%set(i) == SET_LJ) &
-                 call die("Cannot determine j for PSwf in set " // str_of_set(SET_LJ))
+            if (wfpp%set == SET_LJ) &
+                 call die("Cannot determine j for wf in set " // str_of_set(SET_LJ))
          else
-            read(unit=value,fmt=*) wfp%j(i)
+            read(unit=value,fmt=*) wfpp%j
          endif
+
+         wfpp%energy_level = huge(1.0_dp)
+         call get_value(attributes,"energy_level",value,status)
+         if (status == 0 ) then
+            read(unit=value,fmt=*) wfpp%energy_level
+         endif
+
 
       case ("grid")
          in_grid = .true.
@@ -511,6 +580,7 @@ select case(name)
          endif
          in_data = .true.
 
+
 	 ! The following blocks are a bit more verbose than needed since
          ! the Intel compiler seems to be trying to evaluate all the
          ! clauses joined by an .and. operator, instead of stopping if
@@ -555,7 +625,21 @@ select case(name)
          ! Now give up
          if (.not. initialized(rp%grid)) call die("Cannot find grid data for radfunc")
 
-         allocate(rp%data(sizeGrid(rp%grid)))
+         ! This attribute is optional
+         ! If present, it determines the actual number of points of the grid used
+         ! (for example, for a function of shorter range)
+         ! This is an experimental feature that can save space
+         ! (if implemented correctly!!!)
+         
+         call get_value(attributes,"npts",value,status)
+         if (status == 0 ) then
+            read(unit=value,fmt=*) npts_data
+            if (npts_data > sizeGrid(rp%grid)) call die("data npts too big")
+         else
+            npts_data = sizeGrid(rp%grid)
+         endif
+
+         allocate(rp%data(npts_data))
          ndata = 0             ! To start the build up
 
       case ("grid-data")
@@ -593,11 +677,13 @@ select case(name)
          in_coreCharge = .true.
          corep => pseudo%core_charge
          rp => corep%rho_core
+         rp%has_coulomb_tail = .false.
 
          call get_value(attributes,"matching-radius",value,status)
          if (status == 0 )  then
             read(unit=value,fmt=*) corep%rcore
          else
+            ! Signal absence of attribute with a negative number
             corep%rcore = -1.0_dp
          endif
                                                                               
@@ -606,6 +692,7 @@ select case(name)
          if (status == 0 )  then
             read(unit=value,fmt=*) corep%n_cont_derivs
          else
+            ! Signal absence of attribute with a negative number
             corep%n_cont_derivs = -1
          endif
 
@@ -613,11 +700,20 @@ select case(name)
          in_valenceCharge = .true.
          valp => pseudo%valence_charge
          rp => valp%rho_val
-
+         rp%has_coulomb_tail = .false.
+         
          call get_value(attributes,"total-charge",value,status)
          if (status /= 0 ) call die("Cannot determine total valence charge")
          read(unit=value,fmt=*) valp%total_charge
-                                                                              
+
+         call get_value(attributes,"is-unscreening-charge",&
+            valp%is_unscreening_charge,status)
+         if (status /= 0 ) valp%is_unscreening_charge = ""
+         
+         call get_value(attributes,"rescaled-to-z-pseudo",&
+            valp%rescaled_to_z_pseudo,status)
+         if (status /= 0 ) valp%rescaled_to_z_pseudo = ""
+         
       case ("semilocal-potentials")
          in_semilocal = .true.
          allocate(slp)
@@ -669,7 +765,7 @@ select case(name)
          call get_value(attributes,"set",value,status)
          if (status == 0 ) then
             current_proj_set = value
-         nlp%set = setcode_of_string(value)
+            nlp%set = setcode_of_string(value)
          endif
          if (debug_parsing) print *, "Found nonlocal-projectors set: ", trim(current_proj_set)
          nlp%set = setcode_of_string(value)
@@ -678,7 +774,9 @@ select case(name)
          in_local_potential = .true.
          lop => pseudo%local
          rp => lop%vlocal
-
+         rp%has_coulomb_tail = .true.
+         rp%tail_factor = -pseudo%header%zpseudo
+         
          call get_value(attributes,"type",lop%vlocal_type,status)
          if (status /= 0 ) call die("Cannot determine type of local potential")
                                                                               
@@ -687,13 +785,25 @@ select case(name)
          in_chlocal = .true.
          lop => pseudo%local
          rp => lop%chlocal
-
+         rp%has_coulomb_tail = .false.
+         
          ! Future expansion: chlocal attributes
                                                                               
       case ("pseudo-wave-functions")
          in_pseudowavefun = .true. 
 
-         wfp => pseudo%pswfs
+	 ! Allocate new node and add to the end of the linked list
+         allocate(wfp)
+
+         if (associated(pseudo%wavefunctions)) then
+            qwfp => pseudo%wavefunctions
+            do while (associated(qwfp%next))
+               qwfp => qwfp%next
+            enddo
+            qwfp%next => wfp
+         else
+            pseudo%wavefunctions => wfp
+         endif
 
          current_wf_set = "invalid"
          wfp%set = SET_NULL
@@ -702,17 +812,27 @@ select case(name)
             current_wf_set = value
             wfp%set = setcode_of_string(value)
          endif
-         if (debug_parsing) print *, "Found pseudo-wavefunction set: ", trim(current_wf_set)
+         if (debug_parsing) print *, "Found wavefunctions set: ", trim(current_wf_set)
+         wfp%set = setcode_of_string(value)
+
+         !! Optional
+         call get_value(attributes,"type",value,status)
+         if (status == 0 ) wfp%type=trim(value)
+
+
 
       case ("annotation")
-         if (in_provenance) then
-            call save_annotation(attributes,pp%annotation)
-         else if (in_grid) then
-            call save_annotation(attributes,gannot)
-         else if (in_xc) then
+         ! Deeper elements first...
+         if (in_xc) then
             call save_annotation(attributes,xp%annotation)
          else if (in_valence_config) then
             call save_annotation(attributes,cp%annotation)
+         else if (in_header) then
+            call save_annotation(attributes,hp%annotation)
+         else if (in_provenance) then
+            call save_annotation(attributes,pp%annotation)
+         else if (in_grid) then
+            call save_annotation(attributes,gannot)
          else if (in_semilocal) then
             call save_annotation(attributes,slp%annotation)
          else if (in_nonlocal) then
@@ -726,6 +846,7 @@ select case(name)
          else if (in_coreCharge) then
             call save_annotation(attributes,corep%annotation)
          else if (in_psml) then  ! It must be at the top level
+            ! Version 1.0 only. Keep it in the structure
             call save_annotation(attributes,pseudo%annotation)
          else
             ! Do nothing instead of dying
@@ -749,7 +870,13 @@ character(len=*), intent(in)    :: localName
 
 character(len=*), intent(in)     :: name
 
-integer :: i
+integer :: i, nnz
+real(dp) :: Z
+real(dp), parameter :: tol = 1.0e-20_dp  !! Scale or other data dependence?
+real(dp), pointer :: rg(:)
+
+type(provenance_t), pointer      :: q => null()
+integer                          :: depth
 
 if (debug_parsing) print *, "-- end Element: ", trim(name)
 
@@ -759,6 +886,33 @@ select case(name)
          in_radfunc = .false.
          if (.not. associated(rp%data)) then
             call die("No data for radfunc!")
+         endif
+
+         ! Determine the effective range
+         ! by skipping over (nearly) zeros
+         ! For functions with tail, use r*f
+         
+         rg => valGrid(rp%grid)
+         if (rp%has_coulomb_tail) then
+            Z = - rp%tail_factor
+            nnz = size(rp%data)
+            do while ( approx( (rg(nnz)*rp%data(nnz) + Z),0.0_dp, tol) )
+               nnz = nnz - 1
+            enddo
+         else
+            nnz = size(rp%data)
+            do while ( approx( rp%data(nnz) ,0.0_dp, tol) )
+               nnz = nnz - 1
+            enddo
+         endif
+         
+         rp%nnz = nnz
+         if (nnz == size(rp%data)) then
+            rp%rcut_eff = rg(nnz)
+         else
+            rp%rcut_eff = rg(nnz+1)
+            if (debug_parsing) print "(a,i4,f10.4)",&
+                 "Effective npts and range:", nnz+1, rp%rcut_eff
          endif
 
       case ("grid")
@@ -840,12 +994,36 @@ select case(name)
       case ("input-file")
          in_input_file = .false.
          
-      case ("header")
+      case ("header", "pseudo-atom-spec")  ! v1.0, v1.1
          in_header = .false.
 
       case ("psml")
          in_psml = .false.
-!         call dump_pseudo(pseudo)
+         !
+         ! Check provenance elements
+         !
+         ! First, determine how many there are
+         depth = 0
+         q => pseudo%provenance
+         do while (associated(q))
+            depth = depth + 1
+            q => q%next
+         enddo
+         !
+         ! Assign record numbers. For now, we
+         ! require that the records are ordered in the file
+         !
+         q => pseudo%provenance
+         do while (associated(q))
+            ! A value of zero means that there is no (optional) record number
+            if ( (q%record_number /= 0) .and. &
+                 (q%record_number /= depth)) then
+               call die("Provenance records out of order")
+            endif
+            q%record_number = depth
+            q => q%next
+            depth = depth - 1
+         enddo
 
 end select
 
@@ -935,6 +1113,14 @@ subroutine save_annotation(atts,annotation)
        enddo
      end subroutine save_annotation
 
+     function approx(x,y,tol) result (is_close)
+       real(dp), intent(in) :: x, y
+       real(dp), intent(in) :: tol
+       logical              :: is_close
+       
+       is_close = abs(x-y) < tol
+     end function approx
+     
 end module m_psml_parsing_helpers
 
 

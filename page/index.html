@@ -149,32 +149,21 @@ of those formats has been that a generator produced data for a single
 particular simulation code, most likely maintained by the same
 group. This implied that a number of implicit assumptions, shared by
 generator and user, have gone into the formats and fossilized there.</p>
-<p>One can say that there has been a projection of the domain's ontology
-onto the implementation level specific to the pair of programs. Other
-generators and users aiming at producing or reading the same format
-must juggle both their own projections and the target one. In some
-cases, some information cannot be replicated.</p>
 <p>This leads to practical problems, not only of programming, but of
 interoperability and reproducibility, which depend on spelling out
 quite a number of details which are not well represented for all codes
 in existing formats.</p>
-<p>The solution to the abstract problem is to design a data format that
-faithfully maps the relevant concepts of the domain's ontology. In the
-context of norm-conserving pseudopotentials, the basic ontology is
-composed of radial functions (semilocal pseudopotentials, charge
-densities, projectors, local potentials) plus some metadata that
-represents provenance and documents the type of pseudopotential.</p>
-<p>The PSML file format for norm-conserving pseudopotential data is
-designed to encapsulate as much as possible the abstract concepts in
-the domain's ontology. For example, the format, together with its
-supporting processing library libPSML, offers a very good approximation to an
-abstract mathematical function (an object which produces a value from
-its input). The format also provides a rich set of metadata to
-document the provenance (i.e., the generation history) and the
-generation conditions and flavor of the pseudopotential.</p>
-<p>PSML is based on XML, and it is by nature extensible, offering a basic
-set of elements and a number of extra features that can be exploited
-for sophisticated uses or future improvements.</p>
+<p>PSML (for PSeudopotential Markup Language) is a file format for
+norm-conserving pseudopotential data which is designed to encapsulate
+as much as possible the abstract concepts in the domain's ontology,
+and to provide appropriate metadata and provenance information.</p>
+<p>The software library libPSML can be used by electronic structure codes
+to transparently extract the information in a PSML file and adapt it
+to their own data structures, or to create converters for other
+formats.</p>
+<p>A full description of PSML and its design principles is the subject of 
+a forthcoming publication, a draft preprint of which can be found in the <a href="http://launchpad.net/libpsml">libPSML
+distribution</a>.</p>
     </div>
     
     <div class="col-md-3 col-md-pull-9">
@@ -201,12 +190,50 @@ for sophisticated uses or future improvements.</p>
             
             </li>
             
+            <li role="presentation">
+            <a href='../page/01_the_psml_format/databases.html'>Databases of PSML files</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../page/01_the_psml_format/schema.html'>Schema for PSML</a>
+            
+            </li>
+            
             </ul>
             
             </li>
             
             <li role="presentation">
             <a href='../page/02_library_user_guide/index.html'>libPSML User Guide</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../page/02_library_user_guide/01_installation.html'>Installation</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../page/02_library_user_guide/02_api/index.html'>libPSML API</a>
+            
+            <ul class="nav nav-stacked nav-pills">
+              
+            <li role="presentation">
+            <a href='../page/02_library_user_guide/02_api/sets.html'>Sets of potentials, projectors, and pseudo-wave-functions</a>
+            
+            </li>
+            
+            </ul>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='../page/02_library_user_guide/03_deprecated_api/index.html'>Deprecated API</a>
+            
+            </li>
+            
+            </ul>
             
             </li>
             

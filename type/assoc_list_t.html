@@ -128,16 +128,16 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 4.3% of total for derived types.</p>Including implementation: 7 statements,  4.3% of total for derived types.">7 statements</a>
+	  title="<p> 3.8% of total for derived types.</p>Including implementation: 7 statements,  3.8% of total for derived types.">7 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/assoc_list.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/assoc_list.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/assoc_list.f90.html'>assoc_list.f90</a></li>
+     <li><a href='../sourcefile/assoc_list.f90.html'>assoc_list.F90</a></li>
   
      <li><a href='../module/assoc_list.html'>assoc_list</a></li>
   
@@ -240,8 +240,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -253,6 +251,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       
@@ -369,7 +373,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-key"></span>character(len=50),</td>
+  <td><span class="anchor" id="variable-key"></span>character(len=200),</td>
   
   <td>private,</td>
   <td>allocatable</td><td>::</td>
@@ -383,7 +387,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-value"></span>character(len=120),</td>
+  <td><span class="anchor" id="variable-value"></span>character(len=1000),</td>
   
   <td>private,</td>
   <td>allocatable</td><td>::</td>
@@ -409,10 +413,10 @@
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_t</span>
   <span class="k">private</span>
-<span class="k">  </span><span class="kt">integer</span>                              <span class="kd">::</span> <span class="n">nslots</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="kt">integer</span>                              <span class="kd">::</span> <span class="n">nitems</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="k">allocatable</span>       <span class="kd">::</span> <span class="n">key</span><span class="p">(:)</span>
-  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">120</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="k">value</span><span class="p">(:)</span>
+<span class="k">  </span><span class="kt">integer</span>                               <span class="kd">::</span> <span class="n">nslots</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="kt">integer</span>                               <span class="kd">::</span> <span class="n">nitems</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">200</span><span class="p">),</span> <span class="k">allocatable</span>       <span class="kd">::</span> <span class="n">key</span><span class="p">(:)</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="k">value</span><span class="p">(:)</span>
 <span class="k">end type </span><span class="n">assoc_list_t</span>
 </pre></div>
 
@@ -459,8 +463,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -472,6 +474,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       

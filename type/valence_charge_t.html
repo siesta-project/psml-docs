@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 3.1% of total for derived types.</p>Including implementation: 5 statements,  3.1% of total for derived types.">5 statements</a>
+	  title="<p> 3.8% of total for derived types.</p>Including implementation: 7 statements,  3.8% of total for derived types.">7 statements</a>
      </li> 
      
      
@@ -168,9 +168,13 @@
       
       <a class="list-group-item" href="../type/valence_charge_t.html#variable-total_charge%7E2">total_charge</a>
       
+      <a class="list-group-item" href="../type/valence_charge_t.html#variable-is_unscreening_charge">is_unscreening_charge</a>
+      
+      <a class="list-group-item" href="../type/valence_charge_t.html#variable-rescaled_to_z_pseudo">rescaled_to_z_pseudo</a>
+      
       <a class="list-group-item" href="../type/valence_charge_t.html#variable-rho_val">rho_val</a>
       
-      <a class="list-group-item" href="../type/valence_charge_t.html#variable-annotation%7E9">annotation</a>
+      <a class="list-group-item" href="../type/valence_charge_t.html#variable-annotation%7E10">annotation</a>
       
     </div>
   </div>
@@ -238,8 +242,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -251,6 +253,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       
@@ -281,9 +289,13 @@
       
       <a class="list-group-item" href="../type/valence_charge_t.html#variable-total_charge%7E2">total_charge</a>
       
+      <a class="list-group-item" href="../type/valence_charge_t.html#variable-is_unscreening_charge">is_unscreening_charge</a>
+      
+      <a class="list-group-item" href="../type/valence_charge_t.html#variable-rescaled_to_z_pseudo">rescaled_to_z_pseudo</a>
+      
       <a class="list-group-item" href="../type/valence_charge_t.html#variable-rho_val">rho_val</a>
       
-      <a class="list-group-item" href="../type/valence_charge_t.html#variable-annotation%7E9">annotation</a>
+      <a class="list-group-item" href="../type/valence_charge_t.html#variable-annotation%7E10">annotation</a>
       
     </div>
   </div>
@@ -351,6 +363,34 @@
   
 <tr>
   
+  <td><span class="anchor" id="variable-is_unscreening_charge"></span>character(len=3),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>is_unscreening_charge</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-rescaled_to_z_pseudo"></span>character(len=3),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>rescaled_to_z_pseudo</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-rho_val"></span>type(<a href='../type/radfunc_t.html'>radfunc_t</a>),</td>
   
   <td>public</td>
@@ -365,7 +405,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E9"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation%7E10"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -391,6 +431,9 @@
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">valence_charge_t</span>
       <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">total_charge</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="kd">::</span> <span class="n">is_unscreening_charge</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="kd">::</span> <span class="n">rescaled_to_z_pseudo</span>  <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
       <span class="k">type</span><span class="p">(</span><span class="n">radfunc_t</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rho_val</span>
       <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">annotation</span>
 <span class="k">end type </span><span class="n">valence_charge_t</span>
@@ -439,8 +482,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -452,6 +493,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       

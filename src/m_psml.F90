@@ -18,17 +18,32 @@ module m_psml
                              SET_USER2    , &
                              SET_ALL
 
+  ! Temporarily needed for psop
+  use m_psml_core, only: nonlocal_t, nlpj_t
+
   use m_psml_api
+#ifndef PSML_NO_OLD_API  
+  use m_psml_old_api
+#endif
+  
   use m_psml_dump
   use m_psml_ps_edit
 
+  ! Exported utility types
+  use m_psml_core, only: ps_radfunc_t => radfunc_t
   use assoc_list, only: ps_annotation_t => assoc_list_t
+
   use assoc_list, only: nitems_annotation => assoc_list_nitems
   use assoc_list, only: get_annotation_key => assoc_list_get_key
   use assoc_list, only: get_annotation_value => assoc_list_get_value
   use assoc_list, only: insert_annotation_pair => assoc_list_insert
   use assoc_list, only: init_annotation => assoc_list_init
   use assoc_list, only: reset_annotation => assoc_list_reset
+  use assoc_list, only: print_annotation => assoc_list_print
+  use assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST 
+
+  ! Remove common names from namespace
+  use class_Grid, dummy_id => id, dummy_name => name
 
   public
 

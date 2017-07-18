@@ -43,26 +43,29 @@ type(xmlf_t)  :: xf
       call my_add_attribute(xf,"energy_unit",trim(ps%energy_unit))
       call my_add_attribute(xf,"length_unit",trim(ps%length_unit))
       call my_add_attribute(xf,"uuid",ps%uuid)
+      call my_add_attribute(xf,"xmlns",ps%namespace)
 
-      call dump_annotation(xf,ps%annotation)
+! No top-level annotations in V1.1      
+!      call dump_annotation(xf,ps%annotation)
 
       call dump_provenance(xf,ps%provenance)
 
-      call dump_header(xf,ps)
+      call dump_pseudo_atom_spec(xf,ps)
 
       if (initialized(ps%global_grid)) then
          call dump_grid(xf,ps%global_grid)
       endif
 
-      call dump_semilocal_potentials(xf,ps)
       call dump_valence_charge(xf,ps%valence_charge,ps%global_grid)
+      if (trim(ps%header%core_corrections) == "yes") then
+         call dump_core_charge(xf,ps%core_charge,ps%global_grid)
+      endif
+
+      call dump_semilocal_potentials(xf,ps)
       call dump_local_potential(xf,ps)
       call dump_nonlocal_projectors(xf,ps)
       call dump_pseudo_wavefunctions(xf,ps)
 
-      if (trim(ps%header%core_corrections) == "yes") then
-         call dump_core_charge(xf,ps%core_charge,ps%global_grid)
-      endif
       
       call xml_EndElement(xf,"psml")
       call xml_Close(xf)
@@ -76,10 +79,22 @@ subroutine dump_provenance(xf,p)
   type(xmlf_t), intent(inout) :: xf
   type(provenance_t), pointer :: p
 
+  integer :: depth
+  type(provenance_t), pointer :: q
+
+  depth = 0
+  q => p
+  do while (associated(q))
+     depth = depth + 1
+     q => q%next
+  enddo
+  
   do while (associated(p))
      call xml_NewElement(xf,"provenance")
+     call my_add_attribute(xf,"record-number",str(p%record_number))
      call my_add_attribute(xf,"creator",trim(p%creator))
      call my_add_attribute(xf,"date",trim(p%date))
+     call dump_annotation(xf,p%annotation)
      if (len(p%input_file%buffer) > 0) then
         call xml_NewElement(xf,"input-file")
         call my_add_attribute(xf,"name",trim(p%input_file%name))
@@ -87,7 +102,6 @@ subroutine dump_provenance(xf,p)
                                  line_feed=.true.)
         call xml_EndElement(xf,"input-file")
      endif
-     call dump_annotation(xf,p%annotation)
      call xml_EndElement(xf,"provenance")
      p => p%next
   end do
@@ -134,6 +148,7 @@ subroutine dump_config_val(xf,p)
 
   call xml_NewElement(xf,"valence-configuration")
   call my_add_attribute(xf,"total-valence-charge",str(p%total_charge))
+  call dump_annotation(xf,p%annotation)
   do i = 1, p%nshells
      call xml_NewElement(xf,"shell")
      call my_add_attribute(xf,"n",str(p%n(i)))
@@ -145,13 +160,12 @@ subroutine dump_config_val(xf,p)
      endif
      call xml_EndElement(xf,"shell")
   enddo
-  call dump_annotation(xf,p%annotation)
   call xml_EndElement(xf,"valence-configuration")
      
 end subroutine dump_config_val
 
 
-subroutine dump_header(xf,ps)
+subroutine dump_pseudo_atom_spec(xf,ps)
   use xmlf90_wxml
   type(xmlf_t), intent(inout) :: xf
   type(ps_t), intent(in), target :: ps
@@ -159,25 +173,27 @@ subroutine dump_header(xf,ps)
   type(header_t), pointer :: h
 
   h => ps%header
-  call xml_NewElement(xf,"header")
+  call xml_NewElement(xf,"pseudo-atom-spec")
   call my_add_attribute(xf,"atomic-label",trim(h%atomic_label))
-  call my_add_attribute(xf,"z-pseudo",str(h%zpseudo))
   call my_add_attribute(xf,"atomic-number",str(h%z))
+  call my_add_attribute(xf,"z-pseudo",str(h%zpseudo))
   call my_add_attribute(xf,"flavor",trim(h%flavor))
   call my_add_attribute(xf,"relativity",trim(h%relativity))
   if (h%polarized) then
-     call my_add_attribute(xf,"polarized","yes")
+     call my_add_attribute(xf,"spin-dft","yes")
   else
-     call my_add_attribute(xf,"polarized","no")
+     call my_add_attribute(xf,"spin-dft","no")
   endif
   call my_add_attribute(xf,"core-corrections",trim(h%core_corrections))
+
+  call dump_annotation(xf,h%annotation)
 
   call dump_xc_info(xf,ps%xc_info)
   call dump_config_val(xf,ps%config_val)
 
-  call xml_EndElement(xf,"header")
+  call xml_EndElement(xf,"pseudo-atom-spec")
 
-end subroutine dump_header
+end subroutine dump_pseudo_atom_spec
 
 subroutine dump_radfunc(xf,rf,parent_grid)
   use xmlf90_wxml
@@ -194,6 +210,11 @@ subroutine dump_radfunc(xf,rf,parent_grid)
      call dump_grid(xf,rf%grid)
   endif
   call xml_NewElement(xf,"data")
+  ! Cover the case in which the data uses only an
+  ! initial section of the grid
+  if (size(rf%data) < sizeGrid(rf%grid)) then
+     call my_add_attribute(xf,"npts",str(size(rf%data)))
+  endif
   call xml_AddArray(xf,rf%data(:))
   call xml_EndElement(xf,"data")
   call xml_EndElement(xf,"radfunc")
@@ -219,8 +240,12 @@ subroutine dump_core_charge(xf,core,parent_grid)
   type(Grid_t)                 :: parent_grid
 
   call xml_NewElement(xf,"pseudocore-charge")
-  call my_add_attribute(xf,"matching-radius",str(core%rcore))
-  call my_add_attribute(xf,"number-of-continuous-derivatives",str(core%n_cont_derivs))
+  if (core%rcore >= 0.0_dp) then
+     call my_add_attribute(xf,"matching-radius",str(core%rcore))
+  endif
+  if (core%n_cont_derivs >= 0 ) then
+     call my_add_attribute(xf,"number-of-continuous-derivatives",str(core%n_cont_derivs))
+  endif
   call dump_annotation(xf,core%annotation)
   call dump_radfunc(xf,core%rho_core,parent_grid)
   call xml_EndElement(xf,"pseudocore-charge")
@@ -244,6 +269,8 @@ subroutine dump_semilocal_potentials(xf,ps)
      if (set /= SET_NULL) then
         ! Group set was specified
         call my_add_attribute(xf,"set",str_of_set(set))
+     else
+        call die("Set not specified in SemiLocalPotentials block")
      endif
      call dump_annotation(xf,slp%annotation)
      if (initialized(slp%grid)) then
@@ -258,13 +285,13 @@ subroutine dump_semilocal_potentials(xf,ps)
         call my_add_attribute(xf,"n",str(slvp%n))
         call my_add_attribute(xf,"l",slvp%l)
         call my_add_attribute(xf,"rc",str(slvp%rc))
+        ! If eref has a physical value, output it
+        if (slvp%eref < 0.1*huge(1.0_dp)) then
+           call my_add_attribute(xf,"eref",str(slvp%eref))
+        endif
         call my_add_attribute(xf,"flavor",slvp%flavor)
         if (set == SET_LJ) then
-           call my_add_attribute(xf,"j",str(slvp%j))
-        endif
-        ! Group set was not specified
-        if (set == SET_NULL) then
-           call my_add_attribute(xf,"set",str_of_set(slvp%set))
+           call my_add_attribute(xf,"j",str(slvp%j,format="(f3.1)"))
         endif
         call dump_radfunc(xf,slvp%V,parent_grid)
         call xml_EndElement(xf,"slps")
@@ -283,20 +310,34 @@ subroutine dump_local_potential(xf,ps)
   type(ps_t), intent(in), target :: ps
 
   type(local_t), pointer :: lop
+  type(Grid_t)           :: parent_grid
 
-  logical :: has_vlocal
+  logical :: has_vlocal, has_local_charge
 
   lop => ps%local
   
   has_vlocal = associated(lop%Vlocal%data)
+  has_local_charge = associated(lop%Chlocal%data)
 
   if (has_vlocal) then
      call xml_NewElement(xf,"local-potential")
      call my_add_attribute(xf,"type",lop%vlocal_type)
+     call dump_annotation(xf,lop%annotation)
      ! No processing of grids here
-     call dump_radfunc(xf,lop%Vlocal,ps%global_grid)
-     call dump_radfunc(xf,lop%chlocal,ps%global_grid)
+     if (initialized(lop%grid)) then
+        parent_grid = lop%grid
+        call dump_grid(xf,lop%grid)
+     else
+        parent_grid = ps%global_grid
+     endif
+     call dump_radfunc(xf,lop%Vlocal,parent_grid)
+     if (has_local_charge) then
+        call xml_NewElement(xf,"local-charge")
+        call dump_radfunc(xf,lop%chlocal,parent_grid)
+        call xml_EndElement(xf,"local-charge")
+     endif
      call xml_EndElement(xf,"local-potential")
+     call delete(parent_grid)
   endif
 end subroutine dump_local_potential
 
@@ -319,6 +360,8 @@ subroutine dump_nonlocal_projectors(xf,ps)
      if (set /= SET_NULL) then
         ! Group set was specified
         call my_add_attribute(xf,"set",str_of_set(set))
+     else
+        call die("Set not specified in NonLocalProjectors block")
      endif
      call dump_annotation(xf,nlp%annotation)
      if (initialized(nlp%grid)) then
@@ -332,15 +375,15 @@ subroutine dump_nonlocal_projectors(xf,ps)
         call xml_NewElement(xf,"proj")
         call my_add_attribute(xf,"l",nlpp%l)
         if (set == SET_LJ) then
-           call my_add_attribute(xf,"j",str(nlpp%j))
+           call my_add_attribute(xf,"j",str(nlpp%j,format="(f3.1)"))
         endif
         call my_add_attribute(xf,"seq",str(nlpp%seq))
         call my_add_attribute(xf,"ekb",str(nlpp%ekb))
-        call my_add_attribute(xf,"type",nlpp%type)
-        ! Group set was not specified
-        if (set == SET_NULL) then
-           call my_add_attribute(xf,"set",str_of_set(nlpp%set))
+        ! If eref has a physical value, output it
+        if (nlpp%eref < 0.1*huge(1.0_dp)) then
+           call my_add_attribute(xf,"eref",str(nlpp%eref))
         endif
+        call my_add_attribute(xf,"type",nlpp%type)
         call dump_radfunc(xf,nlpp%proj,parent_grid)
         call xml_EndElement(xf,"proj")
         nlpp => nlpp%next
@@ -358,54 +401,54 @@ subroutine dump_pseudo_wavefunctions(xf,ps)
   type(xmlf_t), intent(inout) :: xf
   type(ps_t), intent(in), target :: ps
 
-  type(pswfs_t), pointer :: wfp
+  type(wfns_t), pointer :: wfp
+  type(wf_t), pointer   :: wfpp
   type(Grid_t)             :: parent_grid
-  type(set_info_t) :: set_info
 
-  integer :: i, j, set, n_grid
-  integer, allocatable :: idx(:)
-
-  wfp => ps%pswfs
-  call sort_sets(wfp%npswfs,wfp%set,set_info)
-  do j = 1, nsets(set_info)
-     call set_indexes(set_info,j,idx)
-     set = set_id(set_info,j)
+  integer :: set
+  
+  wfp => ps%wavefunctions
+  do while (associated(wfp))
+     set = wfp%set
      call xml_NewElement(xf,"pseudo-wave-functions")
-     call my_add_attribute(xf,"set",str_of_set(set))
-     !
-     ! Check grids and decide whether to include a <grid> element
-     ! First, check whether any wfn is not using the global grid.
-     ! If all the wfns are in that case, assume that a mid-level grid was
-     ! specified, dump a grid in a new <grid> element, and pass it 
-     ! to the radfunc dumper. In the worst case scenario, we will
-     ! have chosen a truly "radfunc-private" grid and there would be
-     ! some replication of data. To avoid this, one would need to
-     ! classify the grids. Maybe in a new version.
-     !
-     parent_grid = ps%global_grid
-     n_grid = 0
-     do i = 1, size(idx)
-        if (.not. same(wfp%Phi(idx(i))%grid,ps%global_grid)) then
-           n_grid = n_grid + 1
-        endif
-     enddo
-     if (n_grid == size(idx)) then
-        call dump_grid(xf,wfp%Phi(idx(1))%grid)
-        parent_grid = wfp%Phi(idx(1))%grid
+     if (set /= SET_NULL) then
+        ! Group set was specified
+        call my_add_attribute(xf,"set",str_of_set(set))
+     else
+        call die("Set not specified in Wavefunctions block")
      endif
-     do i = 1, size(idx)
+!     if (wfp%type /= "") then
+!        call my_add_attribute(xf,"type",wfp%type)
+!     endif
+     call dump_annotation(xf,wfp%annotation)
+     if (initialized(wfp%grid)) then
+        parent_grid = wfp%grid
+        call dump_grid(xf,wfp%grid)
+     else
+        parent_grid = ps%global_grid
+     endif
+     wfpp => wfp%wf
+     do while (associated(wfpp))
         call xml_NewElement(xf,"pswf")
-        call my_add_attribute(xf,"n",str(wfp%n(idx(i))))
-        call my_add_attribute(xf,"l",wfp%l(idx(i)))
+        call my_add_attribute(xf,"n",str(wfpp%n))
+        call my_add_attribute(xf,"l",wfpp%l)
         if (set == SET_LJ) then
-           call my_add_attribute(xf,"j",str(wfp%j(idx(i))))
+           call my_add_attribute(xf,"j",str(wfpp%j,format="(f3.1)"))
         endif
-        call dump_radfunc(xf,wfp%Phi(idx(i)),parent_grid)
+        ! If energy_level has a physical value, output it
+        if (wfpp%energy_level < 0.1*huge(1.0_dp)) then
+           call my_add_attribute(xf,"energy_level",str(wfpp%energy_level))
+        endif
+
+        call dump_radfunc(xf,wfpp%Phi,parent_grid)
         call xml_EndElement(xf,"pswf")
+        wfpp => wfpp%next
      enddo
      call xml_EndElement(xf,"pseudo-wave-functions")
+     wfp => wfp%next
   enddo
   call delete(parent_grid)
+
 end subroutine dump_pseudo_wavefunctions
 
 subroutine dump_grid(xf,agrid)

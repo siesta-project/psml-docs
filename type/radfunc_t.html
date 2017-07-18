@@ -128,7 +128,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 2.5% of total for derived types.</p>Including implementation: 4 statements,  2.5% of total for derived types.">4 statements</a>
+	  title="<p> 4.3% of total for derived types.</p>Including implementation: 8 statements,  4.3% of total for derived types.">8 statements</a>
      </li> 
      
      
@@ -169,6 +169,14 @@
       <a class="list-group-item" href="../type/radfunc_t.html#variable-grid">grid</a>
       
       <a class="list-group-item" href="../type/radfunc_t.html#variable-data%7E2">data</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-has_coulomb_tail">has_coulomb_tail</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-tail_factor">tail_factor</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-nnz">nnz</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-rcut_eff">rcut_eff</a>
       
     </div>
   </div>
@@ -236,8 +244,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -249,6 +255,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       
@@ -280,6 +292,14 @@
       <a class="list-group-item" href="../type/radfunc_t.html#variable-grid">grid</a>
       
       <a class="list-group-item" href="../type/radfunc_t.html#variable-data%7E2">data</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-has_coulomb_tail">has_coulomb_tail</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-tail_factor">tail_factor</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-nnz">nnz</a>
+      
+      <a class="list-group-item" href="../type/radfunc_t.html#variable-rcut_eff">rcut_eff</a>
       
     </div>
   </div>
@@ -355,6 +375,62 @@
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-has_coulomb_tail"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>has_coulomb_tail</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-tail_factor"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>tail_factor</strong></td><td> =</td><td>0.0_dp</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nnz"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>nnz</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-rcut_eff"></span>real(kind=dp),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>rcut_eff</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -374,6 +450,11 @@
     <div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">radfunc_t</span>
       <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">grid</span>
       <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">pointer</span>    <span class="kd">::</span> <span class="k">data</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
+      <span class="kt">logical</span>                                 <span class="kd">::</span> <span class="n">has_coulomb_tail</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">tail_factor</span> <span class="o">=</span> <span class="mf">0.0_dp</span>
+      <span class="kt">integer</span>                                 <span class="kd">::</span> <span class="n">nnz</span> <span class="c">! # of &#39;non-zero&#39; values</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>                                <span class="kd">::</span> <span class="n">rcut_eff</span> <span class="c">! effective end of range</span>
+ 
 <span class="k">end type </span><span class="n">radfunc_t</span>      
 </pre></div>
 
@@ -420,8 +501,6 @@
       
       <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
       
-      <a class="list-group-item" href="../type/pswfs_t.html">pswfs_t</a>
-      
       <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
       
       <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
@@ -433,6 +512,12 @@
       <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
       
       <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
+      
+      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
+      
+      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
+      
+      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
       
       <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
       

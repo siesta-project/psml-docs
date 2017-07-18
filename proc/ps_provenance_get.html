@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+    
+    <meta name="author" content="Alberto Garcia" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>ps_Provenance_Get &ndash; libPSML</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">libPSML </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li><a href='../page/index.html'>Overview</a></li>
+	    
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>ps_Provenance_Get
+      <small>Subroutine</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 1.0% of total for procedures.">32 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/m_psml_api.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/m_psml_api.f90.html'>m_psml_api.F90</a></li>
+  
+     <li><a href='../module/m_psml_api.html'>m_psml_api</a></li>
+  
+     <li class="active">ps_Provenance_Get</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/ps_provenance_get.html#src">ps_Provenance_Get</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs-0">All Procedures</a></h3></div>
+  <div id="allprocs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/annotationgrid.html">annotationGrid</a>
+      
+      <a class="list-group-item" href="../proc/approx.html">approx</a>
+      
+      <a class="list-group-item" href="../proc/assert.html">assert</a>
+      
+      <a class="list-group-item" href="../proc/assert%7E2.html">assert</a>
+      
+      <a class="list-group-item" href="../proc/assign_.html">assign_</a>
+      
+      <a class="list-group-item" href="../interface/assignment%28%3D%29.html">assignment(=)</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_get_key.html">assoc_list_get_key</a>
+      
+      <a class="list-group-item" href="../interface/assoc_list_get_value.html">assoc_list_get_value</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_get_value_by_index.html">assoc_list_get_value_by_index</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_get_value_of_key.html">assoc_list_get_value_of_key</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_init.html">assoc_list_init</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_insert.html">assoc_list_insert</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_nitems.html">assoc_list_nitems</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_print.html">assoc_list_print</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_reset.html">assoc_list_reset</a>
+      
+      <a class="list-group-item" href="../proc/begin_element.html">begin_element</a>
+      
+      <a class="list-group-item" href="../proc/cdata_section_chunk.html">cdata_section_chunk</a>
+      
+      <a class="list-group-item" href="../proc/check_index.html">check_index</a>
+      
+      <a class="list-group-item" href="../proc/check_index%7E2.html">check_index</a>
+      
+      <a class="list-group-item" href="../proc/clear.html">clear</a>
+      
+      <a class="list-group-item" href="../interface/delete.html">delete</a>
+      
+      <a class="list-group-item" href="../proc/delete_.html">delete_</a>
+      
+      <a class="list-group-item" href="../proc/delete_data.html">delete_Data</a>
+      
+      <a class="list-group-item" href="../proc/destroy_local.html">destroy_local</a>
+      
+      <a class="list-group-item" href="../proc/destroy_nlpj.html">destroy_nlpj</a>
+      
+      <a class="list-group-item" href="../proc/destroy_nonlocal.html">destroy_nonlocal</a>
+      
+      <a class="list-group-item" href="../proc/destroy_provenance.html">destroy_provenance</a>
+      
+      <a class="list-group-item" href="../proc/destroy_pswf.html">destroy_pswf</a>
+      
+      <a class="list-group-item" href="../proc/destroy_radfunc.html">destroy_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/destroy_semilocal.html">destroy_semilocal</a>
+      
+      <a class="list-group-item" href="../proc/destroy_slps.html">destroy_slps</a>
+      
+      <a class="list-group-item" href="../proc/destroy_wavefunctions.html">destroy_wavefunctions</a>
+      
+      <a class="list-group-item" href="../proc/destroy_xc.html">destroy_xc</a>
+      
+      <a class="list-group-item" href="../proc/display.html">display</a>
+      
+      <a class="list-group-item" href="../proc/dpnint1.html">dpnint1</a>
+      
+      <a class="list-group-item" href="../proc/dump_annotation.html">dump_annotation</a>
+      
+      <a class="list-group-item" href="../proc/dump_config_val.html">dump_config_val</a>
+      
+      <a class="list-group-item" href="../proc/dump_core_charge.html">dump_core_charge</a>
+      
+      <a class="list-group-item" href="../proc/dump_grid.html">dump_grid</a>
+      
+      <a class="list-group-item" href="../proc/dump_local_potential.html">dump_local_potential</a>
+      
+      <a class="list-group-item" href="../proc/dump_nonlocal_projectors.html">dump_nonlocal_projectors</a>
+      
+      <a class="list-group-item" href="../proc/dump_provenance.html">dump_provenance</a>
+      
+      <a class="list-group-item" href="../proc/dump_pseudo_atom_spec.html">dump_pseudo_atom_spec</a>
+      
+      <a class="list-group-item" href="../proc/dump_pseudo_wavefunctions.html">dump_pseudo_wavefunctions</a>
+      
+      <a class="list-group-item" href="../proc/dump_radfunc.html">dump_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/dump_semilocal_potentials.html">dump_semilocal_potentials</a>
+      
+      <a class="list-group-item" href="../proc/dump_valence_charge.html">dump_valence_charge</a>
+      
+      <a class="list-group-item" href="../proc/dump_xc_info.html">dump_xc_info</a>
+      
+      <a class="list-group-item" href="../proc/end_element.html">end_element</a>
+      
+      <a class="list-group-item" href="../proc/eval_radfunc.html">eval_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/eval_radfunc%7E2.html">eval_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/generate_table_nl.html">generate_table_nl</a>
+      
+      <a class="list-group-item" href="../proc/generate_table_sl.html">generate_table_sl</a>
+      
+      <a class="list-group-item" href="../proc/generate_table_wf.html">generate_table_wf</a>
+      
+      <a class="list-group-item" href="../interface/id.html">id</a>
+      
+      <a class="list-group-item" href="../proc/id_.html">id_</a>
+      
+      <a class="list-group-item" href="../interface/init.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init_.html">init_</a>
+      
+      <a class="list-group-item" href="../interface/initialized.html">initialized</a>
+      
+      <a class="list-group-item" href="../proc/initialized_.html">initialized_</a>
+      
+      <a class="list-group-item" href="../interface/interpolate.html">interpolate</a>
+      
+      <a class="list-group-item" href="../proc/l_of_sym.html">l_of_sym</a>
+      
+      <a class="list-group-item" href="../proc/l_of_sym%7E2.html">l_of_sym</a>
+      
+      <a class="list-group-item" href="../proc/max_range.html">max_range</a>
+      
+      <a class="list-group-item" href="../proc/max_range%7E2.html">max_range</a>
+      
+      <a class="list-group-item" href="../proc/my_add_attribute.html">my_add_attribute</a>
+      
+      <a class="list-group-item" href="../interface/name.html">name</a>
+      
+      <a class="list-group-item" href="../proc/name_.html">name_</a>
+      
+      <a class="list-group-item" href="../proc/newgrid.html">newGrid</a>
+      
+      <a class="list-group-item" href="../proc/nsets.html">nsets</a>
+      
+      <a class="list-group-item" href="../proc/pcdata_chunk.html">pcdata_chunk</a>
+      
+      <a class="list-group-item" href="../interface/print_type.html">print_type</a>
+      
+      <a class="list-group-item" href="../proc/printgrid.html">printGrid</a>
+      
+      <a class="list-group-item" href="../proc/ps_addprovenancerecord.html">ps_AddProvenanceRecord</a>
+      
+      <a class="list-group-item" href="../proc/ps_atomiclabel.html">ps_AtomicLabel</a>
+      
+      <a class="list-group-item" href="../proc/ps_atomicnumber.html">ps_AtomicNumber</a>
+      
+      <a class="list-group-item" href="../proc/ps_atomicsymbol.html">ps_AtomicSymbol</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_get.html">ps_CoreCharge_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_getrawdata.html">ps_CoreCharge_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_matchingradius.html">ps_CoreCharge_MatchingRadius</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_numberofkeptderivatives.html">ps_CoreCharge_NumberOfKeptDerivatives</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_value.html">ps_CoreCharge_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_creator.html">ps_Creator</a>
+      
+      <a class="list-group-item" href="../proc/ps_date.html">ps_Date</a>
+      
+      <a class="list-group-item" href="../proc/ps_delete_localpotential.html">ps_Delete_LocalPotential</a>
+      
+      <a class="list-group-item" href="../proc/ps_delete_nonlocalprojectors.html">ps_Delete_NonlocalProjectors</a>
+      
+      <a class="list-group-item" href="../proc/ps_destroy.html">ps_destroy</a>
+      
+      <a class="list-group-item" href="../proc/ps_dumptopsmlfile.html">ps_DumpToPSMLFile</a>
+      
+      <a class="list-group-item" href="../proc/ps_exchangecorrelation_get.html">ps_ExchangeCorrelation_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_generatetables.html">ps_GenerateTables</a>
+      
+      <a class="list-group-item" href="../proc/ps_generationzval.html">ps_GenerationZval</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_potential_indexes.html">ps_Get_Potential_Indexes</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_projector_indexes.html">ps_Get_Projector_Indexes</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_projector_indexes_byl.html">ps_Get_Projector_Indexes_byL</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_pseudowf_indexes.html">ps_Get_PseudoWf_Indexes</a>
+      
+      <a class="list-group-item" href="../proc/ps_getannotation.html">ps_GetAnnotation</a>
+      
+      <a class="list-group-item" href="../proc/ps_getlibpsmlversion.html">ps_GetLibPSMLVersion</a>
+      
+      <a class="list-group-item" href="../proc/ps_getpsmlversion.html">ps_GetPSMLVersion</a>
+      
+      <a class="list-group-item" href="../proc/ps_getrawdata.html">ps_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_getuuid.html">ps_GetUUID</a>
+      
+      <a class="list-group-item" href="../proc/ps_getvalue.html">ps_GetValue</a>
+      
+      <a class="list-group-item" href="../proc/ps_gridannotation.html">ps_GridAnnotation</a>
+      
+      <a class="list-group-item" href="../proc/ps_hascorecorrections.html">ps_HasCoreCorrections</a>
+      
+      <a class="list-group-item" href="../proc/ps_haslocalcharge.html">ps_HasLocalCharge</a>
+      
+      <a class="list-group-item" href="../proc/ps_haslocalpotential.html">ps_HasLocalPotential</a>
+      
+      <a class="list-group-item" href="../proc/ps_hasprojectors.html">ps_HasProjectors</a>
+      
+      <a class="list-group-item" href="../proc/ps_haspsoperator.html">ps_HasPSOperator</a>
+      
+      <a class="list-group-item" href="../proc/ps_hassemilocalpotentials.html">ps_HasSemilocalPotentials</a>
+      
+      <a class="list-group-item" href="../proc/ps_isspinpolarized.html">ps_IsSpinPolarized</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcfunctional_get.html">ps_LibxcFunctional_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcid.html">ps_LibxcId</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcidarray.html">ps_LibxcIdArray</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcname.html">ps_LibxcName</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcweight.html">ps_LibxcWeight</a>
+      
+      <a class="list-group-item" href="../proc/ps_localcharge_value.html">ps_LocalCharge_Value</a>
+      
+      <a class="list-group-item" href="../interface/ps_localpotential_delete.html">ps_LocalPotential_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_get.html">ps_LocalPotential_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_getrawdata.html">ps_LocalPotential_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_type.html">ps_LocalPotential_Type</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_value.html">ps_LocalPotential_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_nlibxcfunctionals.html">ps_NLibxcFunctionals</a>
+      
+      <a class="list-group-item" href="../interface/ps_nonlocalprojectors_delete.html">ps_NonLocalProjectors_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_nonlocalprojectors_filter.html">ps_NonlocalProjectors_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_number_of_potentials.html">ps_Number_Of_Potentials</a>
+      
+      <a class="list-group-item" href="../proc/ps_number_of_projectors.html">ps_Number_Of_Projectors</a>
+      
+      <a class="list-group-item" href="../proc/ps_number_of_pseudowfs.html">ps_Number_Of_PseudoWfs</a>
+      
+      <a class="list-group-item" href="../proc/ps_nvalenceshells.html">ps_NValenceShells</a>
+      
+      <a class="list-group-item" href="../interface/ps_potential_filter.html">ps_Potential_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_get.html">ps_Potential_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_getrawdata.html">ps_Potential_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_j.html">ps_Potential_J</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_l.html">ps_Potential_L</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_n.html">ps_Potential_N</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_rc.html">ps_Potential_Rc</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_set.html">ps_Potential_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_value.html">ps_Potential_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_ekb.html">ps_Projector_Ekb</a>
+      
+      <a class="list-group-item" href="../interface/ps_projector_filter.html">ps_Projector_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_get.html">ps_Projector_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_getrawdata.html">ps_Projector_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_j.html">ps_Projector_J</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_l.html">ps_Projector_L</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_seq.html">ps_Projector_Seq</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_set.html">ps_Projector_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_type.html">ps_Projector_Type</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_value.html">ps_Projector_Value</a>
+      
+      <a class="list-group-item" href="../interface/ps_provenance_add.html">ps_Provenance_Add</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_depth.html">ps_Provenance_Depth</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_get.html">ps_Provenance_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudoatomspec_get.html">ps_PseudoAtomSpec_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudoflavor.html">ps_PseudoFlavor</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowavefunctions_filter.html">ps_PseudoWaveFunctions_Filter</a>
+      
+      <a class="list-group-item" href="../interface/ps_pseudowf_filter.html">ps_PseudoWf_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_get.html">ps_PseudoWf_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_getrawdata.html">ps_PseudoWf_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_j.html">ps_PseudoWf_J</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_l.html">ps_PseudoWf_L</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_n.html">ps_PseudoWf_N</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_set.html">ps_PseudoWf_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_value.html">ps_PseudoWf_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_relativity.html">ps_Relativity</a>
+      
+      <a class="list-group-item" href="../proc/ps_rootattributes_get.html">ps_RootAttributes_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_rootattributes_set.html">ps_RootAttributes_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_semilocalpotentials_filter.html">ps_SemilocalPotentials_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_setevaluatoroptions.html">ps_SetEvaluatorOptions</a>
+      
+      <a class="list-group-item" href="../proc/ps_setinterpolator.html">ps_SetInterpolator</a>
+      
+      <a class="list-group-item" href="../proc/ps_setinterpolatorquality.html">ps_SetInterpolatorQuality</a>
+      
+      <a class="list-group-item" href="../proc/ps_setpsmlversion.html">ps_SetPSMLVersion</a>
+      
+      <a class="list-group-item" href="../proc/ps_setuuid.html">ps_SetUUID</a>
+      
+      <a class="list-group-item" href="../proc/ps_valencecharge_get.html">ps_ValenceCharge_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valencecharge_getrawdata.html">ps_ValenceCharge_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_valencecharge_value.html">ps_ValenceCharge_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceconfiguration_get.html">ps_ValenceConfiguration_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshell_get.html">ps_ValenceShell_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshelll.html">ps_ValenceShellL</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshelln.html">ps_ValenceShellN</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshelloccupation.html">ps_ValenceShellOccupation</a>
+      
+      <a class="list-group-item" href="../proc/ps_validlibxc.html">ps_ValidLibxc</a>
+      
+      <a class="list-group-item" href="../proc/ps_xcannotation.html">ps_XCAnnotation</a>
+      
+      <a class="list-group-item" href="../proc/ps_zpseudo.html">ps_ZPseudo</a>
+      
+      <a class="list-group-item" href="../interface/psml_die.html">psml_die</a>
+      
+      <a class="list-group-item" href="../interface/psml_die%7E2.html">psml_die</a>
+      
+      <a class="list-group-item" href="../proc/psml_reader.html">psml_reader</a>
+      
+      <a class="list-group-item" href="../interface/refcount.html">refcount</a>
+      
+      <a class="list-group-item" href="../proc/refcount_.html">refcount_</a>
+      
+      <a class="list-group-item" href="../interface/same.html">same</a>
+      
+      <a class="list-group-item" href="../proc/same_.html">same_</a>
+      
+      <a class="list-group-item" href="../proc/save_annotation.html">save_annotation</a>
+      
+      <a class="list-group-item" href="../proc/set_default_interpolator.html">set_default_interpolator</a>
+      
+      <a class="list-group-item" href="../proc/set_id.html">set_id</a>
+      
+      <a class="list-group-item" href="../proc/set_indexes.html">set_indexes</a>
+      
+      <a class="list-group-item" href="../proc/set_interpolator.html">set_interpolator</a>
+      
+      <a class="list-group-item" href="../proc/setcode_of_string.html">setcode_of_string</a>
+      
+      <a class="list-group-item" href="../proc/sizegrid.html">sizeGrid</a>
+      
+      <a class="list-group-item" href="../proc/sort_sets.html">sort_sets</a>
+      
+      <a class="list-group-item" href="../proc/str_of_set.html">str_of_set</a>
+      
+      <a class="list-group-item" href="../proc/tag_new_object.html">tag_new_object</a>
+      
+      <a class="list-group-item" href="../proc/valgrid.html">valGrid</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>
+public subroutine ps_Provenance_Get(ps, level, creator, date, annotation, number_of_input_files)
+    
+    
+	 
+</h2>
+    
+  
+
+
+    
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ps%7E14"></span>type(<a href='../type/ps_t.html'>ps_t</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ps</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-level"></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>level</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-creator%7E2"></span>character(len=*),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>creator</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-date%7E2"></span>character(len=*),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>date</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-annotation%7E15"></span>type(ps_annotation_t),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>annotation</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-number_of_input_files"></span>integer,</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>number_of_input_files</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+     
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/ps_provenance_get.html#src">ps_Provenance_Get</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ps_Provenance_Get</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">creator</span><span class="p">,</span><span class="n">date</span><span class="p">,&amp;</span>
+     <span class="n">annotation</span><span class="p">,</span><span class="n">number_of_input_files</span><span class="p">)</span>
+  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
+  <span class="kt">integer</span>   <span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">level</span>
+
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">creator</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">date</span>
+  <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">annotation</span>
+  <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">number_of_input_files</span>
+
+  <span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span>  <span class="kd">::</span> <span class="n">p</span>
+  <span class="kt">logical</span> <span class="kd">::</span> <span class="n">found_level</span>
+
+  <span class="c">! Here &quot;level&quot; means &quot;record_number&quot;, with</span>
+  <span class="c">! the oldest having a value of 1.</span>
+  
+  <span class="n">found_level</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+  <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">provenance</span>
+  <span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">record_number</span> <span class="o">==</span> <span class="n">level</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">found_level</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+        <span class="k">exit</span>
+<span class="k">     </span><span class="n">endif</span>
+     <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">p</span><span class="p">%</span><span class="n">next</span>
+  <span class="n">enddo</span>
+  
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">found_level</span><span class="p">)</span> <span class="k">call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Cannot reach provenance level&quot;</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">creator</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">     </span><span class="n">creator</span> <span class="o">=</span> <span class="n">p</span><span class="p">%</span><span class="n">creator</span>
+  <span class="n">endif</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">date</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">     </span><span class="n">date</span> <span class="o">=</span> <span class="n">p</span><span class="p">%</span><span class="n">date</span>
+  <span class="n">endif</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">number_of_input_files</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">     </span><span class="n">number_of_input_files</span> <span class="o">=</span> <span class="n">p</span><span class="p">%</span><span class="n">n_input_files</span>
+  <span class="n">endif</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">annotation</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">     </span><span class="n">annotation</span> <span class="o">=</span> <span class="n">p</span><span class="p">%</span><span class="n">annotation</span>
+  <span class="n">endif</span>
+<span class="k">end subroutine </span><span class="n">ps_Provenance_Get</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs-1">All Procedures</a></h3></div>
+  <div id="allprocs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/annotationgrid.html">annotationGrid</a>
+      
+      <a class="list-group-item" href="../proc/approx.html">approx</a>
+      
+      <a class="list-group-item" href="../proc/assert.html">assert</a>
+      
+      <a class="list-group-item" href="../proc/assert%7E2.html">assert</a>
+      
+      <a class="list-group-item" href="../proc/assign_.html">assign_</a>
+      
+      <a class="list-group-item" href="../interface/assignment%28%3D%29.html">assignment(=)</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_get_key.html">assoc_list_get_key</a>
+      
+      <a class="list-group-item" href="../interface/assoc_list_get_value.html">assoc_list_get_value</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_get_value_by_index.html">assoc_list_get_value_by_index</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_get_value_of_key.html">assoc_list_get_value_of_key</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_init.html">assoc_list_init</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_insert.html">assoc_list_insert</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_nitems.html">assoc_list_nitems</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_print.html">assoc_list_print</a>
+      
+      <a class="list-group-item" href="../proc/assoc_list_reset.html">assoc_list_reset</a>
+      
+      <a class="list-group-item" href="../proc/begin_element.html">begin_element</a>
+      
+      <a class="list-group-item" href="../proc/cdata_section_chunk.html">cdata_section_chunk</a>
+      
+      <a class="list-group-item" href="../proc/check_index.html">check_index</a>
+      
+      <a class="list-group-item" href="../proc/check_index%7E2.html">check_index</a>
+      
+      <a class="list-group-item" href="../proc/clear.html">clear</a>
+      
+      <a class="list-group-item" href="../interface/delete.html">delete</a>
+      
+      <a class="list-group-item" href="../proc/delete_.html">delete_</a>
+      
+      <a class="list-group-item" href="../proc/delete_data.html">delete_Data</a>
+      
+      <a class="list-group-item" href="../proc/destroy_local.html">destroy_local</a>
+      
+      <a class="list-group-item" href="../proc/destroy_nlpj.html">destroy_nlpj</a>
+      
+      <a class="list-group-item" href="../proc/destroy_nonlocal.html">destroy_nonlocal</a>
+      
+      <a class="list-group-item" href="../proc/destroy_provenance.html">destroy_provenance</a>
+      
+      <a class="list-group-item" href="../proc/destroy_pswf.html">destroy_pswf</a>
+      
+      <a class="list-group-item" href="../proc/destroy_radfunc.html">destroy_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/destroy_semilocal.html">destroy_semilocal</a>
+      
+      <a class="list-group-item" href="../proc/destroy_slps.html">destroy_slps</a>
+      
+      <a class="list-group-item" href="../proc/destroy_wavefunctions.html">destroy_wavefunctions</a>
+      
+      <a class="list-group-item" href="../proc/destroy_xc.html">destroy_xc</a>
+      
+      <a class="list-group-item" href="../proc/display.html">display</a>
+      
+      <a class="list-group-item" href="../proc/dpnint1.html">dpnint1</a>
+      
+      <a class="list-group-item" href="../proc/dump_annotation.html">dump_annotation</a>
+      
+      <a class="list-group-item" href="../proc/dump_config_val.html">dump_config_val</a>
+      
+      <a class="list-group-item" href="../proc/dump_core_charge.html">dump_core_charge</a>
+      
+      <a class="list-group-item" href="../proc/dump_grid.html">dump_grid</a>
+      
+      <a class="list-group-item" href="../proc/dump_local_potential.html">dump_local_potential</a>
+      
+      <a class="list-group-item" href="../proc/dump_nonlocal_projectors.html">dump_nonlocal_projectors</a>
+      
+      <a class="list-group-item" href="../proc/dump_provenance.html">dump_provenance</a>
+      
+      <a class="list-group-item" href="../proc/dump_pseudo_atom_spec.html">dump_pseudo_atom_spec</a>
+      
+      <a class="list-group-item" href="../proc/dump_pseudo_wavefunctions.html">dump_pseudo_wavefunctions</a>
+      
+      <a class="list-group-item" href="../proc/dump_radfunc.html">dump_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/dump_semilocal_potentials.html">dump_semilocal_potentials</a>
+      
+      <a class="list-group-item" href="../proc/dump_valence_charge.html">dump_valence_charge</a>
+      
+      <a class="list-group-item" href="../proc/dump_xc_info.html">dump_xc_info</a>
+      
+      <a class="list-group-item" href="../proc/end_element.html">end_element</a>
+      
+      <a class="list-group-item" href="../proc/eval_radfunc.html">eval_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/eval_radfunc%7E2.html">eval_radfunc</a>
+      
+      <a class="list-group-item" href="../proc/generate_table_nl.html">generate_table_nl</a>
+      
+      <a class="list-group-item" href="../proc/generate_table_sl.html">generate_table_sl</a>
+      
+      <a class="list-group-item" href="../proc/generate_table_wf.html">generate_table_wf</a>
+      
+      <a class="list-group-item" href="../interface/id.html">id</a>
+      
+      <a class="list-group-item" href="../proc/id_.html">id_</a>
+      
+      <a class="list-group-item" href="../interface/init.html">init</a>
+      
+      <a class="list-group-item" href="../proc/init_.html">init_</a>
+      
+      <a class="list-group-item" href="../interface/initialized.html">initialized</a>
+      
+      <a class="list-group-item" href="../proc/initialized_.html">initialized_</a>
+      
+      <a class="list-group-item" href="../interface/interpolate.html">interpolate</a>
+      
+      <a class="list-group-item" href="../proc/l_of_sym.html">l_of_sym</a>
+      
+      <a class="list-group-item" href="../proc/l_of_sym%7E2.html">l_of_sym</a>
+      
+      <a class="list-group-item" href="../proc/max_range.html">max_range</a>
+      
+      <a class="list-group-item" href="../proc/max_range%7E2.html">max_range</a>
+      
+      <a class="list-group-item" href="../proc/my_add_attribute.html">my_add_attribute</a>
+      
+      <a class="list-group-item" href="../interface/name.html">name</a>
+      
+      <a class="list-group-item" href="../proc/name_.html">name_</a>
+      
+      <a class="list-group-item" href="../proc/newgrid.html">newGrid</a>
+      
+      <a class="list-group-item" href="../proc/nsets.html">nsets</a>
+      
+      <a class="list-group-item" href="../proc/pcdata_chunk.html">pcdata_chunk</a>
+      
+      <a class="list-group-item" href="../interface/print_type.html">print_type</a>
+      
+      <a class="list-group-item" href="../proc/printgrid.html">printGrid</a>
+      
+      <a class="list-group-item" href="../proc/ps_addprovenancerecord.html">ps_AddProvenanceRecord</a>
+      
+      <a class="list-group-item" href="../proc/ps_atomiclabel.html">ps_AtomicLabel</a>
+      
+      <a class="list-group-item" href="../proc/ps_atomicnumber.html">ps_AtomicNumber</a>
+      
+      <a class="list-group-item" href="../proc/ps_atomicsymbol.html">ps_AtomicSymbol</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_get.html">ps_CoreCharge_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_getrawdata.html">ps_CoreCharge_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_matchingradius.html">ps_CoreCharge_MatchingRadius</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_numberofkeptderivatives.html">ps_CoreCharge_NumberOfKeptDerivatives</a>
+      
+      <a class="list-group-item" href="../proc/ps_corecharge_value.html">ps_CoreCharge_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_creator.html">ps_Creator</a>
+      
+      <a class="list-group-item" href="../proc/ps_date.html">ps_Date</a>
+      
+      <a class="list-group-item" href="../proc/ps_delete_localpotential.html">ps_Delete_LocalPotential</a>
+      
+      <a class="list-group-item" href="../proc/ps_delete_nonlocalprojectors.html">ps_Delete_NonlocalProjectors</a>
+      
+      <a class="list-group-item" href="../proc/ps_destroy.html">ps_destroy</a>
+      
+      <a class="list-group-item" href="../proc/ps_dumptopsmlfile.html">ps_DumpToPSMLFile</a>
+      
+      <a class="list-group-item" href="../proc/ps_exchangecorrelation_get.html">ps_ExchangeCorrelation_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_generatetables.html">ps_GenerateTables</a>
+      
+      <a class="list-group-item" href="../proc/ps_generationzval.html">ps_GenerationZval</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_potential_indexes.html">ps_Get_Potential_Indexes</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_projector_indexes.html">ps_Get_Projector_Indexes</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_projector_indexes_byl.html">ps_Get_Projector_Indexes_byL</a>
+      
+      <a class="list-group-item" href="../proc/ps_get_pseudowf_indexes.html">ps_Get_PseudoWf_Indexes</a>
+      
+      <a class="list-group-item" href="../proc/ps_getannotation.html">ps_GetAnnotation</a>
+      
+      <a class="list-group-item" href="../proc/ps_getlibpsmlversion.html">ps_GetLibPSMLVersion</a>
+      
+      <a class="list-group-item" href="../proc/ps_getpsmlversion.html">ps_GetPSMLVersion</a>
+      
+      <a class="list-group-item" href="../proc/ps_getrawdata.html">ps_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_getuuid.html">ps_GetUUID</a>
+      
+      <a class="list-group-item" href="../proc/ps_getvalue.html">ps_GetValue</a>
+      
+      <a class="list-group-item" href="../proc/ps_gridannotation.html">ps_GridAnnotation</a>
+      
+      <a class="list-group-item" href="../proc/ps_hascorecorrections.html">ps_HasCoreCorrections</a>
+      
+      <a class="list-group-item" href="../proc/ps_haslocalcharge.html">ps_HasLocalCharge</a>
+      
+      <a class="list-group-item" href="../proc/ps_haslocalpotential.html">ps_HasLocalPotential</a>
+      
+      <a class="list-group-item" href="../proc/ps_hasprojectors.html">ps_HasProjectors</a>
+      
+      <a class="list-group-item" href="../proc/ps_haspsoperator.html">ps_HasPSOperator</a>
+      
+      <a class="list-group-item" href="../proc/ps_hassemilocalpotentials.html">ps_HasSemilocalPotentials</a>
+      
+      <a class="list-group-item" href="../proc/ps_isspinpolarized.html">ps_IsSpinPolarized</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcfunctional_get.html">ps_LibxcFunctional_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcid.html">ps_LibxcId</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcidarray.html">ps_LibxcIdArray</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcname.html">ps_LibxcName</a>
+      
+      <a class="list-group-item" href="../proc/ps_libxcweight.html">ps_LibxcWeight</a>
+      
+      <a class="list-group-item" href="../proc/ps_localcharge_value.html">ps_LocalCharge_Value</a>
+      
+      <a class="list-group-item" href="../interface/ps_localpotential_delete.html">ps_LocalPotential_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_get.html">ps_LocalPotential_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_getrawdata.html">ps_LocalPotential_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_type.html">ps_LocalPotential_Type</a>
+      
+      <a class="list-group-item" href="../proc/ps_localpotential_value.html">ps_LocalPotential_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_nlibxcfunctionals.html">ps_NLibxcFunctionals</a>
+      
+      <a class="list-group-item" href="../interface/ps_nonlocalprojectors_delete.html">ps_NonLocalProjectors_Delete</a>
+      
+      <a class="list-group-item" href="../proc/ps_nonlocalprojectors_filter.html">ps_NonlocalProjectors_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_number_of_potentials.html">ps_Number_Of_Potentials</a>
+      
+      <a class="list-group-item" href="../proc/ps_number_of_projectors.html">ps_Number_Of_Projectors</a>
+      
+      <a class="list-group-item" href="../proc/ps_number_of_pseudowfs.html">ps_Number_Of_PseudoWfs</a>
+      
+      <a class="list-group-item" href="../proc/ps_nvalenceshells.html">ps_NValenceShells</a>
+      
+      <a class="list-group-item" href="../interface/ps_potential_filter.html">ps_Potential_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_get.html">ps_Potential_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_getrawdata.html">ps_Potential_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_j.html">ps_Potential_J</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_l.html">ps_Potential_L</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_n.html">ps_Potential_N</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_rc.html">ps_Potential_Rc</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_set.html">ps_Potential_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_potential_value.html">ps_Potential_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_ekb.html">ps_Projector_Ekb</a>
+      
+      <a class="list-group-item" href="../interface/ps_projector_filter.html">ps_Projector_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_get.html">ps_Projector_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_getrawdata.html">ps_Projector_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_j.html">ps_Projector_J</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_l.html">ps_Projector_L</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_seq.html">ps_Projector_Seq</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_set.html">ps_Projector_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_type.html">ps_Projector_Type</a>
+      
+      <a class="list-group-item" href="../proc/ps_projector_value.html">ps_Projector_Value</a>
+      
+      <a class="list-group-item" href="../interface/ps_provenance_add.html">ps_Provenance_Add</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_depth.html">ps_Provenance_Depth</a>
+      
+      <a class="list-group-item" href="../proc/ps_provenance_get.html">ps_Provenance_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudoatomspec_get.html">ps_PseudoAtomSpec_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudoflavor.html">ps_PseudoFlavor</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowavefunctions_filter.html">ps_PseudoWaveFunctions_Filter</a>
+      
+      <a class="list-group-item" href="../interface/ps_pseudowf_filter.html">ps_PseudoWf_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_get.html">ps_PseudoWf_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_getrawdata.html">ps_PseudoWf_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_j.html">ps_PseudoWf_J</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_l.html">ps_PseudoWf_L</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_n.html">ps_PseudoWf_N</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_set.html">ps_PseudoWf_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_pseudowf_value.html">ps_PseudoWf_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_relativity.html">ps_Relativity</a>
+      
+      <a class="list-group-item" href="../proc/ps_rootattributes_get.html">ps_RootAttributes_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_rootattributes_set.html">ps_RootAttributes_Set</a>
+      
+      <a class="list-group-item" href="../proc/ps_semilocalpotentials_filter.html">ps_SemilocalPotentials_Filter</a>
+      
+      <a class="list-group-item" href="../proc/ps_setevaluatoroptions.html">ps_SetEvaluatorOptions</a>
+      
+      <a class="list-group-item" href="../proc/ps_setinterpolator.html">ps_SetInterpolator</a>
+      
+      <a class="list-group-item" href="../proc/ps_setinterpolatorquality.html">ps_SetInterpolatorQuality</a>
+      
+      <a class="list-group-item" href="../proc/ps_setpsmlversion.html">ps_SetPSMLVersion</a>
+      
+      <a class="list-group-item" href="../proc/ps_setuuid.html">ps_SetUUID</a>
+      
+      <a class="list-group-item" href="../proc/ps_valencecharge_get.html">ps_ValenceCharge_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valencecharge_getrawdata.html">ps_ValenceCharge_GetRawData</a>
+      
+      <a class="list-group-item" href="../proc/ps_valencecharge_value.html">ps_ValenceCharge_Value</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceconfiguration_get.html">ps_ValenceConfiguration_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshell_get.html">ps_ValenceShell_Get</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshelll.html">ps_ValenceShellL</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshelln.html">ps_ValenceShellN</a>
+      
+      <a class="list-group-item" href="../proc/ps_valenceshelloccupation.html">ps_ValenceShellOccupation</a>
+      
+      <a class="list-group-item" href="../proc/ps_validlibxc.html">ps_ValidLibxc</a>
+      
+      <a class="list-group-item" href="../proc/ps_xcannotation.html">ps_XCAnnotation</a>
+      
+      <a class="list-group-item" href="../proc/ps_zpseudo.html">ps_ZPseudo</a>
+      
+      <a class="list-group-item" href="../interface/psml_die.html">psml_die</a>
+      
+      <a class="list-group-item" href="../interface/psml_die%7E2.html">psml_die</a>
+      
+      <a class="list-group-item" href="../proc/psml_reader.html">psml_reader</a>
+      
+      <a class="list-group-item" href="../interface/refcount.html">refcount</a>
+      
+      <a class="list-group-item" href="../proc/refcount_.html">refcount_</a>
+      
+      <a class="list-group-item" href="../interface/same.html">same</a>
+      
+      <a class="list-group-item" href="../proc/same_.html">same_</a>
+      
+      <a class="list-group-item" href="../proc/save_annotation.html">save_annotation</a>
+      
+      <a class="list-group-item" href="../proc/set_default_interpolator.html">set_default_interpolator</a>
+      
+      <a class="list-group-item" href="../proc/set_id.html">set_id</a>
+      
+      <a class="list-group-item" href="../proc/set_indexes.html">set_indexes</a>
+      
+      <a class="list-group-item" href="../proc/set_interpolator.html">set_interpolator</a>
+      
+      <a class="list-group-item" href="../proc/setcode_of_string.html">setcode_of_string</a>
+      
+      <a class="list-group-item" href="../proc/sizegrid.html">sizeGrid</a>
+      
+      <a class="list-group-item" href="../proc/sort_sets.html">sort_sets</a>
+      
+      <a class="list-group-item" href="../proc/str_of_set.html">str_of_set</a>
+      
+      <a class="list-group-item" href="../proc/tag_new_object.html">tag_new_object</a>
+      
+      <a class="list-group-item" href="../proc/valgrid.html">valGrid</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> libPSML was developed by Alberto Garcia</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
