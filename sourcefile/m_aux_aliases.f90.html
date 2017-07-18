@@ -296,10 +296,11 @@
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">module </span><span class="n">m_aux_aliases</span>
-<a name="ln-2"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">ps_radfunc_t</span> <span class="o">=&gt;</span> <span class="n">radfunc_t</span>
+<a name="ln-2"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_radfunc_t</span> <span class="o">=&gt;</span> <span class="n">radfunc_t</span>
 <a name="ln-3"></a>
-<a name="ln-4"></a>  <span class="k">public</span>
-<a name="ln-5"></a><span class="k">end module </span><span class="n">m_aux_aliases</span>
+<a name="ln-4"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">ps_radfunc_t</span>
+<a name="ln-5"></a>  
+<a name="ln-6"></a><span class="k">end module </span><span class="n">m_aux_aliases</span>
 </pre></div>
 
     </section>

@@ -170,18 +170,23 @@
 </ul>
 </div>
 <h1 id="exported-types">Exported types</h1>
-<p>The library exports the types</p>
+<p>The library exports the opaque types:</p>
 <ul>
 <li>
-<p><a href="../../../type/ps_t.html">ps_t</a></p>
+<p><code>ps_t</code>: Main handle for all the libPSML routines. It contains data
+  structures resulting from parsing</p>
 </li>
 <li>
-<p>[[ps_annotation_t(type)]]</p>
+<p><code>ps_annotation_t</code>: A handle to deal with the content of
+  <code>&lt;annotation&gt;</code> elements in the PSML file.</p>
 </li>
 <li>
-<p>[[ps_radfunc_t(type)]]</p>
+<p><code>ps_radfunc_t</code>: A handle for the data structures implementing the functionality
+  of radial functions, in particular their evaluation.</p>
 </li>
 </ul>
+<p>More information about the associated implementations can be found in
+the <a href="../../03_library_developer_notes/index.html">developer notes</a>.</p>
 <h1 id="parsing">Parsing</h1>
 <ul>
 <li>
@@ -262,7 +267,7 @@ information), and a routine to get the information from a given level:</p>
   from the previous routine). All other arguments are optional
   with intent(out). <code>creator</code> and <code>date</code> are
   strings. Here and in what follows, annotation arguments are
-  of the opaque type [[ps_annotation_t(type)]].  If there is no
+  of the opaque type <code>ps_annotation_t</code>.  If there is no
   annotation, an empty structure is returned.</p>
 <h2 id="pseudo-atom-specification-attributes-and-annotation">Pseudo-atom specification attributes and annotation</h2>
 <div class="codehilite"><pre><span></span><span class="n">PseudoAtomSpec</span><span class="o">.</span><span class="n">Attributes</span> <span class="o">=</span> 
@@ -374,7 +379,7 @@ information), and a routine to get the information from a given level:</p>
 <p>These are radial functions with some metadata in the form of
 attributes, an optional annotation, and a <code>Radfunc</code> child. The accessors
 have the extra optional argument <code>func</code> that returns a handle to
-a `[[ps_radfunc_t]] object, which can later be used to get extra
+a <code>ps_radfunc_t</code> object, which can later be used to get extra
 information.</p>
 <ul>
 <li><a href="../../../proc/ps_valencecharge_get.html">ps_ValenceCharge_Get</a> (<code>ps,total_charge,
@@ -571,7 +576,7 @@ API does not provide any direct means of accessing the data used in
 the tabulation of the radial functions. The values of the functions at
 a particular point <code>r</code> can be generally obtained through the
 <code>ps_XXXX_Value</code> interfaces, or through the <a href="../../../proc/ps_getvalue.html">ps_GetValue</a>
-interface using <code>func</code> objects of type [[ps_radfunc_t]].</p>
+interface using <code>func</code> objects of type <code>ps_radfunc_t</code>.</p>
 <p>It is nevertheless possible to get annotation data for the grid of a
 particular radial function, or for the top-level grid, through the
 function</p>
@@ -679,17 +684,17 @@ to a PSML file using the routine</p>
 <h1 id="annotation-api">Annotation API</h1>
 <p>To support the annotation functionality, the library contains a module
 implementing a basic instance of an association list (a data structure
-holding key-value pairs), and exports the [[ps_annotation_t(type)]]
+holding key-value pairs), and exports the <code>ps_annotation_t</code>
 type and the following routines:</p>
 <ul>
-<li>[[ps_annotation_reset(proc)]] (<code>annotation</code>)</li>
+<li>ps_annotation_reset (<code>annotation</code>)</li>
 </ul>
-<p>Cleans the contents of the [[ps_annotation_t(type)]] object
+<p>Cleans the contents of the <code>ps_annotation_t</code> object
   <code>annotation</code> so that it can be reused.</p>
 <ul>
-<li>[[ps_annotation_insert(proc)]] (<code>annotation,key,value,stat</code>)</li>
+<li>ps_annotation_insert (<code>annotation,key,value,stat</code>)</li>
 </ul>
-<p>Inserts the <code>key, value</code> pair in the [[ps_annotation_t]] object
+<p>Inserts the <code>key, value</code> pair in the <code>ps_annotation_t</code> object
   <code>annotation</code>. Internally, <code>annotation</code> can grow as much as
   needed. A non-zero <code>stat</code> signals an error.</p>
     </div>
