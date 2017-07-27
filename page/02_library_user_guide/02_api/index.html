@@ -75,6 +75,8 @@
             <li><a href="../../../lists/types.html">Derived Types</a></li>
 				
 				
+            <li><a href="../../../lists/programs.html">Programs</a></li>
+				
             </ul>
             </li>
 
@@ -90,6 +92,8 @@
                              
 <li class="visible-xs hidden-sm visible-lg"><a href="../../../lists/types.html">Derived Types</a></li>
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../../../lists/programs.html">Programs</a></li>
 
           </ul>
         
@@ -187,6 +191,9 @@
 </ul>
 <p>More information about the associated implementations can be found in
 the <a href="../../03_library_developer_notes/index.html">developer notes</a>.</p>
+<p>In addition, the library exports the integer parameter <code>ps_real_kind</code>
+that represents the kind of the real numbers accepted and returned by
+the library.</p>
 <h1 id="parsing">Parsing</h1>
 <ul>
 <li>
@@ -685,18 +692,39 @@ to a PSML file using the routine</p>
 <p>To support the annotation functionality, the library contains a module
 implementing a basic instance of an association list (a data structure
 holding key-value pairs), and exports the <code>ps_annotation_t</code>
-type and the following routines:</p>
+type, the empty annotation object <code>EMPTY_ANNOTATION</code> and the following routines:</p>
+<p>(The names of these routines are aliases of the originals in the <a href="../../../module/assoc_list.html">assoc_list</a> module.)</p>
 <ul>
-<li>ps_annotation_reset (<code>annotation</code>)</li>
+<li>reset_annotation (<code>annotation</code>)</li>
 </ul>
 <p>Cleans the contents of the <code>ps_annotation_t</code> object
   <code>annotation</code> so that it can be reused.</p>
 <ul>
-<li>ps_annotation_insert (<code>annotation,key,value,stat</code>)</li>
+<li>insert_annotation_pair (annotation,key,value,stat)</li>
 </ul>
-<p>Inserts the <code>key, value</code> pair in the <code>ps_annotation_t</code> object
-  <code>annotation</code>. Internally, <code>annotation</code> can grow as much as
-  needed. A non-zero <code>stat</code> signals an error.</p>
+<p>Inserts the <code>key, value</code> pair of string variables in the
+  <code>ps_annotation_t</code> object <code>annotation</code>. Internally, <code>annotation</code> can
+  grow as much as needed.</p>
+<ul>
+<li>function nitems_annotation (<code>annotation</code>) result(<code>nitems</code>)</li>
+</ul>
+<p>Returns the number of key-value pairs in the annotation object</p>
+<ul>
+<li>get_annotation_value (<code>annotation,key,value,stat</code>)</li>
+<li>get_annotation_value (<code>annotation,i,value,stat</code>)</li>
+</ul>
+<p>This routine has two interfaces. The first gets the <code>value</code>
+  associated to the <code>key</code>, and the second gets the <code>value</code>
+  associated to the <code>i</code>'th entry in the annotation object.</p>
+<ul>
+<li>get_annotation_key (<code>annotation,i,key,stat</code>)</li>
+</ul>
+<p>Gets the <code>key</code> of the <code>i</code>'th entry in the annotation object.</p>
+<p>Together with the second form of <code>get_annotation_value</code>,
+  this routine can be used to scan the complete annotation object. The
+  first form of <code>get_annotation_value</code> is appropriate if the
+  key(s) are known.</p>
+<p>In all the above routines a non-zero <code>stat</code> signals an error condition.</p>
     </div>
     
     <div class="col-md-3 col-md-pull-9">

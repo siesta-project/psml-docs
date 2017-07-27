@@ -19,7 +19,7 @@ private
 
 !
 ! Update this. Up to 99...
-integer, parameter    :: PATCH_LEVEL = 4
+integer, parameter    :: PATCH_LEVEL = 5
 !
 ! Only update 1000 when changing major/minor version
 integer, parameter, public  :: PSML_LIBRARY_VERSION = 1100 + PATCH_LEVEL

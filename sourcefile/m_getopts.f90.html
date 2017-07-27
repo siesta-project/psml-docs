@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+    
+    <meta name="author" content="Alberto Garcia" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>m_getopts.f90 &ndash; libPSML</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">libPSML </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+            <li><a href='../page/index.html'>Overview</a></li>
+	    
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>m_getopts.f90
+    <small>Source File</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 1.9% of total for source files.">85 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/m_getopts.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li class="active">m_getopts.f90</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-0">Modules</a></h3></div>
+  <div id="mods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/m_getopts.f90.html#src">m_getopts.f90</a>
+  </div>
+</div>
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
+  <div id="allfiles-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
+      
+      <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
+      
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_ps_edit.f90.html">m_psml_ps_edit.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_reader.f90.html">m_psml_reader.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
+      
+      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>  
+
+    </div>
+    <div class="col-md-9" id='text'>
+    
+    
+      
+      
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-1">Modules</a></h3></div>
+  <div id="mods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../sourcefile/m_getopts.f90.html#src">m_getopts.f90</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    <section>
+      <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">module </span><span class="n">m_getopts</span>
+<a name="ln-2"></a><span class="c">! Assume now a f2003 compliant compiler...</span>
+<a name="ln-3"></a><span class="c">!use f2kcli</span>
+<a name="ln-4"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">getopts</span>
+<a name="ln-5"></a>
+<a name="ln-6"></a><span class="k">CONTAINS</span>
+<a name="ln-7"></a>
+<a name="ln-8"></a><span class="k">subroutine </span><span class="n">getopts</span><span class="p">(</span><span class="n">optionstring</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">optarg</span><span class="p">,</span><span class="n">optind</span><span class="p">,</span><span class="n">exitcode</span><span class="p">)</span>
+<a name="ln-9"></a><span class="c">!$$$  Subprogram Documentation Block</span>
+<a name="ln-10"></a><span class="c">!</span>
+<a name="ln-11"></a><span class="c">! Subprogram:  Getopts    Process command line arguments for valid options</span>
+<a name="ln-12"></a><span class="c">!   Prgmmr: Iredell       Org: W/NP23        Date: 2000-08-22</span>
+<a name="ln-13"></a><span class="c">!</span>
+<a name="ln-14"></a><span class="c">! Abstract: This subprogram processes command-line arguments for valid options.</span>
+<a name="ln-15"></a><span class="c">!           It is the Fortran equivalent of the built-in shell command getopts.</span>
+<a name="ln-16"></a><span class="c">!           Options on the command line come before the positional arguments.</span>
+<a name="ln-17"></a><span class="c">!           Options are preceded by a - (minus sign) or a + (plus sign).</span>
+<a name="ln-18"></a><span class="c">!           Options are single case-sensitive alphanumeric characters.</span>
+<a name="ln-19"></a><span class="c">!           Options either do or do not have an expected argument.</span>
+<a name="ln-20"></a><span class="c">!           Options without an argument may be immediately succeeded by</span>
+<a name="ln-21"></a><span class="c">!           further options without the accompanying - or + prefix.</span>
+<a name="ln-22"></a><span class="c">!           Options with an argument may be separated from their argument</span>
+<a name="ln-23"></a><span class="c">!           by zero or more blanks.  The argument cannot end with a blank.</span>
+<a name="ln-24"></a><span class="c">!           Options end when not preceded by a - or a + or after -- or ++.</span>
+<a name="ln-25"></a><span class="c">!           This subprogram processes one option per invocation.</span>
+<a name="ln-26"></a><span class="c">!           This subprogram is not thread-safe.</span>
+<a name="ln-27"></a><span class="c">!</span>
+<a name="ln-28"></a><span class="c">! Program History Log:</span>
+<a name="ln-29"></a><span class="c">!   2007-05-05  Alberto Garcia: Use f2k-compliant f2kcli module</span>
+<a name="ln-30"></a><span class="c">!   2000-08-22  Iredell</span>
+<a name="ln-31"></a><span class="c">!</span>
+<a name="ln-32"></a><span class="c">! Usage:    call getopts(optionstring,name,optarg,optind,exitcode)</span>
+<a name="ln-33"></a><span class="c">!</span>
+<a name="ln-34"></a><span class="c">!   Input Argument List:</span>
+<a name="ln-35"></a><span class="c">!     optionstring</span>
+<a name="ln-36"></a><span class="c">!       character string containing a list of all valid options;</span>
+<a name="ln-37"></a><span class="c">!       options succeeded by a : require an argument</span>
+<a name="ln-38"></a><span class="c">!</span>
+<a name="ln-39"></a><span class="c">!   Input and Output Argument List:</span>
+<a name="ln-40"></a><span class="c">!     optind</span>
+<a name="ln-41"></a><span class="c">!       integer index of the next argument to be processed;</span>
+<a name="ln-42"></a><span class="c">!       set to 0 before initial call or to restart processing</span>
+<a name="ln-43"></a><span class="c">!</span>
+<a name="ln-44"></a><span class="c">!   Output Argument List:</span>
+<a name="ln-45"></a><span class="c">!     name</span>
+<a name="ln-46"></a><span class="c">!       character string containing the name of the next option</span>
+<a name="ln-47"></a><span class="c">!       or ? if no option or an unknown option is found</span>
+<a name="ln-48"></a><span class="c">!       or : if an option had a missing required argument;</span>
+<a name="ln-49"></a><span class="c">!       a + is prepended to the value in name if the option begins with a +</span>
+<a name="ln-50"></a><span class="c">!     optarg</span>
+<a name="ln-51"></a><span class="c">!       character string containing the option argument if required</span>
+<a name="ln-52"></a><span class="c">!       or null if not required or not found;</span>
+<a name="ln-53"></a><span class="c">!       optarg contains the option found if name is ? or :.</span>
+<a name="ln-54"></a><span class="c">!     exitcode</span>
+<a name="ln-55"></a><span class="c">!       integer return code (0 if an option was found, 1 if end of options)</span>
+<a name="ln-56"></a><span class="c">!     </span>
+<a name="ln-57"></a><span class="c">! Subprograms Called:</span>
+<a name="ln-58"></a><span class="c">!   command_argument_count</span>
+<a name="ln-59"></a><span class="c">!     Retrieve number of command-line arguments</span>
+<a name="ln-60"></a><span class="c">!   get_command_argument</span>
+<a name="ln-61"></a><span class="c">!     Retrieve a command-line argument</span>
+<a name="ln-62"></a><span class="c">!   index </span>
+<a name="ln-63"></a><span class="c">!     Retrieve the starting position of a substring within a string</span>
+<a name="ln-64"></a><span class="c">!     </span>
+<a name="ln-65"></a><span class="c">! Remarks:</span>
+<a name="ln-66"></a><span class="c">!   Here is an example of how to use this subprogram.</span>
+<a name="ln-67"></a><span class="c">!     -----------------------------------------------------------</span>
+<a name="ln-68"></a><span class="c">!     implicit none</span>
+<a name="ln-69"></a><span class="c">!     character(len=20) copt,carg,cb,cpos</span>
+<a name="ln-70"></a><span class="c">!     integer ia,ib,iopt,iret,narg,npos,ipos</span>
+<a name="ln-71"></a><span class="c">!</span>
+<a name="ln-72"></a><span class="c">!     ia=0     ! Programmer&#39;s flag for option a</span>
+<a name="ln-73"></a><span class="c">!     ib=0     !  &quot;                           b</span>
+<a name="ln-74"></a><span class="c">!</span>
+<a name="ln-75"></a><span class="c">!     iopt=0</span>
+<a name="ln-76"></a><span class="c">!     do</span>
+<a name="ln-77"></a><span class="c">!       call getopts(&#39;ab:&#39;,copt,carg,iopt,iret)</span>
+<a name="ln-78"></a><span class="c">!       if(iret.ne.0) exit</span>
+<a name="ln-79"></a><span class="c">!       select case(copt)</span>
+<a name="ln-80"></a><span class="c">!       case(&#39;a&#39;,&#39;+a&#39;)</span>
+<a name="ln-81"></a><span class="c">!         ia=1</span>
+<a name="ln-82"></a><span class="c">!       case(&#39;b&#39;,&#39;+b&#39;)</span>
+<a name="ln-83"></a><span class="c">!         ib=1</span>
+<a name="ln-84"></a><span class="c">!         cb=carg</span>
+<a name="ln-85"></a><span class="c">!       case(&#39;?&#39;,&#39;:&#39;)</span>
+<a name="ln-86"></a><span class="c">!         print *,&#39;invalid option &#39;,carg(1:1)</span>
+<a name="ln-87"></a><span class="c">!         stop 1</span>
+<a name="ln-88"></a><span class="c">!       end select</span>
+<a name="ln-89"></a><span class="c">!     enddo</span>
+<a name="ln-90"></a><span class="c">!     if(ia.eq.1) print *,&#39;option a selected&#39;</span>
+<a name="ln-91"></a><span class="c">!     if(ib.eq.1) print *,&#39;option b selected; argument=&#39;,cb</span>
+<a name="ln-92"></a><span class="c">!</span>
+<a name="ln-93"></a><span class="c">!     Now process positional parameters</span>
+<a name="ln-94"></a><span class="c">!     narg=command_argument_count()</span>
+<a name="ln-95"></a><span class="c">!     npos=narg-iopt+1</span>
+<a name="ln-96"></a><span class="c">!     do ipos=1,npos</span>
+<a name="ln-97"></a><span class="c">!       call get_command_argument(number=ipos+iopt-1,value=cpos)</span>
+<a name="ln-98"></a><span class="c">!       print *,&#39;positional argument &#39;,ipos,&#39; is &#39;,cpos</span>
+<a name="ln-99"></a><span class="c">!     enddo</span>
+<a name="ln-100"></a><span class="c">!     end</span>
+<a name="ln-101"></a><span class="c">!     -----------------------------------------------------------</span>
+<a name="ln-102"></a><span class="c">!</span>
+<a name="ln-103"></a><span class="c">! Attributes:</span>
+<a name="ln-104"></a><span class="c">!   Language: Fortran 90</span>
+<a name="ln-105"></a><span class="c">!</span>
+<a name="ln-106"></a><span class="c">!$$$</span>
+<a name="ln-107"></a>  <span class="k">implicit none</span>
+<a name="ln-108"></a>
+<a name="ln-109"></a><span class="c">!  Passed data</span>
+<a name="ln-110"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">optionstring</span>
+<a name="ln-111"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">name</span>
+<a name="ln-112"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">optarg</span>
+<a name="ln-113"></a>  <span class="kt">integer</span><span class="p">,</span>         <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">optind</span>
+<a name="ln-114"></a>  <span class="kt">integer</span><span class="p">,</span>         <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">exitcode</span>
+<a name="ln-115"></a>
+<a name="ln-116"></a><span class="c">!  Saved data</span>
+<a name="ln-117"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">),</span> <span class="k">save</span>  <span class="kd">::</span> <span class="n">carg</span>
+<a name="ln-118"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="p">,</span>  <span class="k">save</span>  <span class="kd">::</span> <span class="n">cone</span>
+<a name="ln-119"></a>  <span class="kt">integer</span><span class="p">,</span><span class="k">save</span>              <span class="kd">::</span> <span class="n">narg</span><span class="p">,</span><span class="n">larg</span><span class="p">,</span><span class="n">lcur</span>
+<a name="ln-120"></a>
+<a name="ln-121"></a><span class="c">!  Local data</span>
+<a name="ln-122"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span>  <span class="n">copt</span>
+<a name="ln-123"></a>  <span class="kt">integer</span>          <span class="kd">::</span>  <span class="n">lname</span><span class="p">,</span><span class="n">lopt</span>
+<a name="ln-124"></a>
+<a name="ln-125"></a><span class="c">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<a name="ln-126"></a><span class="c">!  Initially set saved data.</span>
+<a name="ln-127"></a>  <span class="k">if</span><span class="p">(</span><span class="n">optind</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-128"></a><span class="k">    </span><span class="n">optind</span><span class="o">=</span><span class="mi">0</span>
+<a name="ln-129"></a>    <span class="n">narg</span><span class="o">=</span><span class="nb">command_argument_count</span><span class="p">()</span>
+<a name="ln-130"></a>    <span class="n">carg</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a name="ln-131"></a>    <span class="n">cone</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a name="ln-132"></a>    <span class="n">larg</span><span class="o">=</span><span class="mi">0</span>
+<a name="ln-133"></a>    <span class="n">lcur</span><span class="o">=</span><span class="mi">1</span>
+<a name="ln-134"></a>  <span class="n">endif</span>
+<a name="ln-135"></a><span class="c">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<a name="ln-136"></a><span class="c">!  Retrieve next command-line argument if necessary;</span>
+<a name="ln-137"></a><span class="c">!  exit if at end of options</span>
+<a name="ln-138"></a>  <span class="k">if</span><span class="p">(</span><span class="n">lcur</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">larg</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-139"></a><span class="k">    </span><span class="n">optind</span><span class="o">=</span><span class="n">optind</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-140"></a>    <span class="k">if</span><span class="p">(</span><span class="n">optind</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">narg</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-141"></a><span class="k">      </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;?&#39;</span>
+<a name="ln-142"></a>      <span class="n">optarg</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a name="ln-143"></a>      <span class="n">exitcode</span><span class="o">=</span><span class="mi">1</span>
+<a name="ln-144"></a>      <span class="k">RETURN</span>
+<a name="ln-145"></a><span class="k">    </span><span class="n">endif</span>
+<a name="ln-146"></a>    <span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="n">optind</span><span class="p">,</span><span class="k">value</span><span class="o">=</span><span class="n">carg</span><span class="p">)</span>
+<a name="ln-147"></a>    <span class="n">cone</span><span class="o">=</span><span class="n">carg</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-148"></a>    <span class="n">larg</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">carg</span><span class="p">)</span>
+<a name="ln-149"></a>    <span class="n">lcur</span><span class="o">=</span><span class="mi">2</span>
+<a name="ln-150"></a>    <span class="k">if</span><span class="p">(</span><span class="n">larg</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mf">1.</span><span class="nb">or</span><span class="p">.(</span><span class="n">cone</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="s1">&#39;-&#39;</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="n">cone</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="s1">&#39;+&#39;</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-151"></a><span class="k">      </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;?&#39;</span>
+<a name="ln-152"></a>      <span class="n">optarg</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a name="ln-153"></a>      <span class="n">exitcode</span><span class="o">=</span><span class="mi">1</span>
+<a name="ln-154"></a>      <span class="k">RETURN</span>
+<a name="ln-155"></a><span class="k">    </span><span class="n">elseif</span><span class="p">(</span><span class="n">larg</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mf">2.</span><span class="nb">and</span><span class="p">.</span><span class="n">carg</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="n">cone</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-156"></a><span class="k">      </span><span class="n">optind</span><span class="o">=</span><span class="n">optind</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-157"></a>      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;?&#39;</span>
+<a name="ln-158"></a>      <span class="n">optarg</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a name="ln-159"></a>      <span class="n">exitcode</span><span class="o">=</span><span class="mi">1</span>
+<a name="ln-160"></a>      <span class="k">RETURN</span>
+<a name="ln-161"></a><span class="k">    </span><span class="n">endif</span>
+<a name="ln-162"></a>  <span class="n">endif</span>
+<a name="ln-163"></a><span class="c">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<a name="ln-164"></a><span class="c">!  Find next option in the list; exit if option is unknown</span>
+<a name="ln-165"></a>  <span class="n">exitcode</span><span class="o">=</span><span class="mi">0</span>
+<a name="ln-166"></a>  <span class="n">copt</span><span class="o">=</span><span class="n">carg</span><span class="p">(</span><span class="n">lcur</span><span class="p">:</span><span class="n">lcur</span><span class="p">)</span>
+<a name="ln-167"></a>  <span class="n">lcur</span><span class="o">=</span><span class="n">lcur</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-168"></a>  <span class="n">lopt</span><span class="o">=</span><span class="nb">index</span><span class="p">(</span><span class="n">optionstring</span><span class="p">,</span><span class="n">copt</span><span class="p">)</span>
+<a name="ln-169"></a>  <span class="k">if</span><span class="p">(</span><span class="n">lopt</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-170"></a><span class="k">    </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;?&#39;</span>
+<a name="ln-171"></a>    <span class="n">optarg</span><span class="o">=</span><span class="n">copt</span>
+<a name="ln-172"></a>    <span class="k">RETURN</span>
+<a name="ln-173"></a><span class="k">  </span><span class="n">endif</span>
+<a name="ln-174"></a><span class="c">! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<a name="ln-175"></a><span class="c">!  Option found; retrieve its argument if requested</span>
+<a name="ln-176"></a>    <span class="k">if</span><span class="p">(</span><span class="n">cone</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-177"></a><span class="k">      </span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<a name="ln-178"></a>      <span class="n">lname</span><span class="o">=</span><span class="mi">1</span>
+<a name="ln-179"></a>    <span class="k">else</span>
+<a name="ln-180"></a><span class="k">      </span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;+&quot;</span>
+<a name="ln-181"></a>      <span class="n">lname</span><span class="o">=</span><span class="mi">2</span>
+<a name="ln-182"></a>    <span class="n">endif</span>
+<a name="ln-183"></a>  <span class="n">name</span><span class="p">(</span><span class="n">lname</span><span class="p">:</span><span class="n">lname</span><span class="p">)</span><span class="o">=</span><span class="n">copt</span>
+<a name="ln-184"></a>  <span class="n">optarg</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a name="ln-185"></a>  <span class="k">if</span><span class="p">(</span><span class="n">lopt</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="nb">len</span><span class="p">(</span><span class="n">optionstring</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-186"></a><span class="k">     if</span> <span class="p">(</span><span class="n">optionstring</span><span class="p">(</span><span class="n">lopt</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">lopt</span><span class="o">+</span><span class="mi">1</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-187"></a><span class="k">        if</span><span class="p">(</span><span class="n">lcur</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">larg</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-188"></a><span class="k">           </span><span class="n">optind</span><span class="o">=</span><span class="n">optind</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-189"></a>           <span class="k">if</span><span class="p">(</span><span class="n">optind</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">narg</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-190"></a><span class="k">              </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;:&#39;</span>
+<a name="ln-191"></a>              <span class="n">optarg</span><span class="o">=</span><span class="n">copt</span>
+<a name="ln-192"></a>              <span class="k">RETURN</span>
+<a name="ln-193"></a><span class="k">           </span><span class="n">endif</span>
+<a name="ln-194"></a>           <span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="n">optind</span><span class="p">,</span><span class="k">value</span><span class="o">=</span><span class="n">carg</span><span class="p">)</span>
+<a name="ln-195"></a>           <span class="n">larg</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">carg</span><span class="p">)</span>
+<a name="ln-196"></a>           <span class="n">lcur</span><span class="o">=</span><span class="mi">1</span>
+<a name="ln-197"></a>        <span class="n">endif</span>
+<a name="ln-198"></a>        <span class="n">optarg</span><span class="o">=</span><span class="n">carg</span><span class="p">(</span><span class="n">lcur</span><span class="p">:</span><span class="n">larg</span><span class="p">)</span>
+<a name="ln-199"></a>        <span class="n">lcur</span><span class="o">=</span><span class="n">larg</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-200"></a>     <span class="n">endif</span>
+<a name="ln-201"></a>  <span class="n">endif</span>
+<a name="ln-202"></a><span class="k">end subroutine</span>
+<a name="ln-203"></a><span class="k">end module </span><span class="n">m_getopts</span>
+</pre></div>
+
+    </section>
+    </div>
+  </div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
+  <div id="allfiles-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
+      
+      <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
+      
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_ps_edit.f90.html">m_psml_ps_edit.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_reader.f90.html">m_psml_reader.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
+      
+      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
+      
+      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> libPSML was developed by Alberto Garcia</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

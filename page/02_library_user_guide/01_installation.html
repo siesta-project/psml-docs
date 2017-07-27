@@ -75,6 +75,8 @@
             <li><a href="../../lists/types.html">Derived Types</a></li>
 				
 				
+            <li><a href="../../lists/programs.html">Programs</a></li>
+				
             </ul>
             </li>
 
@@ -90,6 +92,8 @@
                              
 <li class="visible-xs hidden-sm visible-lg"><a href="../../lists/types.html">Derived Types</a></li>
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../../lists/programs.html">Programs</a></li>
 
           </ul>
         
@@ -166,13 +170,26 @@
 <p>This will create a building tree with the appropriate makefiles, and
    make a copy of the 'examples' directory.</p>
 <p>Now type 'make' to build the library, and optionally</p>
-<div class="codehilite"><pre><span></span>make PREFIX=/path/to/installation install
+<div class="codehilite"><pre><span></span>    make PREFIX=/path/to/installation install
 </pre></div>
 
 
 <p>to install the library and modules in some central place.</p>
-<p>Go into the subdirectory 'examples' <em>of the building directory</em> and
-explore. You can type 'make' at any level to build the executables.</p>
+<h2 id="test-programs">Test programs</h2>
+<p>Go into the subdirectory <code>examples</code> <em>of the building directory</em>. In it
+you can find, among others:</p>
+<ul>
+<li>
+<p><a href="../../program/normalize.html">normalize</a>:  A program to parse a PSML file and dump the resulting <code>ps</code>
+object.</p>
+</li>
+<li>
+<p><a href="../../program/show_psml.html">show_psml</a>: A program to parse a PSML file and extract
+  various kinds of information, with optional evaluation of radial
+  functions on a linear grid for later plotting.</p>
+</li>
+</ul>
+<p>You can type <code>make</code> to build the executables.</p>
 <h2 id="compiling-user-programs">Compiling user programs</h2>
 <p>After installation, the appropriate modules and library files should
 already be in <code>$PREFIX/include</code> and <code>$PREFIX/lib</code>, respectively.</p>

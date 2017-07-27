@@ -45,6 +45,8 @@ module m_psml
   ! Remove common names from namespace
   use class_Grid, dummy_id => id, dummy_name => name
 
-  public
+  ! Export precision of real numbers used
+  
+  integer, public, parameter :: ps_real_kind = selected_real_kind(10,100)
 
 end module m_psml
