@@ -75,8 +75,8 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+            <li><a href="../program/test_assoc.html">Program</a></li>
+	    
             </ul>
             </li>
 
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 3.9% of total for source files.">175 statements</a>
+	  title=" 5.8% of total for source files.">175 statements</a>
      </li> 
      
      
@@ -211,29 +211,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -243,17 +233,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>
@@ -315,125 +297,129 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">module </span><span class="n">class_Grid</span>
-<a name="ln-2"></a>
-<a name="ln-3"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
-<a name="ln-4"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_clean_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_reset</span>
-<a name="ln-5"></a>  
-<a name="ln-6"></a>  <span class="k">implicit none</span>
-<a name="ln-7"></a>
-<a name="ln-8"></a><span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">mod_name</span><span class="o">=</span> <span class="s2">&quot;Grid&quot;</span>
-<a name="ln-9"></a>
-<a name="ln-10"></a>  <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">dp</span> <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="cp">#if defined HAVE_CONFIG_H</span>
+<a name="ln-2"></a><span class="cp">#include &quot;config.h&quot;</span>
+<a name="ln-3"></a><span class="cp">#endif</span>
+<a name="ln-4"></a>
+<a name="ln-5"></a><span class="k">module </span><span class="n">class_Grid</span>
+<a name="ln-6"></a>
+<a name="ln-7"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
+<a name="ln-8"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_clean_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_reset</span>
+<a name="ln-9"></a>  
+<a name="ln-10"></a>  <span class="k">implicit none</span>
 <a name="ln-11"></a>
-<a name="ln-12"></a>  <span class="c">!</span>
-<a name="ln-13"></a>  <span class="k">type </span><span class="n">Grid_</span>
-<a name="ln-14"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">refCount</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-15"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;null_id&quot;</span>
-<a name="ln-16"></a>    <span class="c">!----------------------</span>
-<a name="ln-17"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;null Grid&quot;</span>
-<a name="ln-18"></a>    <span class="kt">integer</span>                        <span class="kd">::</span> <span class="n">npts</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-19"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="k">pointer</span>              <span class="kd">::</span> <span class="n">grid_data</span><span class="p">(:)</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
-<a name="ln-20"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">annotation</span> 
-<a name="ln-21"></a>  <span class="k">end type </span><span class="n">Grid_</span>
-<a name="ln-22"></a>
-<a name="ln-23"></a>  <span class="k">type </span><span class="n">Grid</span>
-<a name="ln-24"></a>    <span class="k">type</span><span class="p">(</span><span class="n">Grid_</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="k">data</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
-<a name="ln-25"></a>  <span class="k">end type </span><span class="n">Grid</span>
+<a name="ln-12"></a><span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">mod_name</span><span class="o">=</span> <span class="s2">&quot;Grid&quot;</span>
+<a name="ln-13"></a>
+<a name="ln-14"></a>  <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">dp</span> <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<a name="ln-15"></a>
+<a name="ln-16"></a>  <span class="c">!</span>
+<a name="ln-17"></a>  <span class="k">type </span><span class="n">Grid_</span>
+<a name="ln-18"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">refCount</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-19"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;null_id&quot;</span>
+<a name="ln-20"></a>    <span class="c">!----------------------</span>
+<a name="ln-21"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;null Grid&quot;</span>
+<a name="ln-22"></a>    <span class="kt">integer</span>                        <span class="kd">::</span> <span class="n">npts</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-23"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="k">pointer</span>              <span class="kd">::</span> <span class="n">grid_data</span><span class="p">(:)</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
+<a name="ln-24"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">annotation</span> 
+<a name="ln-25"></a>  <span class="k">end type </span><span class="n">Grid_</span>
 <a name="ln-26"></a>
-<a name="ln-27"></a>  <span class="k">public</span>  <span class="kd">::</span> <span class="n">newGrid</span><span class="p">,</span> <span class="n">print_type</span><span class="p">,</span> <span class="n">valGrid</span><span class="p">,</span> <span class="n">annotationGrid</span><span class="p">,</span> <span class="n">sizeGrid</span>
-<a name="ln-28"></a>
-<a name="ln-29"></a>  <span class="k">interface </span><span class="n">print_type</span>
-<a name="ln-30"></a>    <span class="k">module procedure </span><span class="n">printGrid</span>
-<a name="ln-31"></a>  <span class="k">end interface</span>
+<a name="ln-27"></a>  <span class="k">type </span><span class="n">Grid</span>
+<a name="ln-28"></a>    <span class="k">type</span><span class="p">(</span><span class="n">Grid_</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="k">data</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
+<a name="ln-29"></a>  <span class="k">end type </span><span class="n">Grid</span>
+<a name="ln-30"></a>
+<a name="ln-31"></a>  <span class="k">public</span>  <span class="kd">::</span> <span class="n">newGrid</span><span class="p">,</span> <span class="n">print_type</span><span class="p">,</span> <span class="n">valGrid</span><span class="p">,</span> <span class="n">annotationGrid</span><span class="p">,</span> <span class="n">sizeGrid</span>
 <a name="ln-32"></a>
-<a name="ln-33"></a><span class="c">!========================</span>
-<a name="ln-34"></a><span class="cp">#define TYPE_NAME Grid</span>
-<a name="ln-35"></a><span class="cp">#include &quot;basic_type.inc&quot;</span>
-<a name="ln-36"></a><span class="c">!========================</span>
-<a name="ln-37"></a>
-<a name="ln-38"></a>     <span class="k">subroutine </span><span class="n">delete_Data</span><span class="p">(</span><span class="n">gd</span><span class="p">)</span>
-<a name="ln-39"></a>      <span class="k">type</span><span class="p">(</span><span class="n">Grid_</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gd</span>
-<a name="ln-40"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">gd</span><span class="p">%</span><span class="n">grid_data</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-41"></a><span class="k">         deallocate</span><span class="p">(</span><span class="n">gd</span><span class="p">%</span><span class="n">grid_data</span><span class="p">)</span>
-<a name="ln-42"></a>         <span class="n">gd</span><span class="p">%</span><span class="n">grid_data</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
-<a name="ln-43"></a>      <span class="n">endif</span>
-<a name="ln-44"></a>      <span class="k">call </span><span class="n">ps_clean_annotation</span><span class="p">(</span><span class="n">gd</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-45"></a>     <span class="k">end subroutine </span><span class="n">delete_Data</span>
-<a name="ln-46"></a>
-<a name="ln-47"></a>
-<a name="ln-48"></a>  <span class="k">subroutine </span><span class="n">newGrid</span><span class="p">(</span><span class="n">this</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
-<a name="ln-49"></a>
-<a name="ln-50"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
-<a name="ln-51"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">n</span>
-<a name="ln-52"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span>  <span class="kd">::</span> <span class="n">name</span>
+<a name="ln-33"></a>  <span class="k">interface </span><span class="n">print_type</span>
+<a name="ln-34"></a>    <span class="k">module procedure </span><span class="n">printGrid</span>
+<a name="ln-35"></a>  <span class="k">end interface</span>
+<a name="ln-36"></a>
+<a name="ln-37"></a><span class="c">!========================</span>
+<a name="ln-38"></a><span class="cp">#define TYPE_NAME Grid</span>
+<a name="ln-39"></a><span class="cp">#include &quot;basic_type.inc&quot;</span>
+<a name="ln-40"></a><span class="c">!========================</span>
+<a name="ln-41"></a>
+<a name="ln-42"></a>     <span class="k">subroutine </span><span class="n">delete_Data</span><span class="p">(</span><span class="n">gd</span><span class="p">)</span>
+<a name="ln-43"></a>      <span class="k">type</span><span class="p">(</span><span class="n">Grid_</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gd</span>
+<a name="ln-44"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">gd</span><span class="p">%</span><span class="n">grid_data</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-45"></a><span class="k">         deallocate</span><span class="p">(</span><span class="n">gd</span><span class="p">%</span><span class="n">grid_data</span><span class="p">)</span>
+<a name="ln-46"></a>         <span class="n">gd</span><span class="p">%</span><span class="n">grid_data</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
+<a name="ln-47"></a>      <span class="n">endif</span>
+<a name="ln-48"></a>      <span class="k">call </span><span class="n">ps_clean_annotation</span><span class="p">(</span><span class="n">gd</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-49"></a>     <span class="k">end subroutine </span><span class="n">delete_Data</span>
+<a name="ln-50"></a>
+<a name="ln-51"></a>
+<a name="ln-52"></a>  <span class="k">subroutine </span><span class="n">newGrid</span><span class="p">(</span><span class="n">this</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
 <a name="ln-53"></a>
-<a name="ln-54"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span>
-<a name="ln-55"></a>
-<a name="ln-56"></a>   <span class="c">! We release the previous incarnation</span>
-<a name="ln-57"></a>   <span class="c">! This means that we relinquish access to the previous</span>
-<a name="ln-58"></a>   <span class="c">! memory location. It will be deallocated when nobody</span>
-<a name="ln-59"></a>   <span class="c">! else is using it.</span>
-<a name="ln-60"></a>
-<a name="ln-61"></a>   <span class="k">call </span><span class="n">init</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
-<a name="ln-62"></a>
-<a name="ln-63"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">name</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-64"></a><span class="k">      </span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">name</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<a name="ln-65"></a>   <span class="k">else</span>
-<a name="ln-66"></a><span class="k">      </span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;(Grid from n)&quot;</span>
-<a name="ln-67"></a>   <span class="n">endif</span>
-<a name="ln-68"></a>
-<a name="ln-69"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-<a name="ln-70"></a>
-<a name="ln-71"></a>   <span class="k">call </span><span class="n">tag_new_object</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+<a name="ln-54"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
+<a name="ln-55"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">n</span>
+<a name="ln-56"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span>  <span class="kd">::</span> <span class="n">name</span>
+<a name="ln-57"></a>
+<a name="ln-58"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-59"></a>
+<a name="ln-60"></a>   <span class="c">! We release the previous incarnation</span>
+<a name="ln-61"></a>   <span class="c">! This means that we relinquish access to the previous</span>
+<a name="ln-62"></a>   <span class="c">! memory location. It will be deallocated when nobody</span>
+<a name="ln-63"></a>   <span class="c">! else is using it.</span>
+<a name="ln-64"></a>
+<a name="ln-65"></a>   <span class="k">call </span><span class="n">init</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+<a name="ln-66"></a>
+<a name="ln-67"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">name</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-68"></a><span class="k">      </span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">name</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<a name="ln-69"></a>   <span class="k">else</span>
+<a name="ln-70"></a><span class="k">      </span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;(Grid from n)&quot;</span>
+<a name="ln-71"></a>   <span class="n">endif</span>
 <a name="ln-72"></a>
-<a name="ln-73"></a>  <span class="k">end subroutine </span><span class="n">newGrid</span>
+<a name="ln-73"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 <a name="ln-74"></a>
-<a name="ln-75"></a>  <span class="k">function </span><span class="n">valGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-76"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
-<a name="ln-77"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="k">pointer</span>       <span class="kd">::</span> <span class="n">p</span><span class="p">(:)</span>
+<a name="ln-75"></a>   <span class="k">call </span><span class="n">tag_new_object</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+<a name="ln-76"></a>
+<a name="ln-77"></a>  <span class="k">end subroutine </span><span class="n">newGrid</span>
 <a name="ln-78"></a>
-<a name="ln-79"></a>   <span class="k">nullify</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-80"></a>   <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span>
-<a name="ln-81"></a> <span class="k">end function </span><span class="n">valGrid</span>
+<a name="ln-79"></a>  <span class="k">function </span><span class="n">valGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-80"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
+<a name="ln-81"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="k">pointer</span>       <span class="kd">::</span> <span class="n">p</span><span class="p">(:)</span>
 <a name="ln-82"></a>
-<a name="ln-83"></a>  <span class="k">function </span><span class="n">annotationGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-84"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">this</span>
-<a name="ln-85"></a>   <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">)</span> <span class="p">,</span> <span class="k">pointer</span>   <span class="kd">::</span> <span class="n">p</span>
+<a name="ln-83"></a>   <span class="k">nullify</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-84"></a>   <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span>
+<a name="ln-85"></a> <span class="k">end function </span><span class="n">valGrid</span>
 <a name="ln-86"></a>
-<a name="ln-87"></a>   <span class="k">nullify</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-88"></a>   <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">annotation</span>
-<a name="ln-89"></a> <span class="k">end function </span><span class="n">annotationGrid</span>
+<a name="ln-87"></a>  <span class="k">function </span><span class="n">annotationGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-88"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">this</span>
+<a name="ln-89"></a>   <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">)</span> <span class="p">,</span> <span class="k">pointer</span>   <span class="kd">::</span> <span class="n">p</span>
 <a name="ln-90"></a>
-<a name="ln-91"></a> <span class="k">function </span><span class="n">sizeGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<a name="ln-92"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
-<a name="ln-93"></a>   <span class="kt">integer</span>                 <span class="kd">::</span> <span class="n">n</span>
+<a name="ln-91"></a>   <span class="k">nullify</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-92"></a>   <span class="n">p</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">annotation</span>
+<a name="ln-93"></a> <span class="k">end function </span><span class="n">annotationGrid</span>
 <a name="ln-94"></a>
-<a name="ln-95"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">initialized</span><span class="p">(</span><span class="n">this</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-96"></a><span class="k">      </span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-97"></a>   <span class="k">else</span>
-<a name="ln-98"></a><span class="k">      </span><span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span><span class="p">)</span>
-<a name="ln-99"></a>   <span class="n">endif</span>
-<a name="ln-100"></a> <span class="k">end function </span><span class="n">sizeGrid</span>
-<a name="ln-101"></a>
-<a name="ln-102"></a> <span class="k">subroutine </span><span class="n">printGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
-<a name="ln-103"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
-<a name="ln-104"></a>
-<a name="ln-105"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
-<a name="ln-106"></a>
-<a name="ln-107"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">associated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-108"></a><span class="k">      print</span> <span class="s2">&quot;(a)&quot;</span><span class="p">,</span> <span class="s2">&quot;Grid Not Associated&quot;</span>
-<a name="ln-109"></a>      <span class="k">RETURN</span>
-<a name="ln-110"></a><span class="k">   </span><span class="n">endif</span>
-<a name="ln-111"></a>
-<a name="ln-112"></a>    <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span><span class="p">)</span>
-<a name="ln-113"></a>
-<a name="ln-114"></a>   <span class="k">print</span> <span class="s2">&quot;(a,i0,a,i0,a,i0,a)&quot;</span><span class="p">,</span> <span class="s2">&quot;  &lt;grid:&quot;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">name</span><span class="p">)</span> <span class="o">//</span> <span class="p">&amp;</span>
-<a name="ln-115"></a>                               <span class="s2">&quot; n=&quot;</span><span class="p">,</span>  <span class="n">n</span><span class="p">,</span>   <span class="p">&amp;</span>
-<a name="ln-116"></a>                               <span class="s2">&quot;, refcount: &quot;</span><span class="p">,</span> <span class="n">refcount</span><span class="p">(</span><span class="n">this</span><span class="p">),</span><span class="s2">&quot;&gt;&quot;</span>
-<a name="ln-117"></a> <span class="k">end subroutine </span><span class="n">printGrid</span>
-<a name="ln-118"></a>
-<a name="ln-119"></a><span class="k">end module </span><span class="n">class_Grid</span>
+<a name="ln-95"></a> <span class="k">function </span><span class="n">sizeGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<a name="ln-96"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
+<a name="ln-97"></a>   <span class="kt">integer</span>                 <span class="kd">::</span> <span class="n">n</span>
+<a name="ln-98"></a>
+<a name="ln-99"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">initialized</span><span class="p">(</span><span class="n">this</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-100"></a><span class="k">      </span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-101"></a>   <span class="k">else</span>
+<a name="ln-102"></a><span class="k">      </span><span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span><span class="p">)</span>
+<a name="ln-103"></a>   <span class="n">endif</span>
+<a name="ln-104"></a> <span class="k">end function </span><span class="n">sizeGrid</span>
+<a name="ln-105"></a>
+<a name="ln-106"></a> <span class="k">subroutine </span><span class="n">printGrid</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+<a name="ln-107"></a>   <span class="k">type</span><span class="p">(</span><span class="n">Grid</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">this</span>
+<a name="ln-108"></a>
+<a name="ln-109"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
+<a name="ln-110"></a>
+<a name="ln-111"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">associated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-112"></a><span class="k">      print</span> <span class="s2">&quot;(a)&quot;</span><span class="p">,</span> <span class="s2">&quot;Grid Not Associated&quot;</span>
+<a name="ln-113"></a>      <span class="k">RETURN</span>
+<a name="ln-114"></a><span class="k">   </span><span class="n">endif</span>
+<a name="ln-115"></a>
+<a name="ln-116"></a>    <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">grid_data</span><span class="p">)</span>
+<a name="ln-117"></a>
+<a name="ln-118"></a>   <span class="k">print</span> <span class="s2">&quot;(a,i0,a,i0,a,i0,a)&quot;</span><span class="p">,</span> <span class="s2">&quot;  &lt;grid:&quot;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">name</span><span class="p">)</span> <span class="o">//</span> <span class="p">&amp;</span>
+<a name="ln-119"></a>                               <span class="s2">&quot; n=&quot;</span><span class="p">,</span>  <span class="n">n</span><span class="p">,</span>   <span class="p">&amp;</span>
+<a name="ln-120"></a>                               <span class="s2">&quot;, refcount: &quot;</span><span class="p">,</span> <span class="n">refcount</span><span class="p">(</span><span class="n">this</span><span class="p">),</span><span class="s2">&quot;&gt;&quot;</span>
+<a name="ln-121"></a> <span class="k">end subroutine </span><span class="n">printGrid</span>
+<a name="ln-122"></a>
+<a name="ln-123"></a><span class="k">end module </span><span class="n">class_Grid</span>
 </pre></div>
 
     </section>
@@ -455,29 +441,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -487,17 +463,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>

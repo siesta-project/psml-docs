@@ -1,3 +1,7 @@
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 module m_psml
 
 !
@@ -22,9 +26,6 @@ module m_psml
   use m_psml_core, only: nonlocal_t, nlpj_t
 
   use m_psml_api
-#ifndef PSML_NO_OLD_API  
-  use m_psml_old_api
-#endif
   
   use m_psml_dump
   use m_psml_ps_edit

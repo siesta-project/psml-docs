@@ -1,4 +1,8 @@
 !+ libPSML API implementation
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 module m_psml_api
 !+ graph: false
 !+ Procedures to handle the PSML pseudopotential format.
@@ -116,7 +120,7 @@ subroutine ps_SetEvaluatorOptions(quality_level,debug,&
      use_effective_range,&
      custom_interpolator)
 
-use m_interp, only: nq, interpolator
+use m_psml_interp, only: nq, interpolator
 
 ! Parameter for interpolator's quality
 ! It might mean different things for different
@@ -152,11 +156,7 @@ if (present(use_effective_range)) then
    global_use_effective_range = use_effective_range
 endif
 if (present(custom_interpolator)) then
-#ifndef __NO_PROC_POINTERS__
    interpolator => custom_interpolator
-#else
-   call die("custom_interpolator capability not compiled in")
-#endif
 endif
 
 end subroutine ps_SetEvaluatorOptions
@@ -1185,7 +1185,7 @@ end function max_range
 
 !----------
 function eval_radfunc(f,r,debug) result(val)
-use m_interp, only: interpolator, nq
+use m_psml_interp, only: interpolator, nq
 
 type(radfunc_t), intent(in) :: f
 real(dp), intent(in)      :: r

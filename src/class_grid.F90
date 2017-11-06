@@ -1,3 +1,7 @@
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 module class_Grid
 
   use assoc_list, only: ps_annotation_t => assoc_list_t

@@ -3,6 +3,10 @@
 
   !+ Data structures to handle the PSML pseudopotential format.
 
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 module m_psml_core
 
 use iso_varying_string, only: varying_string, var_str

@@ -10,7 +10,7 @@
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
 
-    <title>m_getopts &ndash; libPSML</title>
+    <title>m_psml_interp &ndash; libPSML</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -75,8 +75,8 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+            <li><a href="../program/test_assoc.html">Program</a></li>
+	    
             </ul>
             </li>
 
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -114,7 +114,7 @@
     
   
   <div class="row">
-    <h1>m_getopts 
+    <h1>m_psml_interp 
     <small>Module</small>
     
     </h1>
@@ -132,18 +132,18 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.2% of total for modules and submodules.">85 statements</a>
+	  title=" 2.8% of total for modules and submodules.">83 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/m_getopts.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/m_psml_interp.F90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/m_getopts.f90.html'>m_getopts.f90</a></li>
+     <li><a href='../sourcefile/m_psml_interp.f90.html'>m_psml_interp.F90</a></li>
   
-     <li class="active">m_getopts</li>
+     <li class="active">m_psml_interp</li>
   </ol>
 </div>
 </div>
@@ -163,12 +163,36 @@
   
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#variable-nq">nq</a>
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#variable-interpolator">interpolator</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
+  <div id="inters-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#interface-interpolate">interpolate</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
@@ -179,7 +203,11 @@
   <div class="list-group">
     <div id="subs-0" class="panel-collapse collapse">
       
-      <a class="list-group-item" href="../module/m_getopts.html#proc-getopts">getopts</a>
+      <a class="list-group-item" href="../module/m_psml_interp.html#proc-set_interpolator">set_interpolator</a>
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#proc-set_default_interpolator">set_default_interpolator</a>
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#proc-dpnint1">dpnint1</a>
       
     </div>
   </div>
@@ -209,10 +237,6 @@
       
       <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
       
-      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
-      
-      <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
-      
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
       
       <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
@@ -221,7 +245,7 @@
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
       
-      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
+      <a class="list-group-item" href="../module/m_psml_interp.html">m_psml_interp</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       
@@ -230,8 +254,6 @@
       <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
       
       <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
-      
-      <a class="list-group-item" href="../module/sets_m.html">sets_m</a>
       
     </div>
   </div>
@@ -256,12 +278,36 @@
       
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#variable-nq">nq</a>
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#variable-interpolator">interpolator</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
+  <div id="inters-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#interface-interpolate">interpolate</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
@@ -272,7 +318,11 @@
   <div class="list-group">
     <div id="subs-1" class="panel-collapse collapse">
       
-      <a class="list-group-item" href="../module/m_getopts.html#proc-getopts">getopts</a>
+      <a class="list-group-item" href="../module/m_psml_interp.html#proc-set_interpolator">set_interpolator</a>
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#proc-set_default_interpolator">set_default_interpolator</a>
+      
+      <a class="list-group-item" href="../module/m_psml_interp.html#proc-dpnint1">dpnint1</a>
       
     </div>
   </div>
@@ -292,9 +342,211 @@
     
 
     
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nq"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>save</td><td>::</td>
+  <td><strong>nq</strong></td><td> =</td><td>7</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-interpolator"></span>procedure(<a href='../interface/interpolate.html'>interpolate</a>),</td>
+  
+  <td>public,</td>
+  <td>pointer</td><td>::</td>
+  <td><strong>interpolator</strong></td><td>=> </td><td>null()</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
     
     
     
+    
+    
+    <section>
+	 <h2>Interfaces</h2>
+	 
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-interpolate"></span><h3>interface 
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+public subroutine <a href='../interface/interpolate.html'>interpolate</a>(nquality, x, y, npts, r, val, debug)
+    
+    
+	 
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nquality</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>y</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>npts</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>debug</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+  </ul>
+</div>
+
+    
+    </section>
+	<br>
     
 
     
@@ -309,8 +561,8 @@
     
     
   <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-getopts"></span><h3>
-public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name, optarg, optind, exitcode)
+  <div class="panel-heading codesum"><span class="anchor" id="proc-set_interpolator"></span><h3>
+public subroutine <a href='../proc/set_interpolator.html'>set_interpolator</a>(func, nquality)
     
     
 	 
@@ -338,12 +590,42 @@ public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name,
   
 <tr>
   
-  <td><span class="anchor" ></span>character(len=*),</td>
+  <td colspan="7">
+      <small>
+    
+    <h5>
+public subroutine func(nquality, x, y, npts, r, val, debug)
+    
+    
+	 
+</h5>
+    
+    
+    <h6>Arguments</h6>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>optionstring</strong></td><td></td>
+  <td><strong>nquality</strong></td><td></td>
   
 </tr>
 
@@ -353,12 +635,12 @@ public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name,
   
 <tr>
   
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(out)</td>
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>name</strong></td><td></td>
+  <td><strong>x</strong>(*)</td><td></td>
   
 </tr>
 
@@ -368,27 +650,12 @@ public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name,
   
 <tr>
   
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(out)</td>
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>optarg</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>optind</strong></td><td></td>
+  <td><strong>y</strong>(*)</td><td></td>
   
 </tr>
 
@@ -399,11 +666,245 @@ public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name,
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>npts</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
   <td>intent(out)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>exitcode</strong></td><td></td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>debug</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+</small>
+  </td> 
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nquality</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-set_default_interpolator"></span><h3>
+public subroutine <a href='../proc/set_default_interpolator.html'>set_default_interpolator</a>()
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      <em>None</em>
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-dpnint1"></span><h3>
+private subroutine <a href='../proc/dpnint1.html'>dpnint1</a>(npoly, xx, yy, nn, r, val, debug)
+    
+    
+	 
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>npoly</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>xx</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>yy</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nn</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=dp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>debug</strong></td><td></td>
   
 </tr>
 
@@ -443,10 +944,6 @@ public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name,
       
       <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
       
-      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
-      
-      <a class="list-group-item" href="../module/m_interp.html">m_interp</a>
-      
       <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
       
       <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
@@ -455,7 +952,7 @@ public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name,
       
       <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
       
-      <a class="list-group-item" href="../module/m_psml_old_api.html">m_psml_old_api</a>
+      <a class="list-group-item" href="../module/m_psml_interp.html">m_psml_interp</a>
       
       <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
       
@@ -464,8 +961,6 @@ public subroutine <a href='../proc/getopts.html'>getopts</a>(optionstring, name,
       <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
       
       <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
-      
-      <a class="list-group-item" href="../module/sets_m.html">sets_m</a>
       
     </div>
   </div>

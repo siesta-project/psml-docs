@@ -1,22 +1,11 @@
-module m_interp
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+module m_psml_interp
 
 ! Default quality parameter for interpolator
 integer, public, save                  :: nq = 7
-
-#ifdef __NO_PROC_POINTERS__
-
-! Use a hard-wired interpolator
-
-interface interpolator
-   module procedure dpnint1
-end interface
-
-public :: interpolator
-private :: dpnint1
-
-CONTAINS
-
-#else
 
 ! This is the interface that the interpolators
 ! must have
@@ -86,8 +75,6 @@ subroutine set_default_interpolator()
   call set_interpolator(dpnint1,7)
 
 end subroutine set_default_interpolator
-
-#endif    /* For systems without procedure pointers */
 
 !
 ! Copyright (c) 1989-2014 by D. R. Hamann, Mat-Sim Research LLC and Rutgers
@@ -179,4 +166,4 @@ end subroutine set_default_interpolator
 
  end subroutine dpnint1
 
-end module m_interp
+end module m_psml_interp

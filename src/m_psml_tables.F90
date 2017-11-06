@@ -3,6 +3,10 @@
 !! (Table generators)
 !> @author Alberto Garcia
 !
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 module m_psml_tables
 
 use m_psml_core   ! For basic structures

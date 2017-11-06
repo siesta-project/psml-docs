@@ -3,6 +3,10 @@
 !! (Dumpers)
 !> @author Alberto Garcia
 !
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 module m_psml_dump
 
 use m_psml_core   ! For basic structures
@@ -26,53 +30,55 @@ private
 CONTAINS !===============================================
 
 subroutine ps_DumpToPSMLFile(ps,fname,indent)
-use xmlf90_wxml
 
-type(ps_t), intent(in) :: ps
-character(len=*), intent(in) :: fname
-logical, intent(in), optional :: indent
+  use xmlf90_wxml
 
-type(xmlf_t)  :: xf
+  type(ps_t), intent(in) :: ps
+  character(len=*), intent(in) :: fname
+  logical, intent(in), optional :: indent
 
-      call xml_OpenFile(trim(fname),xf, indent)
+  type(xmlf_t)  :: xf
 
-      call xml_AddXMLDeclaration(xf,"UTF-8")
+  call xml_OpenFile(trim(fname),xf, indent)
 
-      call xml_NewElement(xf,"psml")
-      call my_add_attribute(xf,"version",trim(ps%version))
-      call my_add_attribute(xf,"energy_unit",trim(ps%energy_unit))
-      call my_add_attribute(xf,"length_unit",trim(ps%length_unit))
-      call my_add_attribute(xf,"uuid",ps%uuid)
+  call xml_AddXMLDeclaration(xf,"UTF-8")
+
+  call xml_NewElement(xf,"psml")
+  call my_add_attribute(xf,"version",trim(ps%version))
+  call my_add_attribute(xf,"energy_unit",trim(ps%energy_unit))
+  call my_add_attribute(xf,"length_unit",trim(ps%length_unit))
+  call my_add_attribute(xf,"uuid",ps%uuid)
       call my_add_attribute(xf,"xmlns",ps%namespace)
 
 ! No top-level annotations in V1.1      
 !      call dump_annotation(xf,ps%annotation)
 
-      call dump_provenance(xf,ps%provenance)
+  call dump_provenance(xf,ps%provenance)
 
       call dump_pseudo_atom_spec(xf,ps)
 
-      if (initialized(ps%global_grid)) then
-         call dump_grid(xf,ps%global_grid)
-      endif
+  if (initialized(ps%global_grid)) then
+     call dump_grid(xf,ps%global_grid)
+  endif
 
-      call dump_valence_charge(xf,ps%valence_charge,ps%global_grid)
+  call dump_valence_charge(xf,ps%valence_charge,ps%global_grid)
       if (trim(ps%header%core_corrections) == "yes") then
          call dump_core_charge(xf,ps%core_charge,ps%global_grid)
       endif
 
       call dump_semilocal_potentials(xf,ps)
-      call dump_local_potential(xf,ps)
-      call dump_nonlocal_projectors(xf,ps)
-      call dump_pseudo_wavefunctions(xf,ps)
+  call dump_local_potential(xf,ps)
+  call dump_nonlocal_projectors(xf,ps)
+  call dump_pseudo_wavefunctions(xf,ps)
 
       
-      call xml_EndElement(xf,"psml")
-      call xml_Close(xf)
+  call xml_EndElement(xf,"psml")
+  call xml_Close(xf)
 
 end subroutine ps_DumpToPSMLFile
 
 subroutine dump_provenance(xf,p)
+
   use xmlf90_wxml
   use iso_varying_string, only: put, len, char
   
@@ -110,8 +116,9 @@ end subroutine dump_provenance
 
 
 subroutine dump_xc_info(xf,p)
+
   use xmlf90_wxml
-  
+
   type(xmlf_t), intent(inout) :: xf
   type(xc_t), intent(in) :: p
 
@@ -139,8 +146,9 @@ subroutine dump_xc_info(xf,p)
 end subroutine dump_xc_info
 
 subroutine dump_config_val(xf,p)
+
   use xmlf90_wxml
-  
+
   type(xmlf_t), intent(inout) :: xf
   type(config_val_t), intent(in) :: p
 
@@ -166,7 +174,9 @@ end subroutine dump_config_val
 
 
 subroutine dump_pseudo_atom_spec(xf,ps)
+
   use xmlf90_wxml
+
   type(xmlf_t), intent(inout) :: xf
   type(ps_t), intent(in), target :: ps
 
@@ -196,7 +206,9 @@ subroutine dump_pseudo_atom_spec(xf,ps)
 end subroutine dump_pseudo_atom_spec
 
 subroutine dump_radfunc(xf,rf,parent_grid)
+
   use xmlf90_wxml
+
   type(xmlf_t), intent(inout) :: xf
   type(radfunc_t), intent(in) :: rf
   type(Grid_t)                  :: parent_grid ! Only one level for now
@@ -221,7 +233,9 @@ subroutine dump_radfunc(xf,rf,parent_grid)
 end subroutine dump_radfunc
 
 subroutine dump_valence_charge(xf,val,parent_grid)
+
   use xmlf90_wxml
+
   type(xmlf_t), intent(inout) :: xf
   type(valence_charge_t), intent(in) :: val
   type(Grid_t)           :: parent_grid
@@ -234,7 +248,9 @@ subroutine dump_valence_charge(xf,val,parent_grid)
 end subroutine dump_valence_charge
 
 subroutine dump_core_charge(xf,core,parent_grid)
+
   use xmlf90_wxml
+
   type(xmlf_t), intent(inout) :: xf
   type(core_charge_t), intent(in) :: core
   type(Grid_t)                 :: parent_grid
@@ -252,6 +268,7 @@ subroutine dump_core_charge(xf,core,parent_grid)
 end subroutine dump_core_charge
 !
 subroutine dump_semilocal_potentials(xf,ps)
+
   use xmlf90_wxml
 
   type(xmlf_t), intent(inout) :: xf
@@ -304,6 +321,7 @@ subroutine dump_semilocal_potentials(xf,ps)
 end subroutine dump_semilocal_potentials
 
 subroutine dump_local_potential(xf,ps)
+
   use xmlf90_wxml
 
   type(xmlf_t), intent(inout) :: xf
@@ -343,8 +361,9 @@ end subroutine dump_local_potential
 
 !----------------------------------------------------------
 subroutine dump_nonlocal_projectors(xf,ps)
+
   use xmlf90_wxml
-  
+
   type(xmlf_t), intent(inout) :: xf
   type(ps_t), intent(in), target :: ps
 
@@ -395,8 +414,8 @@ subroutine dump_nonlocal_projectors(xf,ps)
 end subroutine dump_nonlocal_projectors
 !----------------------------------------------------------
 subroutine dump_pseudo_wavefunctions(xf,ps)
+
   use xmlf90_wxml
-  use sets_m
 
   type(xmlf_t), intent(inout) :: xf
   type(ps_t), intent(in), target :: ps
@@ -452,7 +471,9 @@ subroutine dump_pseudo_wavefunctions(xf,ps)
 end subroutine dump_pseudo_wavefunctions
 
 subroutine dump_grid(xf,agrid)
+
   use xmlf90_wxml
+
   type(xmlf_t), intent(inout) :: xf
   type(Grid_t), intent(in) :: agrid
 
@@ -470,6 +491,7 @@ end subroutine dump_grid
 subroutine dump_annotation(xf,annotation)
 
   use xmlf90_wxml
+
   use assoc_list, only: ps_annotation_t => assoc_list_t
   use assoc_list, only: nitems_annotation => assoc_list_nitems
   use assoc_list, only: get_annotation_key => assoc_list_get_key
@@ -495,7 +517,9 @@ endif
 end subroutine dump_annotation
 
 subroutine my_add_attribute(xf,name,value)
+
   use xmlf90_wxml
+
   type(xmlf_t), intent(inout)   :: xf
   character(len=*), intent(in)  :: name
   character(len=*), intent(in)  :: value

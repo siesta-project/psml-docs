@@ -75,8 +75,8 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+            <li><a href="../program/test_assoc.html">Program</a></li>
+	    
             </ul>
             </li>
 
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.5% of total for source files.">23 statements</a>
+	  title=" 0.7% of total for source files.">22 statements</a>
      </li> 
      
      
@@ -211,29 +211,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -243,17 +233,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>
@@ -315,58 +297,59 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">module </span><span class="n">m_psml</span>
-<a name="ln-2"></a>
-<a name="ln-3"></a><span class="c">!</span>
-<a name="ln-4"></a>  <span class="k">use </span><span class="n">m_psml_reader</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">psml_reader</span> 
-<a name="ln-5"></a>
-<a name="ln-6"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_t</span><span class="p">,</span> <span class="n">ps_destroy</span>
-<a name="ln-7"></a>
-<a name="ln-8"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">str_of_set</span>
-<a name="ln-9"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span>     <span class="n">SET_SREL</span>     <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-10"></a>                             <span class="n">SET_NONREL</span>   <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-11"></a>                             <span class="n">SET_SO</span>       <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12"></a>                             <span class="n">SET_LJ</span>       <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-13"></a>                             <span class="n">SET_UP</span>       <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-14"></a>                             <span class="n">SET_DOWN</span>     <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-15"></a>                             <span class="n">SET_SPINAVE</span>  <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-16"></a>                             <span class="n">SET_SPINDIFF</span> <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-17"></a>                             <span class="n">SET_USER1</span>    <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-18"></a>                             <span class="n">SET_USER2</span>    <span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-19"></a>                             <span class="n">SET_ALL</span>
-<a name="ln-20"></a>
-<a name="ln-21"></a>  <span class="c">! Temporarily needed for psop</span>
-<a name="ln-22"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">nonlocal_t</span><span class="p">,</span> <span class="n">nlpj_t</span>
-<a name="ln-23"></a>
-<a name="ln-24"></a>  <span class="k">use </span><span class="n">m_psml_api</span>
-<a name="ln-25"></a><span class="cp">#ifndef PSML_NO_OLD_API  </span>
-<a name="ln-26"></a>  <span class="k">use </span><span class="n">m_psml_old_api</span>
-<a name="ln-27"></a><span class="cp">#endif</span>
-<a name="ln-28"></a>  
-<a name="ln-29"></a>  <span class="k">use </span><span class="n">m_psml_dump</span>
-<a name="ln-30"></a>  <span class="k">use </span><span class="n">m_psml_ps_edit</span>
-<a name="ln-31"></a>
-<a name="ln-32"></a>  <span class="c">! Exported utility types</span>
-<a name="ln-33"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_radfunc_t</span> <span class="o">=&gt;</span> <span class="n">radfunc_t</span>
-<a name="ln-34"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
-<a name="ln-35"></a>
-<a name="ln-36"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">nitems_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_nitems</span>
-<a name="ln-37"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_key</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_key</span>
-<a name="ln-38"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_value</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_value</span>
-<a name="ln-39"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">insert_annotation_pair</span> <span class="o">=&gt;</span> <span class="n">assoc_list_insert</span>
-<a name="ln-40"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">init_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_init</span>
-<a name="ln-41"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">reset_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_reset</span>
-<a name="ln-42"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">print_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_print</span>
-<a name="ln-43"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">EMPTY_ANNOTATION</span> <span class="o">=&gt;</span> <span class="n">EMPTY_ASSOC_LIST</span> 
-<a name="ln-44"></a>
-<a name="ln-45"></a>  <span class="c">! Remove common names from namespace</span>
-<a name="ln-46"></a>  <span class="k">use </span><span class="n">class_Grid</span><span class="p">,</span> <span class="n">dummy_id</span> <span class="o">=&gt;</span> <span class="n">id</span><span class="p">,</span> <span class="n">dummy_name</span> <span class="o">=&gt;</span> <span class="n">name</span>
-<a name="ln-47"></a>
-<a name="ln-48"></a>  <span class="c">! Export precision of real numbers used</span>
-<a name="ln-49"></a>  
-<a name="ln-50"></a>  <span class="kt">integer</span><span class="p">,</span> <span class="k">public</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">ps_real_kind</span> <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<a name="ln-51"></a>
-<a name="ln-52"></a><span class="k">end module </span><span class="n">m_psml</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="cp">#if defined HAVE_CONFIG_H</span>
+<a name="ln-2"></a><span class="cp">#include &quot;config.h&quot;</span>
+<a name="ln-3"></a><span class="cp">#endif</span>
+<a name="ln-4"></a>
+<a name="ln-5"></a><span class="k">module </span><span class="n">m_psml</span>
+<a name="ln-6"></a>
+<a name="ln-7"></a><span class="c">!</span>
+<a name="ln-8"></a>  <span class="k">use </span><span class="n">m_psml_reader</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">psml_reader</span> 
+<a name="ln-9"></a>
+<a name="ln-10"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_t</span><span class="p">,</span> <span class="n">ps_destroy</span>
+<a name="ln-11"></a>
+<a name="ln-12"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">str_of_set</span>
+<a name="ln-13"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span>     <span class="n">SET_SREL</span>     <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-14"></a>                             <span class="n">SET_NONREL</span>   <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-15"></a>                             <span class="n">SET_SO</span>       <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-16"></a>                             <span class="n">SET_LJ</span>       <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-17"></a>                             <span class="n">SET_UP</span>       <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-18"></a>                             <span class="n">SET_DOWN</span>     <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-19"></a>                             <span class="n">SET_SPINAVE</span>  <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-20"></a>                             <span class="n">SET_SPINDIFF</span> <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-21"></a>                             <span class="n">SET_USER1</span>    <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-22"></a>                             <span class="n">SET_USER2</span>    <span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-23"></a>                             <span class="n">SET_ALL</span>
+<a name="ln-24"></a>
+<a name="ln-25"></a>  <span class="c">! Temporarily needed for psop</span>
+<a name="ln-26"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">nonlocal_t</span><span class="p">,</span> <span class="n">nlpj_t</span>
+<a name="ln-27"></a>
+<a name="ln-28"></a>  <span class="k">use </span><span class="n">m_psml_api</span>
+<a name="ln-29"></a>  
+<a name="ln-30"></a>  <span class="k">use </span><span class="n">m_psml_dump</span>
+<a name="ln-31"></a>  <span class="k">use </span><span class="n">m_psml_ps_edit</span>
+<a name="ln-32"></a>
+<a name="ln-33"></a>  <span class="c">! Exported utility types</span>
+<a name="ln-34"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_radfunc_t</span> <span class="o">=&gt;</span> <span class="n">radfunc_t</span>
+<a name="ln-35"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
+<a name="ln-36"></a>
+<a name="ln-37"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">nitems_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_nitems</span>
+<a name="ln-38"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_key</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_key</span>
+<a name="ln-39"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">get_annotation_value</span> <span class="o">=&gt;</span> <span class="n">assoc_list_get_value</span>
+<a name="ln-40"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">insert_annotation_pair</span> <span class="o">=&gt;</span> <span class="n">assoc_list_insert</span>
+<a name="ln-41"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">init_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_init</span>
+<a name="ln-42"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">reset_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_reset</span>
+<a name="ln-43"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">print_annotation</span> <span class="o">=&gt;</span> <span class="n">assoc_list_print</span>
+<a name="ln-44"></a>  <span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">EMPTY_ANNOTATION</span> <span class="o">=&gt;</span> <span class="n">EMPTY_ASSOC_LIST</span> 
+<a name="ln-45"></a>
+<a name="ln-46"></a>  <span class="c">! Remove common names from namespace</span>
+<a name="ln-47"></a>  <span class="k">use </span><span class="n">class_Grid</span><span class="p">,</span> <span class="n">dummy_id</span> <span class="o">=&gt;</span> <span class="n">id</span><span class="p">,</span> <span class="n">dummy_name</span> <span class="o">=&gt;</span> <span class="n">name</span>
+<a name="ln-48"></a>
+<a name="ln-49"></a>  <span class="c">! Export precision of real numbers used</span>
+<a name="ln-50"></a>  
+<a name="ln-51"></a>  <span class="kt">integer</span><span class="p">,</span> <span class="k">public</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">ps_real_kind</span> <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<a name="ln-52"></a>
+<a name="ln-53"></a><span class="k">end module </span><span class="n">m_psml</span>
 </pre></div>
 
     </section>
@@ -388,29 +371,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -420,17 +393,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>

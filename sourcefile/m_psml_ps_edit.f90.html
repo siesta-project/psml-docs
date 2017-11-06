@@ -75,8 +75,8 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+            <li><a href="../program/test_assoc.html">Program</a></li>
+	    
             </ul>
             </li>
 
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.9% of total for source files.">85 statements</a>
+	  title=" 2.8% of total for source files.">85 statements</a>
      </li> 
      
      
@@ -211,29 +211,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -243,17 +233,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>
@@ -319,124 +301,128 @@
 <a name="ln-2"></a><span class="c">!!</span>
 <a name="ln-3"></a><span class="c">!&gt; @author Alberto Garcia</span>
 <a name="ln-4"></a><span class="c">!</span>
-<a name="ln-5"></a><span class="k">module </span><span class="n">m_psml_ps_edit</span>
-<a name="ln-6"></a>
-<a name="ln-7"></a><span class="k">use </span><span class="n">m_psml_core</span>   <span class="c">! For basic structures</span>
-<a name="ln-8"></a><span class="k">use </span><span class="n">external_interfaces</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">die</span> <span class="o">=&gt;</span> <span class="n">psml_die</span>
-<a name="ln-9"></a>
-<a name="ln-10"></a><span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
-<a name="ln-11"></a>
-<a name="ln-12"></a><span class="k">implicit none</span>
+<a name="ln-5"></a><span class="cp">#if defined HAVE_CONFIG_H</span>
+<a name="ln-6"></a><span class="cp">#include &quot;config.h&quot;</span>
+<a name="ln-7"></a><span class="cp">#endif</span>
+<a name="ln-8"></a>
+<a name="ln-9"></a><span class="k">module </span><span class="n">m_psml_ps_edit</span>
+<a name="ln-10"></a>
+<a name="ln-11"></a><span class="k">use </span><span class="n">m_psml_core</span>   <span class="c">! For basic structures</span>
+<a name="ln-12"></a><span class="k">use </span><span class="n">external_interfaces</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">die</span> <span class="o">=&gt;</span> <span class="n">psml_die</span>
 <a name="ln-13"></a>
-<a name="ln-14"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_RootAttributes_Set</span>
-<a name="ln-15"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_SetUUID</span>
-<a name="ln-16"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_SetPSMLVersion</span>
-<a name="ln-17"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_AddProvenanceRecord</span>
-<a name="ln-18"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_Delete_LocalPotential</span>
-<a name="ln-19"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_Delete_NonLocalProjectors</span>
-<a name="ln-20"></a>
-<a name="ln-21"></a><span class="c">! Aliases</span>
-<a name="ln-22"></a><span class="k">interface </span><span class="n">ps_Provenance_Add</span>
-<a name="ln-23"></a>   <span class="k">module procedure </span><span class="n">ps_AddProvenanceRecord</span>
-<a name="ln-24"></a><span class="k">end interface </span><span class="n">ps_Provenance_Add</span>
-<a name="ln-25"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_Provenance_Add</span>
-<a name="ln-26"></a>
-<a name="ln-27"></a><span class="k">interface </span><span class="n">ps_NonLocalProjectors_Delete</span>
-<a name="ln-28"></a>   <span class="k">module procedure </span><span class="n">ps_Delete_NonLocalProjectors</span>
-<a name="ln-29"></a><span class="k">end interface </span><span class="n">ps_NonLocalProjectors_Delete</span>
-<a name="ln-30"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_NonLocalProjectors_Delete</span>
-<a name="ln-31"></a>
-<a name="ln-32"></a><span class="k">interface </span><span class="n">ps_LocalPotential_Delete</span>
-<a name="ln-33"></a>   <span class="k">module procedure </span><span class="n">ps_Delete_LocalPotential</span>
-<a name="ln-34"></a><span class="k">end interface </span><span class="n">ps_LocalPotential_Delete</span>
-<a name="ln-35"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_LocalPotential_Delete</span>
-<a name="ln-36"></a>
-<a name="ln-37"></a><span class="c">!public :: ps_AddSLBlock</span>
-<a name="ln-38"></a><span class="k">private</span>
-<a name="ln-39"></a>
-<a name="ln-40"></a><span class="k">CONTAINS</span> <span class="c">!===============================================</span>
-<a name="ln-41"></a>  <span class="k">subroutine </span><span class="n">ps_RootAttributes_Set</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">version</span><span class="p">,</span><span class="n">uuid</span><span class="p">,</span><span class="n">namespace</span><span class="p">)</span> 
-<a name="ln-42"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-43"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">version</span>
-<a name="ln-44"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">uuid</span>
-<a name="ln-45"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">namespace</span>
-<a name="ln-46"></a>
-<a name="ln-47"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">version</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-48"></a><span class="k">       </span><span class="n">ps</span><span class="p">%</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-<a name="ln-49"></a>    <span class="n">endif</span>
+<a name="ln-14"></a><span class="k">use </span><span class="n">assoc_list</span><span class="p">,</span> <span class="n">ps_annotation_t</span> <span class="o">=&gt;</span> <span class="n">assoc_list_t</span>
+<a name="ln-15"></a>
+<a name="ln-16"></a><span class="k">implicit none</span>
+<a name="ln-17"></a>
+<a name="ln-18"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_RootAttributes_Set</span>
+<a name="ln-19"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_SetUUID</span>
+<a name="ln-20"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_SetPSMLVersion</span>
+<a name="ln-21"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_AddProvenanceRecord</span>
+<a name="ln-22"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_Delete_LocalPotential</span>
+<a name="ln-23"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_Delete_NonLocalProjectors</span>
+<a name="ln-24"></a>
+<a name="ln-25"></a><span class="c">! Aliases</span>
+<a name="ln-26"></a><span class="k">interface </span><span class="n">ps_Provenance_Add</span>
+<a name="ln-27"></a>   <span class="k">module procedure </span><span class="n">ps_AddProvenanceRecord</span>
+<a name="ln-28"></a><span class="k">end interface </span><span class="n">ps_Provenance_Add</span>
+<a name="ln-29"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_Provenance_Add</span>
+<a name="ln-30"></a>
+<a name="ln-31"></a><span class="k">interface </span><span class="n">ps_NonLocalProjectors_Delete</span>
+<a name="ln-32"></a>   <span class="k">module procedure </span><span class="n">ps_Delete_NonLocalProjectors</span>
+<a name="ln-33"></a><span class="k">end interface </span><span class="n">ps_NonLocalProjectors_Delete</span>
+<a name="ln-34"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_NonLocalProjectors_Delete</span>
+<a name="ln-35"></a>
+<a name="ln-36"></a><span class="k">interface </span><span class="n">ps_LocalPotential_Delete</span>
+<a name="ln-37"></a>   <span class="k">module procedure </span><span class="n">ps_Delete_LocalPotential</span>
+<a name="ln-38"></a><span class="k">end interface </span><span class="n">ps_LocalPotential_Delete</span>
+<a name="ln-39"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">ps_LocalPotential_Delete</span>
+<a name="ln-40"></a>
+<a name="ln-41"></a><span class="c">!public :: ps_AddSLBlock</span>
+<a name="ln-42"></a><span class="k">private</span>
+<a name="ln-43"></a>
+<a name="ln-44"></a><span class="k">CONTAINS</span> <span class="c">!===============================================</span>
+<a name="ln-45"></a>  <span class="k">subroutine </span><span class="n">ps_RootAttributes_Set</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">version</span><span class="p">,</span><span class="n">uuid</span><span class="p">,</span><span class="n">namespace</span><span class="p">)</span> 
+<a name="ln-46"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-47"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">version</span>
+<a name="ln-48"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">uuid</span>
+<a name="ln-49"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">namespace</span>
 <a name="ln-50"></a>
-<a name="ln-51"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-52"></a><span class="k">       </span><span class="n">ps</span><span class="p">%</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">uuid</span>
+<a name="ln-51"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">version</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-52"></a><span class="k">       </span><span class="n">ps</span><span class="p">%</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
 <a name="ln-53"></a>    <span class="n">endif</span>
-<a name="ln-54"></a>    
-<a name="ln-55"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-56"></a><span class="k">       </span><span class="n">ps</span><span class="p">%</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+<a name="ln-54"></a>
+<a name="ln-55"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-56"></a><span class="k">       </span><span class="n">ps</span><span class="p">%</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">uuid</span>
 <a name="ln-57"></a>    <span class="n">endif</span>
 <a name="ln-58"></a>    
-<a name="ln-59"></a>  <span class="k">end  subroutine </span><span class="n">ps_RootAttributes_Set</span>
-<a name="ln-60"></a>  
-<a name="ln-61"></a>  <span class="k">subroutine </span><span class="n">ps_SetPSMLVersion</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">version</span><span class="p">)</span> 
-<a name="ln-62"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-63"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">version</span>
-<a name="ln-64"></a>    <span class="n">ps</span><span class="p">%</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-<a name="ln-65"></a>  <span class="k">end subroutine </span><span class="n">ps_SetPSMLVersion</span>
-<a name="ln-66"></a>  
-<a name="ln-67"></a>  <span class="k">subroutine </span><span class="n">ps_SetUUID</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">id</span><span class="p">)</span> 
-<a name="ln-68"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-69"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">id</span>
-<a name="ln-70"></a>    <span class="n">ps</span><span class="p">%</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">id</span>
-<a name="ln-71"></a>  <span class="k">end subroutine </span><span class="n">ps_SetUUID</span>
-<a name="ln-72"></a>  
-<a name="ln-73"></a>  <span class="k">subroutine </span><span class="n">ps_AddProvenanceRecord</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">creator</span><span class="p">,</span><span class="n">date</span><span class="p">,</span><span class="n">annotation</span><span class="p">)</span>
-<a name="ln-74"></a>
-<a name="ln-75"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-76"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">creator</span>
-<a name="ln-77"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">date</span>
-<a name="ln-78"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">annotation</span>
-<a name="ln-79"></a>
-<a name="ln-80"></a><span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">p</span>
-<a name="ln-81"></a><span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">q</span>
-<a name="ln-82"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">depth</span>
+<a name="ln-59"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-60"></a><span class="k">       </span><span class="n">ps</span><span class="p">%</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+<a name="ln-61"></a>    <span class="n">endif</span>
+<a name="ln-62"></a>    
+<a name="ln-63"></a>  <span class="k">end  subroutine </span><span class="n">ps_RootAttributes_Set</span>
+<a name="ln-64"></a>  
+<a name="ln-65"></a>  <span class="k">subroutine </span><span class="n">ps_SetPSMLVersion</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">version</span><span class="p">)</span> 
+<a name="ln-66"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-67"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">version</span>
+<a name="ln-68"></a>    <span class="n">ps</span><span class="p">%</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+<a name="ln-69"></a>  <span class="k">end subroutine </span><span class="n">ps_SetPSMLVersion</span>
+<a name="ln-70"></a>  
+<a name="ln-71"></a>  <span class="k">subroutine </span><span class="n">ps_SetUUID</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">id</span><span class="p">)</span> 
+<a name="ln-72"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-73"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">id</span>
+<a name="ln-74"></a>    <span class="n">ps</span><span class="p">%</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">id</span>
+<a name="ln-75"></a>  <span class="k">end subroutine </span><span class="n">ps_SetUUID</span>
+<a name="ln-76"></a>  
+<a name="ln-77"></a>  <span class="k">subroutine </span><span class="n">ps_AddProvenanceRecord</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">creator</span><span class="p">,</span><span class="n">date</span><span class="p">,</span><span class="n">annotation</span><span class="p">)</span>
+<a name="ln-78"></a>
+<a name="ln-79"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-80"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">creator</span>
+<a name="ln-81"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">date</span>
+<a name="ln-82"></a>    <span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">annotation</span>
 <a name="ln-83"></a>
-<a name="ln-84"></a><span class="k">allocate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<a name="ln-85"></a><span class="c">!</span>
-<a name="ln-86"></a><span class="c">! Find the depth of the provenance stack</span>
-<a name="ln-87"></a><span class="c">!</span>
-<a name="ln-88"></a><span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-89"></a><span class="n">q</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">provenance</span>
-<a name="ln-90"></a><span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
-<a name="ln-91"></a>   <span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-92"></a>   <span class="n">q</span> <span class="o">=&gt;</span> <span class="n">q</span><span class="p">%</span><span class="n">next</span>
-<a name="ln-93"></a><span class="n">enddo</span>
-<a name="ln-94"></a>
-<a name="ln-95"></a><span class="n">q</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">provenance</span>
-<a name="ln-96"></a><span class="k">if</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">q</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-97"></a><span class="k">   </span><span class="n">p</span><span class="p">%</span><span class="n">next</span> <span class="o">=&gt;</span> <span class="n">q</span>
-<a name="ln-98"></a>   <span class="n">q</span><span class="p">%</span><span class="n">prev</span> <span class="o">=&gt;</span> <span class="n">p</span>
-<a name="ln-99"></a><span class="n">endif</span>
-<a name="ln-100"></a><span class="n">ps</span><span class="p">%</span><span class="n">provenance</span> <span class="o">=&gt;</span> <span class="n">p</span>
-<a name="ln-101"></a>
-<a name="ln-102"></a><span class="n">p</span><span class="p">%</span><span class="n">record_number</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-103"></a><span class="n">p</span><span class="p">%</span><span class="n">creator</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">creator</span><span class="p">)</span>
-<a name="ln-104"></a><span class="n">p</span><span class="p">%</span><span class="n">date</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
-<a name="ln-105"></a><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="o">=</span> <span class="n">annotation</span>
-<a name="ln-106"></a>
-<a name="ln-107"></a><span class="k">end subroutine </span><span class="n">ps_AddProvenanceRecord</span>
-<a name="ln-108"></a><span class="c">!</span>
-<a name="ln-109"></a><span class="k">subroutine </span><span class="n">ps_Delete_NonlocalProjectors</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-110"></a><span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-111"></a>
-<a name="ln-112"></a><span class="k">call </span><span class="n">destroy_nonlocal</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">nonlocal</span><span class="p">)</span>
-<a name="ln-113"></a><span class="k">end subroutine </span><span class="n">ps_Delete_NonlocalProjectors</span>
-<a name="ln-114"></a>
-<a name="ln-115"></a><span class="k">subroutine </span><span class="n">ps_Delete_LocalPotential</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-116"></a><span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
-<a name="ln-117"></a>
-<a name="ln-118"></a><span class="k">call </span><span class="n">destroy_local</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">local</span><span class="p">)</span>
-<a name="ln-119"></a><span class="k">end subroutine </span><span class="n">ps_Delete_LocalPotential</span>
-<a name="ln-120"></a>
-<a name="ln-121"></a><span class="k">end module </span><span class="n">m_psml_ps_edit</span>
-<a name="ln-122"></a>   
+<a name="ln-84"></a><span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">p</span>
+<a name="ln-85"></a><span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">q</span>
+<a name="ln-86"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">depth</span>
+<a name="ln-87"></a>
+<a name="ln-88"></a><span class="k">allocate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a name="ln-89"></a><span class="c">!</span>
+<a name="ln-90"></a><span class="c">! Find the depth of the provenance stack</span>
+<a name="ln-91"></a><span class="c">!</span>
+<a name="ln-92"></a><span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-93"></a><span class="n">q</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">provenance</span>
+<a name="ln-94"></a><span class="k">do while</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<a name="ln-95"></a>   <span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-96"></a>   <span class="n">q</span> <span class="o">=&gt;</span> <span class="n">q</span><span class="p">%</span><span class="n">next</span>
+<a name="ln-97"></a><span class="n">enddo</span>
+<a name="ln-98"></a>
+<a name="ln-99"></a><span class="n">q</span> <span class="o">=&gt;</span> <span class="n">ps</span><span class="p">%</span><span class="n">provenance</span>
+<a name="ln-100"></a><span class="k">if</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">q</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-101"></a><span class="k">   </span><span class="n">p</span><span class="p">%</span><span class="n">next</span> <span class="o">=&gt;</span> <span class="n">q</span>
+<a name="ln-102"></a>   <span class="n">q</span><span class="p">%</span><span class="n">prev</span> <span class="o">=&gt;</span> <span class="n">p</span>
+<a name="ln-103"></a><span class="n">endif</span>
+<a name="ln-104"></a><span class="n">ps</span><span class="p">%</span><span class="n">provenance</span> <span class="o">=&gt;</span> <span class="n">p</span>
+<a name="ln-105"></a>
+<a name="ln-106"></a><span class="n">p</span><span class="p">%</span><span class="n">record_number</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-107"></a><span class="n">p</span><span class="p">%</span><span class="n">creator</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">creator</span><span class="p">)</span>
+<a name="ln-108"></a><span class="n">p</span><span class="p">%</span><span class="n">date</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+<a name="ln-109"></a><span class="n">p</span><span class="p">%</span><span class="n">annotation</span><span class="o">=</span> <span class="n">annotation</span>
+<a name="ln-110"></a>
+<a name="ln-111"></a><span class="k">end subroutine </span><span class="n">ps_AddProvenanceRecord</span>
+<a name="ln-112"></a><span class="c">!</span>
+<a name="ln-113"></a><span class="k">subroutine </span><span class="n">ps_Delete_NonlocalProjectors</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-114"></a><span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-115"></a>
+<a name="ln-116"></a><span class="k">call </span><span class="n">destroy_nonlocal</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">nonlocal</span><span class="p">)</span>
+<a name="ln-117"></a><span class="k">end subroutine </span><span class="n">ps_Delete_NonlocalProjectors</span>
+<a name="ln-118"></a>
+<a name="ln-119"></a><span class="k">subroutine </span><span class="n">ps_Delete_LocalPotential</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-120"></a><span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
+<a name="ln-121"></a>
+<a name="ln-122"></a><span class="k">call </span><span class="n">destroy_local</span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">local</span><span class="p">)</span>
+<a name="ln-123"></a><span class="k">end subroutine </span><span class="n">ps_Delete_LocalPotential</span>
+<a name="ln-124"></a>
+<a name="ln-125"></a><span class="k">end module </span><span class="n">m_psml_ps_edit</span>
+<a name="ln-126"></a>   
 </pre></div>
 
     </section>
@@ -458,29 +444,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -490,17 +466,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>

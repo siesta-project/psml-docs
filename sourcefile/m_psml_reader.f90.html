@@ -75,8 +75,8 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+            <li><a href="../program/test_assoc.html">Program</a></li>
+	    
             </ul>
             </li>
 
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 0.8% of total for source files.">34 statements</a>
+	  title=" 1.1% of total for source files.">34 statements</a>
      </li> 
      
      
@@ -211,29 +211,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -243,17 +233,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>
@@ -315,89 +297,76 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">module </span><span class="n">m_psml_reader</span>
-<a name="ln-2"></a>
-<a name="ln-3"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">psml_reader</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="cp">#if defined HAVE_CONFIG_H</span>
+<a name="ln-2"></a><span class="cp">#include &quot;config.h&quot;</span>
+<a name="ln-3"></a><span class="cp">#endif</span>
 <a name="ln-4"></a>
-<a name="ln-5"></a>  <span class="k">CONTAINS</span>
+<a name="ln-5"></a><span class="k">module </span><span class="n">m_psml_reader</span>
 <a name="ln-6"></a>
-<a name="ln-7"></a><span class="k">  subroutine </span><span class="n">psml_reader</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="n">debug</span><span class="p">)</span>
+<a name="ln-7"></a>  <span class="k">public</span> <span class="kd">::</span> <span class="n">psml_reader</span>
 <a name="ln-8"></a>
-<a name="ln-9"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span>            <span class="n">only</span><span class="p">:</span> <span class="n">ps_t</span><span class="p">,</span> <span class="n">ps_destroy</span>
-<a name="ln-10"></a>  <span class="k">use </span><span class="n">m_psml_tables</span><span class="p">,</span>          <span class="n">only</span><span class="p">:</span> <span class="n">ps_GenerateTables</span>
-<a name="ln-11"></a>
-<a name="ln-12"></a>  <span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">begin_element</span><span class="p">,</span> <span class="n">end_element</span><span class="p">,</span> <span class="n">pcdata_chunk</span>
-<a name="ln-13"></a>  <span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">cdata_section_chunk</span>
-<a name="ln-14"></a>  <span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">pseudo</span><span class="p">,</span> <span class="n">debug_parsing</span>
+<a name="ln-9"></a>  <span class="k">CONTAINS</span>
+<a name="ln-10"></a>
+<a name="ln-11"></a><span class="k">  subroutine </span><span class="n">psml_reader</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="n">debug</span><span class="p">)</span>
+<a name="ln-12"></a>
+<a name="ln-13"></a>  <span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span>            <span class="n">only</span><span class="p">:</span> <span class="n">ps_t</span><span class="p">,</span> <span class="n">ps_destroy</span>
+<a name="ln-14"></a>  <span class="k">use </span><span class="n">m_psml_tables</span><span class="p">,</span>          <span class="n">only</span><span class="p">:</span> <span class="n">ps_GenerateTables</span>
 <a name="ln-15"></a>
-<a name="ln-16"></a>  <span class="k">use </span><span class="n">external_interfaces</span><span class="p">,</span>    <span class="n">only</span><span class="p">:</span> <span class="n">die</span> <span class="o">=&gt;</span> <span class="n">psml_die</span>
-<a name="ln-17"></a><span class="cp">#ifndef __NO_PROC_POINTERS__</span>
-<a name="ln-18"></a>  <span class="k">use </span><span class="n">m_interp</span><span class="p">,</span>               <span class="n">only</span><span class="p">:</span> <span class="n">set_default_interpolator</span>
-<a name="ln-19"></a><span class="cp">#endif</span>
-<a name="ln-20"></a>
-<a name="ln-21"></a><span class="cp">#ifdef PSML_USE_FOX</span>
-<a name="ln-22"></a>  <span class="k">use </span><span class="n">FoX_sax</span><span class="p">,</span>           <span class="n">only</span><span class="p">:</span> <span class="n">xml_t</span><span class="p">,</span> <span class="n">open_xml_file</span><span class="p">,</span> <span class="n">close_xml_t</span><span class="p">,</span> <span class="n">parse</span>
-<a name="ln-23"></a><span class="cp">#else</span>
-<a name="ln-24"></a>  <span class="k">use </span><span class="n">xmlf90_sax</span><span class="p">,</span>        <span class="n">only</span><span class="p">:</span> <span class="n">xml_t</span><span class="p">,</span> <span class="n">open_xmlfile</span><span class="p">,</span> <span class="n">xml_parse</span><span class="p">,</span> <span class="n">close_xmlfile</span>
-<a name="ln-25"></a><span class="cp">#endif</span>
+<a name="ln-16"></a>  <span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">begin_element</span><span class="p">,</span> <span class="n">end_element</span><span class="p">,</span> <span class="n">pcdata_chunk</span>
+<a name="ln-17"></a>  <span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">cdata_section_chunk</span>
+<a name="ln-18"></a>  <span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">pseudo</span><span class="p">,</span> <span class="n">debug_parsing</span>
+<a name="ln-19"></a>
+<a name="ln-20"></a>  <span class="k">use </span><span class="n">external_interfaces</span><span class="p">,</span>    <span class="n">only</span><span class="p">:</span> <span class="n">die</span> <span class="o">=&gt;</span> <span class="n">psml_die</span>
+<a name="ln-21"></a>  <span class="k">use </span><span class="n">m_psml_interp</span><span class="p">,</span>               <span class="n">only</span><span class="p">:</span> <span class="n">set_default_interpolator</span>
+<a name="ln-22"></a>
+<a name="ln-23"></a>  <span class="k">use </span><span class="n">xmlf90_sax</span><span class="p">,</span>        <span class="n">only</span><span class="p">:</span> <span class="n">xml_t</span><span class="p">,</span> <span class="n">open_xmlfile</span><span class="p">,</span> <span class="n">xml_parse</span><span class="p">,</span> <span class="n">close_xmlfile</span>
+<a name="ln-24"></a>
+<a name="ln-25"></a>  <span class="k">implicit none </span>
 <a name="ln-26"></a>
-<a name="ln-27"></a>  <span class="k">implicit none </span>
-<a name="ln-28"></a>
-<a name="ln-29"></a><span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">fname</span>
-<a name="ln-30"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">target</span>   <span class="kd">::</span> <span class="n">ps</span> 
-<a name="ln-31"></a>  <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span>       <span class="kd">::</span> <span class="n">debug</span>
-<a name="ln-32"></a>
-<a name="ln-33"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xml_t</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">fxml</span>
-<a name="ln-34"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iostat</span>
-<a name="ln-35"></a>
-<a name="ln-36"></a>  <span class="c">! Clean the object&#39;s internal data</span>
-<a name="ln-37"></a>  <span class="c">! Note that the inout intent allow us</span>
-<a name="ln-38"></a>  <span class="c">! to do this, and avoid having ps being</span>
-<a name="ln-39"></a>  <span class="c">! reset by the compiler</span>
+<a name="ln-27"></a><span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">fname</span>
+<a name="ln-28"></a>  <span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">target</span>   <span class="kd">::</span> <span class="n">ps</span> 
+<a name="ln-29"></a>  <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span>       <span class="kd">::</span> <span class="n">debug</span>
+<a name="ln-30"></a>
+<a name="ln-31"></a>  <span class="k">type</span><span class="p">(</span><span class="n">xml_t</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">fxml</span>
+<a name="ln-32"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iostat</span>
+<a name="ln-33"></a>
+<a name="ln-34"></a>  <span class="c">! Clean the object&#39;s internal data</span>
+<a name="ln-35"></a>  <span class="c">! Note that the inout intent allow us</span>
+<a name="ln-36"></a>  <span class="c">! to do this, and avoid having ps being</span>
+<a name="ln-37"></a>  <span class="c">! reset by the compiler</span>
+<a name="ln-38"></a>
+<a name="ln-39"></a>  <span class="k">call </span><span class="n">ps_destroy</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
 <a name="ln-40"></a>
-<a name="ln-41"></a>  <span class="k">call </span><span class="n">ps_destroy</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-42"></a>
-<a name="ln-43"></a>  <span class="c">! Associate module pointer, so that the parsed data</span>
-<a name="ln-44"></a>  <span class="c">! is written to ps</span>
-<a name="ln-45"></a>  <span class="n">pseudo</span> <span class="o">=&gt;</span> <span class="n">ps</span>
-<a name="ln-46"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">debug</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-47"></a><span class="k">     </span><span class="n">debug_parsing</span> <span class="o">=</span> <span class="n">debug</span>
-<a name="ln-48"></a>  <span class="k">else</span>
-<a name="ln-49"></a><span class="k">     </span><span class="n">debug_parsing</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-50"></a>  <span class="n">endif</span>
-<a name="ln-51"></a>
-<a name="ln-52"></a> <span class="c">! Allocate internal structures here...</span>
-<a name="ln-53"></a> 
-<a name="ln-54"></a><span class="cp">#ifdef PSML_USE_FOX</span>
-<a name="ln-55"></a> <span class="k">call </span><span class="n">open_xml_file</span><span class="p">(</span><span class="n">fxml</span><span class="p">,</span><span class="n">fname</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span>
-<a name="ln-56"></a> <span class="k">if</span> <span class="p">(</span><span class="n">iostat</span> <span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Cannot open XML file&quot;</span><span class="p">)</span>
-<a name="ln-57"></a> <span class="c">!! ** CDATA handler missing</span>
-<a name="ln-58"></a> <span class="k">call </span><span class="n">parse</span><span class="p">(</span><span class="n">fxml</span><span class="p">,</span> <span class="n">startElement_handler</span><span class="o">=</span><span class="n">begin_element</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-59"></a>                  <span class="n">endElement_handler</span><span class="o">=</span><span class="n">end_element</span><span class="p">,</span>     <span class="p">&amp;</span>
-<a name="ln-60"></a>                  <span class="n">characters_handler</span><span class="o">=</span><span class="n">pcdata_chunk</span><span class="p">)</span> 
-<a name="ln-61"></a> <span class="k">call </span><span class="n">close_xml_t</span><span class="p">(</span><span class="n">fxml</span><span class="p">)</span>
-<a name="ln-62"></a><span class="cp">#else</span>
-<a name="ln-63"></a> <span class="k">call </span><span class="n">open_xmlfile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">fxml</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span>
-<a name="ln-64"></a> <span class="k">if</span> <span class="p">(</span><span class="n">iostat</span> <span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Cannot open PSML file: &quot;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
-<a name="ln-65"></a> <span class="k">call </span><span class="n">xml_parse</span><span class="p">(</span><span class="n">fxml</span><span class="p">,</span> <span class="n">begin_element</span><span class="p">,</span><span class="n">end_element</span><span class="p">,</span><span class="n">pcdata_chunk</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-66"></a>                <span class="n">cdata_section_handler</span><span class="o">=</span><span class="n">cdata_section_chunk</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
-<a name="ln-67"></a> <span class="k">call </span><span class="n">close_xmlfile</span><span class="p">(</span><span class="n">fxml</span><span class="p">)</span>
-<a name="ln-68"></a><span class="cp">#endif</span>
+<a name="ln-41"></a>  <span class="c">! Associate module pointer, so that the parsed data</span>
+<a name="ln-42"></a>  <span class="c">! is written to ps</span>
+<a name="ln-43"></a>  <span class="n">pseudo</span> <span class="o">=&gt;</span> <span class="n">ps</span>
+<a name="ln-44"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">debug</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-45"></a><span class="k">     </span><span class="n">debug_parsing</span> <span class="o">=</span> <span class="n">debug</span>
+<a name="ln-46"></a>  <span class="k">else</span>
+<a name="ln-47"></a><span class="k">     </span><span class="n">debug_parsing</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-48"></a>  <span class="n">endif</span>
+<a name="ln-49"></a>
+<a name="ln-50"></a> <span class="c">! Allocate internal structures here...</span>
+<a name="ln-51"></a> 
+<a name="ln-52"></a> <span class="k">call </span><span class="n">open_xmlfile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">fxml</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span>
+<a name="ln-53"></a> <span class="k">if</span> <span class="p">(</span><span class="n">iostat</span> <span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Cannot open PSML file: &quot;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+<a name="ln-54"></a> <span class="k">call </span><span class="n">xml_parse</span><span class="p">(</span><span class="n">fxml</span><span class="p">,</span> <span class="n">begin_element</span><span class="p">,</span><span class="n">end_element</span><span class="p">,</span><span class="n">pcdata_chunk</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-55"></a>                <span class="n">cdata_section_handler</span><span class="o">=</span><span class="n">cdata_section_chunk</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
+<a name="ln-56"></a> <span class="k">call </span><span class="n">close_xmlfile</span><span class="p">(</span><span class="n">fxml</span><span class="p">)</span>
+<a name="ln-57"></a>
+<a name="ln-58"></a> <span class="c">! Clean up association of module pointer</span>
+<a name="ln-59"></a> <span class="n">pseudo</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
+<a name="ln-60"></a>
+<a name="ln-61"></a> <span class="k">call </span><span class="n">ps_GenerateTables</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<a name="ln-62"></a>
+<a name="ln-63"></a> <span class="c">!</span>
+<a name="ln-64"></a> <span class="c">! Set default interpolator</span>
+<a name="ln-65"></a> <span class="c">!</span>
+<a name="ln-66"></a> <span class="k">call </span><span class="n">set_default_interpolator</span><span class="p">()</span>
+<a name="ln-67"></a>
+<a name="ln-68"></a><span class="k">end subroutine </span><span class="n">psml_reader</span>
 <a name="ln-69"></a>
-<a name="ln-70"></a> <span class="c">! Clean up association of module pointer</span>
-<a name="ln-71"></a> <span class="n">pseudo</span> <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
-<a name="ln-72"></a>
-<a name="ln-73"></a> <span class="k">call </span><span class="n">ps_GenerateTables</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-<a name="ln-74"></a>
-<a name="ln-75"></a><span class="cp">#ifndef __NO_PROC_POINTERS__</span>
-<a name="ln-76"></a> <span class="c">!</span>
-<a name="ln-77"></a> <span class="c">! Set default interpolator</span>
-<a name="ln-78"></a> <span class="c">!</span>
-<a name="ln-79"></a> <span class="k">call </span><span class="n">set_default_interpolator</span><span class="p">()</span>
-<a name="ln-80"></a><span class="cp">#endif</span>
-<a name="ln-81"></a>
-<a name="ln-82"></a><span class="k">end subroutine </span><span class="n">psml_reader</span>
-<a name="ln-83"></a><span class="k">end module </span><span class="n">m_psml_reader</span>
+<a name="ln-70"></a><span class="k">end module </span><span class="n">m_psml_reader</span>
 </pre></div>
 
     </section>
@@ -419,29 +388,19 @@
       
       <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/config.sh.html">config.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
+      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_interp.f90.html">m_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.f90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/m_psml_old_api.f90.html">m_psml_old_api.F90</a>
+      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
       
       <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
       
@@ -451,17 +410,9 @@
       
       <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
+      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
       
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/sets_m.f90.html">sets_m.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_psml.f90.html">test_psml.F90</a>
+      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
       
     </div>
   </div>

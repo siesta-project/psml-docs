@@ -1,3 +1,7 @@
+#if defined HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 module m_psml_parsing_helpers
 !
 !  This module reads a pseudopotential file written in the PSML format
@@ -108,16 +112,11 @@ integer :: npts_data
 CONTAINS  !===========================================================
 
 !----------------------------------------------------------------------
-#ifndef PSML_USE_FOX
+
 subroutine begin_element(name,attributes)
+
 use xmlf90_sax, only: dictionary_t, get_value
-#else
-subroutine begin_element(namespaceURI,localName,name,attributes)
-use Fox_sax, only: dictionary_t
-use fox_extra, only: get_value=>get_value_by_key
-character(len=*), intent(in)    :: namespaceURI
-character(len=*), intent(in)    :: localName
-#endif
+
 character(len=*), intent(in)    :: name
 type(dictionary_t), intent(in)  :: attributes
 
@@ -860,13 +859,7 @@ parent_element = name
 end subroutine begin_element
 !----------------------------------------------------------------------
 
-#ifndef PSML_USE_FOX
 subroutine end_element(name)
-#else
-subroutine end_element(namespaceURI,localName,name)
-character(len=*), intent(in)    :: namespaceURI
-character(len=*), intent(in)    :: localName
-#endif
 
 character(len=*), intent(in)     :: name
 
@@ -1031,11 +1024,8 @@ end subroutine end_element
 !----------------------------------------------------------------------
 
 subroutine pcdata_chunk(chunk)
-#ifdef PSML_USE_FOX
-  use fox_extra, only: build_data_array
-#else
+
   use xmlf90_sax, only: build_data_array
-#endif
   use iso_varying_string, only: operator(//)
   
 character(len=*), intent(in) :: chunk
@@ -1088,12 +1078,8 @@ end subroutine cdata_section_chunk
      ! 
 subroutine save_annotation(atts,annotation)
   use assoc_list, ps_annotation_t => assoc_list_t
-#ifdef PSML_USE_FOX
-  use Fox_common, only: dictionary_t, len=>getLength
-  use fox_extra, only: get_value=>get_value_by_index, get_key
-#else
   use xmlf90_sax, only: dictionary_t, get_value, get_key, len
-#endif
+
        type(dictionary_t), intent(in) :: atts
        type(ps_annotation_t), intent(out) :: annotation
        
@@ -1122,15 +1108,3 @@ subroutine save_annotation(atts,annotation)
      end function approx
      
 end module m_psml_parsing_helpers
-
-
-
-
-
-
-
-
-
-
-
-
