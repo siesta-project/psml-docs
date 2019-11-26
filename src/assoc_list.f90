@@ -16,9 +16,6 @@ type, public :: assoc_list_t
   character(len=1000), allocatable      :: value(:)
 end type assoc_list_t
 
-type(assoc_list_t), parameter, public   :: EMPTY_ASSOC_LIST = &
-                 assoc_list_t()
-
 public :: assoc_list_init
 public :: assoc_list_reset
 public :: assoc_list_insert
@@ -26,6 +23,24 @@ public :: assoc_list_nitems
 public :: assoc_list_get_key
 public :: assoc_list_get_value
 public :: assoc_list_print
+
+! Now, define and export an EMPTY_ASSOC_LIST
+! This feature might be deprecated in future versions. Client programs can
+! use 'assoc_list_reset' to generate an empty association list.
+
+
+! NOTE: A module variable of a type with default initialization must
+! have the SAVE attribute by the Fortran 2003 or earlier standards
+! The 'protected' attribute forbids changing the value of the variable
+! from outside the module.
+
+! NOTE: A 'parameter' could be used instead of a variable, with explicit initialization
+! of the form:
+! type(assoc_list_t), parameter :: PAR = assoc_list_type_t(0,0,null(),null())
+! ... but compiler support for this might be spotty.
+
+type(assoc_list_t), protected, save   :: EMPTY_ASSOC_LIST 
+
 
 interface assoc_list_get_value
   module procedure assoc_list_get_value_by_index

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+   
+   <meta name="description" content="Library to handle Pseudopotential Markup Language files">
     
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
@@ -17,6 +17,9 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +29,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>Overview</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
+        
+            <li><a href="../program/test_assoc.html">Program</a></li>
+      
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -131,17 +131,21 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title="11.9% of total for modules and submodules.">366 statements</a>
+    data-placement="bottom" data-html="true"
+    title="12.3% of total for modules and submodules.">366 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/m_psml_core.F90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/m_psml_core.f90.html'>m_psml_core.F90</a></li>
+    
   
      <li class="active">m_psml_core</li>
   </ol>
@@ -161,6 +165,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -207,6 +214,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -265,6 +273,7 @@
 </div>
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-0">Functions</a></h3></div>
   <div id="funcs-0" class="panel-collapse collapse">
@@ -277,6 +286,7 @@
     </div>
   </div>
 </div>
+
 
 
 <div class="panel panel-primary">
@@ -318,79 +328,54 @@
 
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
-  <div id="allmods-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/assoc_list.html">assoc_list</a>
-      
-      <a class="list-group-item" href="../module/class_grid.html">class_Grid</a>
-      
-      <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
-      
-      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
-      
-      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
-      
-      <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
-      
-      <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
-      
-      <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
-      
-      <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
-      
-      <a class="list-group-item" href="../module/m_psml_interp.html">m_psml_interp</a>
-      
-      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
-      
-      <a class="list-group-item" href="../module/m_psml_ps_edit.html">m_psml_ps_edit</a>
-      
-      <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
-      
-      <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
     <div class="col-md-9" id='text'>
-      
+    
+      <br>
     
   
-    <ul class="list-inline">
-      <li><h4>Uses:</h4></li>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
       
-      <li>iso_varying_string</li>
-      
-      <li><a href='../module/assoc_list.html'>assoc_list</a></li>
-      
-      <li><a href='../module/assoc_list.html'>assoc_list</a></li>
-      
-      <li><a href='../module/class_grid.html'>class_Grid</a></li>
-      
-      <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
-      
-    </ul>
+      <li class="list-group-item">
+  <ul class="list-inline">
     
+    <li>iso_varying_string</li>
+    
+    <li><a href='../module/assoc_list.html'>assoc_list</a></li>
+    
+    <li><a href='../module/assoc_list.html'>assoc_list</a></li>
+    
+    <li><a href='../module/class_grid.html'>class_Grid</a></li>
+    
+    <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      </ul>
+    </div>
     
 
     
     
-    
-    
+
+    <br>
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -437,6 +422,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -495,6 +481,7 @@
 </div>
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-1">Functions</a></h3></div>
   <div id="funcs-1" class="panel-collapse collapse">
@@ -507,6 +494,7 @@
     </div>
   </div>
 </div>
+
 
 
 <div class="panel panel-primary">
@@ -548,6 +536,7 @@
 
 
 
+
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
@@ -576,7 +565,7 @@
   
   <td>private,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>PATCH_LEVEL</strong></td><td> =</td><td>5</td><td></td>
+  <td><strong>PATCH_LEVEL</strong></td><td> =</td><td>7</td><td></td>
   
 </tr>
 
@@ -834,8 +823,8 @@
     
     <section>
      <h2>Derived Types</h2>
-	 
-	   
+   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-input_file_t"></span><h3>type, public :: <a href='../type/input_file_t.html'>input_file_t</a>
     
@@ -893,7 +882,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-provenance_t"></span><h3>type, public :: <a href='../type/provenance_t.html'>provenance_t</a>
     
@@ -1035,7 +1024,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-header_t"></span><h3>type, public :: <a href='../type/header_t.html'>header_t</a>
     
@@ -1177,7 +1166,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-config_val_t"></span><h3>type, public :: <a href='../type/config_val_t.html'>config_val_t</a>
     
@@ -1319,7 +1308,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-xc_t"></span><h3>type, public :: <a href='../type/xc_t.html'>xc_t</a>
     
@@ -1433,7 +1422,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-radfunc_t"></span><h3>type, public :: <a href='../type/radfunc_t.html'>radfunc_t</a>
     
@@ -1547,7 +1536,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-slps_t"></span><h3>type, public :: <a href='../type/slps_t.html'>slps_t</a>
     
@@ -1717,7 +1706,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-sl_table_t"></span><h3>type, public :: <a href='../type/sl_table_t.html'>sl_table_t</a>
     
@@ -1761,7 +1750,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-semilocal_t"></span><h3>type, public :: <a href='../type/semilocal_t.html'>semilocal_t</a>
     
@@ -1861,7 +1850,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-local_t"></span><h3>type, public :: <a href='../type/local_t.html'>local_t</a>
     
@@ -1961,7 +1950,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-nlpj_t"></span><h3>type, public :: <a href='../type/nlpj_t.html'>nlpj_t</a>
     
@@ -2131,7 +2120,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-nl_table_t"></span><h3>type, public :: <a href='../type/nl_table_t.html'>nl_table_t</a>
     
@@ -2175,7 +2164,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-nonlocal_t"></span><h3>type, public :: <a href='../type/nonlocal_t.html'>nonlocal_t</a>
     
@@ -2275,7 +2264,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-wf_t"></span><h3>type, public :: <a href='../type/wf_t.html'>wf_t</a>
     
@@ -2417,7 +2406,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-wf_table_t"></span><h3>type, public :: <a href='../type/wf_table_t.html'>wf_table_t</a>
     
@@ -2461,7 +2450,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-wfns_t"></span><h3>type, public :: <a href='../type/wfns_t.html'>wfns_t</a>
     
@@ -2575,7 +2564,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-valence_charge_t"></span><h3>type, public :: <a href='../type/valence_charge_t.html'>valence_charge_t</a>
     
@@ -2675,7 +2664,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-core_charge_t"></span><h3>type, public :: <a href='../type/core_charge_t.html'>core_charge_t</a>
     
@@ -2761,7 +2750,7 @@
 </div>
 
      
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="type-ps_t"></span><h3>type, public :: <a href='../type/ps_t.html'>ps_t</a>
     
@@ -3086,7 +3075,7 @@
 
      
     </section>
-	<br>
+  <br>
     
     
      
@@ -3099,7 +3088,7 @@
 public function <a href='../proc/setcode_of_string.html'>setcode_of_string</a>(str) result(code)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3159,7 +3148,7 @@ public function <a href='../proc/setcode_of_string.html'>setcode_of_string</a>(s
 public function <a href='../proc/str_of_set.html'>str_of_set</a>(code) result(str)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3227,7 +3216,7 @@ public function <a href='../proc/str_of_set.html'>str_of_set</a>(code) result(st
 public subroutine <a href='../proc/ps_destroy.html'>ps_destroy</a>(ps)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3278,7 +3267,7 @@ public subroutine <a href='../proc/ps_destroy.html'>ps_destroy</a>(ps)
 private subroutine <a href='../proc/destroy_provenance.html'>destroy_provenance</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3329,7 +3318,7 @@ private subroutine <a href='../proc/destroy_provenance.html'>destroy_provenance<
 private subroutine <a href='../proc/destroy_semilocal.html'>destroy_semilocal</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3380,7 +3369,7 @@ private subroutine <a href='../proc/destroy_semilocal.html'>destroy_semilocal</a
 private subroutine <a href='../proc/destroy_slps.html'>destroy_slps</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3431,7 +3420,7 @@ private subroutine <a href='../proc/destroy_slps.html'>destroy_slps</a>(p)
 public subroutine <a href='../proc/destroy_local.html'>destroy_local</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3482,7 +3471,7 @@ public subroutine <a href='../proc/destroy_local.html'>destroy_local</a>(p)
 public subroutine <a href='../proc/destroy_nonlocal.html'>destroy_nonlocal</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3533,7 +3522,7 @@ public subroutine <a href='../proc/destroy_nonlocal.html'>destroy_nonlocal</a>(p
 private subroutine <a href='../proc/destroy_nlpj.html'>destroy_nlpj</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3584,7 +3573,7 @@ private subroutine <a href='../proc/destroy_nlpj.html'>destroy_nlpj</a>(p)
 public subroutine <a href='../proc/destroy_wavefunctions.html'>destroy_wavefunctions</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3635,7 +3624,7 @@ public subroutine <a href='../proc/destroy_wavefunctions.html'>destroy_wavefunct
 private subroutine <a href='../proc/destroy_pswf.html'>destroy_pswf</a>(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3686,7 +3675,7 @@ private subroutine <a href='../proc/destroy_pswf.html'>destroy_pswf</a>(p)
 private subroutine <a href='../proc/destroy_radfunc.html'>destroy_radfunc</a>(rp)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3737,7 +3726,7 @@ private subroutine <a href='../proc/destroy_radfunc.html'>destroy_radfunc</a>(rp
 private subroutine <a href='../proc/destroy_xc.html'>destroy_xc</a>(xp)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3790,56 +3779,14 @@ private subroutine <a href='../proc/destroy_xc.html'>destroy_xc</a>(xp)
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
-  <div id="allmods-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/assoc_list.html">assoc_list</a>
-      
-      <a class="list-group-item" href="../module/class_grid.html">class_Grid</a>
-      
-      <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
-      
-      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
-      
-      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
-      
-      <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
-      
-      <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
-      
-      <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
-      
-      <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
-      
-      <a class="list-group-item" href="../module/m_psml_interp.html">m_psml_interp</a>
-      
-      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
-      
-      <a class="list-group-item" href="../module/m_psml_ps_edit.html">m_psml_ps_edit</a>
-      
-      <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
-      
-      <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -3870,12 +3817,17 @@ private subroutine <a href='../proc/destroy_xc.html'>destroy_xc</a>(xp)
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

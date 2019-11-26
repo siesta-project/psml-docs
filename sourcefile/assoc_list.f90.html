@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+   
+   <meta name="description" content="Library to handle Pseudopotential Markup Language files">
     
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
@@ -17,6 +17,9 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +29,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>Overview</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
+        
+            <li><a href="../program/test_assoc.html">Program</a></li>
+      
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -131,15 +131,19 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title=" 4.0% of total for source files.">139 statements</a>
+    data-placement="bottom" data-html="true"
+    title=" 4.6% of total for source files.">139 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/assoc_list.F90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
+  
+    
   
      <li class="active">assoc_list.F90</li>
   </ol>
@@ -158,6 +162,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -189,6 +196,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -197,76 +205,22 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
-  <div id="allfiles-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
-      
-      <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_ps_edit.f90.html">m_psml_ps_edit.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_reader.f90.html">m_psml_reader.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     <div class="col-md-9" id='text'>
-    
+      
+      <br>
     
       
       
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -298,12 +252,14 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
     <a class="list-group-item" href="../sourcefile/assoc_list.f90.html#src">assoc_list.F90</a>
   </div>
 </div>
+
 
 
     </section>
@@ -329,248 +285,203 @@
 <a name="ln-16"></a>  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="k">allocatable</span>      <span class="kd">::</span> <span class="k">value</span><span class="p">(:)</span>
 <a name="ln-17"></a><span class="k">end type </span><span class="n">assoc_list_t</span>
 <a name="ln-18"></a>
-<a name="ln-19"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">parameter</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">EMPTY_ASSOC_LIST</span> <span class="o">=</span> <span class="p">&amp;</span>
-<a name="ln-20"></a>                 <span class="n">assoc_list_t</span><span class="p">()</span>
-<a name="ln-21"></a>
-<a name="ln-22"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_init</span>
-<a name="ln-23"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_reset</span>
-<a name="ln-24"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_insert</span>
-<a name="ln-25"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_nitems</span>
-<a name="ln-26"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_get_key</span>
-<a name="ln-27"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_get_value</span>
-<a name="ln-28"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_print</span>
-<a name="ln-29"></a>
-<a name="ln-30"></a><span class="k">interface </span><span class="n">assoc_list_get_value</span>
-<a name="ln-31"></a>  <span class="k">module procedure </span><span class="n">assoc_list_get_value_by_index</span>
-<a name="ln-32"></a>  <span class="k">module procedure </span><span class="n">assoc_list_get_value_of_key</span>
-<a name="ln-33"></a><span class="k">end interface</span>
-<a name="ln-34"></a>
-<a name="ln-35"></a><span class="k">CONTAINS</span>
+<a name="ln-19"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_init</span>
+<a name="ln-20"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_reset</span>
+<a name="ln-21"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_insert</span>
+<a name="ln-22"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_nitems</span>
+<a name="ln-23"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_get_key</span>
+<a name="ln-24"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_get_value</span>
+<a name="ln-25"></a><span class="k">public</span> <span class="kd">::</span> <span class="n">assoc_list_print</span>
+<a name="ln-26"></a>
+<a name="ln-27"></a><span class="c">! Now, define and export an EMPTY_ASSOC_LIST</span>
+<a name="ln-28"></a><span class="c">! This feature might be deprecated in future versions. Client programs can</span>
+<a name="ln-29"></a><span class="c">! use &#39;assoc_list_reset&#39; to generate an empty association list.</span>
+<a name="ln-30"></a>
+<a name="ln-31"></a>
+<a name="ln-32"></a><span class="c">! NOTE: A module variable of a type with default initialization must</span>
+<a name="ln-33"></a><span class="c">! have the SAVE attribute by the Fortran 2003 or earlier standards</span>
+<a name="ln-34"></a><span class="c">! The &#39;protected&#39; attribute forbids changing the value of the variable</span>
+<a name="ln-35"></a><span class="c">! from outside the module.</span>
 <a name="ln-36"></a>
-<a name="ln-37"></a><span class="k">subroutine </span><span class="n">assoc_list_init</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-38"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-39"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">n</span>
-<a name="ln-40"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-37"></a><span class="c">! NOTE: A &#39;parameter&#39; could be used instead of a variable, with explicit initialization</span>
+<a name="ln-38"></a><span class="c">! of the form:</span>
+<a name="ln-39"></a><span class="c">! type(assoc_list_t), parameter :: PAR = assoc_list_type_t(0,0,null(),null())</span>
+<a name="ln-40"></a><span class="c">! ... but compiler support for this might be spotty.</span>
 <a name="ln-41"></a>
-<a name="ln-42"></a><span class="nb">  </span><span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-43"></a><span class="k">     deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">)</span>
-<a name="ln-44"></a>  <span class="n">endif</span>
-<a name="ln-45"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-46"></a><span class="k">     deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
-<a name="ln-47"></a>  <span class="n">endif</span>
-<a name="ln-48"></a>  <span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">=</span> <span class="n">n</span>
-<a name="ln-49"></a>  <span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-50"></a>  <span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="nb">stat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-42"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">protected</span><span class="p">,</span> <span class="k">save</span>   <span class="kd">::</span> <span class="n">EMPTY_ASSOC_LIST</span> 
+<a name="ln-43"></a>
+<a name="ln-44"></a>
+<a name="ln-45"></a><span class="k">interface </span><span class="n">assoc_list_get_value</span>
+<a name="ln-46"></a>  <span class="k">module procedure </span><span class="n">assoc_list_get_value_by_index</span>
+<a name="ln-47"></a>  <span class="k">module procedure </span><span class="n">assoc_list_get_value_of_key</span>
+<a name="ln-48"></a><span class="k">end interface</span>
+<a name="ln-49"></a>
+<a name="ln-50"></a><span class="k">CONTAINS</span>
 <a name="ln-51"></a>
-<a name="ln-52"></a><span class="k">end subroutine </span><span class="n">assoc_list_init</span>
-<a name="ln-53"></a>
-<a name="ln-54"></a><span class="k">subroutine </span><span class="n">assoc_list_reset</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<a name="ln-55"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-52"></a><span class="k">subroutine </span><span class="n">assoc_list_init</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-53"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-54"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">n</span>
+<a name="ln-55"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
 <a name="ln-56"></a>
-<a name="ln-57"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-57"></a><span class="nb">  </span><span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-58"></a><span class="k">     deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">)</span>
 <a name="ln-59"></a>  <span class="n">endif</span>
 <a name="ln-60"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-61"></a><span class="k">     deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
 <a name="ln-62"></a>  <span class="n">endif</span>
-<a name="ln-63"></a>  <span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-63"></a>  <span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">=</span> <span class="n">n</span>
 <a name="ln-64"></a>  <span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-65"></a>
-<a name="ln-66"></a><span class="k">end subroutine </span><span class="n">assoc_list_reset</span>
-<a name="ln-67"></a>
-<a name="ln-68"></a><span class="k">subroutine </span><span class="n">assoc_list_insert</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-69"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-70"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">key</span><span class="p">,</span> <span class="k">value</span>
-<a name="ln-71"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
-<a name="ln-72"></a>
-<a name="ln-73"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-74"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="k">allocatable</span>  <span class="kd">::</span> <span class="n">b</span><span class="p">(:)</span>
-<a name="ln-75"></a>
-<a name="ln-76"></a><span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-77"></a><span class="k">   call </span><span class="n">assoc_list_init</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-78"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<a name="ln-79"></a><span class="n">endif</span>
+<a name="ln-65"></a>  <span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="nb">stat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-66"></a>
+<a name="ln-67"></a><span class="k">end subroutine </span><span class="n">assoc_list_init</span>
+<a name="ln-68"></a>
+<a name="ln-69"></a><span class="k">subroutine </span><span class="n">assoc_list_reset</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a name="ln-70"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-71"></a>
+<a name="ln-72"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-73"></a><span class="k">     deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">)</span>
+<a name="ln-74"></a>  <span class="n">endif</span>
+<a name="ln-75"></a>  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-76"></a><span class="k">     deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a name="ln-77"></a>  <span class="n">endif</span>
+<a name="ln-78"></a>  <span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-79"></a>  <span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">=</span> <span class="mi">0</span>
 <a name="ln-80"></a>
-<a name="ln-81"></a><span class="c">! Replace if key exists already</span>
-<a name="ln-82"></a><span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
-<a name="ln-83"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-84"></a><span class="k">      </span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="k">value</span>
-<a name="ln-85"></a><span class="k">      </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-86"></a>      <span class="k">return</span>
-<a name="ln-87"></a><span class="k">   </span><span class="n">endif</span>
-<a name="ln-88"></a><span class="n">enddo</span>
-<a name="ln-89"></a><span class="c">!</span>
-<a name="ln-90"></a><span class="c">! Add at the end</span>
-<a name="ln-91"></a><span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-92"></a><span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">)</span>  <span class="k">then</span>
-<a name="ln-93"></a>   <span class="c">! Enlarge a%data by 4 slots</span>
-<a name="ln-94"></a>   <span class="c">!</span>
-<a name="ln-95"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">b</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">))</span>
-<a name="ln-96"></a>   <span class="c">!</span>
-<a name="ln-97"></a>   <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">key</span>
-<a name="ln-98"></a>   <span class="k">deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">)</span>
-<a name="ln-99"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
-<a name="ln-100"></a>   <span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span>
-<a name="ln-101"></a>   <span class="c">!</span>
-<a name="ln-102"></a>   <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="k">value</span>
-<a name="ln-103"></a><span class="k">   deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
-<a name="ln-104"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
-<a name="ln-105"></a>   <span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span>
-<a name="ln-106"></a>   <span class="k">deallocate</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<a name="ln-107"></a>   <span class="c">!</span>
-<a name="ln-108"></a>   <span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">)</span>
-<a name="ln-109"></a><span class="n">endif</span>
-<a name="ln-110"></a><span class="n">i</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
-<a name="ln-111"></a><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">key</span>
-<a name="ln-112"></a><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="k">value</span>
-<a name="ln-113"></a><span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-114"></a>
-<a name="ln-115"></a><span class="k">end subroutine </span><span class="n">assoc_list_insert</span>
-<a name="ln-116"></a>
-<a name="ln-117"></a><span class="k">function </span><span class="n">assoc_list_nitems</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<a name="ln-118"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-119"></a><span class="kt">integer</span>                           <span class="kd">::</span> <span class="n">n</span>
-<a name="ln-120"></a>
-<a name="ln-121"></a><span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
-<a name="ln-122"></a><span class="k">end function </span><span class="n">assoc_list_nitems</span>
-<a name="ln-123"></a>
-<a name="ln-124"></a><span class="k">subroutine </span><span class="n">assoc_list_get_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-125"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-126"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-127"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">key</span>
-<a name="ln-128"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-81"></a><span class="k">end subroutine </span><span class="n">assoc_list_reset</span>
+<a name="ln-82"></a>
+<a name="ln-83"></a><span class="k">subroutine </span><span class="n">assoc_list_insert</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-84"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-85"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">key</span><span class="p">,</span> <span class="k">value</span>
+<a name="ln-86"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-87"></a>
+<a name="ln-88"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-89"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="k">allocatable</span>  <span class="kd">::</span> <span class="n">b</span><span class="p">(:)</span>
+<a name="ln-90"></a>
+<a name="ln-91"></a><span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">allocated</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-92"></a><span class="k">   call </span><span class="n">assoc_list_init</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-93"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<a name="ln-94"></a><span class="n">endif</span>
+<a name="ln-95"></a>
+<a name="ln-96"></a><span class="c">! Replace if key exists already</span>
+<a name="ln-97"></a><span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
+<a name="ln-98"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-99"></a><span class="k">      </span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="k">value</span>
+<a name="ln-100"></a><span class="k">      </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-101"></a>      <span class="k">return</span>
+<a name="ln-102"></a><span class="k">   </span><span class="n">endif</span>
+<a name="ln-103"></a><span class="n">enddo</span>
+<a name="ln-104"></a><span class="c">!</span>
+<a name="ln-105"></a><span class="c">! Add at the end</span>
+<a name="ln-106"></a><span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-107"></a><span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">)</span>  <span class="k">then</span>
+<a name="ln-108"></a>   <span class="c">! Enlarge a%data by 4 slots</span>
+<a name="ln-109"></a>   <span class="c">!</span>
+<a name="ln-110"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">b</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">))</span>
+<a name="ln-111"></a>   <span class="c">!</span>
+<a name="ln-112"></a>   <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">key</span>
+<a name="ln-113"></a>   <span class="k">deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">)</span>
+<a name="ln-114"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+<a name="ln-115"></a>   <span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span>
+<a name="ln-116"></a>   <span class="c">!</span>
+<a name="ln-117"></a>   <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="k">value</span>
+<a name="ln-118"></a><span class="k">   deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">)</span>
+<a name="ln-119"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+<a name="ln-120"></a>   <span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">a</span><span class="p">%</span><span class="n">nslots</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span>
+<a name="ln-121"></a>   <span class="k">deallocate</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<a name="ln-122"></a>   <span class="c">!</span>
+<a name="ln-123"></a>   <span class="n">a</span><span class="p">%</span><span class="n">nslots</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">)</span>
+<a name="ln-124"></a><span class="n">endif</span>
+<a name="ln-125"></a><span class="n">i</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
+<a name="ln-126"></a><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">key</span>
+<a name="ln-127"></a><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="k">value</span>
+<a name="ln-128"></a><span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
 <a name="ln-129"></a>
-<a name="ln-130"></a><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-131"></a><span class="k">   </span><span class="nb">stat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<a name="ln-132"></a>   <span class="k">return</span>
-<a name="ln-133"></a><span class="n">endif</span>
-<a name="ln-134"></a><span class="n">key</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-135"></a><span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-136"></a><span class="k">end subroutine </span><span class="n">assoc_list_get_key</span>
-<a name="ln-137"></a>
-<a name="ln-138"></a><span class="k">subroutine </span><span class="n">assoc_list_get_value_of_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-139"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-140"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">key</span>
-<a name="ln-141"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="k">value</span>
-<a name="ln-142"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
-<a name="ln-143"></a>
-<a name="ln-144"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-145"></a>
-<a name="ln-146"></a><span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
-<a name="ln-147"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-148"></a><span class="k">      value</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
-<a name="ln-149"></a>      <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-150"></a>      <span class="k">return</span>
-<a name="ln-151"></a><span class="k">   </span><span class="n">endif</span>
-<a name="ln-152"></a><span class="n">enddo</span>
-<a name="ln-153"></a><span class="nb">stat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<a name="ln-154"></a><span class="k">end subroutine </span><span class="n">assoc_list_get_value_of_key</span>
-<a name="ln-155"></a>
-<a name="ln-156"></a><span class="k">subroutine </span><span class="n">assoc_list_get_value_by_index</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-157"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-158"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-159"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="k">value</span>
-<a name="ln-160"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
-<a name="ln-161"></a>
-<a name="ln-162"></a><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-163"></a><span class="k">   value</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
-<a name="ln-164"></a>   <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-165"></a><span class="k">else</span>
-<a name="ln-166"></a><span class="k">   </span><span class="nb">stat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<a name="ln-167"></a>   <span class="k">value</span> <span class="o">=</span><span class="s2">&quot;&quot;</span>
-<a name="ln-168"></a><span class="n">endif</span>
-<a name="ln-169"></a>
-<a name="ln-170"></a><span class="k">end subroutine </span><span class="n">assoc_list_get_value_by_index</span>
-<a name="ln-171"></a>
-<a name="ln-172"></a><span class="k">subroutine </span><span class="n">assoc_list_print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<a name="ln-173"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
-<a name="ln-174"></a>
-<a name="ln-175"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-130"></a><span class="k">end subroutine </span><span class="n">assoc_list_insert</span>
+<a name="ln-131"></a>
+<a name="ln-132"></a><span class="k">function </span><span class="n">assoc_list_nitems</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<a name="ln-133"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-134"></a><span class="kt">integer</span>                           <span class="kd">::</span> <span class="n">n</span>
+<a name="ln-135"></a>
+<a name="ln-136"></a><span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
+<a name="ln-137"></a><span class="k">end function </span><span class="n">assoc_list_nitems</span>
+<a name="ln-138"></a>
+<a name="ln-139"></a><span class="k">subroutine </span><span class="n">assoc_list_get_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-140"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-141"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-142"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">key</span>
+<a name="ln-143"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-144"></a>
+<a name="ln-145"></a><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-146"></a><span class="k">   </span><span class="nb">stat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<a name="ln-147"></a>   <span class="k">return</span>
+<a name="ln-148"></a><span class="n">endif</span>
+<a name="ln-149"></a><span class="n">key</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<a name="ln-150"></a><span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-151"></a><span class="k">end subroutine </span><span class="n">assoc_list_get_key</span>
+<a name="ln-152"></a>
+<a name="ln-153"></a><span class="k">subroutine </span><span class="n">assoc_list_get_value_of_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-154"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-155"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">key</span>
+<a name="ln-156"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="k">value</span>
+<a name="ln-157"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-158"></a>
+<a name="ln-159"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-160"></a>
+<a name="ln-161"></a><span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
+<a name="ln-162"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-163"></a><span class="k">      value</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+<a name="ln-164"></a>      <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-165"></a>      <span class="k">return</span>
+<a name="ln-166"></a><span class="k">   </span><span class="n">endif</span>
+<a name="ln-167"></a><span class="n">enddo</span>
+<a name="ln-168"></a><span class="nb">stat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<a name="ln-169"></a><span class="k">end subroutine </span><span class="n">assoc_list_get_value_of_key</span>
+<a name="ln-170"></a>
+<a name="ln-171"></a><span class="k">subroutine </span><span class="n">assoc_list_get_value_by_index</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-172"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-173"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-174"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="k">value</span>
+<a name="ln-175"></a><span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="nb">stat</span>
 <a name="ln-176"></a>
-<a name="ln-177"></a><span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-178"></a><span class="k">   print</span> <span class="s2">&quot;(a)&quot;</span><span class="p">,</span> <span class="s2">&quot;---------------------&quot;</span>
-<a name="ln-179"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
-<a name="ln-180"></a>      <span class="k">print</span> <span class="s2">&quot;(3x,a,a,a)&quot;</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="s2">&quot; : &quot;</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-<a name="ln-181"></a>   <span class="n">enddo</span>
-<a name="ln-182"></a>   <span class="k">print</span> <span class="s2">&quot;(a)&quot;</span><span class="p">,</span> <span class="s2">&quot;---------------------&quot;</span>
+<a name="ln-177"></a><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-178"></a><span class="k">   value</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+<a name="ln-179"></a>   <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-180"></a><span class="k">else</span>
+<a name="ln-181"></a><span class="k">   </span><span class="nb">stat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<a name="ln-182"></a>   <span class="k">value</span> <span class="o">=</span><span class="s2">&quot;&quot;</span>
 <a name="ln-183"></a><span class="n">endif</span>
-<a name="ln-184"></a><span class="k">end subroutine </span><span class="n">assoc_list_print</span>
-<a name="ln-185"></a>
-<a name="ln-186"></a><span class="k">end module </span><span class="n">assoc_list</span>
+<a name="ln-184"></a>
+<a name="ln-185"></a><span class="k">end subroutine </span><span class="n">assoc_list_get_value_by_index</span>
+<a name="ln-186"></a>
+<a name="ln-187"></a><span class="k">subroutine </span><span class="n">assoc_list_print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a name="ln-188"></a><span class="k">type</span><span class="p">(</span><span class="n">assoc_list_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+<a name="ln-189"></a>
+<a name="ln-190"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-191"></a>
+<a name="ln-192"></a><span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nitems</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-193"></a><span class="k">   print</span> <span class="s2">&quot;(a)&quot;</span><span class="p">,</span> <span class="s2">&quot;---------------------&quot;</span>
+<a name="ln-194"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">%</span><span class="n">nitems</span>
+<a name="ln-195"></a>      <span class="k">print</span> <span class="s2">&quot;(3x,a,a,a)&quot;</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="s2">&quot; : &quot;</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="k">value</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<a name="ln-196"></a>   <span class="n">enddo</span>
+<a name="ln-197"></a>   <span class="k">print</span> <span class="s2">&quot;(a)&quot;</span><span class="p">,</span> <span class="s2">&quot;---------------------&quot;</span>
+<a name="ln-198"></a><span class="n">endif</span>
+<a name="ln-199"></a><span class="k">end subroutine </span><span class="n">assoc_list_print</span>
+<a name="ln-200"></a>
+<a name="ln-201"></a><span class="k">end module </span><span class="n">assoc_list</span>
 </pre></div>
 
     </section>
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
-  <div id="allfiles-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/assoc_list.f90.html">assoc_list.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/basic_type.inc.html">basic_type.inc</a>
-      
-      <a class="list-group-item" href="../sourcefile/class_grid.f90.html">class_grid.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/external_interfaces.f90.html">external_interfaces.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/getz.f90.html">getz.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/interpolate_drh.f90.html">interpolate_drh.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html">m_aux_aliases.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_getopts.f90.html">m_getopts.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml.f90.html">m_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_api.f90.html">m_psml_api.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_core.f90.html">m_psml_core.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_dump.f90.html">m_psml_dump.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_interp.f90.html">m_psml_interp.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_parsing_helpers.f90.html">m_psml_parsing_helpers.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_ps_edit.f90.html">m_psml_ps_edit.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_reader.f90.html">m_psml_reader.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/m_psml_tables.f90.html">m_psml_tables.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/normalize.f90.html">normalize.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/psml_die.f90.html">psml_die.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/psml_die_for_tests.f90.html">psml_die_for_tests.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/run_test.sh.html">run_test.sh</a>
-      
-      <a class="list-group-item" href="../sourcefile/show_psml.f90.html">show_psml.F90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_assoc.f90.html">test_assoc.F90</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -601,12 +512,17 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+   
+   <meta name="description" content="Library to handle Pseudopotential Markup Language files">
     
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
@@ -17,6 +17,9 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +29,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>Overview</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
+        
+            <li><a href="../program/test_assoc.html">Program</a></li>
+      
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -131,19 +131,23 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title="<p> 5.7% of total for derived types.</p>Including implementation: 10 statements,  5.7% of total for derived types.">10 statements</a>
+    data-placement="bottom" data-html="true"
+    title="<p> 5.7% of total for derived types.</p>Including implementation: 10 statements,  5.7% of total for derived types.">10 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/m_psml_core.F90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/m_psml_core.f90.html'>m_psml_core.F90</a></li>
-  
+    
      <li><a href='../module/m_psml_core.html'>m_psml_core</a></li>
+    
   
      <li class="active">provenance_t</li>
   </ol>
@@ -163,6 +167,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -208,6 +215,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -216,64 +224,8 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-0">All Derived Types</a></h3></div>
-  <div id="alltypes-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/assoc_list_t.html">assoc_list_t</a>
-      
-      <a class="list-group-item" href="../type/config_val_t.html">config_val_t</a>
-      
-      <a class="list-group-item" href="../type/core_charge_t.html">core_charge_t</a>
-      
-      <a class="list-group-item" href="../type/grid.html">Grid</a>
-      
-      <a class="list-group-item" href="../type/grid_.html">Grid_</a>
-      
-      <a class="list-group-item" href="../type/header_t.html">header_t</a>
-      
-      <a class="list-group-item" href="../type/input_file_t.html">input_file_t</a>
-      
-      <a class="list-group-item" href="../type/local_t.html">local_t</a>
-      
-      <a class="list-group-item" href="../type/nl_table_t.html">nl_table_t</a>
-      
-      <a class="list-group-item" href="../type/nlpj_t.html">nlpj_t</a>
-      
-      <a class="list-group-item" href="../type/nonlocal_t.html">nonlocal_t</a>
-      
-      <a class="list-group-item" href="../type/provenance_t.html">provenance_t</a>
-      
-      <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
-      
-      <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
-      
-      <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
-      
-      <a class="list-group-item" href="../type/sl_table_t.html">sl_table_t</a>
-      
-      <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
-      
-      <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
-      
-      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
-      
-      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
-      
-      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
-      
-      <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
@@ -283,9 +235,13 @@
     
     
     
+    <br>
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -331,12 +287,14 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
     <a class="list-group-item" href="../type/provenance_t.html#src">provenance_t</a>
   </div>
 </div>
+
 
 
     </section>
@@ -482,7 +440,7 @@
     
     
     <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
     <div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">provenance_t</span>
    <span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span>  <span class="kd">::</span> <span class="n">prev</span>  <span class="o">=&gt;</span> <span class="nb">null</span><span class="p">()</span>
         <span class="kt">integer</span>                 <span class="kd">::</span> <span class="n">record_number</span>
@@ -501,72 +459,14 @@
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-1">All Derived Types</a></h3></div>
-  <div id="alltypes-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/assoc_list_t.html">assoc_list_t</a>
-      
-      <a class="list-group-item" href="../type/config_val_t.html">config_val_t</a>
-      
-      <a class="list-group-item" href="../type/core_charge_t.html">core_charge_t</a>
-      
-      <a class="list-group-item" href="../type/grid.html">Grid</a>
-      
-      <a class="list-group-item" href="../type/grid_.html">Grid_</a>
-      
-      <a class="list-group-item" href="../type/header_t.html">header_t</a>
-      
-      <a class="list-group-item" href="../type/input_file_t.html">input_file_t</a>
-      
-      <a class="list-group-item" href="../type/local_t.html">local_t</a>
-      
-      <a class="list-group-item" href="../type/nl_table_t.html">nl_table_t</a>
-      
-      <a class="list-group-item" href="../type/nlpj_t.html">nlpj_t</a>
-      
-      <a class="list-group-item" href="../type/nonlocal_t.html">nonlocal_t</a>
-      
-      <a class="list-group-item" href="../type/provenance_t.html">provenance_t</a>
-      
-      <a class="list-group-item" href="../type/ps_t.html">ps_t</a>
-      
-      <a class="list-group-item" href="../type/radfunc_t.html">radfunc_t</a>
-      
-      <a class="list-group-item" href="../type/semilocal_t.html">semilocal_t</a>
-      
-      <a class="list-group-item" href="../type/sl_table_t.html">sl_table_t</a>
-      
-      <a class="list-group-item" href="../type/slps_t.html">slps_t</a>
-      
-      <a class="list-group-item" href="../type/valence_charge_t.html">valence_charge_t</a>
-      
-      <a class="list-group-item" href="../type/wf_t.html">wf_t</a>
-      
-      <a class="list-group-item" href="../type/wf_table_t.html">wf_table_t</a>
-      
-      <a class="list-group-item" href="../type/wfns_t.html">wfns_t</a>
-      
-      <a class="list-group-item" href="../type/xc_t.html">xc_t</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
 
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -597,12 +497,17 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

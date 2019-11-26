@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+   
+   <meta name="description" content="Library to handle Pseudopotential Markup Language files">
     
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
@@ -17,6 +17,9 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +29,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>Overview</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
+        
+            <li><a href="../program/test_assoc.html">Program</a></li>
+      
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -93,7 +93,7 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -131,17 +131,21 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title="27.2% of total for modules and submodules.">834 statements</a>
+    data-placement="bottom" data-html="true"
+    title="27.9% of total for modules and submodules.">834 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/m_psml_api.F90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/m_psml_api.f90.html'>m_psml_api.F90</a></li>
+    
   
      <li class="active">m_psml_api</li>
   </ol>
@@ -161,6 +165,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -187,6 +194,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
   <div id="inters-0" class="panel-collapse collapse">
@@ -201,6 +209,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -247,6 +256,7 @@
     </div>
   </div>
 </div>
+
 
 
 <div class="panel panel-primary">
@@ -306,81 +316,56 @@
 
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
-  <div id="allmods-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/assoc_list.html">assoc_list</a>
-      
-      <a class="list-group-item" href="../module/class_grid.html">class_Grid</a>
-      
-      <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
-      
-      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
-      
-      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
-      
-      <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
-      
-      <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
-      
-      <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
-      
-      <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
-      
-      <a class="list-group-item" href="../module/m_psml_interp.html">m_psml_interp</a>
-      
-      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
-      
-      <a class="list-group-item" href="../module/m_psml_ps_edit.html">m_psml_ps_edit</a>
-      
-      <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
-      
-      <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
     <div class="col-md-9" id='text'>
-      
+    <p>Procedures to handle the PSML pseudopotential format.</p>
+      <br>
     
   
-    <ul class="list-inline">
-      <li><h4>Uses:</h4></li>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
       
-      <li><a href='../module/m_psml_core.html'>m_psml_core</a></li>
-      
-      <li><a href='../module/m_aux_aliases.html'>m_aux_aliases</a></li>
-      
-      <li><a href='../module/assoc_list.html'>assoc_list</a></li>
-      
-      <li><a href='../module/assoc_list.html'>assoc_list</a></li>
-      
-      <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
-      
-      <li><a href='../module/class_grid.html'>class_Grid</a></li>
-      
-    </ul>
+      <li class="list-group-item">
+  <ul class="list-inline">
     
+    <li><a href='../module/m_psml_core.html'>m_psml_core</a></li>
+    
+    <li><a href='../module/m_aux_aliases.html'>m_aux_aliases</a></li>
+    
+    <li><a href='../module/assoc_list.html'>assoc_list</a></li>
+    
+    <li><a href='../module/assoc_list.html'>assoc_list</a></li>
+    
+    <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
+    
+    <li><a href='../module/class_grid.html'>class_Grid</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      </ul>
+    </div>
     
 
     
-    <p>Procedures to handle the PSML pseudopotential format.</p>
-    <br>
     
+
+    <br>
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -407,6 +392,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
   <div id="inters-1" class="panel-collapse collapse">
@@ -421,6 +407,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -467,6 +454,7 @@
     </div>
   </div>
 </div>
+
 
 
 <div class="panel panel-primary">
@@ -517,6 +505,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -611,9 +600,9 @@
     
     
     <section>
-	 <h2>Interfaces</h2>
-	 
-	   
+   <h2>Interfaces</h2>
+   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="interface-ps_potential_filter"></span><h3>public interface <a href='../interface/ps_potential_filter.html'>ps_Potential_Filter</a>
     
@@ -630,7 +619,7 @@
 public subroutine <a href='../proc/ps_semilocalpotentials_filter.html'>ps_SemilocalPotentials_Filter</a>(ps, indexes_in, l, j, n, set, indexes, number)
     
     
-	 
+   
 </h3>
     
     
@@ -781,7 +770,7 @@ public subroutine <a href='../proc/ps_semilocalpotentials_filter.html'>ps_Semilo
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="interface-ps_projector_filter"></span><h3>public interface <a href='../interface/ps_projector_filter.html'>ps_Projector_Filter</a>
     
@@ -798,7 +787,7 @@ public subroutine <a href='../proc/ps_semilocalpotentials_filter.html'>ps_Semilo
 public subroutine <a href='../proc/ps_nonlocalprojectors_filter.html'>ps_NonlocalProjectors_Filter</a>(ps, indexes_in, l, j, seq, set, indexes, number)
     
     
-	 
+   
 </h3>
     
     
@@ -949,7 +938,7 @@ public subroutine <a href='../proc/ps_nonlocalprojectors_filter.html'>ps_Nonloca
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="interface-ps_pseudowf_filter"></span><h3>public interface <a href='../interface/ps_pseudowf_filter.html'>ps_PseudoWf_Filter</a>
     
@@ -966,7 +955,7 @@ public subroutine <a href='../proc/ps_nonlocalprojectors_filter.html'>ps_Nonloca
 public subroutine <a href='../proc/ps_pseudowavefunctions_filter.html'>ps_PseudoWaveFunctions_Filter</a>(ps, indexes_in, l, j, n, set, indexes, number)
     
     
-	 
+   
 </h3>
     
     
@@ -1118,7 +1107,7 @@ public subroutine <a href='../proc/ps_pseudowavefunctions_filter.html'>ps_Pseudo
 
     
     </section>
-	<br>
+  <br>
     
 
     
@@ -1135,7 +1124,7 @@ public subroutine <a href='../proc/ps_pseudowavefunctions_filter.html'>ps_Pseudo
 public function <a href='../proc/ps_getlibpsmlversion.html'>ps_GetLibPSMLVersion</a>() result(v)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1174,7 +1163,7 @@ public function <a href='../proc/ps_getlibpsmlversion.html'>ps_GetLibPSMLVersion
 public function <a href='../proc/ps_provenance_depth.html'>ps_Provenance_Depth</a>(ps) result(n)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1234,7 +1223,7 @@ public function <a href='../proc/ps_provenance_depth.html'>ps_Provenance_Depth</
 public function <a href='../proc/ps_valencecharge_value.html'>ps_ValenceCharge_Value</a>(ps, r) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1321,7 +1310,7 @@ public function <a href='../proc/ps_valencecharge_value.html'>ps_ValenceCharge_V
 public function <a href='../proc/ps_corecharge_value.html'>ps_CoreCharge_Value</a>(ps, r) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1408,7 +1397,7 @@ public function <a href='../proc/ps_corecharge_value.html'>ps_CoreCharge_Value</
 public function <a href='../proc/ps_gridannotation.html'>ps_GridAnnotation</a>(ps, radfunc) result(annotation)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1499,7 +1488,7 @@ public function <a href='../proc/ps_gridannotation.html'>ps_GridAnnotation</a>(p
 public function <a href='../proc/ps_getvalue.html'>ps_GetValue</a>(f, r) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1574,7 +1563,7 @@ public function <a href='../proc/ps_getvalue.html'>ps_GetValue</a>(f, r) result(
 public function <a href='../proc/ps_potential_value.html'>ps_Potential_Value</a>(ps, i, r) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1672,7 +1661,7 @@ public function <a href='../proc/ps_potential_value.html'>ps_Potential_Value</a>
 public function <a href='../proc/ps_pseudowf_value.html'>ps_PseudoWf_Value</a>(ps, i, r) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1762,7 +1751,7 @@ public function <a href='../proc/ps_pseudowf_value.html'>ps_PseudoWf_Value</a>(p
 public function <a href='../proc/ps_hasprojectors.html'>ps_HasProjectors</a>(ps) result(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1822,7 +1811,7 @@ public function <a href='../proc/ps_hasprojectors.html'>ps_HasProjectors</a>(ps)
 public function <a href='../proc/ps_haslocalpotential.html'>ps_HasLocalPotential</a>(ps) result(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1882,7 +1871,7 @@ public function <a href='../proc/ps_haslocalpotential.html'>ps_HasLocalPotential
 public function <a href='../proc/ps_localpotential_value.html'>ps_LocalPotential_Value</a>(ps, r) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1957,7 +1946,7 @@ public function <a href='../proc/ps_localpotential_value.html'>ps_LocalPotential
 public function <a href='../proc/ps_haspsoperator.html'>ps_HasPSOperator</a>(ps) result(psop)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2017,7 +2006,7 @@ public function <a href='../proc/ps_haspsoperator.html'>ps_HasPSOperator</a>(ps)
 public function <a href='../proc/ps_hassemilocalpotentials.html'>ps_HasSemilocalPotentials</a>(ps) result(p)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2077,7 +2066,7 @@ public function <a href='../proc/ps_hassemilocalpotentials.html'>ps_HasSemilocal
 public function <a href='../proc/ps_projector_value.html'>ps_Projector_Value</a>(ps, i, r) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2167,7 +2156,7 @@ public function <a href='../proc/ps_projector_value.html'>ps_Projector_Value</a>
 private function <a href='../proc/l_of_sym.html'>l_of_sym</a>(str, name) result(l)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2242,7 +2231,7 @@ private function <a href='../proc/l_of_sym.html'>l_of_sym</a>(str, name) result(
 private function <a href='../proc/max_range.html'>max_range</a>(f) result(range)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2310,7 +2299,7 @@ private function <a href='../proc/max_range.html'>max_range</a>(f) result(range)
 private function <a href='../proc/eval_radfunc.html'>eval_radfunc</a>(f, r, debug) result(val)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2408,7 +2397,7 @@ private function <a href='../proc/eval_radfunc.html'>eval_radfunc</a>(f, r, debu
 public subroutine <a href='../proc/ps_setevaluatoroptions.html'>ps_SetEvaluatorOptions</a>(quality_level, debug, use_effective_range, custom_interpolator)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2513,7 +2502,7 @@ public subroutine <a href='../proc/ps_setevaluatoroptions.html'>ps_SetEvaluatorO
 public subroutine <a href='../proc/ps_rootattributes_get.html'>ps_RootAttributes_Get</a>(ps, uuid, version, namespace, annotation)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2624,7 +2613,7 @@ public subroutine <a href='../proc/ps_rootattributes_get.html'>ps_RootAttributes
 public subroutine <a href='../proc/ps_provenance_get.html'>ps_Provenance_Get</a>(ps, level, creator, date, annotation, number_of_input_files)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2750,7 +2739,7 @@ public subroutine <a href='../proc/ps_provenance_get.html'>ps_Provenance_Get</a>
 public subroutine <a href='../proc/ps_pseudoatomspec_get.html'>ps_PseudoAtomSpec_Get</a>(ps, atomic_symbol, atomic_label, atomic_number, z_pseudo, pseudo_flavor, relativity, spin_dft, core_corrections, annotation)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2936,7 +2925,7 @@ public subroutine <a href='../proc/ps_pseudoatomspec_get.html'>ps_PseudoAtomSpec
 public subroutine <a href='../proc/ps_valenceconfiguration_get.html'>ps_ValenceConfiguration_Get</a>(ps, nshells, charge, annotation)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3032,7 +3021,7 @@ public subroutine <a href='../proc/ps_valenceconfiguration_get.html'>ps_ValenceC
 public subroutine <a href='../proc/ps_valenceshell_get.html'>ps_ValenceShell_Get</a>(ps, i, n, l, occupation, occ_up, occ_down)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3173,7 +3162,7 @@ public subroutine <a href='../proc/ps_valenceshell_get.html'>ps_ValenceShell_Get
 public subroutine <a href='../proc/ps_valencecharge_get.html'>ps_ValenceCharge_Get</a>(ps, total_charge, is_unscreening_charge, rescaled_to_z_pseudo, annotation, func)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3299,7 +3288,7 @@ public subroutine <a href='../proc/ps_valencecharge_get.html'>ps_ValenceCharge_G
 public subroutine <a href='../proc/ps_corecharge_get.html'>ps_CoreCharge_Get</a>(ps, rc, nderivs, annotation, func)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3410,7 +3399,7 @@ public subroutine <a href='../proc/ps_corecharge_get.html'>ps_CoreCharge_Get</a>
 public subroutine <a href='../proc/ps_exchangecorrelation_get.html'>ps_ExchangeCorrelation_Get</a>(ps, annotation, n_libxc_functionals)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3491,7 +3480,7 @@ public subroutine <a href='../proc/ps_exchangecorrelation_get.html'>ps_ExchangeC
 public subroutine <a href='../proc/ps_libxcfunctional_get.html'>ps_LibxcFunctional_Get</a>(ps, i, name, code, type, weight)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3617,7 +3606,7 @@ public subroutine <a href='../proc/ps_libxcfunctional_get.html'>ps_LibxcFunction
 public subroutine <a href='../proc/ps_potential_get.html'>ps_Potential_Get</a>(ps, i, l, j, n, rc, set, flavor, eref, annotation, func)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3818,7 +3807,7 @@ public subroutine <a href='../proc/ps_potential_get.html'>ps_Potential_Get</a>(p
 public subroutine <a href='../proc/ps_semilocalpotentials_filter.html'>ps_SemilocalPotentials_Filter</a>(ps, indexes_in, l, j, n, set, indexes, number)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -3974,7 +3963,7 @@ public subroutine <a href='../proc/ps_semilocalpotentials_filter.html'>ps_Semilo
 public subroutine <a href='../proc/ps_getrawdata.html'>ps_GetRawData</a>(f, raw_r, raw_data)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -4055,7 +4044,7 @@ public subroutine <a href='../proc/ps_getrawdata.html'>ps_GetRawData</a>(f, raw_
 public subroutine <a href='../proc/ps_pseudowavefunctions_filter.html'>ps_PseudoWaveFunctions_Filter</a>(ps, indexes_in, l, j, n, set, indexes, number)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -4211,7 +4200,7 @@ public subroutine <a href='../proc/ps_pseudowavefunctions_filter.html'>ps_Pseudo
 public subroutine <a href='../proc/ps_pseudowf_get.html'>ps_PseudoWf_Get</a>(ps, i, l, j, n, set, energy_level, annotation, func)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -4382,7 +4371,7 @@ public subroutine <a href='../proc/ps_pseudowf_get.html'>ps_PseudoWf_Get</a>(ps,
 public subroutine <a href='../proc/ps_localpotential_get.html'>ps_LocalPotential_Get</a>(ps, type, annotation, func, has_local_charge, func_local_charge)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -4508,7 +4497,7 @@ public subroutine <a href='../proc/ps_localpotential_get.html'>ps_LocalPotential
 public subroutine <a href='../proc/ps_nonlocalprojectors_filter.html'>ps_NonlocalProjectors_Filter</a>(ps, indexes_in, l, j, seq, set, indexes, number)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -4664,7 +4653,7 @@ public subroutine <a href='../proc/ps_nonlocalprojectors_filter.html'>ps_Nonloca
 public subroutine <a href='../proc/ps_projector_get.html'>ps_Projector_Get</a>(ps, i, l, j, seq, set, ekb, eref, type, annotation, func)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -4865,7 +4854,7 @@ public subroutine <a href='../proc/ps_projector_get.html'>ps_Projector_Get</a>(p
 private subroutine <a href='../proc/check_index.html'>check_index</a>(i, n, str)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -4946,7 +4935,7 @@ private subroutine <a href='../proc/check_index.html'>check_index</a>(i, n, str)
 private subroutine <a href='../proc/assert.html'>assert</a>(cond, message)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -5014,56 +5003,14 @@ private subroutine <a href='../proc/assert.html'>assert</a>(cond, message)
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
-  <div id="allmods-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/assoc_list.html">assoc_list</a>
-      
-      <a class="list-group-item" href="../module/class_grid.html">class_Grid</a>
-      
-      <a class="list-group-item" href="../module/external_interfaces.html">external_interfaces</a>
-      
-      <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
-      
-      <a class="list-group-item" href="../module/m_getopts.html">m_getopts</a>
-      
-      <a class="list-group-item" href="../module/m_psml.html">m_psml</a>
-      
-      <a class="list-group-item" href="../module/m_psml_api.html">m_psml_api</a>
-      
-      <a class="list-group-item" href="../module/m_psml_core.html">m_psml_core</a>
-      
-      <a class="list-group-item" href="../module/m_psml_dump.html">m_psml_dump</a>
-      
-      <a class="list-group-item" href="../module/m_psml_interp.html">m_psml_interp</a>
-      
-      <a class="list-group-item" href="../module/m_psml_parsing_helpers.html">m_psml_parsing_helpers</a>
-      
-      <a class="list-group-item" href="../module/m_psml_ps_edit.html">m_psml_ps_edit</a>
-      
-      <a class="list-group-item" href="../module/m_psml_reader.html">m_psml_reader</a>
-      
-      <a class="list-group-item" href="../module/m_psml_tables.html">m_psml_tables</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -5094,12 +5041,17 @@ private subroutine <a href='../proc/assert.html'>assert</a>(cond, message)
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

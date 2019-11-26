@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="Library to handle Pseudopotential Markup Language files">
+   
+   <meta name="description" content="Library to handle Pseudopotential Markup Language files">
     
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
@@ -19,6 +19,9 @@ All Modules &ndash; libPSML
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -28,13 +31,6 @@ All Modules &ndash; libPSML
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -54,35 +50,39 @@ All Modules &ndash; libPSML
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li><a href='../page/index.html'>Overview</a></li>
-	    
+      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-								
+        
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
+        
+            <li><a href="../program/test_assoc.html">Program</a></li>
+      
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -95,7 +95,7 @@ All Modules &ndash; libPSML
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../program/test_assoc.html">Program</a></li>
 
           </ul>
         
@@ -139,48 +139,44 @@ All Modules &ndash; libPSML
                
                <!---->
 			 
-			   <tr class="active"><td><a href='../module/m_getopts.html'>m_getopts</a></td><td><a href='../sourcefile/m_getopts.f90.html'>m_getopts.f90</a></td><td></td></tr>
+			   <tr class="active"><td><a href='../module/m_psml.html'>m_psml</a></td><td><a href='../sourcefile/m_psml.f90.html'>m_psml.F90</a></td><td></td></tr>
                
                <!--active-->
 			 
-			   <tr class=""><td><a href='../module/m_psml.html'>m_psml</a></td><td><a href='../sourcefile/m_psml.f90.html'>m_psml.F90</a></td><td></td></tr>
+			   <tr class=""><td><a href='../module/m_psml_api.html'>m_psml_api</a></td><td><a href='../sourcefile/m_psml_api.f90.html'>m_psml_api.F90</a></td><td><p>Procedures to handle the PSML pseudopotential format.</p></td></tr>
                
                <!---->
 			 
-			   <tr class="active"><td><a href='../module/m_psml_api.html'>m_psml_api</a></td><td><a href='../sourcefile/m_psml_api.f90.html'>m_psml_api.F90</a></td><td><p>Procedures to handle the PSML pseudopotential format.</p></td></tr>
+			   <tr class="active"><td><a href='../module/m_psml_core.html'>m_psml_core</a></td><td><a href='../sourcefile/m_psml_core.f90.html'>m_psml_core.F90</a></td><td></td></tr>
                
                <!--active-->
 			 
-			   <tr class=""><td><a href='../module/m_psml_core.html'>m_psml_core</a></td><td><a href='../sourcefile/m_psml_core.f90.html'>m_psml_core.F90</a></td><td></td></tr>
-               
-               <!---->
-			 
-			   <tr class="active"><td><a href='../module/m_psml_dump.html'>m_psml_dump</a></td><td><a href='../sourcefile/m_psml_dump.f90.html'>m_psml_dump.F90</a></td><td><p>Functions to handle PSML pseudopotential format structures
- @author Alberto Garcia</p></td></tr>
-               
-               <!--active-->
-			 
-			   <tr class=""><td><a href='../module/m_psml_interp.html'>m_psml_interp</a></td><td><a href='../sourcefile/m_psml_interp.f90.html'>m_psml_interp.F90</a></td><td></td></tr>
-               
-               <!---->
-			 
-			   <tr class="active"><td><a href='../module/m_psml_parsing_helpers.html'>m_psml_parsing_helpers</a></td><td><a href='../sourcefile/m_psml_parsing_helpers.f90.html'>m_psml_parsing_helpers.F90</a></td><td></td></tr>
-               
-               <!--active-->
-			 
-			   <tr class=""><td><a href='../module/m_psml_ps_edit.html'>m_psml_ps_edit</a></td><td><a href='../sourcefile/m_psml_ps_edit.f90.html'>m_psml_ps_edit.F90</a></td><td><p>Functions to edit the PSML ps_t structure
+			   <tr class=""><td><a href='../module/m_psml_dump.html'>m_psml_dump</a></td><td><a href='../sourcefile/m_psml_dump.f90.html'>m_psml_dump.F90</a></td><td><p>Functions to handle PSML pseudopotential format structures
  @author Alberto Garcia</p></td></tr>
                
                <!---->
 			 
-			   <tr class="active"><td><a href='../module/m_psml_reader.html'>m_psml_reader</a></td><td><a href='../sourcefile/m_psml_reader.f90.html'>m_psml_reader.F90</a></td><td></td></tr>
+			   <tr class="active"><td><a href='../module/m_psml_interp.html'>m_psml_interp</a></td><td><a href='../sourcefile/m_psml_interp.f90.html'>m_psml_interp.F90</a></td><td></td></tr>
                
                <!--active-->
 			 
-			   <tr class=""><td><a href='../module/m_psml_tables.html'>m_psml_tables</a></td><td><a href='../sourcefile/m_psml_tables.f90.html'>m_psml_tables.F90</a></td><td><p>Functions to handle PSML pseudopotential format structures
- @author Alberto Garcia</p></td></tr>
+			   <tr class=""><td><a href='../module/m_psml_parsing_helpers.html'>m_psml_parsing_helpers</a></td><td><a href='../sourcefile/m_psml_parsing_helpers.f90.html'>m_psml_parsing_helpers.F90</a></td><td></td></tr>
                
                <!---->
+			 
+			   <tr class="active"><td><a href='../module/m_psml_ps_edit.html'>m_psml_ps_edit</a></td><td><a href='../sourcefile/m_psml_ps_edit.f90.html'>m_psml_ps_edit.F90</a></td><td><p>Functions to edit the PSML ps_t structure
+ @author Alberto Garcia</p></td></tr>
+               
+               <!--active-->
+			 
+			   <tr class=""><td><a href='../module/m_psml_reader.html'>m_psml_reader</a></td><td><a href='../sourcefile/m_psml_reader.f90.html'>m_psml_reader.F90</a></td><td></td></tr>
+               
+               <!---->
+			 
+			   <tr class="active"><td><a href='../module/m_psml_tables.html'>m_psml_tables</a></td><td><a href='../sourcefile/m_psml_tables.f90.html'>m_psml_tables.F90</a></td><td><p>Functions to handle PSML pseudopotential format structures
+ @author Alberto Garcia</p></td></tr>
+               
+               <!--active-->
 			 
 			 </tbody></table>
              
@@ -192,7 +188,8 @@ All Modules &ndash; libPSML
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a></p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -223,12 +220,17 @@ All Modules &ndash; libPSML
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>
