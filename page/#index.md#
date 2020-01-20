@@ -1,0 +1,41 @@
+title: Overview
+
+Several well-known programs generate pseudopotentials in a variety of
+formats, tailored to the needs of electronic-structure codes. While
+some generators are now able to output data in different bespoke
+formats, and some simulation codes are now able to read different
+pseudopotential formats, the common historical pattern in the design
+of those formats has been that a generator produced data for a single
+particular simulation code, most likely maintained by the same
+group. This implied that a number of implicit assumptions, shared by
+generator and user, have gone into the formats and fossilized there.
+
+This leads to practical problems, not only of programming, but of
+interoperability and reproducibility, which depend on spelling out
+quite a number of details which are not well represented for all codes
+in existing formats.
+
+PSML (for PSeudopotential Markup Language) is a file format for
+norm-conserving pseudopotential data which is designed to encapsulate
+as much as possible the abstract concepts in the domain's ontology,
+and to provide appropriate metadata and provenance information.
+
+The software library libPSML can be used by electronic structure codes
+to transparently extract the information in a PSML file and adapt it
+to their own data structures, or to create converters for other
+formats.
+
+A full description of PSML and its design principles has been published
+in:
+
+* The psml format and library for norm-conserving pseudopotential
+  data curation and interoperability,  
+  by Alberto García, Matthieu J. Verstraete, Yann Pouillon, and Javier Junquera  
+ [Comput. Phys. Comm., 227 (2018) 51–71](https://doi.org/10.1016/j.cpc.2018.02.011)
+    
+
+A preprint is also available in [arXiv](https://arxiv.org/abs/1707.08938).
+
+* [PSML description](./01_the_psml_format/index.html)
+* [libPSML user guide](./02_library_user_guide/index.html)
+
