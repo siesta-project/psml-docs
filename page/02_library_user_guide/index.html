@@ -169,7 +169,7 @@ high-level Fortran interface. A C/C++ interface is in preparation.</p>
 <p>The basic modus operandi is to parse a PSML file, storing the information
 in an abstract handle <a href="../../type/ps_t.html">ps_t</a>, and then to query the handle to
 extract the relevant data.</p>
-<div class="codehilite"><pre><span></span><span class="k">use </span><span class="n">m_psml</span>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">m_psml</span>
 
 <span class="k">type</span><span class="p">(</span><span class="n">psml_t</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ps</span>
 <span class="k">call </span><span class="n">psml_reader</span><span class="p">(</span><span class="s2">&quot;input.psml&quot;</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
@@ -193,7 +193,7 @@ extract the relevant data.</p>
 <span class="n">enddo</span>
 <span class="p">...</span>
 <span class="k">call </span><span class="n">ps_destroy</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
     </div>
     
     <div class="col-md-3 col-md-pull-9">
@@ -283,7 +283,7 @@ extract the relevant data.</p>
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">

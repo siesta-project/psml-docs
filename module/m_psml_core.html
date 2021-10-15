@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="12.3% of total for modules and submodules.">366 statements</a>
+    title="12.2% of total for modules and submodules.">365 statements</a>
      </li> 
      
      
@@ -185,7 +185,7 @@
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-maxn_shells">MAXN_SHELLS</a>
       
-      <a class="list-group-item" href="../module/m_psml_core.html#variable-dp%7E3">dp</a>
+      <a class="list-group-item" href="../module/m_psml_core.html#variable-dp~4">dp</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-set_null">SET_NULL</a>
       
@@ -347,8 +347,6 @@
       <li class="list-group-item">
   <ul class="list-inline">
     
-    <li>iso_varying_string</li>
-    
     <li><a href='../module/assoc_list.html'>assoc_list</a></li>
     
     <li><a href='../module/assoc_list.html'>assoc_list</a></li>
@@ -393,7 +391,7 @@
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-maxn_shells">MAXN_SHELLS</a>
       
-      <a class="list-group-item" href="../module/m_psml_core.html#variable-dp%7E3">dp</a>
+      <a class="list-group-item" href="../module/m_psml_core.html#variable-dp~4">dp</a>
       
       <a class="list-group-item" href="../module/m_psml_core.html#variable-set_null">SET_NULL</a>
       
@@ -631,7 +629,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-dp%7E3"></span>integer,</td>
+  <td><span class="anchor" id="variable-dp~4"></span>integer,</td>
   
   <td>private,</td>
   <td>parameter</td><td>::</td>
@@ -849,7 +847,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-name%7E2"></span>character(len=100),</td>
+  <td><span class="anchor" id="variable-name~2"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -863,10 +861,10 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-buffer"></span>type(varying_string),</td>
+  <td><span class="anchor" id="variable-buffer"></span>character(len=:),</td>
   
-  <td>public</td>
-  <td></td><td>::</td>
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
   <td><strong>buffer</strong></td><td></td><td></td><td></td>
   
 </tr>
@@ -991,7 +989,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E2"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~2"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1147,7 +1145,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E3"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~3"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1289,7 +1287,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E4"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~4"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1403,7 +1401,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E5"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~5"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1461,7 +1459,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-data%7E2"></span>real(kind=dp),</td>
+  <td><span class="anchor" id="variable-data~2"></span>real(kind=dp),</td>
   
   <td>public,</td>
   <td>dimension(:), pointer</td><td>::</td>
@@ -1561,7 +1559,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E2"></span>integer,</td>
+  <td><span class="anchor" id="variable-n~2"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1575,7 +1573,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-l%7E2"></span>character(len=1),</td>
+  <td><span class="anchor" id="variable-l~2"></span>character(len=1),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1617,7 +1615,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-flavor%7E2"></span>character(len=100),</td>
+  <td><span class="anchor" id="variable-flavor~2"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1687,7 +1685,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-next%7E2"></span>type(<a href='../type/slps_t.html'>slps_t</a>),</td>
+  <td><span class="anchor" id="variable-next~2"></span>type(<a href='../type/slps_t.html'>slps_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -1789,7 +1787,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-set%7E2"></span>integer,</td>
+  <td><span class="anchor" id="variable-set~2"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1803,7 +1801,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-grid%7E2"></span>type(Grid),</td>
+  <td><span class="anchor" id="variable-grid~2"></span>type(Grid),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1817,7 +1815,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E6"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~6"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1831,7 +1829,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-next%7E3"></span>type(<a href='../type/semilocal_t.html'>semilocal_t</a>),</td>
+  <td><span class="anchor" id="variable-next~3"></span>type(<a href='../type/semilocal_t.html'>semilocal_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -1875,7 +1873,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E7"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~7"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1889,7 +1887,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-grid%7E3"></span>type(Grid),</td>
+  <td><span class="anchor" id="variable-grid~3"></span>type(Grid),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -1989,7 +1987,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-l%7E3"></span>character(len=1),</td>
+  <td><span class="anchor" id="variable-l~3"></span>character(len=1),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2003,7 +2001,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-j%7E2"></span>real(kind=dp),</td>
+  <td><span class="anchor" id="variable-j~2"></span>real(kind=dp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2017,7 +2015,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-set%7E3"></span>integer,</td>
+  <td><span class="anchor" id="variable-set~3"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2059,7 +2057,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-eref%7E2"></span>real(kind=dp),</td>
+  <td><span class="anchor" id="variable-eref~2"></span>real(kind=dp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2087,7 +2085,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-parent_group%7E2"></span>type(<a href='../type/nonlocal_t.html'>nonlocal_t</a>),</td>
+  <td><span class="anchor" id="variable-parent_group~2"></span>type(<a href='../type/nonlocal_t.html'>nonlocal_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2101,7 +2099,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-next%7E4"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
+  <td><span class="anchor" id="variable-next~4"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2145,7 +2143,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-p%7E2"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
+  <td><span class="anchor" id="variable-p~2"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2189,7 +2187,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-proj%7E2"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
+  <td><span class="anchor" id="variable-proj~2"></span>type(<a href='../type/nlpj_t.html'>nlpj_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2203,7 +2201,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-set%7E4"></span>integer,</td>
+  <td><span class="anchor" id="variable-set~4"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2217,7 +2215,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-grid%7E4"></span>type(Grid),</td>
+  <td><span class="anchor" id="variable-grid~4"></span>type(Grid),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2231,7 +2229,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E8"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~8"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2245,7 +2243,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-next%7E5"></span>type(<a href='../type/nonlocal_t.html'>nonlocal_t</a>),</td>
+  <td><span class="anchor" id="variable-next~5"></span>type(<a href='../type/nonlocal_t.html'>nonlocal_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2289,7 +2287,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-n%7E3"></span>integer,</td>
+  <td><span class="anchor" id="variable-n~3"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2303,7 +2301,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-l%7E4"></span>character(len=1),</td>
+  <td><span class="anchor" id="variable-l~4"></span>character(len=1),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2317,7 +2315,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-set%7E5"></span>integer,</td>
+  <td><span class="anchor" id="variable-set~5"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2331,7 +2329,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-j%7E3"></span>real(kind=dp),</td>
+  <td><span class="anchor" id="variable-j~3"></span>real(kind=dp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2373,7 +2371,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-parent_group%7E3"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
+  <td><span class="anchor" id="variable-parent_group~3"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2387,7 +2385,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-next%7E6"></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
+  <td><span class="anchor" id="variable-next~6"></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2431,7 +2429,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-p%7E3"></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
+  <td><span class="anchor" id="variable-p~3"></span>type(<a href='../type/wf_t.html'>wf_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2489,7 +2487,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-set%7E6"></span>integer,</td>
+  <td><span class="anchor" id="variable-set~6"></span>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2503,7 +2501,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-type%7E2"></span>character(len=100),</td>
+  <td><span class="anchor" id="variable-type~2"></span>character(len=100),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2517,7 +2515,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-grid%7E5"></span>type(Grid),</td>
+  <td><span class="anchor" id="variable-grid~5"></span>type(Grid),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2531,7 +2529,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E9"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~9"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2545,7 +2543,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-next%7E7"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
+  <td><span class="anchor" id="variable-next~7"></span>type(<a href='../type/wfns_t.html'>wfns_t</a>),</td>
   
   <td>public,</td>
   <td>pointer</td><td>::</td>
@@ -2589,7 +2587,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-total_charge%7E2"></span>real(kind=dp),</td>
+  <td><span class="anchor" id="variable-total_charge~2"></span>real(kind=dp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2645,7 +2643,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E10"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~10"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2731,7 +2729,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E11"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~11"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -2845,7 +2843,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-annotation%7E12"></span>type(ps_annotation_t),</td>
+  <td><span class="anchor" id="variable-annotation~12"></span>type(ps_annotation_t),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -3785,7 +3783,7 @@ private subroutine <a href='../proc/destroy_xc.html'>destroy_xc</a>(xp)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">

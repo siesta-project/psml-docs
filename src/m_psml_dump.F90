@@ -80,7 +80,6 @@ end subroutine ps_DumpToPSMLFile
 subroutine dump_provenance(xf,p)
 
   use xmlf90_wxml
-  use iso_varying_string, only: put, len, char
   
   type(xmlf_t), intent(inout) :: xf
   type(provenance_t), pointer :: p
@@ -104,7 +103,7 @@ subroutine dump_provenance(xf,p)
      if (len(p%input_file%buffer) > 0) then
         call xml_NewElement(xf,"input-file")
         call my_add_attribute(xf,"name",trim(p%input_file%name))
-        call xml_AddCDataSection(xf,char(p%input_file%buffer), &
+        call xml_AddCDataSection(xf,p%input_file%buffer, &
                                  line_feed=.true.)
         call xml_EndElement(xf,"input-file")
      endif

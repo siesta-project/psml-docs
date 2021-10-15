@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.3% of total for procedures.">8 statements</a>
+    title=" 0.3% of total for procedures.">7 statements</a>
      </li> 
      
      
@@ -212,25 +212,6 @@ public subroutine cdata_section_chunk(chunk)
 </h2>
     
   
-    <div class="panel panel-default">
-      <div class="panel-heading">
-  <h3 class="panel-title">Uses</h3>
-      </div>
-      <ul class="list-group">
-      
-      <li class="list-group-item">
-  <ul class="list-inline">
-    
-    <li>iso_varying_string</li>
-    
-  </ul>
-      </li>
-      
-      
-      
-      </ul>
-    </div>
-    
 
 
     
@@ -253,7 +234,7 @@ public subroutine cdata_section_chunk(chunk)
   
 <tr>
   
-  <td><span class="anchor" id="variable-chunk%7E2"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-chunk~2"></span>character(len=*),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -330,14 +311,13 @@ public subroutine cdata_section_chunk(chunk)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">cdata_section_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-  <span class="k">use </span><span class="n">iso_varying_string</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">operator</span><span class="p">(</span><span class="o">//</span><span class="p">)</span>
   
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">chunk</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">RETURN</span>     <span class="c">! skip empty chunk</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="n">in_input_file</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">   </span><span class="n">ifp</span><span class="p">%</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">ifp</span><span class="p">%</span><span class="n">buffer</span> <span class="o">//</span> <span class="n">chunk</span> 
+<span class="k">   call </span><span class="n">safe_str_assign</span><span class="p">(</span><span class="n">ifp</span><span class="p">%</span><span class="n">buffer</span><span class="p">,</span><span class="n">ifp</span><span class="p">%</span><span class="n">buffer</span> <span class="o">//</span> <span class="n">chunk</span><span class="p">)</span>
 <span class="n">endif</span>
 
 <span class="k">end subroutine </span><span class="n">cdata_section_chunk</span>
@@ -356,7 +336,7 @@ public subroutine cdata_section_chunk(chunk)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">

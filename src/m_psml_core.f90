@@ -9,8 +9,6 @@
 
 module m_psml_core
 
-use iso_varying_string, only: varying_string, var_str
-
 use assoc_list, only: ps_annotation_t => assoc_list_t
 use assoc_list, only: ps_clean_annotation => assoc_list_reset
 use class_Grid
@@ -51,8 +49,8 @@ integer, parameter, private    :: dp = selected_real_kind(14)
 !-----------------------------------------------------------
 
 type, public :: input_file_t
-        character(len=100)      :: name = "-----"
-        type(varying_string)    :: buffer
+        character(len=100)            :: name = "-----"
+        character(len=:), allocatable :: buffer
 end type input_file_t
 
 !------

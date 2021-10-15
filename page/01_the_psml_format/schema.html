@@ -139,7 +139,7 @@
   
   <div class="row">
     <div class="col-md-9 col-md-push-3" id='text'>
-      <div class="codehilite"><pre><span></span><span class="c1">#</span>
+      <div class="codehilite"><pre><span></span><code><span class="c1">#</span>
 <span class="c1"># Schema for PSML format</span>
 <span class="c1"># RELAX-NG compact form. See: http://www.relaxng.org/compact-tutorial-20030326.htm</span>
 <span class="c1">#</span>
@@ -196,7 +196,7 @@
           <span class="p">,</span> <span class="n">InputFile</span><span class="o">*</span>    <span class="c1"># zero or more input files</span>
               <span class="p">}</span>
 
-<span class="n">InputFile</span> <span class="o">=</span>  <span class="n">element</span> <span class="nb">input</span><span class="o">-</span><span class="nb">file</span> <span class="p">{</span>
+<span class="n">InputFile</span> <span class="o">=</span>  <span class="n">element</span> <span class="nb">input</span><span class="o">-</span><span class="n">file</span> <span class="p">{</span>
                <span class="n">attribute</span> <span class="n">name</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">NMTOKEN</span> <span class="p">},</span> <span class="c1"># No spaces or commas allowed</span>
                <span class="n">text</span>
              <span class="p">}</span>
@@ -319,7 +319,7 @@
            <span class="p">}</span>
 
 <span class="c1"># =========</span>
-<span class="n">NonLocalProjectors</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">nonlocal</span><span class="o">-</span><span class="n">projectors</span> <span class="p">{</span>
+<span class="n">NonLocalProjectors</span> <span class="o">=</span>  <span class="n">element</span> <span class="k">nonlocal</span><span class="o">-</span><span class="n">projectors</span> <span class="p">{</span>
                         <span class="n">attribute_set</span><span class="p">,</span>
                         <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
                         <span class="n">Grid</span><span class="err">?</span><span class="p">,</span>
@@ -391,7 +391,7 @@
                                 <span class="s2">&quot;scalar_relativistic&quot;</span> <span class="o">|</span> <span class="s2">&quot;spin_orbit&quot;</span> <span class="o">|</span> <span class="s2">&quot;lj&quot;</span> <span class="o">|</span>
                 <span class="s2">&quot;up&quot;</span> <span class="o">|</span> <span class="s2">&quot;down&quot;</span> <span class="o">|</span> <span class="s2">&quot;spin_average&quot;</span> <span class="o">|</span> <span class="s2">&quot;spin_difference&quot;</span> <span class="o">|</span>
                 <span class="s2">&quot;user_extension1&quot;</span> <span class="o">|</span> <span class="s2">&quot;user_extension2&quot;</span> <span class="p">}</span>
-</pre></div>
+</code></pre></div>
     </div>
     
     <div class="col-md-3 col-md-pull-9">
@@ -481,7 +481,7 @@
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">

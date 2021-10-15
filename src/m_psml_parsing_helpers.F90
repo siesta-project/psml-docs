@@ -13,6 +13,7 @@ module m_psml_parsing_helpers
  use class_Grid
  use assoc_list, only: ps_annotation_t => assoc_list_t
 
+ use strings_helpers, only: safe_str_assign
  
 implicit none
 
@@ -1026,7 +1027,6 @@ end subroutine end_element
 subroutine pcdata_chunk(chunk)
 
   use xmlf90_sax, only: build_data_array
-  use iso_varying_string, only: operator(//)
   
 character(len=*), intent(in) :: chunk
 
@@ -1045,7 +1045,7 @@ else if (in_grid_data) then
 
 else if (in_input_file) then
 
-      ifp%buffer = ifp%buffer // chunk 
+      call safe_str_assign(ifp%buffer,ifp%buffer // chunk)
    
 else if (in_header) then
       !
@@ -1059,14 +1059,13 @@ endif
 end subroutine pcdata_chunk
 !
 subroutine cdata_section_chunk(chunk)
-  use iso_varying_string, only: operator(//)
   
 character(len=*), intent(in) :: chunk
 
 if (len_trim(chunk) == 0) RETURN     ! skip empty chunk
 
 if (in_input_file) then
-   ifp%buffer = ifp%buffer // chunk 
+   call safe_str_assign(ifp%buffer,ifp%buffer // chunk)
 endif
 
 end subroutine cdata_section_chunk

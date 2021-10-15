@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.1% of total for procedures.">29 statements</a>
+    title=" 1.1% of total for procedures.">28 statements</a>
      </li> 
      
      
@@ -223,8 +223,6 @@ private subroutine dump_provenance(xf, p)
     
     <li>xmlf90_wxml</li>
     
-    <li>iso_varying_string</li>
-    
   </ul>
       </li>
       
@@ -270,7 +268,7 @@ private subroutine dump_provenance(xf, p)
   
 <tr>
   
-  <td><span class="anchor" id="variable-p%7E17"></span>type(<a href='../type/provenance_t.html'>provenance_t</a>),</td>
+  <td><span class="anchor" id="variable-p~7"></span>type(<a href='../type/provenance_t.html'>provenance_t</a>),</td>
   <td></td>
   <td></td>
   
@@ -349,9 +347,8 @@ private subroutine dump_provenance(xf, p)
     <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">dump_provenance</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
 
   <span class="k">use </span><span class="n">xmlf90_wxml</span>
-  <span class="k">use </span><span class="n">iso_varying_string</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">put</span><span class="p">,</span> <span class="nb">len</span><span class="p">,</span> <span class="nb">char</span>
-<span class="nb">  </span>
-<span class="nb">  </span><span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
+  
+  <span class="k">type</span><span class="p">(</span><span class="n">xmlf_t</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xf</span>
   <span class="k">type</span><span class="p">(</span><span class="n">provenance_t</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">p</span>
 
   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">depth</span>
@@ -373,7 +370,7 @@ private subroutine dump_provenance(xf, p)
      <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">        call </span><span class="n">xml_NewElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;input-file&quot;</span><span class="p">)</span>
         <span class="k">call </span><span class="n">my_add_attribute</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">name</span><span class="p">))</span>
-        <span class="k">call </span><span class="n">xml_AddCDataSection</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="nb">char</span><span class="p">(</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">buffer</span><span class="p">),</span> <span class="p">&amp;</span>
+        <span class="k">call </span><span class="n">xml_AddCDataSection</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">p</span><span class="p">%</span><span class="n">input_file</span><span class="p">%</span><span class="n">buffer</span><span class="p">,</span> <span class="p">&amp;</span>
                                  <span class="n">line_feed</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
         <span class="k">call </span><span class="n">xml_EndElement</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="s2">&quot;input-file&quot;</span><span class="p">)</span>
      <span class="n">endif</span>
@@ -397,7 +394,7 @@ private subroutine dump_provenance(xf, p)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
