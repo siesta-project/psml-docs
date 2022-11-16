@@ -142,14 +142,33 @@
       <h2 id="pre-requisites">Pre-requisites</h2>
 <ul>
 <li>
-<p>The <a href="http://launchpad.net/libpsml">libPSML library</a> itself.</p>
+<p>The <a href="http://gitlab.com/siesta-project/libraries/libpsml">libPSML library</a> itself.</p>
 </li>
 <li>
-<p>The <a href="http://launchpad.net/xmlf90">xmlf90 library</a>
+<p>The <a href="http://gitlab.com/siesta-project/libraries/xmlf90">xmlf90 library</a>
   Follow the instructions in the package to compile it.</p>
 </li>
 </ul>
-<h2 id="installation-of-libpsml">Installation of libPSML</h2>
+<h2 id="installation-of-libpsml-with-cmake">Installation of libPSML with CMake</h2>
+<div class="codehilite"><pre><span></span><code><span class="err">    cmake -S. -B_build -DCMAKE_INSTALL_PREFIX=/path/to/install/directory</span>
+<span class="err">    cmake --build _build</span>
+<span class="err">    (push _build; ctest ; popd)  # To run a simple test</span>
+<span class="err">    cmake --install _build</span>
+</code></pre></div>
+
+
+<p>The source for the xmlf90 dependency will be fetched from
+the gitlab repo, configured, and built.
+If a compiled xmlf90 is available and installed in a
+path pointed to by $XMLF90_ROOT, do instead:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">    cmake -S. -B_build -DCMAKE_INSTALL_PREFIX=/path/to/install/directory -DCMAKE_PREFIX_PATH=$XMLF90_ROOT</span>
+<span class="err">    cmake --build _build</span>
+<span class="err">    (push _build; ctest ; popd)  # To run a simple test</span>
+<span class="err">    cmake --install _build</span>
+</code></pre></div>
+
+
+<h2 id="installation-of-libpsml-with-autotools">Installation of libPSML with autotools</h2>
 <div class="codehilite"><pre><span></span><code><span class="err">    ./configure --prefix=/path/to/installation --with-xmlf90=/path/to/xmlf90</span>
 <span class="err">    make</span>
 <span class="err">    make check</span>
@@ -170,11 +189,76 @@ object.</p>
   functions on a linear grid for later plotting.</p>
 </li>
 </ul>
-<h2 id="compiling-user-programs">Compiling user programs</h2>
-<p>After installation, the appropriate modules and library files should
-already be in <code>$PREFIX/include</code> and <code>$PREFIX/lib</code>, respectively.</p>
-<p>The basic idiom is to provide the basic Fortran building rules, and
-to insert the paths to the libpsml (and xmlf90) modules and libraries.</p>
+<h2 id="compiling-user-programs-with-cmake">Compiling user programs with CMake</h2>
+<p>Just use the standard CMake idiom in your CMakeLists.txt file:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">    add_executable(your_program your_sources)</span>
+<span class="err">    find_package(xmlf90 REQUIRED)</span>
+<span class="err">    find_package(libpsml REQUIRED)</span>
+<span class="err">    target_link_libraries(your_program libpsml::libpsml)</span>
+</code></pre></div>
+
+
+<p>The above assumes that the installation directories for xmlf90 and libpsml can
+be found by CMake. This can be achieved by adding them to the CMAKE_PREFIX_PATH
+CMake or enviroment variable:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">    cmake -S. -B_your_build -DCMAKE_PREFIX_PATH=&quot;$PSML_ROOT;$XMLF90_ROOT&quot; .......</span>
+<span class="err">    CMAKE_PREFIX_PATH=$PSML_ROOT:$XMLF90_ROOT cmake -S. -B_your_build .......</span>
+</code></pre></div>
+
+
+<h2 id="compiling-user-programs-with-standard-makefiles">Compiling user programs with standard makefiles</h2>
+<p>Both methods above will create a pkg-config file with information
+for client programs. It is suggested that the user create a
+separate directory to hold the program files and prepare a Makefile
+following this example (FC, FFLAGS, and LDFLAGS need to be set appropriately
+for the Fortran compiler used):</p>
+<div class="codehilite"><pre><span></span><code><span class="c">    #---------------------------------------------------------------</span>
+<span class="c">    #</span>
+    default: example
+<span class="c">    #</span>
+<span class="c">    #---------------------------</span>
+    <span class="nv">XMLF90_ROOT</span><span class="o">=</span>/path/to/installation
+    <span class="nv">PSML_ROOT</span><span class="o">=</span>/path/to/installation
+    <span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">$(</span>PSML_ROOT<span class="k">)</span>/lib/pkgconfig:<span class="k">$(</span>PKG_CONFIG_PATH<span class="k">)</span>
+    <span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">$(</span>XMLF90_ROOT<span class="k">)</span>/lib/pkgconfig:<span class="k">$(</span>PKG_CONFIG_PATH<span class="k">)</span>
+<span class="c">    #</span>
+    <span class="nv">XMLF90_LIBS</span><span class="o">=</span><span class="k">$(</span>pkg-config --libs xmlf90<span class="k">)</span>
+    <span class="nv">XMLF90_INCFLAGS</span><span class="o">=</span><span class="k">$(</span>pkg-config --cflags xmlf90<span class="k">)</span>
+    <span class="nv">PSML_LIBS</span><span class="o">=</span><span class="k">$(</span>pkg-config --libs libpsml<span class="k">)</span>
+    <span class="nv">PSML_INCFLAGS</span><span class="o">=</span><span class="k">$(</span>pkg-config --cflags libpsml<span class="k">)</span>
+<span class="c">    #</span>
+    <span class="nv">INCFLAGS</span><span class="o">+=</span> <span class="k">$(</span>XMLF90_INCFLAGS<span class="k">)</span>
+    <span class="nv">INCFLAGS</span><span class="o">+=</span> <span class="k">$(</span>PSML_INCFLAGS<span class="k">)</span>
+    <span class="nv">LIBS</span><span class="o">+=</span> <span class="k">$(</span>PSML_LIBS<span class="k">)</span> <span class="k">$(</span>XMLF90_LIBS<span class="k">)</span> 
+<span class="c">    #---------------------------</span>
+<span class="c">    #</span>
+    <span class="nv">OBJS</span><span class="o">=</span> m_handlers.o example.o
+
+    example:  <span class="k">$(</span>OBJS<span class="k">)</span>
+            <span class="k">$(</span>FC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -o <span class="nv">$@</span> <span class="k">$(</span>OBJS<span class="k">)</span>  <span class="k">$(</span>LIBS<span class="k">)</span>
+<span class="c">    #</span>
+    clean: 
+            rm -f *.o example *.mod
+<span class="c">    #</span>
+<span class="c">    # Building rules</span>
+<span class="c">    #</span>
+    .F.o:
+            <span class="k">$(</span>FC<span class="k">)</span> -c <span class="k">$(</span>FFLAGS<span class="k">)</span> <span class="k">$(</span>INCFLAGS<span class="k">)</span>  <span class="k">$(</span>FPPFLAGS<span class="k">)</span> $&lt;
+    .f.o:
+            <span class="k">$(</span>FC<span class="k">)</span> -c <span class="k">$(</span>FFLAGS<span class="k">)</span> <span class="k">$(</span>INCFLAGS<span class="k">)</span>   $&lt;
+    .F90.o:
+            <span class="k">$(</span>FC<span class="k">)</span> -c <span class="k">$(</span>FFLAGS<span class="k">)</span> <span class="k">$(</span>INCFLAGS<span class="k">)</span>  <span class="k">$(</span>FPPFLAGS<span class="k">)</span> $&lt;
+    .f90.o:
+            <span class="k">$(</span>FC<span class="k">)</span> -c <span class="k">$(</span>FFLAGS<span class="k">)</span> <span class="k">$(</span>INCFLAGS<span class="k">)</span>   $&lt;
+<span class="c">    #</span>
+<span class="c">    #---------------------------------------------------------------</span>
+</code></pre></div>
+
+
+<p>Here it is assumed that the user has two source files,
+'example.f90' and 'm_handlers.f90'. Simply typing
+'make' will compile 'example', pulling in all the needed
+modules and library objects.</p>
     </div>
     
     <div class="col-md-3 col-md-pull-9">
@@ -264,7 +348,7 @@ to insert the paths to the libpsml (and xmlf90) modules and libraries.</p>
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2021 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2022 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
