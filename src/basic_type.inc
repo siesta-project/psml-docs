@@ -18,8 +18,6 @@
 !    in the PyF95 project.
 !
 !=================================================================
-#define OBJ_ERR_HANDLER psml_die
-!=================================================================
 
   PRIVATE
 
@@ -60,15 +58,6 @@
   interface same
     module procedure same_
   end interface
-
-#ifdef OBJ_ERR_HANDLER
-  ! Stand-alone routine which must be provided
-  interface 
-      subroutine OBJ_ERR_HANDLER(str)
-      character(len=*), intent(in) :: str
-      end subroutine OBJ_ERR_HANDLER
-  end interface
-#endif
 
 CONTAINS
 

@@ -43,6 +43,9 @@ module m_psml
   use assoc_list, only: print_annotation => assoc_list_print
   use assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST 
 
+  use external_interfaces, only: ps_set_error_handler => &
+                                 set_die_routine
+ 
   ! Remove common names from namespace
   use class_Grid, dummy_id => id, dummy_name => name
 

@@ -1,0 +1,142 @@
+title: Installation
+
+## Pre-requisites
+
+* The [libPSML library](http://gitlab.com/siesta-project/libraries/libpsml) itself.
+
+* The [xmlf90 library](http://gitlab.com/siesta-project/libraries/xmlf90)
+  Follow the instructions in the package to compile it.
+
+## Installation of libPSML with CMake
+
+```
+    cmake -S. -B_build -DCMAKE_INSTALL_PREFIX=/path/to/install/directory
+    cmake --build _build
+    (push _build; ctest ; popd)  # To run a simple test
+    cmake --install _build
+```
+
+The source for the xmlf90 dependency will be fetched from
+the gitlab repo, configured, and built.
+If a compiled xmlf90 is available and installed in a
+path pointed to by $XMLF90_ROOT, do instead:
+
+```
+    cmake -S. -B_build -DCMAKE_INSTALL_PREFIX=/path/to/install/directory -DCMAKE_PREFIX_PATH=$XMLF90_ROOT
+    cmake --build _build
+    (push _build; ctest ; popd)  # To run a simple test
+    cmake --install _build
+```
+
+## Installation of libPSML with autotools
+
+```
+    ./configure --prefix=/path/to/installation --with-xmlf90=/path/to/xmlf90
+    make
+    make check
+    make install
+```
+
+In case the installed xmlf90 does not follow the simple rule of keeping the .mod files in `include` and
+the library files in `lib`, you might need to use the more general expression:
+
+```
+../configure --prefix=/path/to/installation \
+             --with-xmlf90="$(pkg-config --cflags xmlf90),$(pkg-config --libs xmlf90)"
+```
+
+assuming that the PKG_CONFIG_PATH is appropriate for the discovery of xmlf90.
+
+## Test programs
+
+Go into the subdirectory `examples`. In it you can find, among others:
+
+* [[normalize(program)]]:  A program to parse a PSML file and dump the resulting `ps`
+object.
+
+* [[show_psml(program)]]: A program to parse a PSML file and extract
+  various kinds of information, with optional evaluation of radial
+  functions on a linear grid for later plotting.
+
+## Compiling user programs with CMake
+
+Just use the standard CMake idiom in your CMakeLists.txt file:
+
+```
+    add_executable(your_program your_sources)
+    find_package(xmlf90 REQUIRED)
+    find_package(libpsml REQUIRED)
+    target_link_libraries(your_program libpsml::libpsml)
+```
+
+The above assumes that the installation directories for xmlf90 and libpsml can
+be found by CMake. This can be achieved by adding them to the CMAKE_PREFIX_PATH
+CMake or enviroment variable:
+
+```
+    cmake -S. -B_your_build -DCMAKE_PREFIX_PATH="$PSML_ROOT;$XMLF90_ROOT" .......
+    CMAKE_PREFIX_PATH=$PSML_ROOT:$XMLF90_ROOT cmake -S. -B_your_build .......
+```
+
+## Compiling user programs with standard makefiles
+
+Both methods above will create a pkg-config file with information
+for client programs. It is suggested that the user create a
+separate directory to hold the program files and prepare a Makefile
+following this example (FC, FFLAGS, and LDFLAGS need to be set appropriately
+for the Fortran compiler used):
+
+```
+    #---------------------------------------------------------------
+    #
+    default: example
+    #
+    #---------------------------
+    XMLF90_ROOT=/path/to/installation
+    PSML_ROOT=/path/to/installation
+    PKG_CONFIG_PATH=$(PSML_ROOT)/lib/pkgconfig:$(PKG_CONFIG_PATH)
+    PKG_CONFIG_PATH=$(XMLF90_ROOT)/lib/pkgconfig:$(PKG_CONFIG_PATH)
+    #
+    XMLF90_LIBS=$(pkg-config --libs xmlf90)
+    XMLF90_INCFLAGS=$(pkg-config --cflags xmlf90)
+    PSML_LIBS=$(pkg-config --libs libpsml)
+    PSML_INCFLAGS=$(pkg-config --cflags libpsml)
+    #
+    INCFLAGS+= $(XMLF90_INCFLAGS)
+    INCFLAGS+= $(PSML_INCFLAGS)
+    LIBS+= $(PSML_LIBS) $(XMLF90_LIBS) 
+    #---------------------------
+    #
+    OBJS= m_handlers.o example.o
+     
+    example:  $(OBJS)
+            $(FC) $(LDFLAGS) -o $@ $(OBJS)  $(LIBS)
+    #
+    clean: 
+            rm -f *.o example *.mod
+    #
+    # Building rules
+    #
+    .F.o:
+            $(FC) -c $(FFLAGS) $(INCFLAGS)  $(FPPFLAGS) $<
+    .f.o:
+            $(FC) -c $(FFLAGS) $(INCFLAGS)   $<
+    .F90.o:
+            $(FC) -c $(FFLAGS) $(INCFLAGS)  $(FPPFLAGS) $<
+    .f90.o:
+            $(FC) -c $(FFLAGS) $(INCFLAGS)   $<
+    #
+    #---------------------------------------------------------------
+```
+
+Here it is assumed that the user has two source files,
+'example.f90' and 'm_handlers.f90'. Simply typing
+'make' will compile 'example', pulling in all the needed
+modules and library objects.
+
+
+
+
+
+
+

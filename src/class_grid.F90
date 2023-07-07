@@ -6,6 +6,8 @@ module class_Grid
 
   use assoc_list, only: ps_annotation_t => assoc_list_t
   use assoc_list, only: ps_clean_annotation => assoc_list_reset
+
+  use external_interfaces, only: psml_die
   
   implicit none
 
@@ -36,6 +38,7 @@ module class_Grid
 
 !========================
 #define TYPE_NAME Grid
+#define OBJ_ERR_HANDLER psml_die
 #include "basic_type.inc"
 !========================
 

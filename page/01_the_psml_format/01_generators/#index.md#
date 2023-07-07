@@ -1,0 +1,39 @@
+title: Pseudopotential generators supporting PSML
+
+###ONCVPSP
+
+The first generator is the open-source
+[ONCVPSP](http://www.mat-simresearch.com/) code implemented by
+[D. Hamann](http://dx.doi.org/10.1103%2FPhysRevB.88.085117) to
+generate optimized multiple-projector norm-conserving
+pseudopotentials. The projectors are directly stored in the PSML
+format together with a choice for the local potential. In addition, a
+set of semi-local potentials, a by-product of the ONCVPSP algorithm,
+is also included in the PSML file. Versions of ONCVPSP able to produce
+PSML files are available in
+[Gitlab](https://gitlab.com/garalb/oncvpsp-psml/-/releases). To ease the production
+of XML, a special library (wxml, part of the [xmlf90
+project](https://gitlab.com/siesta-project/libraries/xmlf90) maintained by one of the
+authors (A.G.)) is used.
+
+###ATOM
+
+The second generator enabled for PSML output is the ATOM code,
+originally developed by S. Froyen, later modified by N. Troullier and
+J. L. Martins, and currently maintained by one of us (A. G.)  within
+the [SIESTA](http://www.icmab.es/siesta) project.  ATOM, freely
+distributed to the academic community, generates norm-conserving
+pseudopotentials in the semilocal form.
+
+In addition, we have developed a post-processing tool (PSOP, currently
+available in the main branch of SIESTA development) which takes as
+input the semilocal components and computes the local part of the
+pseudopotential and the KB projector functions in the same way as it
+is done within the SIESTA code. These new elements, together with a
+new provenance record, are incorporated in a new PSML file, which
+describes a well-defined, client-code independent and unique operator.
+
+We have thus already two different generators of PSML files, their
+specific idiosyncrasies being describable by a common standard. Our
+plans are to enable PSML output in other pseudopotential-generation
+codes.
