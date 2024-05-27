@@ -56,7 +56,7 @@
                   <li><a href="../lists/modules.html">Modules</a></li>
                   <li><a href="../lists/procedures.html">Procedures</a></li>
                   <li><a href="../lists/types.html">Derived Types</a></li>
-                  <li><a href="../program/test_assoc.html">Program</a></li>
+                  <li><a href="../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../program/test_assoc.html">Program</a>
+                <a href="../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -102,7 +102,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.2% of total for procedures.">30 statements</a>
+               title=" 1.4% of total for procedures.">41 statements</a>
           </li>
 
             <li id="source-file">
@@ -162,7 +162,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine psml_reader(fname, ps, debug)  
+    <h2>public  subroutine psml_reader(fname, ps, debug, stat)  
 </h2>
         <div class="panel panel-default">
       <div class="panel-heading">
@@ -171,12 +171,12 @@
       <ul class="list-group">
           <li class="list-group-item">
             <ul class="list-inline">
-                <li><a href='../module/m_psml_interp.html'>m_psml_interp</a></li>
-                <li><a href='../module/m_psml_tables.html'>m_psml_tables</a></li>
-                <li><a href='../module/m_psml_parsing_helpers.html'>m_psml_parsing_helpers</a></li>
-                <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
-                <li>xmlf90_sax</li>
                 <li><a href='../module/m_psml_core.html'>m_psml_core</a></li>
+                <li><a href='../module/m_psml_parsing_helpers.html'>m_psml_parsing_helpers</a></li>
+                <li><a href='../module/m_psml_interp.html'>m_psml_interp</a></li>
+                <li><a href='../module/m_psml_external_interfaces.html'>m_psml_external_interfaces</a></li>
+                <li>xmlf90_sax</li>
+                <li><a href='../module/m_psml_tables.html'>m_psml_tables</a></li>
             </ul>
           </li>
       </ul>
@@ -228,7 +228,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-debug"></span>
+              <span class="anchor" id="variable-debug~2"></span>
               logical,
             </td>
 <td>intent(in),</td>
@@ -237,6 +237,21 @@
             </td>
             <td>::</td>
             <td><strong>debug</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stat"></span>
+              integer,
+            </td>
+<td>intent(out),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stat</strong></td>
             <td>
                 
             </td>
@@ -289,7 +304,7 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">  </span><span class="k">subroutine </span><span class="n">psml_reader</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="n">debug</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="w">  </span><span class="k">subroutine </span><span class="n">psml_reader</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="n">debug</span><span class="p">,</span><span class="nb">stat</span><span class="p">)</span>
 
 <span class="w">  </span><span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span><span class="w">            </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">ps_t</span><span class="p">,</span><span class="w"> </span><span class="n">ps_destroy</span>
 <span class="w">  </span><span class="k">use </span><span class="n">m_psml_tables</span><span class="p">,</span><span class="w">          </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">ps_GenerateTables</span>
@@ -298,18 +313,23 @@
 <span class="w">  </span><span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">cdata_section_chunk</span>
 <span class="w">  </span><span class="k">use </span><span class="n">m_psml_parsing_helpers</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">pseudo</span><span class="p">,</span><span class="w"> </span><span class="n">debug_parsing</span>
 
-<span class="w">  </span><span class="k">use </span><span class="n">external_interfaces</span><span class="p">,</span><span class="w">    </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">die</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">psml_die</span>
+<span class="w">  </span><span class="k">use </span><span class="n">m_psml_external_interfaces</span><span class="p">,</span><span class="w">    </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">die</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">psml_die</span>
 <span class="w">  </span><span class="k">use </span><span class="n">m_psml_interp</span><span class="p">,</span><span class="w">               </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">set_default_interpolator</span>
 
 <span class="w">  </span><span class="k">use </span><span class="n">xmlf90_sax</span><span class="p">,</span><span class="w">        </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">xml_t</span><span class="p">,</span><span class="w"> </span><span class="n">open_xmlfile</span><span class="p">,</span><span class="w"> </span><span class="n">xml_parse</span><span class="p">,</span><span class="w"> </span><span class="n">close_xmlfile</span>
+<span class="cp">#ifdef XMLF90_PARSE_HAS_STAT</span>
+<span class="w">  </span><span class="k">use </span><span class="n">xmlf90_sax</span><span class="p">,</span><span class="w">        </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">xml_error_report</span>
+<span class="w">  </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">error_unit</span>
+<span class="cp">#endif</span>
 
 <span class="w">  </span><span class="k">implicit none </span>
 
 <span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="n">fname</span>
 <span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span><span class="w"> </span><span class="k">target</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span>
 <span class="w">  </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">debug</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
 
-<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">xml_t</span><span class="p">)</span><span class="w">                     </span><span class="kd">::</span><span class="w"> </span><span class="n">fxml</span>
+<span class="nb">  </span><span class="k">type</span><span class="p">(</span><span class="n">xml_t</span><span class="p">)</span><span class="w">                     </span><span class="kd">::</span><span class="w"> </span><span class="n">fxml</span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iostat</span>
 
 <span class="w">  </span><span class="c">! Clean the object&#39;s internal data</span>
@@ -331,9 +351,31 @@
 <span class="w"> </span><span class="c">! Allocate internal structures here...</span>
 <span class="w"> </span>
 <span class="w"> </span><span class="k">call </span><span class="n">open_xmlfile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">fxml</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span>
-<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iostat</span><span class="w"> </span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Cannot open PSML file: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
-<span class="w"> </span><span class="k">call </span><span class="n">xml_parse</span><span class="p">(</span><span class="n">fxml</span><span class="p">,</span><span class="w"> </span><span class="n">begin_element</span><span class="p">,</span><span class="n">end_element</span><span class="p">,</span><span class="n">pcdata_chunk</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
-<span class="w">                </span><span class="n">cdata_section_handler</span><span class="o">=</span><span class="n">cdata_section_chunk</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iostat</span><span class="w"> </span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="nb">stat</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">       </span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="w">       </span><span class="k">RETURN</span>
+<span class="k">    else</span>
+<span class="k">       call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Cannot open PSML file: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+<span class="w">    </span><span class="k">endif</span>
+<span class="k"> endif</span>
+<span class="k"> call </span><span class="n">xml_parse</span><span class="p">(</span><span class="n">fxml</span><span class="p">,</span><span class="w"> </span><span class="n">begin_element</span><span class="p">,</span><span class="n">end_element</span><span class="p">,</span><span class="n">pcdata_chunk</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">      </span><span class="n">cdata_section_handler</span><span class="o">=</span><span class="n">cdata_section_chunk</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="cp">#ifdef XMLF90_PARSE_HAS_STAT</span>
+<span class="w">      </span><span class="p">,</span><span class="nb">stat</span><span class="o">=</span><span class="n">iostat</span><span class="p">)</span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iostat</span><span class="w"> </span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="nb">stat</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">       </span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span>
+<span class="w">       </span><span class="k">call </span><span class="n">xml_error_report</span><span class="p">(</span><span class="n">fxml</span><span class="p">,</span><span class="n">error_unit</span><span class="p">)</span>
+<span class="w">       </span><span class="k">RETURN</span>
+<span class="k">    else</span>
+<span class="k">       call </span><span class="n">die</span><span class="p">(</span><span class="s2">&quot;Parsing error (details in stderr) in PSML file: &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+<span class="w">    </span><span class="k">endif</span>
+<span class="k"> endif</span>
+
+<span class="cp">#else</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="cp">#endif</span>
 <span class="w"> </span><span class="k">call </span><span class="n">close_xmlfile</span><span class="p">(</span><span class="n">fxml</span><span class="p">)</span>
 
 <span class="w"> </span><span class="c">! Clean up association of module pointer</span>
@@ -345,6 +387,12 @@
 <span class="w"> </span><span class="c">! Set default interpolator</span>
 <span class="w"> </span><span class="c">!</span>
 <span class="w"> </span><span class="k">call </span><span class="n">set_default_interpolator</span><span class="p">()</span>
+
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="nb">stat</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="c">! Set code to success if we made it here</span>
+<span class="w">    </span><span class="c">! without returning</span>
+<span class="w">    </span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w"> </span><span class="k">endif</span>
 
 <span class="k">end subroutine </span><span class="n">psml_reader</span>
 </pre></div>
@@ -360,7 +408,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

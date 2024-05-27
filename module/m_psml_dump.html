@@ -56,7 +56,7 @@
                   <li><a href="../lists/modules.html">Modules</a></li>
                   <li><a href="../lists/procedures.html">Procedures</a></li>
                   <li><a href="../lists/types.html">Derived Types</a></li>
-                  <li><a href="../program/test_assoc.html">Program</a></li>
+                  <li><a href="../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../program/test_assoc.html">Program</a>
+                <a href="../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -102,7 +102,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title="13.1% of total for modules and submodules.">392 statements</a>
+               title="12.9% of total for modules and submodules.">426 statements</a>
           </li>
 
             <li id="source-file">
@@ -171,6 +171,8 @@
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_radfunc">dump_radfunc</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_valence_charge">dump_valence_charge</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_core_charge">dump_core_charge</a>
+            <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_valence_kinetic_energy_density">dump_valence_kinetic_energy_density</a>
+            <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_core_kinetic_energy_density">dump_core_kinetic_energy_density</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_semilocal_potentials">dump_semilocal_potentials</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_local_potential">dump_local_potential</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_nonlocal_projectors">dump_nonlocal_projectors</a>
@@ -204,10 +206,10 @@
       <ul class="list-group">
           <li class="list-group-item">
             <ul class="list-inline">
-                <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
-                <li><a href='../module/class_grid.html'>class_Grid</a></li>
-                <li><a href='../module/assoc_list.html'>assoc_list</a></li>
+                <li><a href='../module/m_psml_class_grid.html'>m_psml_class_Grid</a></li>
                 <li><a href='../module/m_psml_core.html'>m_psml_core</a></li>
+                <li><a href='../module/m_psml_external_interfaces.html'>m_psml_external_interfaces</a></li>
+                <li><a href='../module/m_psml_assoc_list.html'>m_psml_assoc_list</a></li>
             </ul>
           </li>
       </ul>
@@ -260,6 +262,8 @@
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_radfunc">dump_radfunc</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_valence_charge">dump_valence_charge</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_core_charge">dump_core_charge</a>
+            <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_valence_kinetic_energy_density">dump_valence_kinetic_energy_density</a>
+            <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_core_kinetic_energy_density">dump_core_kinetic_energy_density</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_semilocal_potentials">dump_semilocal_potentials</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_local_potential">dump_local_potential</a>
             <a class="list-group-item" href="../module/m_psml_dump.html#proc-dump_nonlocal_projectors">dump_nonlocal_projectors</a>
@@ -860,6 +864,146 @@ parameter
   </div>
 
               <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-dump_valence_kinetic_energy_density"></span><h3>private  subroutine <a href='../proc/dump_valence_kinetic_energy_density.html'>dump_valence_kinetic_energy_density</a>(xf, val, parent_grid)  
+</h3></div>
+    <div class="panel-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              type(xmlf_t),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xf</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              type(<a href='../type/valence_kinetic_energy_density_t.html'>valence_kinetic_energy_density_t</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>val</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              type(Grid_t)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>parent_grid</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="panel panel-default">
+    <div class="panel-heading codesum"><span class="anchor" id="proc-dump_core_kinetic_energy_density"></span><h3>private  subroutine <a href='../proc/dump_core_kinetic_energy_density.html'>dump_core_kinetic_energy_density</a>(xf, core, parent_grid)  
+</h3></div>
+    <div class="panel-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              type(xmlf_t),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xf</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              type(<a href='../type/core_kinetic_energy_density_t.html'>core_kinetic_energy_density_t</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>core</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              type(Grid_t)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>parent_grid</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="panel panel-default">
     <div class="panel-heading codesum"><span class="anchor" id="proc-dump_semilocal_potentials"></span><h3>private  subroutine <a href='../proc/dump_semilocal_potentials.html'>dump_semilocal_potentials</a>(xf, ps)  
 </h3></div>
     <div class="panel-body">
@@ -1272,7 +1416,7 @@ parameter
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

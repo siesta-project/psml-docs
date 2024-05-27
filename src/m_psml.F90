@@ -32,22 +32,22 @@ module m_psml
 
   ! Exported utility types
   use m_psml_core, only: ps_radfunc_t => radfunc_t
-  use assoc_list, only: ps_annotation_t => assoc_list_t
+  use m_psml_assoc_list, only: ps_annotation_t => assoc_list_t
 
-  use assoc_list, only: nitems_annotation => assoc_list_nitems
-  use assoc_list, only: get_annotation_key => assoc_list_get_key
-  use assoc_list, only: get_annotation_value => assoc_list_get_value
-  use assoc_list, only: insert_annotation_pair => assoc_list_insert
-  use assoc_list, only: init_annotation => assoc_list_init
-  use assoc_list, only: reset_annotation => assoc_list_reset
-  use assoc_list, only: print_annotation => assoc_list_print
-  use assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST 
+  use m_psml_assoc_list, only: nitems_annotation => assoc_list_nitems
+  use m_psml_assoc_list, only: get_annotation_key => assoc_list_get_key
+  use m_psml_assoc_list, only: get_annotation_value => assoc_list_get_value
+  use m_psml_assoc_list, only: insert_annotation_pair => assoc_list_insert
+  use m_psml_assoc_list, only: init_annotation => assoc_list_init
+  use m_psml_assoc_list, only: reset_annotation => assoc_list_reset
+  use m_psml_assoc_list, only: print_annotation => assoc_list_print
+  use m_psml_assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST 
 
-  use external_interfaces, only: ps_set_error_handler => &
+  use m_psml_external_interfaces, only: ps_set_error_handler => &
                                  set_die_routine
  
   ! Remove common names from namespace
-  use class_Grid, dummy_id => id, dummy_name => name
+  use m_psml_class_Grid, dummy_id => id, dummy_name => name
 
   ! Export precision of real numbers used
   

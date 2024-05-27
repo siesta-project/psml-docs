@@ -56,7 +56,7 @@
                   <li><a href="../lists/modules.html">Modules</a></li>
                   <li><a href="../lists/procedures.html">Procedures</a></li>
                   <li><a href="../lists/types.html">Derived Types</a></li>
-                  <li><a href="../program/test_assoc.html">Program</a></li>
+                  <li><a href="../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../program/test_assoc.html">Program</a>
+                <a href="../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -102,7 +102,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 0.5% of total for procedures.">13 statements</a>
+               title=" 0.4% of total for procedures.">13 statements</a>
           </li>
 
             <li id="source-file">
@@ -194,7 +194,7 @@
         <tr>
             <td>
               <span class="anchor" id="variable-f~3"></span>
-              type(<a href='../type/radfunc_t.html'>radfunc_t</a>),
+              type(ps_radfunc_t),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -208,7 +208,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-r~8"></span>
+              <span class="anchor" id="variable-r~11"></span>
               real(kind=dp),
             </td>
 <td>intent(in)</td>
@@ -223,7 +223,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-debug~2"></span>
+              <span class="anchor" id="variable-debug~3"></span>
               logical,
             </td>
 <td>intent(in)</td>
@@ -241,7 +241,7 @@
 
       <h3>Return Value
         <small>
-          <span class="anchor" id="variable-val~8"></span>
+          <span class="anchor" id="variable-val~11"></span>
           real(kind=dp)
         </small>
       </h3>
@@ -294,7 +294,7 @@
     <div class="highlight"><pre><span></span><span class="k">function </span><span class="n">eval_radfunc</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">debug</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 <span class="k">use </span><span class="n">m_psml_interp</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">interpolator</span><span class="p">,</span><span class="w"> </span><span class="n">nq</span>
 
-<span class="k">type</span><span class="p">(</span><span class="n">radfunc_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span>
+<span class="k">type</span><span class="p">(</span><span class="n">ps_radfunc_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span>
 <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span>
 <span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">debug</span>
 
@@ -325,7 +325,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

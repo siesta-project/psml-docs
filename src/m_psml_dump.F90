@@ -11,11 +11,11 @@ module m_psml_dump
 
 use m_psml_core   ! For basic structures
 
-use assoc_list, only: ps_annotation_t => assoc_list_t
-!use assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST
+use m_psml_assoc_list, only: ps_annotation_t => assoc_list_t
+!use m_psml_assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST
 
-use class_grid, Grid_t => Grid
-use external_interfaces, only: die => psml_die
+use m_psml_class_grid, Grid_t => Grid
+use m_psml_external_interfaces, only: die => psml_die
 
 implicit none
 
@@ -62,11 +62,18 @@ subroutine ps_DumpToPSMLFile(ps,fname,indent)
   endif
 
   call dump_valence_charge(xf,ps%valence_charge,ps%global_grid)
-      if (trim(ps%header%core_corrections) == "yes") then
-         call dump_core_charge(xf,ps%core_charge,ps%global_grid)
-      endif
+  if (trim(ps%header%core_corrections) == "yes") then
+     call dump_core_charge(xf,ps%core_charge,ps%global_grid)
+  endif
 
-      call dump_semilocal_potentials(xf,ps)
+  if (trim(ps%header%meta_gga) == "yes") then
+     call dump_valence_kinetic_energy_density(xf,ps%valence_kinetic_energy_density,ps%global_grid)
+     if (trim(ps%header%core_corrections) == "yes") then
+        call dump_core_kinetic_energy_density(xf,ps%core_kinetic_energy_density,ps%global_grid)
+     endif
+  endif
+
+  call dump_semilocal_potentials(xf,ps)
   call dump_local_potential(xf,ps)
   call dump_nonlocal_projectors(xf,ps)
   call dump_pseudo_wavefunctions(xf,ps)
@@ -194,6 +201,7 @@ subroutine dump_pseudo_atom_spec(xf,ps)
      call my_add_attribute(xf,"spin-dft","no")
   endif
   call my_add_attribute(xf,"core-corrections",trim(h%core_corrections))
+  call my_add_attribute(xf,"meta-gga",trim(h%meta_gga))
 
   call dump_annotation(xf,h%annotation)
 
@@ -266,6 +274,43 @@ subroutine dump_core_charge(xf,core,parent_grid)
   call xml_EndElement(xf,"pseudocore-charge")
 end subroutine dump_core_charge
 !
+
+subroutine dump_valence_kinetic_energy_density(xf,val,parent_grid)
+
+  use xmlf90_wxml
+
+  type(xmlf_t), intent(inout) :: xf
+  type(valence_kinetic_energy_density_t), intent(in) :: val
+  type(Grid_t)           :: parent_grid
+
+  call xml_NewElement(xf,"valence-kinetic-energy-density")
+  call my_add_attribute(xf,"is-unscreening-tau",trim(val%is_unscreening_tau))
+  call dump_annotation(xf,val%annotation)
+  call dump_radfunc(xf,val%kin_edens_val,parent_grid)
+  call xml_EndElement(xf,"valence-kinetic-energy-density")
+end subroutine dump_valence_kinetic_energy_density
+
+subroutine dump_core_kinetic_energy_density(xf,core,parent_grid)
+
+  use xmlf90_wxml
+
+  type(xmlf_t), intent(inout) :: xf
+  type(core_kinetic_energy_density_t), intent(in) :: core
+  type(Grid_t)                 :: parent_grid
+
+  call xml_NewElement(xf,"pseudocore-kinetic-energy-density")
+  if (core%rcore >= 0.0_dp) then
+     call my_add_attribute(xf,"matching-radius",str(core%rcore))
+  endif
+  if (core%n_cont_derivs >= 0 ) then
+     call my_add_attribute(xf,"number-of-continuous-derivatives",str(core%n_cont_derivs))
+  endif
+  call dump_annotation(xf,core%annotation)
+  call dump_radfunc(xf,core%kin_edens_core,parent_grid)
+  call xml_EndElement(xf,"pseudocore-charge")
+end subroutine dump_core_kinetic_energy_density
+!
+
 subroutine dump_semilocal_potentials(xf,ps)
 
   use xmlf90_wxml
@@ -491,10 +536,10 @@ subroutine dump_annotation(xf,annotation)
 
   use xmlf90_wxml
 
-  use assoc_list, only: ps_annotation_t => assoc_list_t
-  use assoc_list, only: nitems_annotation => assoc_list_nitems
-  use assoc_list, only: get_annotation_key => assoc_list_get_key
-  use assoc_list, only: get_annotation_value => assoc_list_get_value
+  use m_psml_assoc_list, only: ps_annotation_t => assoc_list_t
+  use m_psml_assoc_list, only: nitems_annotation => assoc_list_nitems
+  use m_psml_assoc_list, only: get_annotation_key => assoc_list_get_key
+  use m_psml_assoc_list, only: get_annotation_value => assoc_list_get_value
 
   type(xmlf_t), intent(inout) :: xf
   type(ps_annotation_t), intent(in)  :: annotation

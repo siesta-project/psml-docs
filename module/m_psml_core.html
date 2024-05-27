@@ -56,7 +56,7 @@
                   <li><a href="../lists/modules.html">Modules</a></li>
                   <li><a href="../lists/procedures.html">Procedures</a></li>
                   <li><a href="../lists/types.html">Derived Types</a></li>
-                  <li><a href="../program/test_assoc.html">Program</a></li>
+                  <li><a href="../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../program/test_assoc.html">Program</a>
+                <a href="../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -102,7 +102,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title="12.2% of total for modules and submodules.">365 statements</a>
+               title="11.6% of total for modules and submodules.">383 statements</a>
           </li>
 
             <li id="source-file">
@@ -194,6 +194,8 @@
             <a class="list-group-item" href="../module/m_psml_core.html#type-wfns_t">wfns_t</a>
             <a class="list-group-item" href="../module/m_psml_core.html#type-valence_charge_t">valence_charge_t</a>
             <a class="list-group-item" href="../module/m_psml_core.html#type-core_charge_t">core_charge_t</a>
+            <a class="list-group-item" href="../module/m_psml_core.html#type-valence_kinetic_energy_density_t">valence_kinetic_energy_density_t</a>
+            <a class="list-group-item" href="../module/m_psml_core.html#type-core_kinetic_energy_density_t">core_kinetic_energy_density_t</a>
             <a class="list-group-item" href="../module/m_psml_core.html#type-ps_t">ps_t</a>
         </div>
       </div>
@@ -257,9 +259,9 @@
       <ul class="list-group">
           <li class="list-group-item">
             <ul class="list-inline">
-                <li><a href='../module/external_interfaces.html'>external_interfaces</a></li>
-                <li><a href='../module/class_grid.html'>class_Grid</a></li>
-                <li><a href='../module/assoc_list.html'>assoc_list</a></li>
+                <li><a href='../module/m_psml_class_grid.html'>m_psml_class_Grid</a></li>
+                <li><a href='../module/m_psml_assoc_list.html'>m_psml_assoc_list</a></li>
+                <li><a href='../module/m_psml_external_interfaces.html'>m_psml_external_interfaces</a></li>
             </ul>
           </li>
       </ul>
@@ -335,6 +337,8 @@
             <a class="list-group-item" href="../module/m_psml_core.html#type-wfns_t">wfns_t</a>
             <a class="list-group-item" href="../module/m_psml_core.html#type-valence_charge_t">valence_charge_t</a>
             <a class="list-group-item" href="../module/m_psml_core.html#type-core_charge_t">core_charge_t</a>
+            <a class="list-group-item" href="../module/m_psml_core.html#type-valence_kinetic_energy_density_t">valence_kinetic_energy_density_t</a>
+            <a class="list-group-item" href="../module/m_psml_core.html#type-core_kinetic_energy_density_t">core_kinetic_energy_density_t</a>
             <a class="list-group-item" href="../module/m_psml_core.html#type-ps_t">ps_t</a>
         </div>
       </div>
@@ -413,7 +417,7 @@ parameter
             <td>::</td>
             <td><strong>PATCH_LEVEL</strong></td>
 <td> =</td>
-                <td>7</td>
+                <td>0</td>
             <td>
                 
             </td>
@@ -430,7 +434,7 @@ parameter
             <td>::</td>
             <td><strong>PSML_LIBRARY_VERSION</strong></td>
 <td> =</td>
-                <td>1100+PATCH_LEVEL</td>
+                <td>2000+PATCH_LEVEL</td>
             <td>
                 
             </td>
@@ -464,7 +468,7 @@ parameter
             <td>::</td>
             <td><strong>PSML_TARGET_VERSION_HI</strong></td>
 <td> =</td>
-                <td>1.10</td>
+                <td>1.20</td>
             <td>
                 
             </td>
@@ -1088,6 +1092,23 @@ parameter
             </td>
             <td>::</td>
             <td><strong>core_corrections</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-meta_gga"></span>
+              character(len=3),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>meta_gga</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -2979,6 +3000,189 @@ parameter
 
               <div class="panel panel-default">
     <div class="panel-heading codesum">
+      <span class="anchor" id="type-valence_kinetic_energy_density_t"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='../type/valence_kinetic_energy_density_t.html'>valence_kinetic_energy_density_t</a>
+        
+      </h3>
+    </div>
+    <div class="panel-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Visibility</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+<th></th><th>Initial</th>        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_unscreening_tau"></span>
+              character(len=3),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_unscreening_tau</strong></td>
+<td> =</td>
+                <td>""</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-kin_edens_val"></span>
+              type(<a href='../type/radfunc_t.html'>radfunc_t</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>kin_edens_val</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-annotation~12"></span>
+              type(<a href='../type/assoc_list_t.html'>assoc_list_t</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>annotation</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="panel panel-default">
+    <div class="panel-heading codesum">
+      <span class="anchor" id="type-core_kinetic_energy_density_t"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='../type/core_kinetic_energy_density_t.html'>core_kinetic_energy_density_t</a>
+        
+      </h3>
+    </div>
+    <div class="panel-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Visibility</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+<th></th><th>Initial</th>        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n_cont_derivs~2"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>n_cont_derivs</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rcore~2"></span>
+              real(kind=dp),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rcore</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-kin_edens_core"></span>
+              type(<a href='../type/radfunc_t.html'>radfunc_t</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>kin_edens_core</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-annotation~13"></span>
+              type(<a href='../type/assoc_list_t.html'>assoc_list_t</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>annotation</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="panel panel-default">
+    <div class="panel-heading codesum">
       <span class="anchor" id="type-ps_t"></span>
       <h3>
         type, public&nbsp;::&nbsp;
@@ -3087,7 +3291,7 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-annotation~12"></span>
+              <span class="anchor" id="variable-annotation~14"></span>
               type(<a href='../type/assoc_list_t.html'>assoc_list_t</a>),
             </td>
               <td>public</td>
@@ -3300,6 +3504,40 @@ parameter
             </td>
             <td>::</td>
             <td><strong>core_charge</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-valence_kinetic_energy_density"></span>
+              type(<a href='../type/valence_kinetic_energy_density_t.html'>valence_kinetic_energy_density_t</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>valence_kinetic_energy_density</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-core_kinetic_energy_density"></span>
+              type(<a href='../type/core_kinetic_energy_density_t.html'>core_kinetic_energy_density_t</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>core_kinetic_energy_density</strong></td>
                 <td></td>
                 <td></td>
             <td>
@@ -3919,7 +4157,7 @@ parameter
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

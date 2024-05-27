@@ -9,11 +9,11 @@ module m_psml_parsing_helpers
 !  the SAX paradigm.
 !
  use m_psml_core              ! For data types and basic utilities
- use external_interfaces, only: die => psml_die
- use class_Grid
- use assoc_list, only: ps_annotation_t => assoc_list_t
+ use m_psml_external_interfaces, only: die => psml_die
+ use m_psml_class_Grid
+ use m_psml_assoc_list, only: ps_annotation_t => assoc_list_t
 
- use strings_helpers, only: safe_str_assign
+ use m_psml_strings_helpers, only: safe_str_assign
  
 implicit none
 
@@ -64,6 +64,8 @@ logical, private, save  :: in_xc = .false., in_libxc_info = .false.
 logical, private, save  :: in_pseudowavefun = .false. , in_pswf = .false.
 logical, private, save  :: in_chlocal = .false., in_nonlocal = .false.
 logical, private, save  :: in_proj = .false. , in_local_potential = .false.
+logical, private, save  :: in_valenceKE = .false.
+logical, private, save  :: in_coreKE = .false.
 logical, private, save  :: got_explicit_grid_data
 
 integer, private, save  :: ndata, ndata_grid
@@ -104,6 +106,8 @@ type(nlpj_t), private, pointer            :: nlpp => null()
 type(nlpj_t), private, pointer            :: qnlpp => null()
 type(valence_charge_t), private, pointer  :: valp => null()
 type(core_charge_t), private, pointer     :: corep => null()
+type(valence_kinetic_energy_density_t), private, pointer  :: valKEp => null()
+type(core_kinetic_energy_density_t), private, pointer     :: coreKEp => null()
 type(radfunc_t), private, pointer         :: rp => null()
 
 character(len=100), private, save :: parent_element=""
@@ -239,6 +243,11 @@ select case(name)
          call get_value(attributes,"core-corrections", &
                                     hp%core_corrections,status)
          if (status /= 0 ) hp%core_corrections = "no"
+         ! Check yes/no value??
+
+         call get_value(attributes,"meta-gga", &
+                                    hp%meta_gga,status)
+         if (status /= 0 ) hp%meta_gga = "no"
          ! Check yes/no value??
          
       case ("exchange-correlation")
@@ -665,6 +674,7 @@ select case(name)
          ! and subsequent vps elements.
          !
          if (     in_slps .or. in_coreCharge .or. in_valenceCharge &
+              .or. in_valenceKE .or. in_coreKE  &
               .or. in_pswf .or. in_proj .or. in_local_potential  &
               .or. in_chlocal) then           
             in_radfunc = .true.
@@ -714,6 +724,40 @@ select case(name)
             valp%rescaled_to_z_pseudo,status)
          if (status /= 0 ) valp%rescaled_to_z_pseudo = ""
          
+      case ("valence-kinetic-energy-density")
+         in_valenceKE = .true.
+         valKEp => pseudo%valence_kinetic_energy_density
+         rp => valKEp%kin_edens_val
+         rp%has_coulomb_tail = .false.
+         
+         call get_value(attributes,"is-unscreening-tau",&
+            valKEp%is_unscreening_tau,status)
+         if (status /= 0 ) valKEp%is_unscreening_tau = ""
+         
+
+      case ("pseudocore-kinetic-energy-density")
+         in_coreKE = .true.
+         coreKEp => pseudo%core_kinetic_energy_density
+         rp => coreKEp%kin_edens_core
+         rp%has_coulomb_tail = .false.
+         
+         call get_value(attributes,"matching-radius",value,status)
+         if (status == 0 )  then
+            read(unit=value,fmt=*) coreKEp%rcore
+         else
+            ! Signal absence of attribute with a negative number
+            coreKEp%rcore = -1.0_dp
+         endif
+                                                                              
+         call get_value(attributes,"number-of-continuous-derivatives", &
+                                   value,status)
+         if (status == 0 )  then
+            read(unit=value,fmt=*) coreKEp%n_cont_derivs
+         else
+            ! Signal absence of attribute with a negative number
+            coreKEp%n_cont_derivs = -1
+         endif
+
       case ("semilocal-potentials")
          in_semilocal = .true.
          allocate(slp)
@@ -845,6 +889,10 @@ select case(name)
             call save_annotation(attributes,valp%annotation)
          else if (in_coreCharge) then
             call save_annotation(attributes,corep%annotation)
+         else if (in_valenceKE) then
+            call save_annotation(attributes,valKEp%annotation)
+         else if (in_coreKE) then
+            call save_annotation(attributes,coreKEp%annotation)
          else if (in_psml) then  ! It must be at the top level
             ! Version 1.0 only. Keep it in the structure
             call save_annotation(attributes,pseudo%annotation)
@@ -943,6 +991,12 @@ select case(name)
 
       case ("valence-charge")
          in_valenceCharge = .false.
+
+      case ("pseudocore-kinetic-energy-density")
+         in_coreKE = .false.
+
+      case ("valence-kinetic-energy-density")
+         in_valenceKE = .false.
 
       case ("semilocal-potentials")
          in_semilocal = .false.
@@ -1076,7 +1130,7 @@ end subroutine cdata_section_chunk
      ! ( (key "value") (key "value") ...)
      ! 
 subroutine save_annotation(atts,annotation)
-  use assoc_list, ps_annotation_t => assoc_list_t
+  use m_psml_assoc_list, ps_annotation_t => assoc_list_t
   use xmlf90_sax, only: dictionary_t, get_value, get_key, len
 
        type(dictionary_t), intent(in) :: atts

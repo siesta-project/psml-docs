@@ -56,7 +56,7 @@
                   <li><a href="../lists/modules.html">Modules</a></li>
                   <li><a href="../lists/procedures.html">Procedures</a></li>
                   <li><a href="../lists/types.html">Derived Types</a></li>
-                  <li><a href="../program/test_assoc.html">Program</a></li>
+                  <li><a href="../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../program/test_assoc.html">Program</a>
+                <a href="../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -102,7 +102,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 1.5% of total for procedures.">39 statements</a>
+               title=" 1.5% of total for procedures.">43 statements</a>
           </li>
 
             <li id="source-file">
@@ -162,7 +162,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine ps_PseudoAtomSpec_Get(ps, atomic_symbol, atomic_label, atomic_number, z_pseudo, pseudo_flavor, relativity, spin_dft, core_corrections, annotation)  
+    <h2>public  subroutine ps_PseudoAtomSpec_Get(ps, atomic_symbol, atomic_label, atomic_number, z_pseudo, pseudo_flavor, relativity, spin_dft, core_corrections, meta_gga, annotation)  
 </h2>
     
 
@@ -181,7 +181,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-ps~16"></span>
+              <span class="anchor" id="variable-ps~18"></span>
               type(<a href='../type/ps_t.html'>ps_t</a>),
             </td>
 <td>intent(in)</td>
@@ -316,7 +316,22 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-annotation~16"></span>
+              <span class="anchor" id="variable-meta_gga~2"></span>
+              logical,
+            </td>
+<td>intent(out),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>meta_gga</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-annotation~18"></span>
               type(<a href='../type/assoc_list_t.html'>assoc_list_t</a>),
             </td>
 <td>intent(out),</td>
@@ -379,7 +394,7 @@
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ps_PseudoAtomSpec_Get</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">atomic_symbol</span><span class="p">,</span><span class="w"> </span><span class="n">atomic_label</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
 <span class="w">     </span><span class="n">atomic_number</span><span class="p">,</span><span class="w"> </span><span class="n">z_pseudo</span><span class="p">,</span><span class="w"> </span><span class="n">pseudo_flavor</span><span class="p">,&amp;</span>
-<span class="w">     </span><span class="n">relativity</span><span class="p">,</span><span class="w"> </span><span class="n">spin_dft</span><span class="p">,</span><span class="w"> </span><span class="n">core_corrections</span><span class="p">,</span><span class="w"> </span><span class="n">annotation</span><span class="p">)</span>
+<span class="w">     </span><span class="n">relativity</span><span class="p">,</span><span class="w"> </span><span class="n">spin_dft</span><span class="p">,</span><span class="w"> </span><span class="n">core_corrections</span><span class="p">,</span><span class="w"> </span><span class="n">meta_gga</span><span class="p">,</span><span class="w"> </span><span class="n">annotation</span><span class="p">)</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">ps_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ps</span>
 <span class="w">  </span>
@@ -391,6 +406,7 @@
 <span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">relativity</span>
 <span class="w">  </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">spin_dft</span>
 <span class="w">  </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">core_corrections</span>
+<span class="w">  </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">meta_gga</span>
 <span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">ps_annotation_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">annotation</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">atomic_symbol</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
@@ -425,6 +441,10 @@
 <span class="k">     </span><span class="n">core_corrections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">header</span><span class="p">%</span><span class="n">core_corrections</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
 <span class="w">  </span><span class="k">endif</span>
 
+<span class="k">  if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">meta_gga</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">     </span><span class="n">meta_gga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ps</span><span class="p">%</span><span class="n">header</span><span class="p">%</span><span class="n">meta_gga</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">endif</span>
+
 <span class="k">  if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">annotation</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
 <span class="k">     </span><span class="n">annotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">%</span><span class="n">header</span><span class="p">%</span><span class="n">annotation</span>
 <span class="w">  </span><span class="k">endif</span>
@@ -443,7 +463,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

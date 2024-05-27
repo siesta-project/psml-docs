@@ -56,7 +56,7 @@
                   <li><a href="../../../lists/modules.html">Modules</a></li>
                   <li><a href="../../../lists/procedures.html">Procedures</a></li>
                   <li><a href="../../../lists/types.html">Derived Types</a></li>
-                  <li><a href="../../../program/test_assoc.html">Program</a></li>
+                  <li><a href="../../../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../../../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../../../program/test_assoc.html">Program</a>
+                <a href="../../../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../../../search.html" class="navbar-form navbar-right" role="search">
@@ -127,6 +127,7 @@
 </ul>
 </li>
 <li><a href="#valence-and-core-charges">Valence and Core Charges</a></li>
+<li><a href="#valence-and-core-kinetic-energy-density-for-mgga">Valence and core kinetic-energy density for MGGA</a></li>
 <li><a href="#local-potential-and-local-charge-density">Local Potential and Local Charge Density</a></li>
 <li><a href="#semilocal-potentials">Semilocal potentials</a></li>
 <li><a href="#nonlocal-projectors">Nonlocal Projectors</a></li>
@@ -172,10 +173,12 @@ specific error conditions.</p>
 <h1 id="parsing">Parsing</h1>
 <ul>
 <li>
-<p>The routine <a href="../../../proc/psml_reader.html">psml_reader</a> (<code>filename, ps, debug</code>) parses the PSML file
+<p>The routine <a href="../../../proc/psml_reader.html">psml_reader</a> (<code>filename, ps, debug, stat</code>) parses the PSML file
 <code>filename</code> and populates the data structures in the handle
 <code>ps</code>. An optional <code>debug</code> argument determines whether the
-library issues debugging messages while parsing.</p>
+library issues debugging messages while parsing. An optional <code>stat</code> argument will
+be set to 0 upon successful return, to -1 if the filename cannot be opened,
+and (if using a recent version of xmlf90), to -2 if there is a XML parsing error.</p>
 </li>
 <li>
 <p><a href="../../../proc/ps_destroy.html">ps_destroy</a> (<code>ps</code>) is a low-level routine provided for
@@ -255,6 +258,7 @@ information), and a routine to get the information from a given level:</p>
        <span class="n">attribute</span> <span class="n">atomic</span><span class="o">-</span><span class="n">number</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
        <span class="n">attribute</span> <span class="n">z</span><span class="o">-</span><span class="n">pseudo</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">},</span>
        <span class="n">attribute</span> <span class="n">core</span><span class="o">-</span><span class="n">corrections</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">},</span>
+       <span class="n">attribute</span> <span class="n">meta</span><span class="o">-</span><span class="n">gga</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
        <span class="n">attribute</span> <span class="n">relativity</span> <span class="p">{</span> <span class="s2">&quot;no&quot;</span> <span class="o">|</span> <span class="s2">&quot;scalar&quot;</span> <span class="o">|</span> <span class="s2">&quot;dirac&quot;</span> <span class="p">},</span>
        <span class="n">attribute</span> <span class="n">spin</span><span class="o">-</span><span class="n">dft</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
        <span class="n">attribute</span> <span class="n">flavor</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">string</span> <span class="p">}</span><span class="err">?</span>
@@ -263,9 +267,9 @@ information), and a routine to get the information from a given level:</p>
 <ul>
 <li><a href="../../../proc/ps_pseudoatomspec_get.html">ps_PseudoAtomSpec_Get</a> (<code>ps, atomic_symbol,
   atomic_label, atomic_number, z_pseudo,
-  pseudo_flavor, relativity, spin_dft, core_corrections, annotation</code>)</li>
+  pseudo_flavor, relativity, spin_dft, core_corrections, meta_gga, annotation</code>)</li>
 </ul>
-<p>The arguments <code>spin_dft</code> and <code>core_corrections</code> are boolean,
+<p>The arguments <code>spin_dft</code>, <code>core_corrections</code>, and <code>meta_gga</code> are boolean,
   and the routine returns an empty string in <code>flavor</code> if the
   attribute is not present (recall that <code>flavor</code> is a cascading
   attribute that can be set at multiple levels).</p>
@@ -380,6 +384,40 @@ a particular point <code>r</code>:</p>
 <ul>
 <li>function <a href="../../../proc/ps_valencecharge_value.html">ps_ValenceCharge_Value</a> (<code>ps,r</code>) result(<code>val</code>)</li>
 <li>function <a href="../../../proc/ps_corecharge_value.html">ps_CoreCharge_Value</a> (<code>ps,r</code>) result(<code>val</code>)</li>
+</ul>
+<h2 id="valence-and-core-kinetic-energy-density-for-mgga">Valence and core kinetic-energy density for MGGA</h2>
+<p>These are work in progress. The relevant routines are</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ValenceKineticDensity</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">valence</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">energy</span><span class="o">-</span><span class="n">density</span> <span class="p">{</span>
+                   <span class="n">attribute</span> <span class="ow">is</span><span class="o">-</span><span class="n">unscreening</span><span class="o">-</span><span class="n">tau</span> <span class="p">{</span> <span class="s2">&quot;yes&quot;</span> <span class="o">|</span> <span class="s2">&quot;no&quot;</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                   <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                   <span class="n">Radfunc</span>
+                 <span class="p">}</span>  
+<span class="c1"># =========</span>
+<span class="n">CoreKineticDensity</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">pseudocore</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">energy</span><span class="o">-</span><span class="n">density</span> <span class="p">{</span>
+                <span class="n">attribute</span> <span class="n">matching</span><span class="o">-</span><span class="n">radius</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">double</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                <span class="n">attribute</span> <span class="n">number</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">continuous</span><span class="o">-</span><span class="n">derivatives</span> <span class="p">{</span> <span class="n">xsd</span><span class="p">:</span><span class="n">nonNegativeInteger</span> <span class="p">}</span><span class="err">?</span><span class="p">,</span>
+                <span class="n">Annotation</span><span class="err">?</span><span class="p">,</span>
+                <span class="n">Radfunc</span>
+              <span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><a href="../../../proc/ps_valencekineticdensity_get.html">ps_ValenceKineticDensity_Get</a> (<code>is_unscreening_tau,
+                      annotation,func</code>)</li>
+</ul>
+<p>The routine returns an emtpy string in <code>is_unscreening_tau</code> 
+  if the attribute is not present in the PSML file. </p>
+<ul>
+<li><a href="../../../proc/ps_corekineticdensity_get.html">ps_CoreKineticDensity_Get</a> (<code>ps,rc,nderivs,annotation,func</code>)</li>
+</ul>
+<p><code>rc</code> corresponds to the matching radius and <code>nderivs</code> to the
+  continuity information. Negative values are returned if the
+  corresponding attributes are not present in the file.</p>
+<p>As above, the API offers some convenience functions to get the actual
+values as a function of the radial coordinate:</p>
+<ul>
+<li>function <a href="../../../proc/ps_valencekineticdensity_value.html">ps_ValenceKineticDensity_Value</a> (<code>ps,r</code>) result(<code>val</code>)</li>
+<li>function <a href="../../../proc/ps_corekineticdensity_value.html">ps_CoreKineticDensity_Value</a> (<code>ps,r</code>) result(<code>val</code>)</li>
 </ul>
 <h2 id="local-potential-and-local-charge-density">Local Potential and Local Charge Density</h2>
 <div class="codehilite"><pre><span></span><code><span class="n">LocalPotential</span> <span class="o">=</span>  <span class="n">element</span> <span class="n">local</span><span class="o">-</span><span class="n">potential</span> <span class="p">{</span>
@@ -656,7 +694,7 @@ to a PSML file using the routine</p>
 implementing a basic instance of an association list (a data structure
 holding key-value pairs), and exports the <code>ps_annotation_t</code>
 type, the empty annotation object <code>EMPTY_ANNOTATION</code> and the following routines:</p>
-<p>(The names of these routines are aliases of the originals in the <a href="../../../module/assoc_list.html">assoc_list</a> module.)</p>
+<p>(The names of these routines are aliases of the originals in the <a>assoc_list</a> module.)</p>
 <ul>
 <li>reset_annotation (<code>annotation</code>)</li>
 </ul>
@@ -710,7 +748,10 @@ type, the empty annotation object <code>EMPTY_ANNOTATION</code> and the followin
             <a href='../../../page/01_the_psml_format/databases.html'>Databases of PSML files</a>
             </li>
             <li role="presentation">
-            <a href='../../../page/01_the_psml_format/schema.html'>Schema for PSML</a>
+            <a href='../../../page/01_the_psml_format/schema-1.1.html'>Schema for PSML (V1.1)</a>
+            </li>
+            <li role="presentation">
+            <a href='../../../page/01_the_psml_format/schema.html'>Schema for PSML (V1.2)</a>
             </li>
 
             </ul>
@@ -748,7 +789,7 @@ type, the empty annotation object <code>EMPTY_ANNOTATION</code> and the followin
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

@@ -7,14 +7,13 @@ module m_psml_api
 !+ graph: false
 !+ Procedures to handle the PSML pseudopotential format.
 
-use m_psml_core
-use m_aux_aliases, only: ps_radfunc_t
+use m_psml_core, ps_radfunc_t => radfunc_t
 
-use assoc_list, only: ps_annotation_t => assoc_list_t
-use assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST
+use m_psml_assoc_list, only: ps_annotation_t => assoc_list_t
+use m_psml_assoc_list, only: EMPTY_ANNOTATION => EMPTY_ASSOC_LIST
 
-use external_interfaces, only: die => psml_die
-use class_Grid
+use m_psml_external_interfaces, only: die => psml_die
+use m_psml_class_Grid
 
 implicit none
 
@@ -45,6 +44,14 @@ public :: ps_ValenceCharge_Get
 !
 public :: ps_CoreCharge_Value
 public :: ps_CoreCharge_Get
+!
+! MGGA
+!
+public :: ps_ValenceKineticDensity_Value
+public :: ps_ValenceKineticDensity_Get
+!
+public :: ps_CoreKineticDensity_Value
+public :: ps_CoreKineticDensity_Get
 !
 ! Semilocal potentials
 !
@@ -252,7 +259,7 @@ end subroutine ps_Provenance_Get
 !
 subroutine ps_PseudoAtomSpec_Get(ps,atomic_symbol, atomic_label, &
      atomic_number, z_pseudo, pseudo_flavor,&
-     relativity, spin_dft, core_corrections, annotation)
+     relativity, spin_dft, core_corrections, meta_gga, annotation)
   
   type(ps_t), intent(in) :: ps
   
@@ -264,6 +271,7 @@ subroutine ps_PseudoAtomSpec_Get(ps,atomic_symbol, atomic_label, &
   character(len=*), intent(out), optional :: relativity
   logical, intent(out), optional          :: spin_dft
   logical, intent(out), optional          :: core_corrections
+  logical, intent(out), optional          :: meta_gga
   type(ps_annotation_t), intent(out), optional :: annotation
 
   if (present(atomic_symbol)) then
@@ -296,6 +304,10 @@ subroutine ps_PseudoAtomSpec_Get(ps,atomic_symbol, atomic_label, &
 
   if (present(core_corrections)) then
      core_corrections = (ps%header%core_corrections == "yes")
+  endif
+
+  if (present(meta_gga)) then
+     meta_gga = (ps%header%meta_gga == "yes")
   endif
 
   if (present(annotation)) then
@@ -451,6 +463,83 @@ real(dp)                   :: val
 val = ps_GetValue(ps%core_charge%rho_core,r)
 
 end function ps_CoreCharge_Value
+
+!MGGA
+! ===================================================================
+!
+subroutine ps_ValenceKineticDensity_Get(ps,annotation,func)
+
+type(ps_t), intent(in) :: ps
+
+type(ps_annotation_t), intent(out), optional :: annotation
+type(ps_radfunc_t), intent(out), optional    :: func
+
+if (present(annotation)) then
+   annotation = ps%valence_kinetic_energy_density%annotation
+endif
+
+if (present(func)) then
+   func = ps%valence_kinetic_energy_density%kin_edens_val
+endif
+
+end subroutine ps_ValenceKineticDensity_Get
+!
+!-------------------------------------------------------
+!> Computes the value of the valence kinetic energy density at r
+!> @param ps is a handle to the psml information
+!> @param r is the radius
+!> ??? It returns the valence kinetic energy density integrated over
+!> ??? solid angle, so that KE_val = int{ val*r*r }
+!> 
+function ps_ValenceKineticDensity_Value(ps,r) result(val)
+type(ps_t), intent(in) :: ps
+real(dp), intent(in)       :: r
+real(dp)                   :: val
+
+val = ps_GetValue(ps%valence_kinetic_energy_density%kin_edens_val,r)
+
+end function ps_ValenceKineticDensity_Value
+!
+! ===================================================================
+!
+subroutine ps_CoreKineticDensity_Get(ps,rc,nderivs,annotation,func)
+
+type(ps_t), intent(in) :: ps
+
+real(dp), intent(out), optional              :: rc
+integer, intent(out), optional               :: nderivs
+type(ps_annotation_t), intent(out), optional :: annotation
+type(ps_radfunc_t), intent(out), optional    :: func
+
+if (present(rc)) then
+   rc = ps%core_kinetic_energy_density%rcore
+endif
+if (present(nderivs)) then
+   nderivs = ps%core_kinetic_energy_density%n_cont_derivs
+endif
+if (present(annotation)) then
+   annotation = ps%core_kinetic_energy_density%annotation
+endif
+if (present(func)) then
+   func = ps%core_kinetic_energy_density%kin_edens_core
+endif
+
+end subroutine ps_CoreKineticDensity_Get
+
+!>  Computes the value of the pseudo-core kinetic energy density at r
+!> @param ps is a handle to the psml information
+!> @param r is the radius
+!> ??? It returns the pseudo-core kinetic energy density integrated over
+!> ??? solid angle, so that Q_core = int{ val*r*r }
+!> 
+function ps_CoreKineticDensity_Value(ps,r) result(val)
+type(ps_t), intent(in) :: ps
+real(dp), intent(in)       :: r
+real(dp)                   :: val
+
+val = ps_GetValue(ps%core_kinetic_energy_density%kin_edens_core,r)
+
+end function ps_CoreKineticDensity_Value
 !
 ! ===================================================================
 !
@@ -1161,7 +1250,7 @@ end function l_of_sym
 
 !>  Returns the maximum radius in a radfunc's data
 function max_range(f) result(range)
-type(radfunc_t), intent(in) :: f
+type(ps_radfunc_t), intent(in) :: f
 real(dp)                  :: range
 
 real(dp),  pointer :: a(:)
@@ -1187,7 +1276,7 @@ end function max_range
 function eval_radfunc(f,r,debug) result(val)
 use m_psml_interp, only: interpolator, nq
 
-type(radfunc_t), intent(in) :: f
+type(ps_radfunc_t), intent(in) :: f
 real(dp), intent(in)      :: r
 logical, intent(in)       :: debug
 

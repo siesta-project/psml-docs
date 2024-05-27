@@ -9,9 +9,9 @@
 module m_psml_ps_edit
 
 use m_psml_core   ! For basic structures
-use external_interfaces, only: die => psml_die
+use m_psml_external_interfaces, only: die => psml_die
 
-use assoc_list, ps_annotation_t => assoc_list_t
+use m_psml_assoc_list, ps_annotation_t => assoc_list_t
 
 implicit none
 

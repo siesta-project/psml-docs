@@ -56,7 +56,7 @@
                   <li><a href="../lists/modules.html">Modules</a></li>
                   <li><a href="../lists/procedures.html">Procedures</a></li>
                   <li><a href="../lists/types.html">Derived Types</a></li>
-                  <li><a href="../program/test_assoc.html">Program</a></li>
+                  <li><a href="../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../program/test_assoc.html">Program</a>
+                <a href="../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -102,7 +102,7 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title="20.3% of total for procedures.">522 statements</a>
+               title="18.8% of total for procedures.">552 statements</a>
           </li>
 
             <li id="source-file">
@@ -394,6 +394,11 @@
 <span class="k">         call </span><span class="n">get_value</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="s2">&quot;core-corrections&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
 <span class="w">                                    </span><span class="n">hp</span><span class="p">%</span><span class="n">core_corrections</span><span class="p">,</span><span class="n">status</span><span class="p">)</span>
 <span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">hp</span><span class="p">%</span><span class="n">core_corrections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;no&quot;</span>
+<span class="w">         </span><span class="c">! Check yes/no value??</span>
+
+<span class="w">         </span><span class="k">call </span><span class="n">get_value</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="s2">&quot;meta-gga&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                    </span><span class="n">hp</span><span class="p">%</span><span class="n">meta_gga</span><span class="p">,</span><span class="n">status</span><span class="p">)</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">hp</span><span class="p">%</span><span class="n">meta_gga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;no&quot;</span>
 <span class="w">         </span><span class="c">! Check yes/no value??</span>
 <span class="w">         </span>
 <span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;exchange-correlation&quot;</span><span class="p">)</span>
@@ -820,6 +825,7 @@
 <span class="w">         </span><span class="c">! and subsequent vps elements.</span>
 <span class="w">         </span><span class="c">!</span>
 <span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w">     </span><span class="n">in_slps</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_coreCharge</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_valenceCharge</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">              </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_valenceKE</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_coreKE</span><span class="w">  </span><span class="p">&amp;</span>
 <span class="w">              </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_pswf</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_proj</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_local_potential</span><span class="w">  </span><span class="p">&amp;</span>
 <span class="w">              </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">in_chlocal</span><span class="p">)</span><span class="w"> </span><span class="k">then           </span>
 <span class="k">            </span><span class="n">in_radfunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
@@ -869,7 +875,41 @@
 <span class="w">            </span><span class="n">valp</span><span class="p">%</span><span class="n">rescaled_to_z_pseudo</span><span class="p">,</span><span class="n">status</span><span class="p">)</span>
 <span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">valp</span><span class="p">%</span><span class="n">rescaled_to_z_pseudo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
 <span class="w">         </span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;semilocal-potentials&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;valence-kinetic-energy-density&quot;</span><span class="p">)</span>
+<span class="w">         </span><span class="n">in_valenceKE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="w">         </span><span class="n">valKEp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">pseudo</span><span class="p">%</span><span class="n">valence_kinetic_energy_density</span>
+<span class="w">         </span><span class="n">rp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">valKEp</span><span class="p">%</span><span class="n">kin_edens_val</span>
+<span class="w">         </span><span class="n">rp</span><span class="p">%</span><span class="n">has_coulomb_tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span>
+<span class="w">         </span><span class="k">call </span><span class="n">get_value</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="s2">&quot;is-unscreening-tau&quot;</span><span class="p">,&amp;</span>
+<span class="w">            </span><span class="n">valKEp</span><span class="p">%</span><span class="n">is_unscreening_tau</span><span class="p">,</span><span class="n">status</span><span class="p">)</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">valKEp</span><span class="p">%</span><span class="n">is_unscreening_tau</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">         </span>
+
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;pseudocore-kinetic-energy-density&quot;</span><span class="p">)</span>
+<span class="w">         </span><span class="n">in_coreKE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="w">         </span><span class="n">coreKEp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">pseudo</span><span class="p">%</span><span class="n">core_kinetic_energy_density</span>
+<span class="w">         </span><span class="n">rp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">coreKEp</span><span class="p">%</span><span class="n">kin_edens_core</span>
+<span class="w">         </span><span class="n">rp</span><span class="p">%</span><span class="n">has_coulomb_tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span>
+<span class="w">         </span><span class="k">call </span><span class="n">get_value</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="s2">&quot;matching-radius&quot;</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="n">status</span><span class="p">)</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="k">then</span>
+<span class="k">            read</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="k">value</span><span class="p">,</span><span class="n">fmt</span><span class="o">=*</span><span class="p">)</span><span class="w"> </span><span class="n">coreKEp</span><span class="p">%</span><span class="n">rcore</span>
+<span class="w">         </span><span class="k">else</span>
+<span class="w">            </span><span class="c">! Signal absence of attribute with a negative number</span>
+<span class="w">            </span><span class="n">coreKEp</span><span class="p">%</span><span class="n">rcore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0_dp</span>
+<span class="w">         </span><span class="k">endif</span>
+<span class="k">                                                                              </span>
+<span class="k">         call </span><span class="n">get_value</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="s2">&quot;number-of-continuous-derivatives&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                   </span><span class="k">value</span><span class="p">,</span><span class="n">status</span><span class="p">)</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="k">then</span>
+<span class="k">            read</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="k">value</span><span class="p">,</span><span class="n">fmt</span><span class="o">=*</span><span class="p">)</span><span class="w"> </span><span class="n">coreKEp</span><span class="p">%</span><span class="n">n_cont_derivs</span>
+<span class="w">         </span><span class="k">else</span>
+<span class="w">            </span><span class="c">! Signal absence of attribute with a negative number</span>
+<span class="w">            </span><span class="n">coreKEp</span><span class="p">%</span><span class="n">n_cont_derivs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="k">      case</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;semilocal-potentials&quot;</span><span class="p">)</span>
 <span class="w">         </span><span class="n">in_semilocal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
 <span class="w">         </span><span class="k">allocate</span><span class="p">(</span><span class="n">slp</span><span class="p">)</span>
 <span class="w">         </span>
@@ -1000,6 +1040,10 @@
 <span class="k">            call </span><span class="n">save_annotation</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="n">valp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
 <span class="w">         </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">in_coreCharge</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">            call </span><span class="n">save_annotation</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="n">corep</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<span class="w">         </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">in_valenceKE</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            call </span><span class="n">save_annotation</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="n">valKEp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
+<span class="w">         </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">in_coreKE</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            call </span><span class="n">save_annotation</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="n">coreKEp</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
 <span class="w">         </span><span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">in_psml</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">  </span><span class="c">! It must be at the top level</span>
 <span class="w">            </span><span class="c">! Version 1.0 only. Keep it in the structure</span>
 <span class="w">            </span><span class="k">call </span><span class="n">save_annotation</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span><span class="n">pseudo</span><span class="p">%</span><span class="n">annotation</span><span class="p">)</span>
@@ -1026,7 +1070,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

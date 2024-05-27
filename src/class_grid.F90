@@ -2,12 +2,12 @@
 #include "config.h"
 #endif
 
-module class_Grid
+module m_psml_class_Grid
 
-  use assoc_list, only: ps_annotation_t => assoc_list_t
-  use assoc_list, only: ps_clean_annotation => assoc_list_reset
+  use m_psml_assoc_list, only: ps_annotation_t => assoc_list_t
+  use m_psml_assoc_list, only: ps_clean_annotation => assoc_list_reset
 
-  use external_interfaces, only: psml_die
+  use m_psml_external_interfaces, only: psml_die
   
   implicit none
 
@@ -123,4 +123,4 @@ module class_Grid
                                ", refcount: ", refcount(this),">"
  end subroutine printGrid
 
-end module class_Grid
+end module m_psml_class_Grid

@@ -8,7 +8,7 @@
     <meta name="author" content="Alberto Garcia" >
     <link rel="icon" href="../favicon.png">
 
-    <title>m_aux_aliases.f90 &ndash; libPSML</title>
+    <title>custom_psml_die &ndash; libPSML</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -56,7 +56,7 @@
                   <li><a href="../lists/modules.html">Modules</a></li>
                   <li><a href="../lists/procedures.html">Procedures</a></li>
                   <li><a href="../lists/types.html">Derived Types</a></li>
-                  <li><a href="../program/test_assoc.html">Program</a></li>
+                  <li><a href="../lists/programs.html">Programs</a></li>
               </ul>
             </li>
                 <li class="visible-xs hidden-sm visible-lg">
@@ -72,7 +72,7 @@
                 <a href="../lists/types.html">Derived Types</a>
               </li>
               <li class="visible-xs hidden-sm visible-lg">
-                <a href="../program/test_assoc.html">Program</a>
+                <a href="../lists/programs.html">Programs</a>
               </li>
           </ul>
             <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -89,8 +89,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>m_aux_aliases.f90
-      <small>Source File</small>
+    <h1>custom_psml_die
+      <small>Subroutine</small>
       
     </h1>
       <div class="row" id="info-bar">
@@ -102,16 +102,17 @@
           <li id="statements"><i class="fa fa-list-ol"></i>
             <a data-toggle="tooltip"
                data-placement="bottom" data-html="true"
-               title=" 0.1% of total for source files.">4 statements</a>
+               title=" 0.2% of total for procedures.">6 statements</a>
           </li>
 
             <li id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/m_aux_aliases.f90"> Source File</a>
+              <a href="../src/custom_psml_die.F90"> Source File</a>
             </li>
         </ul>
         <ol class="breadcrumb in-well text-right">
-          <li class="active">m_aux_aliases.f90</li>
+              <li><a href='../sourcefile/custom_psml_die.f90.html'>custom_psml_die.F90</a></li>
+          <li class="active">custom_psml_die</li>
         </ol>
       </div>
     </div>
@@ -123,6 +124,7 @@
   </script>
 
   </div>
+  
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
       <div id="sidebar">
@@ -132,19 +134,7 @@
   
   
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#mods-0">Modules</a>
-        </h3>
-      </div>
-      <div id="mods-0" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -161,7 +151,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html#src">m_aux_aliases.f90</a>
+        <a class="list-group-item" href="../proc/custom_psml_die.html#src">custom_psml_die</a>
       </div>
     </div>
 
@@ -169,9 +159,44 @@
   </div>
 
     </div>
+    
     <div class="col-md-9" id='text'>
-      
-      <br>
+    <h2> subroutine custom_psml_die(str)  
+</h2>
+    
+
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th>Type</th>
+<th>Intent</th><th>Optional</th>        <th>Attributes</th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-str"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>str</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
 
     <section class="visible-xs visible-sm hidden-md">
         <h3>Contents</h3>
@@ -180,19 +205,7 @@
   
   
   
-      <div class="panel panel-primary">
-      <div class="panel-heading text-left">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" href="#mods-1">Modules</a>
-        </h3>
-      </div>
-      <div id="mods-1" class="panel-collapse collapse">
-        <div class="list-group">
-            <a class="list-group-item" href="../module/m_aux_aliases.html">m_aux_aliases</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -209,7 +222,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
       <div class="list-group">
-        <a class="list-group-item" href="../sourcefile/m_aux_aliases.f90.html#src">m_aux_aliases.f90</a>
+        <a class="list-group-item" href="../proc/custom_psml_die.html#src">custom_psml_die</a>
       </div>
     </div>
 
@@ -217,17 +230,30 @@
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
+
+    
+    
+
+    
+    
+
+
+    
     <section>
-      <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="k">module </span><span class="n">m_aux_aliases</span>
-<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="w">  </span><span class="k">use </span><span class="n">m_psml_core</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">ps_radfunc_t</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">radfunc_t</span>
-<a id="ln-3" name="ln-3" href="#ln-3"></a>
-<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ps_radfunc_t</span>
-<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="w">  </span>
-<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="k">end module </span><span class="n">m_aux_aliases</span>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">custom_psml_die</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">str</span>
+
+<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;(a,a)&quot;</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Custom psml_die:: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">str</span>
+<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;(a,a)&quot;</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Custom psml_die:: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">str</span>
+<span class="w">  </span><span class="k">STOP</span>
+
+<span class="k">end subroutine </span><span class="n">custom_psml_die</span>
 </pre></div>
 
     </section>
+    <br>
+    
     </div>
   </div>
 
@@ -236,7 +262,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2023 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
+          <div class="col-xs-6 col-md-6"><p>libPSML was developed by Alberto Garcia<br>&copy; 2024 <a rel="license" href="http://www.freebsd.org/copyright/freebsd-doc-license.html">FreeBSD Documentation License</a>
 </p>
           </div>
           <div class="col-xs-6 col-md-6">

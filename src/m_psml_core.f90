@@ -9,11 +9,11 @@
 
 module m_psml_core
 
-use assoc_list, only: ps_annotation_t => assoc_list_t
-use assoc_list, only: ps_clean_annotation => assoc_list_reset
-use class_Grid
+use m_psml_assoc_list, only: ps_annotation_t => assoc_list_t
+use m_psml_assoc_list, only: ps_clean_annotation => assoc_list_reset
+use m_psml_class_Grid
 
-use external_interfaces, only: die => psml_die
+use m_psml_external_interfaces, only: die => psml_die
 
 implicit none
 
@@ -21,13 +21,13 @@ private
 
 !
 ! Update this. Up to 99...
-integer, parameter    :: PATCH_LEVEL = 7
+integer, parameter    :: PATCH_LEVEL = 0
 !
 ! Only update 1000 when changing major/minor version
-integer, parameter, public  :: PSML_LIBRARY_VERSION = 1100 + PATCH_LEVEL
+integer, parameter, public  :: PSML_LIBRARY_VERSION = 2000 + PATCH_LEVEL
 !
 !  Simple sanity checks while the format evolves
-!  This version is able to read v1.0 and v1.1 PSML files
+!  This version is able to read v1.0 and v1.2 PSML files
 !
 !  Note that the version is really given by the generators.
 !
@@ -35,7 +35,7 @@ integer, parameter, public  :: PSML_LIBRARY_VERSION = 1100 + PATCH_LEVEL
 ! it is neither completely foolproof nor flexible enough.
 !
 real, parameter, public  :: PSML_TARGET_VERSION_LO = 1.00
-real, parameter, public  :: PSML_TARGET_VERSION_HI = 1.10
+real, parameter, public  :: PSML_TARGET_VERSION_HI = 1.20
 
 !----------------------------------------------------------------
 ! Hardwired parameters (to be made dynamical in a later version)
@@ -76,6 +76,7 @@ type, public :: header_t
         logical                 :: polarized !! is spin-DFT?
         !
         character(len=3)        :: core_corrections !! are there NLCC's?
+        character(len=3)        :: meta_gga         !! includes kinetic-energy-densities?
       !
       type(ps_annotation_t)   :: annotation
 end type header_t
@@ -240,6 +241,22 @@ type, public :: core_charge_t
       type(ps_annotation_t)           :: annotation
 end type core_charge_t
 
+! MGGA  ---
+type, public :: valence_kinetic_energy_density_t  ! valence-kinetic-energy-density
+      character(len=3):: is_unscreening_tau = ""
+      type(radfunc_t) :: kin_edens_val
+      type(ps_annotation_t)   :: annotation
+end type valence_kinetic_energy_density_t
+
+type, public :: core_kinetic_energy_density_t
+      integer         :: n_cont_derivs
+      real(dp)        :: rcore
+
+      type(radfunc_t) :: kin_edens_core
+
+      type(ps_annotation_t)           :: annotation
+end type core_kinetic_energy_density_t
+! ----
 
 type, public :: ps_t
 !! Main derived type to hold the PSML information
@@ -262,6 +279,9 @@ type, public :: ps_t
       !
       type(valence_charge_t)             :: valence_charge
       type(core_charge_t)                :: core_charge
+      !
+      type(valence_kinetic_energy_density_t)  :: valence_kinetic_energy_density
+      type(core_kinetic_energy_density_t)     :: core_kinetic_energy_density
       !
       ! index tables
       !
@@ -328,6 +348,11 @@ call ps_clean_annotation(ps%valence_charge%annotation)
 call destroy_radfunc(ps%core_charge%rho_core)
 call ps_clean_annotation(ps%core_charge%annotation)
 
+call destroy_radfunc(ps%valence_kinetic_energy_density%kin_edens_val)
+call ps_clean_annotation(ps%valence_kinetic_energy_density%annotation)
+!
+call destroy_radfunc(ps%core_kinetic_energy_density%kin_edens_core)
+call ps_clean_annotation(ps%core_kinetic_energy_density%annotation)
 !
 call delete(ps%global_grid)
 

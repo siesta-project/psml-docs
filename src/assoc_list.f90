@@ -2,7 +2,7 @@
 #include "config.h"
 #endif
 
-module assoc_list
+module m_psml_assoc_list
 ! First version, with fixed (initial) length,
 ! and fixed-length fields.
 ! Alberto Garcia, Sept 2014
@@ -198,4 +198,4 @@ if (a%nitems > 0) then
 endif
 end subroutine assoc_list_print
 
-end module assoc_list
+end module m_psml_assoc_list

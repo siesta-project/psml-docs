@@ -2,7 +2,7 @@
 #include "config.h"
 #endif
 
-module external_interfaces
+module m_psml_external_interfaces
   !
   interface
      ! Called to terminate the program, printing a message
@@ -15,8 +15,9 @@ module external_interfaces
   procedure(psml_die_interf),pointer ::   &
       psml_die => simple_die_routine
 
-  public :: set_die_routine
   public :: psml_die
+  public :: psml_die_interf
+  public :: set_die_routine
 
 CONTAINS
 
@@ -36,4 +37,4 @@ CONTAINS
     stop
   end subroutine simple_die_routine
 
-end module external_interfaces
+end module m_psml_external_interfaces
